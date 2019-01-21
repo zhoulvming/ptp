@@ -1,0 +1,29 @@
+{
+  "name": "yummp2",
+  "version": "0.0.1",
+  "description": "基于gulp构建的yummp",
+  "main": "",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "test": "gulp test"
+  },
+  "author": "yangqi",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "eslint": "^5.0.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-less": "^3.5.0",
+    "gulp-rename": "^1.2.3",
+    "yargs": "^11.0.0"
+  },
+  "dependencies": {
+    "gulp": "^4.0.0"
+  }
+}

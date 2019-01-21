@@ -1,0 +1,31 @@
+
+  <view class="pd-top-20 pd-bottom-20 align-center display-col">
+    <text class="fs-warning">距结束仅剩</text>
+    <text class="fs-content">22时10分10秒</text>
+  </view>
+
+  <view class="wrapper">
+    <view class="panel detail">
+      <image src="../../images/pt002-detail.jpg"/>
+      <view class="content">
+        <text class="title">我是商品名称</text>
+        <text class="desc">3人团，有效期至2019年1月，其他备注</text>
+        <view class="price">
+          <text class="money">￥99.0</text>
+          <text class="count">* 3</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="wrapper display-col">
+      <text class="fs-title">友情提醒</text>
+      <text class="fs-content">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
+    </view>
+    <view class="action">
+      <text class="price">￥287.35</text>
+      <button bindtap="submit">选好了</button>
+    </view>
+  </view>
+

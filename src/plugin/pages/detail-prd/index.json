@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponent": {
+    "tabView": "../../components/tab/tab"
+  }
+}

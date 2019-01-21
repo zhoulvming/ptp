@@ -1,0 +1,5 @@
+<view class="">
+  <view class="pt-plugin" hover-class="none" hover-stop-propagation="false">
+    <pt_index />
+  </view>
+</view>

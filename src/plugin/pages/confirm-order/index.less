@@ -1,0 +1,88 @@
+@import '../../lib/main.less';
+
+
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  image {
+    height: 200rpx;
+    width: 200rpx;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding-left:20rpx;
+    .title {
+      font-size: 40rpx;
+  
+    }
+    .desc {
+      font-size: 30rpx;
+      color: grey;
+    }
+    .price {
+      margin-top: 40rpx;
+      display: flex;
+      flex-direction: row;
+      .money {
+        font-size: 50rpx;
+        width: 50%;
+      }
+      .count {
+        font-size: 30rpx;
+        width: 50%;
+        text-align: right;
+      }
+    }
+  }
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .memo {
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+    padding:15rpx;
+    .title {
+      font-size: 30rpx;
+      font-weight: 600;
+      margin-bottom:10rpx;
+    }
+    .content {
+      font-size: 25rpx;
+    }
+  }
+  .action {
+    display: flex;
+    flex-direction: row;
+    background-color: @color-dark;
+    .price {
+      margin: auto 0;
+      width: 60%;
+      font-size: @fs-1;
+      color: white;
+      font-weight: @fw-1;
+      text-align: center;
+    }
+    button {
+      color: white;
+      font-size: @fs-1;
+      font-weight: @fw-1;
+      width: 40%;
+      background-color: @color-primary;
+      box-sizing: none;
+      border-radius: 0;
+
+    }
+  }
+}
+
+ 

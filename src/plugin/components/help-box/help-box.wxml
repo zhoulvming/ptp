@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="container-wrap">
+    <block wx:for="{{content}}">
+      <view class="item-li">
+        <view class="item-title" data-changeid="{{item.id}}" bindtap="showHide">
+          <text>{{item.title}}</text>
+          <image src="../../images/down_arrow.png"></image>
+        </view>
+        <view class="item-content" wx:if="{{item.shows}}">
+          <text>{{item.contents}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+

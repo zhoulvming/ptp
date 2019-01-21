@@ -1,0 +1,14 @@
+<view class="page">
+  <navigator url="../group-home/group-home">
+    我要拼团
+  </navigator>
+  <navigator url="../list-order/list-order">
+    我的订单
+  </navigator>
+  <navigator url="../detail-order/detail-order">
+    某拼团订单
+  </navigator>
+</view>
+
+
+<!-- <login /> -->

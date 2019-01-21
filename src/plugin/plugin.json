@@ -1,0 +1,13 @@
+{
+  "publicComponents": {
+    "login": "components/login/login"
+  },
+  "pages": {
+    "index": "pages/index/index",
+    "detail-prd": "pages/detail-prd/index",
+    "detail-grp": "pages/detail-grp/index",
+    "detail-order": "pages/detail-order/index",
+    "confirm-order": "pages/confirm-order/index"
+  },
+  "main": "index.js"
+}

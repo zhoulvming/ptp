@@ -1,0 +1,21 @@
+<view wx:for="{{prds}}" wx:for-item="item" class="card-list display-col">
+  <text class="title">
+    {{item.actionName}}
+  </text>
+  <view wx:for="{{item.items}}" wx:for-item="prd_item" class="card-item">
+    <image class="logo" src="{{prd_item.image}}"></image>
+    <view class="name display-row">
+      <text class="prd-numbers">{{prd_item.numbers}}人团</text>
+      <text class="prd-name">{{prd_item.prdName}}</text>
+    </view>
+    <view class="footer">
+      <view class="price">
+        <text class="now">￥{{prd_item.price}}</text>
+        <text class="org">￥{{prd_item.orgPrice}}</text>
+      </view>
+    </view>
+    <navigator class="btn" url="plugin-private://wx85694629dac0c26a/pages/detail-prd/index?prdId={{prd_item.prdId}}">
+       去开团
+    </navigator>
+  </view>
+</view>

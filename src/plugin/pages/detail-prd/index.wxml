@@ -1,0 +1,132 @@
+<view class="detail-prd">
+  <image class="logo" src="{{prdDetail.prdImage}}"></image>
+  <view class="logo-info">
+    <text class="name">多人拼团</text>
+    <view class="info">
+      <text>距结束仅剩</text>
+      <view class="leftTime">
+        <text class="mr-8">{{prdDetail.leftTime_d}}</text>天
+        <text class="mr-8">{{prdDetail.leftTime_h}}</text>:
+        <text class="mr-8">{{prdDetail.leftTime_m}}</text>:
+        <text>{{prdDetail.leftTime_s}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="panel">
+    <view class="price-now">
+      <text class="now-pref">￥{{prdDetail.price_pref}}</text>.
+      <text class="now-suff">{{prdDetail.price_suff}}</text>
+      <text class="gp-info">{{prdDetail.numbers}}人拼团价</text>
+    </view>
+    <view class="price-org">
+      <text class="org">原价 ￥{{prdDetail.orgPrice}}</text>
+    </view>
+    <view class="prd-name display-col">
+      <text class="name">{{prdDetail.prdName}}</text>
+      <text class="desc">{{prdDetail.prdDesc}}</text>
+    </view>
+    <view class="share">
+      <image src="../../images/icons/fx.png"></image>
+      <text>分享</text>
+    </view>
+    <view class="count">
+      <text>销量 {{prdDetail.salesCount}}</text>
+      <text class="align-right">剩余 {{prdDetail.leftCount}}</text>
+    </view>  
+  </view>
+
+</view>
+
+<view class="detail-gp panel"> 
+  <view class="group-list">
+    <text>以下小伙伴正在发起拼团，您可以直接参与</text>
+    <view wx:for="{{prdDetail.groups}}" wx:for-item="item" class="item">
+      <image class="user-head" src="../../images/user1.jpg"></image>
+      <view class="content">
+        <text class="user-name">{{item.userName}}</text>
+        <text class="group-info">还差{{item.leftNumbers}}人成团，剩余{{item.leftTime}}</text>
+      </view>        
+      <button bindtap="gotoGroup" class="btn-primary">去凑团</button>
+    </view>
+    <view class="lookmore">
+      <navigator class="" target="" url="">
+        查看更多拼团 >
+      </navigator>
+    </view>       
+  </view>
+</view>
+
+<view class="detail-other panel"> 
+  <view class='tab'>
+    <view class='tab-nav'>
+      <view class='{{currentTab==0?"on":""}}' data-current="0" bindtap='tab'>商品详情</view>
+      <view class='{{currentTab==1?"on":""}}' data-current="1" bindtap='tab'>成交记录</view>
+      <view class='{{currentTab==2?"on":""}}' data-current="2" bindtap='tab'>相关问题</view>
+    </view>
+    <swiper class='tab-box' current="{{currentTab}}" bindchange="eventchange">
+      <swiper-item>
+        {{prdDetail.detailContent}}
+      </swiper-item>
+      <swiper-item>
+        <view class="record-list">
+          <view wx:for="{{prdDetail.records}}" class="record-item display-row">
+            <view><text>{{item.userId}}</text></view>
+            <view><text>{{item.time}}</text></view>
+            <view><text>{{item.count}}</text></view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        {{prdDetail.question}}
+      </swiper-item>
+    </swiper>
+  </view>
+</view>  
+
+<view class='fixedBottom'>
+  <view class='customer'>
+    <navigator url=''>
+      <image mode='widthFix' src="../../images/icons/pin.png" />
+      <text class="fs-warning">客服</text>
+    </navigator>
+  </view>
+  <view class='singlePurse' bindtap='showModal' data-buyway="1">
+    <text>¥{{prdDetail.orgPrice}}</text>
+    <text class="fs-warning">单人价</text>
+  </view>
+  <view class='groupPurse' bindtap='showModal' data-buyway="2">
+    <text>¥{{prdDetail.price_pref}}.{{prdDetail.price_suff}}</text>
+    <text class="fs-warning">开团价</text>
+  </view>
+</view>  
+
+
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+  <view class="prd-info">
+    <image src="../../images/pt002-detail.jpg"/>
+    <view class="info">
+      <text class="name">XXXXX商品名称</text>
+      <text class="gp-info">3人拼团价</text>
+      <text class="price">￥99</text>
+    </view>
+  </view>
+  <view class="buycount">
+    <view class="info">
+      <text class="largeText">购买数量</text>
+      <text class="leftCount">剩余1000件数</text>    
+    </view>
+    <view class='count'>
+      <view class="input">
+        <view class='ic' bindtap='evic'>-</view>
+        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'  />
+        <view class='ad' bindtap='evad'>+</view>      
+      </view>
+      <view class="info">
+        <text>每人限购 5 件</text>
+      </view>
+    </view>
+  </view>
+  <button bindtap="next">下一步</button>
+</view>
+

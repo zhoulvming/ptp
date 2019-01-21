@@ -1,0 +1,22 @@
+<view wx:for="{{listData}}" wx:for-item="item" class="item">
+  <view class="item-header">
+    <text>订单已完成</text>
+  </view>
+  <view class="item-body">
+    <navigator class="" target="" url="plugin-private://wx85694629dac0c26a/pages/detail-order/index?prdId={{item.prdId}}">
+      <image src="../../images/pt002-detail.jpg"/>
+      <view class="content">
+        <text class="title">{{item.prdName}}</text>
+        <text class="desc">{{item.desc}}</text>
+        <view class="price">
+          <text class="money">￥{{item.price}}元</text>
+          <text class="count">* {{item.count}}</text>
+        </view>
+      </view>  
+    </navigator>
+  </view>
+  <view class="item-footer">
+    <text>合计   {{item.totalPrice}}</text>
+    <button>拼团详情</button>
+  </view>
+</view>

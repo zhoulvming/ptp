@@ -1,0 +1,111 @@
+.header {
+  padding: 20rpx;
+  text-align: left;
+  font-size: 30rpx;
+}
+.body {
+  background-color: #efefef;
+  .detail {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20rpx;
+    image {
+      height: 200rpx;
+      width: 200rpx;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding-left:20rpx;
+      .title {
+        font-size: 40rpx;
+    
+      }
+      .desc {
+        font-size: 30rpx;
+        color: grey;
+      }
+      .price {
+        margin-top: 40rpx;
+        display: flex;
+        flex-direction: row;
+        .money {
+          font-size: 50rpx;
+          width: 50%;
+        }
+        .count {
+          font-size: 30rpx;
+          width: 50%;
+          text-align: right;
+        }
+      }
+    }
+  }
+  .prd-price, .prd-reduce {
+    background-color: #fff;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    font-size: 30rpx;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    .title {
+      width: 50%;
+    }
+    .count {
+      width: 50%;
+      text-align: right;
+    }
+  }
+  .total-price {
+    background-color: #fff;
+    border-top: 1rpx dotted #ccc;
+    width: 100%;
+    text-align: right;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    .title {
+      font-size: 25rpx;
+      margin-right: 60rpx;
+    }
+    .count {
+      font-size: 45rpx;
+      color: red;
+      font-weight: 600;
+    }
+  }
+
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .memo {
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    padding:15rpx;
+    .title {
+      font-size: 30rpx;
+      font-weight: 600;
+      margin-bottom:10rpx;
+    }
+    .content {
+      font-size: 25rpx;
+    }
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+    background-color: #f9a825;
+    border-radius: 0;
+    box-sizing: none;
+    padding-top: 25rpx;
+    padding-bottom: 25rpx;
+  }
+}
+
+ 

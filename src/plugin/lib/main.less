@@ -1,0 +1,74 @@
+
+@fs-1: 40rpx;
+@fs-2: 35rpx;
+@fs-3: 30rpx;
+@fs-4: 25rpx;
+@fs-5: 20rpx;
+@fw-1: 700;
+@fw-2: 600;
+@fw-3: 500;
+@color-primary: #008FDB;
+@color-warning: #f9a825;
+@color-dark: #555;
+@color-gray: #888;
+@color-little-gray: #eee;
+
+.mr-8 { margin-right: 8rpx }
+.pd-left-20 { padding-left: 20rpx;}
+.pd-right-20 { padding-right: 20rpx;}
+.pd-top-20 { padding-top: 20rpx;}
+.pd-bottom-20 { padding-bottom: 20rpx;}
+
+/** component **/
+page {
+  background-color: @color-little-gray;
+}
+.wrapper {
+  padding: 20rpx;
+}
+.panel {
+  padding: 15rpx;
+  background-color: white;
+  border-radius: 15rpx;
+}
+
+
+/** structure **/
+.display-col {
+  display: flex;
+  flex-direction: column;
+}
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-right {
+  text-align: right;
+}
+.align-center {
+  text-align: center;
+}
+
+/** font-size **/
+.fs-title {
+  font-size: @fs-2;
+  font-weight: @fw-2;
+}
+.fs-warning {
+  font-size: @fs-3;
+  font-weight: @fw-2;
+}
+.fs-content {
+  font-size: @fs-4;
+}
+
+
+.btn-primary {
+  padding: 0 30rpx;
+  margin: auto;
+  text-align: center;
+  background: @color-primary;
+  color:white;
+  font-size: @fs-4;
+  font-weight: @fw-1;
+}

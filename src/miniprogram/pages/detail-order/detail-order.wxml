@@ -1,0 +1,5 @@
+<view>
+  <view class="pt-plugin">
+    <pt_order />
+  </view>
+</view>

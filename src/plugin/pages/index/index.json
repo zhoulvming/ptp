@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "拼团商品",
+  "usingComponents": {
+    "card-item": "../../components/card-item/card-item"
+  }
+}

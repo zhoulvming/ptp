@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "XX商城",
+  "usingComponents": {
+    "login": "plugin://pt_plugin/login"
+  }
+}

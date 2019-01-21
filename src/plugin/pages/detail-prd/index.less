@@ -1,0 +1,351 @@
+@import '../../lib/main.less';
+
+.detail-prd {
+  background-color: white;
+  margin-bottom: 20rpx;
+  .logo {
+    width: 100%;
+    height: 300rpx;
+  }
+  .logo-info {
+    background-color: @color-primary;
+    display: flex;
+    flex-direction: row;
+    margin-top:-10rpx;
+    padding-top:10rpx;
+    padding-left:15rpx;
+    padding-bottom: 15rpx;
+    .name {
+      font-size: 40rpx;
+      font-weight: 700;
+      color: white;
+      width: 60%;
+      margin:auto 0;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      color: white;
+      font-size: 25rpx;
+      font-weight: 600;
+      width: 40%;
+      text-align: center;
+      >text {
+        text-align: center;
+        margin-bottom: 8rpx
+      }
+      .leftTime {
+        text {
+          color: #000;
+          background-color: white;
+          padding: 0 8rpx;
+          border-radius: 5rpx;
+        }
+      }
+    }
+  }
+  .price-now {
+
+    .now-pref {
+      font-size: @fs-1;
+      font-weight: @fw-2;
+    }
+    .now-suff {
+      font-size: @fs-4;
+      font-weight: @fw-2;
+      margin-left: -10rpx;
+    }
+    .gp-info {
+      border: 1px solid @color-warning;
+      font-size: @fs-4;
+      color: @color-warning;
+      margin: 5rpx 10rpx;
+      padding: 3rpx 10rpx;
+      border-radius: 5rpx;
+    }
+  }
+  .price-org {
+    font-size: @fs-4;
+    text-decoration:line-through;
+    color: @color-gray;
+  }
+  .share {
+    height:100rpx;
+    width: 100rpx;
+    position: absolute;
+    right: 10rpx;
+    top: 15rpx;
+    font-size: 25rpx;
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+    image {
+      height:45rpx;
+      width: 50rpx;
+      margin: 0 auto;
+    }
+  }
+  .prd-name {
+    margin-top: 30rpx;
+    .name {
+      font-size: @fs-2;
+      font-weight: @fw-2;
+    }
+    .desc {
+      font-size: @fs-3;
+    }
+  }
+  .count {
+    margin-top: 20rpx;
+    color: @color-gray;
+    font-size: @fs-4;
+    font-weight: @fw-3;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    text {
+      width: 50%;
+    }
+  }  
+}
+
+.detail-gp {
+  position: relative;
+  background-color: white;
+  margin-bottom: 20rpx;
+  .group-list {
+    font-size: @fs-3;
+    >.item {
+      padding: 20rpx 15rpx;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      >.user-head {
+        width: 60rpx;
+        height: 60rpx;
+        border-radius:30rpx;
+      }
+      >.content {
+        margin-left: 20rpx;
+        display: flex;
+        flex-direction: column;
+        font-size: 25rpx;
+        >.user-name {
+          font-weight: 700;
+        }
+      }
+      button {
+        position: absolute;
+        right: 0;
+        top: 25rpx;
+      }
+    }
+    >.lookmore {
+      margin-top: 15rpx;
+      color: @color-gray;
+      font-weight: @fw-3;
+      text-align: center;
+      font-size: @fs-3;
+    }
+  }
+}
+
+.detail-other {
+  background-color: white;
+  font-size: @fs-3;
+  .tab-nav {
+    height: 70rpx;
+    line-height: 70rpx;
+  }
+  .tab-nav view {
+    float: left;
+    height: 70rpx;
+    line-height: 70rpx;
+    width: 33.33%;
+    text-align: center;
+  }
+  .tab-nav view.on {
+    color: @color-primary;
+    border-bottom: 5rpx solid @color-primary;
+  }
+  .tab-box {
+    padding: 20rpx 15rpx;
+  }
+  .record-list {
+    .record-item {
+      >view {
+        width: 33%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.fixedBottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  color: white;
+  font-weight: @fw-2;
+  display: flex;
+  flex-direction: row;
+  view {
+    padding: 10rpx 0;
+    text {
+      display: block;
+    }
+  }
+  view.customer {
+    width: 20%;
+    text-align: center;
+    background: @color-dark;
+    image {
+      width: 20px;
+      height: 20px;
+      margin: -1px auto;
+    }
+  }
+  view.singlePurse, view.groupPurse {
+    width: 40%;
+    text-align: center;
+  }
+  view.singlePurse {
+    background: @color-gray;
+    font-size: @fs-2;
+  }
+  view.groupPurse {
+    background: @color-primary;
+    font-size: @fs-2;
+  }
+}
+
+/*modal*/
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.7;
+}
+.modalDlg {
+  width: 100%;
+  height: 580rpx;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #fff;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .prd-info { 
+    padding: 15rpx;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    image {
+      width: 200rpx;
+      height: 200rpx;
+      margin-left: 15rpx;
+    }
+    .info {
+      margin-left: 20rpx;
+      display: flex;
+      flex-direction: column;
+      .name {
+        font-size: @fs-1;
+        font-weight: @fw-1;
+      }
+      .gp-info {
+        text-align: center;
+        width: 150rpx;
+        border: 1px solid @color-warning;
+        border-radius: 8rpx;
+        font-size: @fs-4;
+        font-weight: @fw-2;
+        color: @color-warning;
+        margin: 5rpx 10rpx;     
+      }
+      .price {
+        margin-top: 80rpx;
+        font-size: @fs-1;
+        font-weight: 700;
+      }
+    }
+    
+  }
+  .buycount {
+    position: relative;
+    padding: 15rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20rpx;
+    font-size: @fs-3;
+    width: 100%;
+    >.info {
+      padding-left:30rpx;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      text-align: left;
+      .largeText {
+        font-size: 40rpx;
+      }
+      .leftCount {
+        font-size: 30rpx;
+        color: grey;
+      }
+    }
+    .count {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      right: 40rpx;
+      .input {
+        display: flex;
+        flex-direction: row;
+        .ic,.ad {
+          float: left;
+          width: 60rpx;
+          height: 60rpx;
+          line-height: 60rpx;
+          border-radius: 60rpx;
+          background: @color-primary;
+          font-size: 40rpx;
+          color: #ffffff;
+          text-align: center;
+         
+        }
+        .in {
+          float: left;
+          width: 90rpx;
+          height: 60rpx;
+          line-height: 60rpx;
+          border-width: 0 ;
+          font-size: 40rpx;
+          color: #333333;
+          margin: 0 20rpx;
+          text-align: center;
+        }
+      }
+      .info {
+        width:100%;
+        margin-top:15rpx;
+        text-align: center;
+      }
+    } 
+  }
+  button {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: @color-primary;
+    border-radius: 0;
+    box-sizing: none;
+    color: white;
+  }
+}
