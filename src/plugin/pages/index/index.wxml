@@ -12,4 +12,8 @@
   <view class="panel">
     <card-item prds="{{prds}}"></card-item>
   </view>
+
+
+  <button bindtap="_incrementCounter">testsetststestset</button>
+
 </view>

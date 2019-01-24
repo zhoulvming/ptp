@@ -1,5 +1,5 @@
 <view class="">
   <view class="pt-plugin" hover-class="none" hover-stop-propagation="false">
-    <pt_index />
+    <pt_index bindincrement="incrementTotal"/>
   </view>
 </view>

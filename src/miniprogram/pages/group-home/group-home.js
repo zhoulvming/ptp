@@ -34,5 +34,10 @@ Page({
   onTabItemTap() {
     // 当前是 tab 页时，点击 tab 时触发
   },
+  incrementTotal() {
+    wx.navigateTo({
+      url: '../detail-order/detail-order',
+    });
+  },
   customData: {}
 });

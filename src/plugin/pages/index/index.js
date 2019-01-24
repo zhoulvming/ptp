@@ -68,6 +68,12 @@ Page({
     //     console.log(res.data);
     //   }
     // });
+  },
+
+
+  _incrementCounter: function() {
+    this.triggerEvent('increment', {num: 1});
+    
   }
 
 });
