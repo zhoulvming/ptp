@@ -13,7 +13,11 @@ Page({
     max: 5,//最大值 整数类型，null表示不设置
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
-    def_num: 5//输入框值出现异常默认设置值
+    def_num: 5,//输入框值出现异常默认设置值
+    imgUrls: [
+      '../../images/slide001.png',
+      '../../images/slide002.png'
+    ],
   },
 
   /**

@@ -1,16 +1,8 @@
 /* eslint-disable no-console */
-// pages/detail-grp/index.js
-
 var timer = require('../../utils/wxTimer.js');
-var wxTimer = new timer({
-  beginTime: '20:00:00'
-});
+var wxTimer = null;
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     wxTimerList:[],
     args: {
@@ -20,18 +12,56 @@ Page({
     args2: {
       withCredentials: true,
       lang: 'zh_CN'
-    }
+    },
+    status: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+
+    // status
+    let statusCode = options.status;
+    let that = this;
+    console.log(statusCode);
+    if (statusCode == 1) {
+      that.setData({
+        status: {
+          code: statusCode,
+          image: '../../images/icons/on.png',
+          info: '发起拼团成功',
+          css: 'on'
+        }
+      });
+    }
+
+    // detail data
+    let tempData = {
+      prdId: '10001',
+      prdName: '商品名称',
+      prdDesc: '这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容',
+      prdImage: '../../images/pt-003.png',
+      numbers: 3,
+      leftNumbers: 2,
+      salesCount: 100,
+      price_pref: 99,
+      price_suff: 30,
+      orgPrice: 1000,
+      leftHour: 10,
+      leftMinute: 20,
+      leftSecond: 20
+    };
+    that.setData({prdDetail: tempData});
+
+    // 计数器
+    let timeStr = tempData.leftHour + ':' + tempData.leftMinute + ':' + tempData.leftSecond;
+    wxTimer = new timer({
+      beginTime: timeStr
+    });
     wxTimer.start(this);
 
 
-    // let tempData = {};
   },
 
   /**
@@ -97,5 +127,21 @@ Page({
   },
   loginFail(res) {
     console.log(res);
+  },
+
+
+
+  formSubmit() {
+    wx.showToast({
+      title: '装逼中...',
+      icon: 'loading',
+      duration: 1000
+    });
   }
+
+
+
+
+
+
 });

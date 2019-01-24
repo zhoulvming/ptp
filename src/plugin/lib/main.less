@@ -1,5 +1,5 @@
 
-@fs-1: 40rpx;
+@fs-1: 35rpx;
 @fs-2: 35rpx;
 @fs-3: 30rpx;
 @fs-4: 25rpx;
@@ -13,6 +13,7 @@
 @color-gray: #888;
 @color-little-gray: #eee;
 
+.mt-50 { margin-top: 50rpx; }
 .mr-8 { margin-right: 8rpx }
 .pd-left-20 { padding-left: 20rpx;}
 .pd-right-20 { padding-right: 20rpx;}
@@ -30,6 +31,10 @@ page {
   padding: 15rpx;
   background-color: white;
   border-radius: 15rpx;
+}
+.panel-no-radius {
+  padding: 15rpx;
+  background-color: white;
 }
 
 
@@ -63,12 +68,27 @@ page {
 }
 
 
-.btn-primary {
+.btn-primary-normal {
   padding: 0 30rpx;
   margin: auto;
   text-align: center;
   background: @color-primary;
   color:white;
-  font-size: @fs-4;
-  font-weight: @fw-1;
+  font-size: @fs-3;
+  font-weight: @fw-2;
+}
+
+.link-normal {
+  color: @color-gray;
+  font-size: @fs-3;
+  text-decoration: underline;
+}
+
+swiper {
+  height: 350rpx;
+  width: 100%;
+  image {
+    height: 100%;
+    width: 100%;
+  }
 }

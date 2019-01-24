@@ -11,8 +11,8 @@
     background-color: @color-primary;
     display: flex;
     flex-direction: row;
-    margin-top:-10rpx;
-    padding-top:10rpx;
+    
+    padding-top:12rpx;
     padding-left:15rpx;
     padding-bottom: 15rpx;
     .name {
@@ -45,7 +45,6 @@
     }
   }
   .price-now {
-
     .now-pref {
       font-size: @fs-1;
       font-weight: @fw-2;
@@ -66,11 +65,11 @@
   }
   .price-org {
     font-size: @fs-4;
-    text-decoration:line-through;
+    text-decoration: line-through;
     color: @color-gray;
   }
   .share {
-    height:100rpx;
+    height: 100rpx;
     width: 100rpx;
     position: absolute;
     right: 10rpx;
@@ -80,7 +79,7 @@
     flex-direction: column;
     text-align:center;
     image {
-      height:45rpx;
+      height: 45rpx;
       width: 50rpx;
       margin: 0 auto;
     }
@@ -138,7 +137,6 @@
       button {
         position: absolute;
         right: 0;
-        top: 25rpx;
       }
     }
     >.lookmore {
@@ -315,7 +313,7 @@
           line-height: 60rpx;
           border-radius: 60rpx;
           background: @color-primary;
-          font-size: 40rpx;
+          font-size: @fs-1;
           color: #ffffff;
           text-align: center;
          
@@ -326,7 +324,7 @@
           height: 60rpx;
           line-height: 60rpx;
           border-width: 0 ;
-          font-size: 40rpx;
+          font-size: @fs-1;
           color: #333333;
           margin: 0 20rpx;
           text-align: center;
@@ -344,6 +342,7 @@
     bottom: 0;
     width: 100%;
     background-color: @color-primary;
+    font-weight: @fw-1;
     border-radius: 0;
     box-sizing: none;
     color: white;

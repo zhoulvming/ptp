@@ -1,96 +1,121 @@
 @import '../../lib/main.less';
 
-.detail-grp {
-  padding-top: 20rpx;
-  background: white;
-  height: 280rpx;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
-}
-.detail-grp .head {
+.status {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  font-size: @fs-2;
+  margin: 0 auto;
+  font-weight: @fw-1;
+  image {
+    width: 40rpx;
+    height: 40rpx;
+    margin: auto;
+    margin-right: 20rpx;
+  }
+  text.on {
+    color: @color-primary;
+  }
 }
-.detail-grp .head image {
-  width: 280rpx;
-  height: 280rpx;
-  margin-right: 20rpx;
-}
-.detail-grp .head .info {
-  position: relative;
-  height: 100%;
-}
-.detail-grp .head .title {
-  font-size: 35rpx;
-  font-weight: 700;
-}
-.detail-grp .head .price {
-  position: absolute;
-  bottom: 0;
-  font-size: 25rpx;
-  color: red;
-  line-height: 2;
-  padding-bottom: 20rpx;
-}
-.detail-grp .head .price .price-group .name {
-  /* font-size: 28rpx; */
-}
-.detail-grp .head .price .price-group .count_pref {
-  font-size: 40rpx;
-  font-weight: 700;
-}
-.detail-grp .head .price .price-group .count_suff {
-  font-size: 28rpx;
-  font-weight: 700;
-}
-.detail-grp .head .price .price-single {
-  color: #666;
-  font-weight: 600;
+
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  image {
+    height: 250rpx;
+    width: 250rpx;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15rpx;
+    position: relative;
+    .title {
+      font-size: @fs-2;
+    }
+    .desc {
+      font-size: @fs-4;
+      color: @color-gray;
+    }
+    .price-now {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      position: absolute;
+      bottom: 20rpx;
+      .now-pref {
+        font-size: @fs-1;
+        font-weight: @fw-2;
+      }
+      .now-suff {
+        font-size: @fs-4;
+        font-weight: @fw-2;
+        width: 15%;
+        padding-top:18rpx;
+      }
+      .org {
+        font-size: @fs-3;
+        text-decoration: line-through;
+        color: @color-gray;
+        width: 16%;
+        padding-top:12rpx;
+      }
+      .gp-info {
+        font-size: @fs-3;
+        padding-top:12rpx;
+        width: 44%;
+        text-align: right;
+      }
+    }
+  }
 }
 
 
 .detail-user {
-  margin-top: 1rpx;
-  padding-top: 30rpx;
-  padding-bottom: 40rpx;
-  background: white;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
-  text-align: center
-}
-.detail-user .avatar {
-  padding-top: 20rpx;
-}
-.detail-user .avatar image {
-  height: 100rpx;
-  width: 100rpx;
-  border-radius: 50rpx;
-  margin: 0 10rpx;
-}
-
-.detail-user .count {
-  font-weight: 700;
-}
-.detail-user .timer {
-  font-size: 30rpx;
-  color: #020202;
-  margin-top: 20rpx;
-}
-.detail-user .timer .count{
-  font-size: 35rpx;
-  color: red;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-}
-.detail-user button {
-  margin: 40rpx 20rpx 0 20rpx;
-  background-color: red;
-  border-radius: 5rpx;
-  color: white;
-}
-
-.help-box {
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
+  text-align: center;
+  .avatar {
+    padding-top: 20rpx;
+    image {
+      height: 100rpx;
+      width: 100rpx;
+      border-radius: 50rpx;
+      margin: 0 10rpx;
+    }
+    image.unknown {
+      border: 1rpx dotted @color-gray;
+    }
+  }
+  .timer {
+    font-size: 30rpx;
+    margin-top: 20rpx;
+    font-weight: @fw-2;
+    .count{
+      font-size: 35rpx;
+      color: @color-primary;
+      margin-left: 20rpx;
+      margin-right: 20rpx;
+    }
+  }
+  .left-count {
+    margin-top: 20rpx;
+    font-size: @fs-2;
+    text {
+      font-size: @fs-1;
+      font-weight: @fw-2;
+      color: @color-primary;
+    }
+  }
+  .action {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50rpx;
+    button {
+      font-size: @fs-1;
+      background-color: @color-primary;
+      border-radius: 15rpx;
+      color: white;
+      padding: 0 70rpx;
+    }
+  }
+  
 }

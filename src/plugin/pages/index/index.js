@@ -3,11 +3,11 @@
 Page({
   data: {
     imgUrls: [
-      '../../images/swiper-001.jpg',
-      '../../images/swiper-002.jpg'
+      '../../images/slide001.png',
+      '../../images/slide002.png'
     ],
     indicatorDots: true,
-    autoplay: false,
+    autoplay: true,
     interval: 5000,
     duration: 1000,
     test: 'fsfsdf',
@@ -68,6 +68,6 @@ Page({
     //     console.log(res.data);
     //   }
     // });
-  },
+  }
 
 });

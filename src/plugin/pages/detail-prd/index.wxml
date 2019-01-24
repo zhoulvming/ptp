@@ -1,5 +1,11 @@
 <view class="detail-prd">
-  <image class="logo" src="{{prdDetail.prdImage}}"></image>
+  <swiper>
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="100%" height="100%"/>
+      </swiper-item>
+    </block>
+  </swiper>
   <view class="logo-info">
     <text class="name">多人拼团</text>
     <view class="info">
@@ -37,7 +43,7 @@
 
 </view>
 
-<view class="detail-gp panel"> 
+<view class="detail-gp panel-no-radius"> 
   <view class="group-list">
     <text>以下小伙伴正在发起拼团，您可以直接参与</text>
     <view wx:for="{{prdDetail.groups}}" wx:for-item="item" class="item">
@@ -46,7 +52,7 @@
         <text class="user-name">{{item.userName}}</text>
         <text class="group-info">还差{{item.leftNumbers}}人成团，剩余{{item.leftTime}}</text>
       </view>        
-      <button bindtap="gotoGroup" class="btn-primary">去凑团</button>
+      <button bindtap="gotoGroup" class="btn-primary-normal">去凑团</button>
     </view>
     <view class="lookmore">
       <navigator class="" target="" url="">
@@ -56,7 +62,7 @@
   </view>
 </view>
 
-<view class="detail-other panel"> 
+<view class="detail-other panel-no-radius"> 
   <view class='tab'>
     <view class='tab-nav'>
       <view class='{{currentTab==0?"on":""}}' data-current="0" bindtap='tab'>商品详情</view>
@@ -129,4 +135,3 @@
   </view>
   <button bindtap="next">下一步</button>
 </view>
-
