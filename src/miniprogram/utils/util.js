@@ -121,9 +121,24 @@ const updataStorageData = (key, value) => {
   }
 };
 
+const gotoPageFromPlugin = (data) => {
+  var target = data.detail.target;    
+  var url = '';
+  var jsonObj = app.globalData.callbackUrl;
+  for(var item in jsonObj) {
+    if(item == target){
+      url = jsonObj[item];
+    } 
+  }
+  wx.navigateTo({
+    url: url,
+  });
+};
+
 module.exports = {
   ajax,
   app,
   updataGlobalData,
-  updataStorageData
+  updataStorageData,
+  gotoPageFromPlugin
 };

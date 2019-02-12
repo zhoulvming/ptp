@@ -1,0 +1,41 @@
+<view class="pd-top-20 pd-bottom-20 align-center display-col">
+  <view class="order-grp-info" wx:if="{{status.orderGrpStatus == 0}}">
+    <text>还需邀请{{orderDetail.leftNumbers}}位好友参团哦，距离结束{{wxTimer}}</text>
+  </view>
+  <view class="order-status">
+    <text>订单已完成</text>
+  </view>
+
+  <view class="wrapper">
+    <view class="panel detail">
+      <image src="../../images/pt002-detail.jpg"/>
+      <view class="content">
+        <text class="title">我是商品名称</text>
+        <text class="desc">3人团，有效期至2019年1月，其他备注</text>
+        <view class="price">
+          <text class="money">￥99.0</text>
+          <text class="count">* 3</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="wrapper">
+    <view class="panel total">
+      <view class="total-price">
+        <text class="title">合计</text>
+        <text class="count">￥87.35</text>
+      </view>
+      <button bindtap="gotoPage" data-target="detail-grp">查看拼团详情</button>
+    </view>
+  </view>
+
+  <view class="wrapper">
+    <view class="panel total">
+      <text class="title">订单号：EEEEEEEEEEEEEEEEE</text>
+      <text class="content">创建时间：2018年10月23日 21:21:21</text>
+      <text class="content">支付时间：2018年10月23日 21:21:21</text>
+    </view>
+  </view>
+
+</view>

@@ -14,6 +14,9 @@
 @color-little-gray: #eee;
 
 .mt-50 { margin-top: 50rpx; }
+.mt-100 { margin-top: 100rpx; }
+.mb-50 { margin-bottom: 50rpx; }
+.mb-100 { margin-bottom: 100rpx; }
 .mr-8 { margin-right: 8rpx }
 .pd-left-20 { padding-left: 20rpx;}
 .pd-right-20 { padding-right: 20rpx;}
@@ -82,6 +85,17 @@ page {
   color: @color-gray;
   font-size: @fs-3;
   text-decoration: underline;
+}
+
+.link-btn {
+  display: inline;
+  font-size: @fs-4;
+  background: none !important;
+  color: @color-gray !important;
+  text-decoration: underline;
+}
+.link-btn::after {
+  border: none;
 }
 
 swiper {

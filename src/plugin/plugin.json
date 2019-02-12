@@ -1,13 +1,11 @@
 {
   "publicComponents": {
+    "index": "components/index/index",
+    "detail-prd": "components/detail-prd/index",
+    "detail-grp": "components/detail-grp/index",
+    "detail-order": "components/detail-order/index",
+    "confirm-order": "components/confirm-order/index",
     "login": "components/login/login"
-  },
-  "pages": {
-    "index": "pages/index/index",
-    "detail-prd": "pages/detail-prd/index",
-    "detail-grp": "pages/detail-grp/index",
-    "detail-order": "pages/detail-order/index",
-    "confirm-order": "pages/confirm-order/index"
   },
   "main": "index.js"
 }

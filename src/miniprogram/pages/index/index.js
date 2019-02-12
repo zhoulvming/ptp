@@ -6,6 +6,24 @@
 Page({
   data: {},
   onLoad() {
+
+
+    // wx.login({
+    //   success: res => {
+    //     console.log(res);
+    //     var code = res.code;
+    //     if (code) {
+    //       console.log('获取用户登录凭证：' + code);
+    //       try {
+    //         wx.setStorageSync('openid', code);
+    //       } catch (e) {
+    //         console.log(e);
+    //       }
+    //     }
+    //   }
+    // });
+
+
   },
   onReady() {
     // Do something when page ready.
@@ -34,5 +52,18 @@ Page({
   onTabItemTap() {
     // 当前是 tab 页时，点击 tab 时触发
   },
-  customData: {}
+  customData: {},
+
+  incrementTotal() {
+    console.log('tetme');
+    wx.navigateTo({
+      url: '../detail-order/detail-order',
+    });
+  },
+
+  gotoplugin() {
+    wx.navigateTo({
+      url: 'plugin://pt_plugin/index'
+    });
+  }
 });

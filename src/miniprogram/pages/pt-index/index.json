@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "CJ拼团_商品一览",
+  "usingComponents": {
+    "pt-index": "plugin://pt_plugin/index"
+  }
+}

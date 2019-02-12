@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "拼团详情",
-  "usingComponents": {
-    "help-box": "../../components/help-box/help-box"
-  }
-}

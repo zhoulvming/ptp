@@ -14,7 +14,7 @@
 	"pluginRoot": "plugin/",
 	"libVersion": "2.2.5",
 	"appid": "wx85694629dac0c26a",
-	"projectname": "yummp2",
+	"projectname": "ptp",
 	"isGameTourist": false,
 	"scripts": {
 		"beforeCompile": "",

@@ -1,0 +1,121 @@
+@import '../../lib/main.less';
+
+.status {
+  display: flex;
+  flex-direction: row;
+  font-size: @fs-2;
+  margin: 0 auto;
+  font-weight: @fw-1;
+  image {
+    width: 40rpx;
+    height: 40rpx;
+    margin: auto;
+    margin-right: 20rpx;
+  }
+  text.on {
+    color: @color-primary;
+  }
+}
+
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  image {
+    height: 250rpx;
+    width: 250rpx;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15rpx;
+    position: relative;
+    .title {
+      font-size: @fs-2;
+    }
+    .desc {
+      font-size: @fs-4;
+      color: @color-gray;
+    }
+    .price-now {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      position: absolute;
+      bottom: 20rpx;
+      .now-pref {
+        font-size: @fs-1;
+        font-weight: @fw-2;
+      }
+      .now-suff {
+        font-size: @fs-4;
+        font-weight: @fw-2;
+        width: 15%;
+        padding-top:18rpx;
+      }
+      .org {
+        font-size: @fs-3;
+        text-decoration: line-through;
+        color: @color-gray;
+        width: 16%;
+        padding-top:12rpx;
+      }
+      .gp-info {
+        font-size: @fs-3;
+        padding-top:12rpx;
+        width: 44%;
+        text-align: right;
+      }
+    }
+  }
+}
+
+
+.detail-user {
+  text-align: center;
+  .avatar {
+    padding-top: 20rpx;
+    image {
+      height: 100rpx;
+      width: 100rpx;
+      border-radius: 50rpx;
+      margin: 0 10rpx;
+    }
+    image.unknown {
+      border: 1rpx dotted @color-gray;
+    }
+  }
+  .timer {
+    font-size: 30rpx;
+    margin-top: 20rpx;
+    font-weight: @fw-2;
+    .count{
+      font-size: 35rpx;
+      color: @color-primary;
+      margin-left: 20rpx;
+      margin-right: 20rpx;
+    }
+  }
+  .left-count {
+    margin-top: 20rpx;
+    font-size: @fs-2;
+    text {
+      font-size: @fs-1;
+      font-weight: @fw-2;
+      color: @color-primary;
+    }
+  }
+  .action {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50rpx;
+    button {
+      font-size: @fs-1;
+      background-color: @color-primary;
+      border-radius: 15rpx;
+      color: white;
+      padding: 0 70rpx;
+    }
+  }
+  
+}

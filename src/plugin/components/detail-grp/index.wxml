@@ -1,0 +1,52 @@
+<view class="pd-top-20 pd-bottom-20 align-center display-col">
+  <view class="status">
+    <image src="{{status.image}}"></image>
+    <text class="{{status.css}}">{{status.info}}</text>
+  </view>
+</view>
+<view class="wrapper">
+  <view class="panel detail">
+    <image src="{{prdDetail.prdImage}}"/>
+    <view class="content">
+      <text class="title">我是商品名称</text>
+      <text class="desc">3人团，有效期至2019年1月，其他备注</text>
+      <view class="price-now">
+        <view class="now-pref"><text>￥{{prdDetail.price_pref}}</text></view>
+        <view class="now-suff"><text>.{{prdDetail.price_suff}}</text></view>
+        <view class="org"><text>￥{{prdDetail.orgPrice}}</text></view>
+        <view class="gp-info"><text>x{{prdDetail.numbers}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="wrapper">
+  <view class="detail-user">
+    <view class="timer">
+      <text>剩余</text>
+      <text class="count">{{wxTimer}}</text>
+      <text>结束</text>
+    </view>
+    <view class="avatar">
+      <image src="../../images/user1.jpg"></image>
+      <image class="unknown" src="../../images/unknown.jpg"></image>
+      <image class="unknown" src="../../images/unknown.jpg"></image>
+    </view>
+    <view class="left-count" wx:if="{{status.code == 1}}">
+      邀请 <text>{{prdDetail.leftNumbers}}位</text> 好友助力就拼团成功啦
+    </view>
+    <view class="action mb-50">
+      <button open-type='share'>邀请好友</button>
+      <button bindtap="formSubmit">生成海报</button>
+    </view>
+    <button class="link-btn" bindtap="gotoPage" data-target="index">回首页再看看</button>
+  </view>
+</view>
+
+<view class='imagePathBox' hidden="{{maskHidden == false}}">
+  <image src="{{imagePath}}" class='shengcheng'></image>
+  <button class='baocun' bindtap='baocun'>保存相册，分享到朋友圈</button>
+</view>
+<view hidden="{{maskHidden == false}}" class="mask"></view> 
+<view class="canvas-box">
+  <canvas  style="width: 375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
+</view>

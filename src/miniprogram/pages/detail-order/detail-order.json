@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "订单列表",
-  "usingComponents": {
-    "pt_order": "plugin://pt_plugin/detail-order"
-  }
-}

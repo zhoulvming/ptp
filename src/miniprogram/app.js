@@ -15,6 +15,16 @@ App({
     // 当要打开的页面并不存在时，会回调这个监听器
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    
+    /*从插件返回到小程序的页面路由*/
+    callbackUrl: {
+      'original': '../index/index',
+      'index': '../pt-index/index',
+      'detail-prd': '../pt-detail-prd/index',
+      'detail-grp': '../pt-detail-grp/index',
+      'detail-order': '../pt-detail-order/index',
+      'confirm-order': '../pt-confirm-order/index'
+    }
   }
 });

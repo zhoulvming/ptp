@@ -8,6 +8,19 @@
   <navigator url="../detail-order/detail-order">
     某拼团订单
   </navigator>
+
+  <navigator id="nav" url="plugin://pt_plugin/index">
+    Go to Plugin page
+  </navigator>
+
+  <button bindtap="gotoplugin" bindincrement="incrementTotal">gotoplugin</button>
+
+
+  <navigator url="../pt-index/index">
+    拼团首页
+  </navigator>
+
+  
 </view>
 
 

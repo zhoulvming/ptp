@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/group-home/group-home"
+    "pages/pt-index/index",
+    "pages/pt-detail-prd/index",
+    "pages/pt-detail-grp/index",
+    "pages/pt-confirm-order/index",
+    "pages/pt-detail-order/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

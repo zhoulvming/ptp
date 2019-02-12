@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "CJ拼团",
-  "usingComponents": {
-    "pt_index": "plugin://pt_plugin/index"
-  }
-}
