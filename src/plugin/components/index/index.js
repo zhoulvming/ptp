@@ -11,6 +11,8 @@ Component({
   
 
   data: {
+    currentTab: 0, //当前所在滑块的 index
+    swipperHeight: 0,
     imgUrls: [
       '../../images/slide001.png',
       '../../images/slide002.png'
@@ -69,6 +71,10 @@ Component({
 
     that.setData({prds: prds});
 
+    // 调整swipper高度
+    let swipperHeight = prds[0].items.length * 500;
+    this.setData({ swipperHeight: swipperHeight});
+
   },
 
   /**
@@ -77,12 +83,29 @@ Component({
   methods: {
     gotoPage(event) {
 
-
-  
-
-
       var value = event.currentTarget.dataset.target;
       this.triggerEvent('callback', {target: value});
+    },
+
+    //tab切换
+    tabChange: function (event) {
+      if (event.target.dataset.current == 1) {
+      }
+
+      // 重新计算swipper最大高度
+      let idex = event.target.dataset.current;
+      let swipperHeight = this.data.prds[idex].items.length * 500;
+      if ( swipperHeight > this.data.swipperHeight) {
+        this.setData({ swipperHeight: swipperHeight});
+      }
+ 
+      // 保存当前tab索引
+      this.setData({ currentTab: event.target.dataset.current});
+    },
+    //滑动事件
+    tabSwiper: function (event) {
+      this.setData({ currentTab: event.detail.current });
     }
+        
   }
 });

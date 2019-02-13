@@ -5,7 +5,8 @@
     "pages/pt-detail-prd/index",
     "pages/pt-detail-grp/index",
     "pages/pt-confirm-order/index",
-    "pages/pt-detail-order/index"
+    "pages/pt-detail-order/index",
+    "pages/pt-pay/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

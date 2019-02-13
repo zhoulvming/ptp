@@ -20,6 +20,11 @@
     拼团首页
   </navigator>
 
+
+  <navigator url="../pt-pay/index">
+    支付测试
+  </navigator>
+
   
 </view>
 

@@ -86,9 +86,20 @@ Component({
     gotoPage(event) {
       var target = event.currentTarget.dataset.target;
       var status = event.currentTarget.dataset.status;
-      wx.setStorage( {key: 'status', data: status} );      
+      wx.setStorageSync( {key: 'status', data: status} );
       this.triggerEvent('callback', {target: target});
     },
+
+    //tab切换
+    tabChange: function (event) {
+      if (event.target.dataset.current == 1) {
+      }
+      this.setData({ currentTab: event.target.dataset.current});
+    },
+    //滑动事件
+    tabSwiper: function (event) {
+      this.setData({ currentTab: event.detail.current });
+    },    
 
     showModal: function (e) {
       let buyway = e.currentTarget.dataset.buyway;

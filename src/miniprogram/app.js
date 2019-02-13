@@ -24,7 +24,8 @@ App({
       'detail-prd': '../pt-detail-prd/index',
       'detail-grp': '../pt-detail-grp/index',
       'detail-order': '../pt-detail-order/index',
-      'confirm-order': '../pt-confirm-order/index'
+      'confirm-order': '../pt-confirm-order/index',
+      'pay': '../pt-pay/index'
     }
   }
 });

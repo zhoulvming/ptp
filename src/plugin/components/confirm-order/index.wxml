@@ -25,7 +25,7 @@
     </view>
     <view class="action">
       <text class="price">￥287.35</text>
-      <button bindtap="gotoPage" data-target="detail-order">选好了</button>
+      <button bindtap="gotoPage" data-target="pay" data-price="{{order.price}}">选好了</button>
     </view>
   </view>
 

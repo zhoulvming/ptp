@@ -65,11 +65,11 @@
 <view class="detail-other panel-no-radius"> 
   <view class='tab'>
     <view class='tab-nav'>
-      <view class='{{currentTab==0?"on":""}}' data-current="0" bindtap='tab'>商品详情</view>
-      <view class='{{currentTab==1?"on":""}}' data-current="1" bindtap='tab'>成交记录</view>
-      <view class='{{currentTab==2?"on":""}}' data-current="2" bindtap='tab'>相关问题</view>
+      <view class='{{currentTab==0?"on":""}}' data-current="0" bindtap='tabChange'>商品详情</view>
+      <view class='{{currentTab==1?"on":""}}' data-current="1" bindtap='tabChange'>成交记录</view>
+      <view class='{{currentTab==2?"on":""}}' data-current="2" bindtap='tabChange'>相关问题</view>
     </view>
-    <swiper class='tab-box' current="{{currentTab}}" bindchange="eventchange">
+    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper">
       <swiper-item>
         {{prdDetail.detailContent}}
       </swiper-item>

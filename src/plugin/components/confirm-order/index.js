@@ -3,6 +3,9 @@ Component({
   },
 
   data: {
+    order: {
+      price: 200
+    }
   },  
 
   attached() {
@@ -10,8 +13,14 @@ Component({
 
   methods: {
     gotoPage(event) {
-      var value = event.currentTarget.dataset.target;
-      this.triggerEvent('callback', {target: value});
+      let value = event.currentTarget.dataset.target;
+      let price = event.currentTarget.dataset.price;
+      this.triggerEvent('callback', {
+        target: value,
+        options: {
+          price: price
+        }
+      });
     }
   }
 });

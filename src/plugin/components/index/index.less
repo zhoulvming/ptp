@@ -12,6 +12,36 @@
   }
 }
 
+
+.tab {
+  margin-top: 40rpx;
+  .tab-nav {
+    height: 70rpx;
+    line-height: 70rpx;
+  }
+  .tab-nav view {
+    float: left;
+    height: 70rpx;
+    line-height: 70rpx;
+    width:160rpx;
+    text-align: center;
+    margin-left: 40rpx;
+  }
+  .tab-nav view.on {
+    color: @color-primary;
+    border-bottom: 5rpx solid @color-primary;
+  }
+  .tab-nav view.off {
+    color: @color-gray;
+  }  
+  .tab-box {
+    padding: 20rpx 15rpx;
+    swiper-item {
+    }
+  }  
+}
+
+
 .card-item {
   margin-left: 40rpx;
   margin-right: 40rpx;
@@ -72,5 +102,4 @@
       text-decoration: line-through;
     }
   }
- 
 }
