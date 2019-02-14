@@ -1,13 +1,9 @@
+const config = require('../../lib/config.js')
+
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     currentTab: 0, //当前所在滑块的 index
     salesRecord: [],
@@ -21,6 +17,8 @@ Component({
       '../../images/slide001.png',
       '../../images/slide002.png'
     ],
+    buyway: 0,
+    buywayPrice: 0
   },
 
   attached() {
@@ -32,6 +30,7 @@ Component({
       numbers: 3,
       salesCount: 100,
       leftCount: 50,
+      limitCount: 5,
       leftTime_d: '12',
       leftTime_h: '12',
       leftTime_m: '12',
@@ -103,8 +102,25 @@ Component({
 
     showModal: function (e) {
       let buyway = e.currentTarget.dataset.buyway;
+      let detail = this.data.prdDetail;
       this.setData({
         showModal: true
+      });
+
+      let buywayPrice = detail.price_pref + '.' + detail.price_suff;
+      if (buyway && buyway == config.buyway_single) {
+        buywayPrice = detail.orgPrice;
+      }
+
+      this.setData({
+        buyway: buyway,
+        buywayPrice: buywayPrice
+      });
+    },
+
+    hideModalDlg: function() {
+      this.setData({
+        showModal: false
       });
     },
 

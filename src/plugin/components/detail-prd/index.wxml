@@ -40,7 +40,6 @@
       <text class="align-right">剩余 {{prdDetail.leftCount}}</text>
     </view>  
   </view>
-
 </view>
 
 <view class="detail-gp panel-no-radius"> 
@@ -96,40 +95,40 @@
       <text class="fs-warning">客服</text>
     </navigator>
   </view>
-  <view class='singlePurse' bindtap='showModal' data-buyway="1">
+  <view class='singlePurse' bindtap='showModal' data-buyway="0">
     <text>¥{{prdDetail.orgPrice}}</text>
     <text class="fs-warning">单人价</text>
   </view>
-  <view class='groupPurse' bindtap='showModal' data-buyway="2">
+  <view class='groupPurse' bindtap='showModal' data-buyway="1">
     <text>¥{{prdDetail.price_pref}}.{{prdDetail.price_suff}}</text>
     <text class="fs-warning">开团价</text>
   </view>
 </view>  
 
-
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class="modalDlg" wx:if="{{showModal}}">
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
+<view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
   <view class="prd-info">
-    <image src="../../images/pt002-detail.jpg"/>
+    <image class="picture" src="{{prdDetail.prdImage}}"/>
     <view class="info">
-      <text class="name">XXXXX商品名称</text>
-      <text class="gp-info">3人拼团价</text>
-      <text class="price">￥99</text>
+      <text class="name">{{prdDetail.prdName}} </text>
+      <text class="gp-info">{{prdDetail.numbers}} 人拼团价</text>
+      <text class="price">￥{{buywayPrice}}</text>
     </view>
+    <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
   </view>
   <view class="buycount">
     <view class="info">
       <text class="largeText">购买数量</text>
-      <text class="leftCount">剩余1000件数</text>    
+      <text class="leftCount">剩余 {{prdDetail.leftCount}} 件数</text>    
     </view>
     <view class='count'>
       <view class="input">
         <view class='ic' bindtap='evic'>-</view>
-        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'  />
+        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'/>
         <view class='ad' bindtap='evad'>+</view>      
       </view>
       <view class="info">
-        <text>每人限购 5 件</text>
+        <text>每人限购 {{prdDetail.limitCount}} 件</text>
       </view>
     </view>
   </view>

@@ -245,10 +245,17 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    image {
+    .picture {
       width: 200rpx;
       height: 200rpx;
       margin-left: 15rpx;
+    }
+    .close {
+      width:30rpx;
+      height:30rpx;
+      position:absolute;
+      right:40rpx;
+      top:40rpx;      
     }
     .info {
       margin-left: 20rpx;
@@ -269,7 +276,7 @@
         margin: 5rpx 10rpx;     
       }
       .price {
-        margin-top: 80rpx;
+        margin-top: 70rpx;
         font-size: @fs-1;
         font-weight: 700;
       }
@@ -291,11 +298,12 @@
       width: 50%;
       text-align: left;
       .largeText {
-        font-size: 40rpx;
+        font-size: @fs-2;
       }
       .leftCount {
         font-size: 30rpx;
         color: grey;
+        margin-top: 35rpx;
       }
     }
     .count {
@@ -331,8 +339,9 @@
         }
       }
       .info {
+        font-size: @fs-3;
         width:100%;
-        margin-top:15rpx;
+        margin-top:25rpx;
         text-align: center;
       }
     } 
