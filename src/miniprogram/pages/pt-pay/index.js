@@ -1,4 +1,4 @@
-const utils = require('../../utils/util.js');
+const ptCommon = require('../pt.common.js');
 Page({
   data: {
     txtOrderCode: ''
@@ -6,7 +6,7 @@ Page({
   onLoad() {
   },
   gotoPageFromPlugin(data) {
-    utils.gotoPageFromPlugin(data);
+    ptCommon.gotoPageFromPlugin(data);
   },
 
   payRealy: function () {

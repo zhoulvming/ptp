@@ -19,13 +19,13 @@ App({
     
     /*从插件返回到小程序的页面路由*/
     callbackUrl: {
-      'original': '../index/index',
-      'index': '../pt-index/index',
-      'detail-prd': '../pt-detail-prd/index',
-      'detail-grp': '../pt-detail-grp/index',
-      'detail-order': '../pt-detail-order/index',
-      'confirm-order': '../pt-confirm-order/index',
-      'pay': '../pt-pay/index'
+      'index': '../pt-index/index',                       // 拼团首页
+      'detail-prd': '../pt-detail-prd/index',             // 拼团商品详情
+      'detail-grp': '../pt-detail-grp/index',             // 拼团详情
+      'detail-order': '../pt-detail-order/index',         // 订单详情
+      'confirm-order': '../pt-confirm-order/index',       // 订单确认
+      'pay': '../pt-pay/index',                           // 支付呼出
+      'login': '../pt-login/index'                        // 登录呼出
     }
   }
 });
