@@ -25,9 +25,11 @@ Component({
   },  
 
   attached() {
+
     // 在组件实例进入页面节点树时执行
     var that = this;
-    var prds = [
+    var prds = [];
+    var prdsOld = [
       {
         actionType: '01',
         actionName: '当季活动',
@@ -67,13 +69,27 @@ Component({
           }
         ]
       }
-    ];
+    ];    
 
-    that.setData({prds: prds});
+    // 获取数据
+    wx.request({
+      url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productlist/offset/1/listsize/10',
+      data: {
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        prds = res.data;
+        that.setData({prds: prds});
 
-    // 调整swipper高度
-    let swipperHeight = prds[0].items.length * 500;
-    this.setData({ swipperHeight: swipperHeight});
+        // 调整swipper高度
+        let swipperHeight = prds[0].items.length * 500;
+        that.setData({ swipperHeight: swipperHeight});
+      }
+    });
+
+    
 
   },
 

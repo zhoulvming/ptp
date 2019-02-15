@@ -4,7 +4,16 @@ Component({
 
   data: {
     order: {
-      price: 200
+      price_pref: 99,
+      price_suff: 30,
+      count: 1,
+      prdName: '我是商品名称',
+      validDays: '11',
+      leftTime_h: '12',
+      leftTime_m: '12',
+      leftTime_s: '12',
+      prdImage: '../../images/pt002-detail.jpg',
+
     }
   },  
 

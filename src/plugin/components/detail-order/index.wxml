@@ -11,7 +11,7 @@
       <image src="../../images/pt002-detail.jpg"/>
       <view class="content">
         <text class="title">我是商品名称</text>
-        <text class="desc">3人团，有效期至2019年1月，其他备注</text>
+        <text class="desc">{{orderDetail.numbers}} 人团，自购买日后天内有效</text>
         <view class="price">
           <text class="money">￥99.0</text>
           <text class="count">* 3</text>

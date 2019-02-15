@@ -25,7 +25,7 @@
           <image class="logo" src="{{prd_item.image}}"></image>
           <view class="name display-row">
             <text class="prd-numbers">{{prd_item.numbers}}人团</text>
-            <text class="prd-name">{{prd_item.prdName}}</text>
+            <text class="prd-name">{{prd_item.proName}}</text>
           </view>
           <view class="footer">
             <view class="price">
