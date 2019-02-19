@@ -1,0 +1,127 @@
+page {
+  background-color: #f5f5f5;
+  font-family: "PingFang SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+.top-1px {
+  position: relative;
+}
+.top-1px:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.bottom-1px {
+  position: relative;
+}
+.bottom-1px:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.left-1px {
+  position: relative;
+}
+.left-1px:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 1px;
+  border-left: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+.right-1px {
+  position: relative;
+}
+.right-1px:after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 1px;
+  border-right: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 100% 100%;
+  transform: scaleX(0.5);
+}
+.t-1px {
+  position: relative;
+}
+.t-1px:before {
+  content: " ";
+  position: absolute;
+  left: 24rpx;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.b-1px {
+  position: relative;
+}
+.b-1px:after {
+  content: " ";
+  position: absolute;
+  left: 24rpx;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1rpx solid #E6E6E6;
+  color: #E6E6E6;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.all-1px {
+  position: relative;
+}
+.all-1px:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  height: 1px;
+  border: 1px solid #E6E6E6;
+  color: #E6E6E6;
+  height: 200%;
+  transform-origin: left top;
+  transform: scale(0.5);
+}
+.ellipsisTwo {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+}
+.ellipsisOne {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}

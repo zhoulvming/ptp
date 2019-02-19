@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/pt-index/index",
+    "pages/pt-detail-prd/index",
+    "pages/pt-detail-grp/index",
+    "pages/pt-confirm-order/index",
+    "pages/pt-detail-order/index",
+    "pages/pt-pay/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "微信小程序",
+    "navigationStyle": "default",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  },
+  "networkTimeout": {},
+  "debug": false,
+  "plugins": {
+    "pt_plugin": {
+      "version": "dev",
+      "provider": "wx85694629dac0c26a"
+    }
+  },
+  "functionalPages": true
+}

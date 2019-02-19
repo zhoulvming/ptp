@@ -1,0 +1,105 @@
+.mt-30 {
+  margin-top: 30rpx;
+}
+.mt-50 {
+  margin-top: 50rpx;
+}
+.mt-100 {
+  margin-top: 100rpx;
+}
+.mb-50 {
+  margin-bottom: 50rpx;
+}
+.mb-100 {
+  margin-bottom: 100rpx;
+}
+.mr-8 {
+  margin-right: 8rpx;
+}
+.pd-left-20 {
+  padding-left: 20rpx;
+}
+.pd-right-20 {
+  padding-right: 20rpx;
+}
+.pd-top-20 {
+  padding-top: 20rpx;
+}
+.pd-bottom-20 {
+  padding-bottom: 20rpx;
+}
+/** component **/
+page {
+  background-color: #eee;
+}
+.wrapper {
+  padding: 20rpx;
+}
+.panel {
+  padding: 15rpx;
+  background-color: white;
+  border-radius: 15rpx;
+}
+.panel-no-radius {
+  padding: 15rpx;
+  background-color: white;
+}
+/** structure **/
+.display-col {
+  display: flex;
+  flex-direction: column;
+}
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-right {
+  text-align: right;
+}
+.align-center {
+  text-align: center;
+}
+/** font-size **/
+.fs-title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-warning {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-content {
+  font-size: 30rpx;
+}
+.btn-primary-normal {
+  padding: 0 30rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.link-normal {
+  color: #888;
+  font-size: 30rpx;
+  text-decoration: underline;
+}
+.link-btn {
+  display: inline;
+  font-size: 25rpx;
+  background: none !important;
+  color: #888 !important;
+  text-decoration: underline;
+}
+.link-btn::after {
+  border: none;
+}
+.top-swipper {
+  height: 350rpx;
+  width: 100%;
+}
+.top-swipper image {
+  height: 100%;
+  width: 100%;
+}

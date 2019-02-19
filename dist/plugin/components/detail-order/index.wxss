@@ -1,0 +1,216 @@
+.mt-30 {
+  margin-top: 30rpx;
+}
+.mt-50 {
+  margin-top: 50rpx;
+}
+.mt-100 {
+  margin-top: 100rpx;
+}
+.mb-50 {
+  margin-bottom: 50rpx;
+}
+.mb-100 {
+  margin-bottom: 100rpx;
+}
+.mr-8 {
+  margin-right: 8rpx;
+}
+.pd-left-20 {
+  padding-left: 20rpx;
+}
+.pd-right-20 {
+  padding-right: 20rpx;
+}
+.pd-top-20 {
+  padding-top: 20rpx;
+}
+.pd-bottom-20 {
+  padding-bottom: 20rpx;
+}
+/** component **/
+page {
+  background-color: #eee;
+}
+.wrapper {
+  padding: 20rpx;
+}
+.panel {
+  padding: 15rpx;
+  background-color: white;
+  border-radius: 15rpx;
+}
+.panel-no-radius {
+  padding: 15rpx;
+  background-color: white;
+}
+/** structure **/
+.display-col {
+  display: flex;
+  flex-direction: column;
+}
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-right {
+  text-align: right;
+}
+.align-center {
+  text-align: center;
+}
+/** font-size **/
+.fs-title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-warning {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-content {
+  font-size: 30rpx;
+}
+.btn-primary-normal {
+  padding: 0 30rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.link-normal {
+  color: #888;
+  font-size: 30rpx;
+  text-decoration: underline;
+}
+.link-btn {
+  display: inline;
+  font-size: 25rpx;
+  background: none !important;
+  color: #888 !important;
+  text-decoration: underline;
+}
+.link-btn::after {
+  border: none;
+}
+.top-swipper {
+  height: 350rpx;
+  width: 100%;
+}
+.top-swipper image {
+  height: 100%;
+  width: 100%;
+}
+.status {
+  display: flex;
+  flex-direction: row;
+  font-size: 35rpx;
+  margin: 0 auto;
+  font-weight: 700;
+}
+.status image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto;
+  margin-right: 20rpx;
+}
+.status text.on {
+  color: #008FDB;
+}
+.order-grp-info {
+  font-size: 30rpx;
+  font-weight: 600;
+  background: #555;
+  color: whitesmoke;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  text-align: center;
+}
+.order-status {
+  margin-top: 40rpx;
+  text-align: left;
+  margin-left: 50rpx;
+  font-size: 35rpx;
+}
+.detail {
+  display: flex;
+  flex-direction: row;
+}
+.detail image {
+  height: 250rpx;
+  width: 33%;
+}
+.detail .content {
+  width: 67%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15rpx;
+  position: relative;
+}
+.detail .content .title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.detail .content .desc {
+  font-size: 30rpx;
+  color: grey;
+}
+.detail .content .price {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+}
+.detail .content .price .type {
+  font-size: 30rpx;
+  margin-top: 9rpx;
+}
+.detail .content .price .pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-top: -2rpx;
+}
+.detail .content .price .suff {
+  font-size: 30rpx;
+  margin-top: 11rpx;
+}
+.detail .content .price .count {
+  font-size: 30rpx;
+  width: 60%;
+  text-align: right;
+  margin-top: 10rpx;
+}
+.total {
+  text-align: center;
+}
+.total .total-price {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 10rpx 20rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.total .total-price .price {
+  position: absolute;
+  right: 0;
+}
+.total .total-price .price .type {
+  font-size: 30rpx;
+  margin-top: 9rpx;
+}
+.total .total-price .price .pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-top: -2rpx;
+}
+.total .total-price .price .suff {
+  font-size: 30rpx;
+  margin-top: 11rpx;
+}
+.total .total-price .price .count {
+  font-size: 30rpx;
+  width: 60%;
+  text-align: right;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,11 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 50rpx;
+}
+.page navigator {
+  padding: 40rpx;
+  text-align: center;
+  background-color: rosybrown;
+  margin-top: 20rpx;
+}

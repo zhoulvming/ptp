@@ -1,0 +1,4 @@
+<view class="container" style="padding:20rpx;">
+    <input type="text" bindinput="getOrderCode" style="border:1px solid #ccc;"  />
+    <button bindtap="pay">立即支付</button>
+</view>

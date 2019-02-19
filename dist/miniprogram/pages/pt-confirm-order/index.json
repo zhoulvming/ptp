@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "CJ拼团_确认订单",
+  "usingComponents": {
+    "pt-confirm-order": "plugin://pt_plugin/confirm-order"
+  }
+}

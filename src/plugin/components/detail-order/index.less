@@ -40,99 +40,79 @@
   flex-direction: row;
   image {
     height: 250rpx;
-    width: 250rpx;
-    margin-right: 20rpx;
+    width: 33%;
   }
   .content {
+    width: 67%;
     display: flex;
     flex-direction: column;
     padding-top: 15rpx;
     position: relative;
     .title {
       font-size: @fs-2;
+      font-weight: @fw-2;
     }
     .desc {
-      font-size: @fs-4;
-      color: @color-gray;
+      font-size: @fs-3;
+      color: grey;
     }
-    .price-now {
+    .price {
+      margin-top: 40rpx;
       display: flex;
       flex-direction: row;
-      width: 100%;
-      position: absolute;
-      bottom: 20rpx;
-      .now-pref {
-        font-size: @fs-1;
-        font-weight: @fw-2;
-      }
-      .now-suff {
-        font-size: @fs-4;
-        font-weight: @fw-2;
-        width: 15%;
-        padding-top:18rpx;
-      }
-      .org {
+      .type {
         font-size: @fs-3;
-        text-decoration: line-through;
-        color: @color-gray;
-        width: 16%;
-        padding-top:12rpx;
+        margin-top: 9rpx;
       }
-      .gp-info {
+      .pref {
+        font-size: @fs-0;
+        font-weight: @fw-2;
+        margin-top: -2rpx;
+      }
+      .suff {
         font-size: @fs-3;
-        padding-top:12rpx;
-        width: 44%;
+        margin-top: 11rpx;
+      }
+      .count {
+        font-size: @fs-3;
+        width: 60%;
         text-align: right;
+        margin-top: 10rpx;
       }
     }
   }
 }
 
-
-.detail-user {
+.total {
   text-align: center;
-  .avatar {
-    padding-top: 20rpx;
-    image {
-      height: 100rpx;
-      width: 100rpx;
-      border-radius: 50rpx;
-      margin: 0 10rpx;
-    }
-    image.unknown {
-      border: 1rpx dotted @color-gray;
-    }
-  }
-  .timer {
-    font-size: 30rpx;
-    margin-top: 20rpx;
-    font-weight: @fw-2;
-    .count{
-      font-size: 35rpx;
-      color: @color-primary;
-      margin-left: 20rpx;
-      margin-right: 20rpx;
-    }
-  }
-  .left-count {
-    margin-top: 20rpx;
-    font-size: @fs-2;
-    text {
-      font-size: @fs-1;
-      font-weight: @fw-2;
-      color: @color-primary;
-    }
-  }
-  .action {
+  .total-price {
     display: flex;
     flex-direction: row;
-    margin-top: 50rpx;
-    button {
-      font-size: @fs-1;
-      background-color: @color-primary;
-      border-radius: 15rpx;
-      color: white;
-      padding: 0 70rpx;
+    position: relative;
+    padding: 10rpx 20rpx;
+    border-bottom: 1rpx solid #ddd;
+    .price {
+      position: absolute;
+      right: 0;
+      .type {
+        font-size: @fs-3;
+        margin-top: 9rpx;
+      }
+      .pref {
+        font-size: @fs-0;
+        font-weight: @fw-2;
+        margin-top: -2rpx;
+      }
+      .suff {
+        font-size: @fs-3;
+        margin-top: 11rpx;
+      }
+      .count {
+        font-size: @fs-3;
+        width: 60%;
+        text-align: right;
+        margin-top: 10rpx;
+      }
     }
   }
   

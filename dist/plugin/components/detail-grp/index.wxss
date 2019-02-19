@@ -1,0 +1,219 @@
+.mt-30 {
+  margin-top: 30rpx;
+}
+.mt-50 {
+  margin-top: 50rpx;
+}
+.mt-100 {
+  margin-top: 100rpx;
+}
+.mb-50 {
+  margin-bottom: 50rpx;
+}
+.mb-100 {
+  margin-bottom: 100rpx;
+}
+.mr-8 {
+  margin-right: 8rpx;
+}
+.pd-left-20 {
+  padding-left: 20rpx;
+}
+.pd-right-20 {
+  padding-right: 20rpx;
+}
+.pd-top-20 {
+  padding-top: 20rpx;
+}
+.pd-bottom-20 {
+  padding-bottom: 20rpx;
+}
+/** component **/
+page {
+  background-color: #eee;
+}
+.wrapper {
+  padding: 20rpx;
+}
+.panel {
+  padding: 15rpx;
+  background-color: white;
+  border-radius: 15rpx;
+}
+.panel-no-radius {
+  padding: 15rpx;
+  background-color: white;
+}
+/** structure **/
+.display-col {
+  display: flex;
+  flex-direction: column;
+}
+.display-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-right {
+  text-align: right;
+}
+.align-center {
+  text-align: center;
+}
+/** font-size **/
+.fs-title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-warning {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.fs-content {
+  font-size: 30rpx;
+}
+.btn-primary-normal {
+  padding: 0 30rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.link-normal {
+  color: #888;
+  font-size: 30rpx;
+  text-decoration: underline;
+}
+.link-btn {
+  display: inline;
+  font-size: 25rpx;
+  background: none !important;
+  color: #888 !important;
+  text-decoration: underline;
+}
+.link-btn::after {
+  border: none;
+}
+.top-swipper {
+  height: 350rpx;
+  width: 100%;
+}
+.top-swipper image {
+  height: 100%;
+  width: 100%;
+}
+.status {
+  display: flex;
+  flex-direction: row;
+  font-size: 35rpx;
+  margin: 0 auto;
+  font-weight: 700;
+}
+.status image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto;
+  margin-right: 20rpx;
+}
+.status text.on {
+  color: #008FDB;
+}
+.detail {
+  display: flex;
+  flex-direction: row;
+}
+.detail image {
+  height: 250rpx;
+  width: 250rpx;
+}
+.detail .content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15rpx;
+  position: relative;
+}
+.detail .content .title {
+  font-size: 35rpx;
+}
+.detail .content .desc {
+  font-size: 25rpx;
+  color: #888;
+}
+.detail .content .price-now {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  bottom: 20rpx;
+}
+.detail .content .price-now .now-pref {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+.detail .content .price-now .now-suff {
+  font-size: 25rpx;
+  font-weight: 600;
+  width: 15%;
+  padding-top: 18rpx;
+}
+.detail .content .price-now .org {
+  font-size: 30rpx;
+  text-decoration: line-through;
+  color: #888;
+  width: 16%;
+  padding-top: 12rpx;
+}
+.detail .content .price-now .gp-info {
+  font-size: 30rpx;
+  padding-top: 12rpx;
+  width: 44%;
+  text-align: right;
+}
+.detail-user {
+  text-align: center;
+}
+.detail-user .avatar {
+  padding-top: 20rpx;
+}
+.detail-user .avatar image {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+  margin: 0 10rpx;
+}
+.detail-user .avatar image.unknown {
+  border: 1rpx dotted #888;
+}
+.detail-user .timer {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  font-weight: 600;
+}
+.detail-user .timer .count {
+  font-size: 35rpx;
+  color: #008FDB;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+.detail-user .left-count {
+  margin-top: 20rpx;
+  font-size: 35rpx;
+}
+.detail-user .left-count text {
+  font-size: 35rpx;
+  font-weight: 600;
+  color: #008FDB;
+}
+.detail-user .action {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+}
+.detail-user .action button {
+  font-size: 35rpx;
+  background-color: #008FDB;
+  border-radius: 15rpx;
+  color: white;
+  padding: 0 70rpx;
+}
