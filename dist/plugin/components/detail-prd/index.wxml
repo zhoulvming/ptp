@@ -1,6 +1,6 @@
 <view class="detail-prd">
   <swiper>
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{prdDetail.images}}">
       <swiper-item>
         <image src="{{item}}"/>
       </swiper-item>
@@ -11,14 +11,11 @@
     <view class="info">
       <text>距结束仅剩</text>
       <view class="leftTime">
-        <text class="mr-8">{{prdDetail.leftTime_d}}</text>天
-        <text class="mr-8">{{prdDetail.leftTime_h}}</text>:
-        <text class="mr-8">{{prdDetail.leftTime_m}}</text>:
-        <text>{{prdDetail.leftTime_s}}</text>
+        <text>{{prdDetail.leftTime_d}} 天 {{wxTimer}}</text>
       </view>
     </view>
   </view>
-  <view class="panel">
+  <view class="panel" style="position:relative;">
     <view class="price-now">
       <text class="now-pref">￥{{prdDetail.price_pref}}</text>.
       <text class="now-suff">{{prdDetail.price_suff}}</text>
@@ -42,25 +39,28 @@
   </view>
 </view>
 
+<!-- 凑团列表 -->
 <view class="detail-gp panel-no-radius"> 
   <view class="group-list">
     <text>以下小伙伴正在发起拼团，您可以直接参与</text>
-    <view wx:for="{{prdDetail.groups}}" wx:for-item="item" class="item">
-      <image class="user-head" src="../../images/user1.jpg"></image>
+    <view wx:for="{{grps}}" wx:for-item="item" class="item">
+      <image class="user-head" src="{{item.atavaUrl}}"></image>
       <view class="content">
-        <text class="user-name">{{item.userName}}</text>
-        <text class="group-info">还差{{item.leftNumbers}}人成团，剩余{{item.leftTime}}</text>
+        <text class="user-name">{{item.nickName}}</text>
+        <text class="group-info">
+          还差{{item.leftNumbers}}人成团，剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒
+        </text>
       </view>        
-      <button class="btn-primary-normal" bindtap="showModal" data-buyway="1">去凑团</button>
+      <!-- <button class="btn-primary-normal" bindtap="showModal" data-buyway="1">去凑团</button> -->
+      <button class="btn-primary-normal" bindtap="gotoGrpDetail" data-target="detail-grp" data-grpid="{{item.grpId}}">去凑团</button>
     </view>
-    <view class="lookmore">
-      <navigator class="" target="" url="" bindtap="showAllGroups">
-        查看更多拼团 >
-      </navigator>
+    <view class="lookmore" style="display:{{haveShowAllGroups}}">
+      <button class="link-btn" bindtap="showAllGroups">查看更多拼团 ></button>
     </view>       
   </view>
 </view>
 
+<!-- 底部tab内容 -->
 <view class="detail-other panel-no-radius"> 
   <view class='tab'>
     <view class='tab-nav'>
@@ -74,10 +74,10 @@
       </swiper-item>
       <swiper-item>
         <view class="record-list">
-          <view wx:for="{{prdDetail.records}}" class="record-item display-row">
-            <view><text>{{item.userId}}</text></view>
-            <view><text>{{item.time}}</text></view>
-            <view><text>{{item.count}}</text></view>
+          <view wx:for="{{records}}" class="record-item display-row">
+            <view><text>{{item.orderTime}}</text></view>
+            <view><text>{{item.nickName}}</text></view>
+            <view><text>{{item.quantity}}</text></view>
           </view>
         </view>
       </swiper-item>
@@ -99,16 +99,17 @@
     <text>¥{{prdDetail.orgPrice}}</text>
     <text class="fs-warning">单人价</text>
   </view>
-  <view class='groupPurse' bindtap='showModal' data-buyway="1">
+  <view class='groupPurse' bindtap='showModal' data-buyway="1" style="display:{{haveOrder==false?'block':'none'}}">
     <text>¥{{prdDetail.price_pref}}.{{prdDetail.price_suff}}</text>
     <text class="fs-warning">开团价</text>
   </view>
+  
 </view>  
 
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
 <view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
   <view class="prd-info">
-    <image class="picture" src="{{prdDetail.prdImage}}"/>
+    <image class="picture" src="{{prdDetail.imageSingle}}"/>
     <view class="info">
       <text class="name">{{prdDetail.prdName}} </text>
       <text class="gp-info">{{prdDetail.numbers}} 人拼团价</text>
@@ -132,5 +133,5 @@
       </view>
     </view>
   </view>
-  <button bindtap="gotoPage" data-target="confirm-order">下一步</button>
+  <button bindtap="gotoNext" data-target="confirm-order" data-prdid="{{prdDetail.prdId}}">下一步</button>
 </view>

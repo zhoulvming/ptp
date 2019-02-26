@@ -1,14 +1,17 @@
 const config = require('../../lib/config.js');
+var utils = require('../../utils/util.js');
+var timer = require('../../utils/wxTimer.js');
+var wxTimer = null;
 
 Component({
   properties: {
     options: {
       type: Object,
       value: {},
-      observer: function (newVal, oldVal) {
+      observer: function (newVal) {
         if (newVal) {          
           var jsonVal = JSON.parse(newVal.options);
-          this.setData({ proId: jsonVal.proId });
+          this.setData({ prdId: jsonVal.prdId });
           this.loadPage();
         }
       }
@@ -16,7 +19,7 @@ Component({
   },
 
   data: {
-    proId: '',
+    prdId: '',
     currentTab: 0, //当前所在滑块的 index
     salesRecord: [],
     showModal: false,
@@ -25,125 +28,136 @@ Component({
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 5,//输入框值出现异常默认设置值
-    imgUrls: [
-      '../../images/slide001.png',
-      '../../images/slide002.png'
-    ],
     buyway: 0,
-    buywayPrice: 0
+    buywayPrice: 0,
+    haveShowAllGroups: 'block',
+    haveOrder: false,
+    orderId: '',
+    wxTimerList:[]
   },
 
   attached() {
-    // var that = this;
-
-    // // 根据proId获取商品详细信息
-    // wx.request({
-    //   url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productdetail/groupbuyingitemid/TG2019021516041426971002',
-    //   data: {},
-    //   header: { 'content-type': 'application/json' },
-    //   success(res) {
-    //     let detail = res.data;
-    //     that.setData({prdDetail: detail});
-    //   }
-    // }); 
-
-
-    let tempData = {
-      prdId: '10001',
-      prdName: '商品名称',
-      prdDesc: '这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容',
-      prdImage: '../../images/pt001-detail.jpg',
-      numbers: 3,
-      salesCount: 100,
-      leftCount: 50,
-      limitCount: 5,
-      leftTime_d: '12',
-      leftTime_h: '12',
-      leftTime_m: '12',
-      leftTime_s: '12',
-      price_pref: 99,
-      price_suff: 30,
-      orgPrice: 1000,
-      detailContent: '凭券可到店兑换1份炭烤鸡腿帕尼尼，仅限1次兑换。\n\n1.使用有效期：自购买日起14天内使用有效，仅限6:00~9:00使用。\n2.这里是使用规则2说明部分',
-      question: '券可到店兑换1.....',
-      isJoined: 0, // 根据userId查看是否已经参团或者开团，如果是设置为1，同时设置grpId
-      grpId: '',
-      groups: [
-        {
-          userId: '1000',
-          userName: 'jacob',
-          leftNumbers: 2,
-          leftTime_h: '12',
-          leftTime_m: '12'
-        },
-        {
-          userId: '1001',
-          userName: 'rachel',
-          leftNumbers: 1,
-          leftTime_h: '12',
-          leftTime_m: '12'           
-        }
-      ],
-      records: [
-        {
-          userId: '1000',
-          time: 3000,
-          count: 1
-        },
-        {
-          userId: '1001',
-          time: 3000,
-          count: 1
-        }
-      ]
-    };
-
-    // TODO: 数据format
-    
-    
-    // this.setData({prdDetail: tempData});
+  },
+  detached() {
+    wxTimer.stop();
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    gotoPage(event) {
+    gotoNext(event) {
+      var that = this;
       var target = event.currentTarget.dataset.target;
       var status = event.currentTarget.dataset.status;
+      var prdId = event.currentTarget.dataset.prdid;
       wx.setStorageSync( {key: 'status', data: status} );
-      this.triggerEvent('callback', {target: target});
+      this.triggerEvent('callback', {
+        target: target,
+        options: {
+          prdId: prdId,
+          orderNum: that.data.num,
+          buyway: that.data.buyway,
+          buywayPrice: that.data.buywayPrice
+        }
+      });
+    },
+
+    gotoGrpDetail(event) {
+      // var that = this;
+      var target = event.currentTarget.dataset.target;
+      var grpId = event.currentTarget.dataset.grpid;
+      this.triggerEvent('callback', {
+        target: target,
+        options: {
+          grpId: grpId,
+          grp_status: config.grp_status_join
+        }
+      });      
     },
 
     loadPage() {
+      console.log('prdId is : ' + this.data.prdId);
       var that = this;
-      // 根据proId获取商品详细信息
+      // 根据prdId获取商品详细信息
       wx.request({
-        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productdetail/groupbuyingitemid/' + that.data.proId,
-        data: {},
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/prddetail',
+        data: { prdId: that.data.prdId },
         header: { 'content-type': 'application/json' },
+        method: 'POST',
         success(res) {
           var detail = res.data;
+          detail = utils.formatProductData(detail);
           that.setData({prdDetail: detail});
-        }
-      });       
-    },
 
+          // 计数器
+          var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s;
+          wxTimer = new timer({
+            beginTime: timeStr
+          });
+          wxTimer.start(that);
+        }
+      });
+      
+      //根据prdId获取该商品的成团列表(默认显示3条)
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/grouplist',
+        data: {prdId: that.data.prdId, flag: 0},
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        success(res) {
+          var grps = utils.formatGroupListData(res.data);
+          that.setData({grps: grps});
+        }
+      });
+    },
     showAllGroups() {
-      console.log(111111);
+      var that = this;
+      if (that.data.haveShowAllGroups == 'none') {
+        return ;
+      }
+      //根据prdId获取该商品的成团列表(全部显示)
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/grouplist',
+        data: {prdId: that.data.prdId, flag: 1},
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        success(res) {
+          that.setData({grps: utils.formatGroupListData(res.data)});
+          that.setData({haveShowAllGroups: 'none'});
+        }
+      });
     },
 
     //tab切换
     tabChange: function (event) {
+      var that = this;
+      // 当切换到成交记录tab时，获取数据
       if (event.target.dataset.current == 1) {
+        var records = that.data.records;
+        if (!records) {
+          wx.request({
+            url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/orderlist',
+            data: {
+              prdId: that.data.prdId,
+              flag: 0
+            },
+            method: 'POST',
+            header: { 'content-type': 'application/json' },
+            success(res) {
+              var records = res.data;
+              that.setData({records: records});
+            }
+          });
+        }
       }
+
       this.setData({ currentTab: event.target.dataset.current});
     },
     //滑动事件
     tabSwiper: function (event) {
       this.setData({ currentTab: event.detail.current });
     },    
-
     showModal: function (e) {
       let buyway = e.currentTarget.dataset.buyway;
       let detail = this.data.prdDetail;
@@ -151,7 +165,7 @@ Component({
         showModal: true
       });
 
-      let buywayPrice = detail.price_pref + '.' + detail.price_suff;
+      var buywayPrice = detail.price;
       if (buyway && buyway == config.buyway_single) {
         buywayPrice = detail.orgPrice;
       }
@@ -167,7 +181,6 @@ Component({
         showModal: false
       });
     },
-
     evblur: function (e) {
       var zval = parseInt(e.detail.value);
       //正则 正整数 0 负整数

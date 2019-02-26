@@ -142,8 +142,7 @@ page {
   margin-bottom: 8rpx;
 }
 .detail-prd .logo-info .info .leftTime text {
-  color: #000;
-  background-color: white;
+  color: #fff;
   padding: 0 8rpx;
   border-radius: 5rpx;
 }

@@ -1,5 +1,15 @@
 Component({
   properties: {
+    options: {
+      type: Object,
+      value: {},
+      observer: function (newVal) {
+        if (newVal) {
+          wx.setStorageSync('brand', newVal.brand );
+          this.loadPage();
+        }
+      }
+    }
   },
 
   data: {
@@ -12,87 +22,37 @@ Component({
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000,
-    test: 'fsfsdf'
+    duration: 1000
   }, 
 
-  // attached() {
-  //   var prds = [
-  //     {
-  //       categoryId: '01',
-  //       categoryName: '当季活动',
-  //       items: [
-  //         {
-  //           prdId: '10001',
-  //           prdName: '当季活动-拼团产品1',
-  //           price: 500,
-  //           orgPrice: 1000,
-  //           priceReduce: 500,
-  //           numbers: 3,
-  //           image: '../../images/cj-001.jpg'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       actionType: '02',
-  //       actionName: '限时拼团',
-  //       items: [
-  //         {
-  //           prdId: '10002',
-  //           prdName: '限时拼团-拼团产品1',
-  //           price: 300,
-  //           orgPrice: 600,
-  //           priceReduce: 500,
-  //           numbers: 3,
-  //           image: '../../images/cj-002.jpg'
-  //         },
-  //         {
-  //           prdId: '10003',
-  //           prdName: '限时拼团-拼团产品2',
-  //           price: 400,
-  //           orgPrice: 800,
-  //           priceReduce: 500,
-  //           numbers: 4,
-  //           image: '../../images/cj-002.jpg'
-  //         }
-  //       ]
-  //     }
-  //   ];     
-  //   this.setData({prds: prds});
-
-  //   // 调整swipper高度
-  //   let swipperHeight = prds[0].items.length * 500;
-  //   this.setData({ swipperHeight: swipperHeight});
-  // },
-
   attached() {
-    var that = this;
-    wx.request({
-      url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productlist/offset/1/listsize/10',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        let prds = res.data;
-        that.setData({prds: prds});
-
-        // 调整swipper高度
-        let swipperHeight = prds[0].items.length * 500;
-        that.setData({ swipperHeight: swipperHeight});
-      }
-    });
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    gotoPage(event) {
+    loadPage() {
+      var that = this;
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productlist',
+        data: {offset:0, listsize:10},
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        success(res) {
+          let prds = res.data;
+          that.setData({prds: prds});
+  
+          // 调整swipper高度
+          let swipperHeight = prds[0].items.length * 500;
+          that.setData({ swipperHeight: swipperHeight});
+        }
+      });
+    },
+    gotoNext(event) {
       var value = event.currentTarget.dataset.target;
-      var proId = event.currentTarget.dataset.proid;
-      this.triggerEvent('callback', {target: value, options: {proId: proId}});
+      var prdId = event.currentTarget.dataset.prdid;
+      this.triggerEvent('callback', {target: value, options: {prdId: prdId}});
     },
 
     //tab切换

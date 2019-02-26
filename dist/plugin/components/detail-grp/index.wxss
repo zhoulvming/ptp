@@ -173,16 +173,27 @@ page {
 .detail-user {
   text-align: center;
 }
-.detail-user .avatar {
-  padding-top: 20rpx;
+.detail-user .members {
+  display: flex;
+  flex-direction: row;
 }
-.detail-user .avatar image {
+.detail-user .members .avatar {
+  padding-top: 20rpx;
+  position: relative;
+}
+.detail-user .members .avatar image {
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
   margin: 0 10rpx;
 }
-.detail-user .avatar image.unknown {
+.detail-user .members .avatar .isLeader {
+  position: absolute;
+  bottom: 0;
+  border-radius: 40rpx;
+  background-color: #008FDB;
+}
+.detail-user .members .unknown {
   border: 1rpx dotted #888;
 }
 .detail-user .timer {

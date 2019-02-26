@@ -1,7 +1,6 @@
 const ptCommon = require('../pt.common.js');
 Page({
-  data: {
-  },
+  data: {},
   onLoad(options) {
     this.setData({options: options});
   },

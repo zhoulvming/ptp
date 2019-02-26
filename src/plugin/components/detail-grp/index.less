@@ -73,18 +73,30 @@
 
 .detail-user {
   text-align: center;
-  .avatar {
-    padding-top: 20rpx;
-    image {
-      height: 100rpx;
-      width: 100rpx;
-      border-radius: 50rpx;
-      margin: 0 10rpx;
+  .members {
+    display: flex;
+    flex-direction: row;
+    .avatar {
+      padding-top: 20rpx;
+      position: relative;
+      image {
+        height: 100rpx;
+        width: 100rpx;
+        border-radius: 50rpx;
+        margin: 0 10rpx;
+      }
+      .isLeader {
+        position: absolute;
+        bottom: 0;
+        border-radius: 40rpx;
+        background-color: @color-primary;
+      }
     }
-    image.unknown {
+    .unknown {
       border: 1rpx dotted @color-gray;
     }
   }
+
   .timer {
     font-size: 30rpx;
     margin-top: 20rpx;

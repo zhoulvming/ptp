@@ -1,9 +1,12 @@
 const ptCommon = require('../pt.common.js');
 Page({
   data: {
-    txtOrderCode: ''
+    txtOrderCode: '',
+    price: 0
   },
-  onLoad() {
+  onLoad(options) {
+    var jsonVal = JSON.parse(options.options);
+    this.setData({price:jsonVal.price});
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data);

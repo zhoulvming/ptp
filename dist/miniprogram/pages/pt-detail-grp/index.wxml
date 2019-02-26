@@ -1,1 +1,1 @@
-<pt-detail-prd bindcallback="gotoPageFromPlugin"/>
+<pt-detail-prd bindcallback="gotoPageFromPlugin" options="{{options}}"/>

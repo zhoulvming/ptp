@@ -1,151 +1,110 @@
-const {
-  isUndefined,
-  isDefined,
-  isString,
-  isObject,
-  isFunction,
-  getString,
-} = require('./base.js');
-
-const ajax = (
-  url,
-  {
-    data,
-    method = 'GET',
-    header = {},
-    success = () => {},
-    fail = () => {},
-    complete = () => {},
-    failToast = true,
-    modalLoading = '',
-    navBarLoading = false,
-    showLog = true
-  }
-) => {
-  // 第三方登录态
-  const session_3rd = updataStorageData('session_3rd');
-  // 构造请求体
-  const request = {
-    url,
-    method: ['GET', 'POST'].indexOf(method) > -1 ? method : 'GET',
-    header: Object.assign({ SESSION: session_3rd }, header),
-    data: Object.assign({}, data)
-  };
-
-  showLog && console.table && console.table(request); // eslint-disable-line
-
-  modalLoading && wx.showLoading({ title: getString(modalLoading) });
-  navBarLoading && wx.showNavigationBarLoading();
-
-  wx.request(
-    Object.assign(request, {
-      success: ({ data, statusCode }) => {
-        modalLoading && wx.hideLoading();
-
-        showLog && console.log && console.log('[AJAX SUCCESS]', statusCode, typeof data === 'object' ? data : data.toString().substring(0, 100)); // eslint-disable-line
-
-        // 状态码正常 & 确认有数据
-        if (data && +data.code === 0 && data.data) {
-          isFunction(success) && success(Object.assign({ statusCode }, data));
-          return;
-        }
-
-        // 非正常业务码处理（如登录态失效等）
-        if (data && +data.code === 12000010) {
-          // 
-        }
-
-        // 其他情况，执行错误回调
-        failToast &&
-          wx.showToast({ title: data.message || '获取数据出错', icon: 'none' });
-        isFunction(fail) && fail(Object.assign({ statusCode }, data));
-      },
-      fail: ({ error, errorMessage }) => {
-        modalLoading && wx.hideLoading();
-        showLog && console.log && console.log('[AJAX FAIL]', error, errorMessage); // eslint-disable-line
-        failToast && wx.showToast({ title: errorMessage || '获取数据出错', icon: 'none' });
-        isFunction(fail) && fail({ error, errorMessage });
-      },
-      complete: () => {
-        navBarLoading && wx.hideNavigationBarLoading();
-        isFunction(complete) && complete();
-      }
-    })
-  );
-};
-
-const app = getApp();
-
-const updataGlobalData = (key, value) => {
-  const globalData = app.globalData;
-  // 校验 globalData
-  if (!globalData) {
-    return console.error('[$updateGlobalData] globalData Not Find!'); // eslint-disable-line
-  }
-  // 校验: 操作字段
-  if (!isString(key) || key === '') {
-    return console.error('[$updateGlobalData] key 不能为空!'); // eslint-disable-line
-  }
-  // 取出已有信息
-  const data = globalData[key] || {};
-  // 更新缓存
-  if (value && isObject(value) && isObject(data)) {
-    // Object合并第一层
-    globalData[key] = Object.assign({}, data, value);
-  } else if (isDefined(value)) {
-    // 其他非undefined数据直接覆盖
-    globalData[key] = value;
-  }
-  return globalData[key];
-};
-
-const updataStorageData = (key, value) => {
-  try {
-    if (!isString(key) || key === '') {
-      return console.error('[$updateStorageData] key 不能为空!'); // eslint-disable-line
+const utils = {
+  formatPrice(data) {
+    var pref = '00';
+    var suff = '00';
+    var index = data.indexOf('.');
+    if (index > 0) {
+      pref = data.substring(0, index);
+      suff = data.substring(index+1);
+    } else {
+      pref = data;
+      suff = '00';
     }
-    let data = wx.getStorageSync(key);
-    // 只有key情况下，直接返回data
-    if (isUndefined(value)) return data;
-    // Object合并
-    if (isObject(value) && isObject(data)) {
-      let info = Object.assign({}, data, value);
-      wx.setStorageSync(key, info);
-      return info;
-    }
-    // 其他数据直接覆盖
-    wx.setStorageSync(key, value);
-    return value;
-  } catch (e) {
-    console.error(`[ERROR]: ${value ? 'UPDATE' : 'GET'} Storage ${key} : `, e.stack); // eslint-disable-line
+
+    return {pref: pref, suff: suff};
+  },
+
+  // 格式化商品信息
+  formatProductData(data) {
+    var leftTime = data.leftTime;
+    var fi = leftTime.indexOf(':');
+    var leftTime_d = leftTime.substring(0,fi);
+    var leftTime_h = leftTime.substring(fi+1,fi+3);
+    var leftTime_m = leftTime.substring(fi+4,fi+6);
+    var leftTime_s = leftTime.substring(fi+7,fi+9);
+
+    var price = this.formatPrice(data.price);
+
+    return {
+      prdId: data.prdId,
+      prdName: data.prdName,
+      catgryName: data.categoryName,
+      numbers: data.numbers,
+      salesCount: data.salesCount,
+      leftCount: data.leftCount,
+      price: data.price,
+      price_pref: price.pref,
+      price_suff: price.suff,
+      orgPrice: data.orgPrice,
+      detailContent: data.detailContent,
+      question: data.question,
+      leftTime_d: leftTime_d,
+      leftTime_h: leftTime_h,
+      leftTime_m: leftTime_m,
+      leftTime_s: leftTime_s,
+      limitCount: data.limitCount,
+      images: data.images,
+      imageSingle: data.imageSingle,
+      validDays: data.validDays,
+      orgProdId: data.orgProdId,
+      groupBuyProId: data.groupBuyProId
+    };
+  },
+
+  // 格式化拼团列表信息
+  formatGroupListData(datas) {
+    var rts = [];
+    datas.forEach(function(data){
+      var validatedTime = data.validatedTime;
+      var validatedTime_d = validatedTime.substring(0,2);
+      var validatedTime_h = validatedTime.substring(3,5);
+      var validatedTime_m = validatedTime.substring(6,8);
+      var validatedTime_s = validatedTime.substring(9,11);
+      
+      rts.push({
+        prdId: data.prdId,
+        grpId: data.grpId,
+        prdName: data.prdName,
+        leftNumbers: data.leftNumbers,
+        openid: data.openid,
+        validatedTime_d: validatedTime_d,
+        validatedTime_h: validatedTime_h,
+        validatedTime_m: validatedTime_m,
+        validatedTime_s: validatedTime_s,
+        nickname: data.nickname,
+        atavaUrl: data.atavaUrl
+      });
+    });
+  
+    return rts;
+  },
+
+  // 格式化拼团详细信息
+  formatGroupDetailData(data) {
+
+    var leftTime = data.leftTime;
+    var fi = leftTime.indexOf(':');
+    var leftTime_d = leftTime.substring(0,fi);
+    var leftTime_h = leftTime.substring(fi+1,fi+3);
+    var leftTime_m = leftTime.substring(fi+4,fi+6);
+    var leftTime_s = leftTime.substring(fi+7,fi+9);
+    var price = this.formatPrice(data.price);
+    return {
+      grpId: data.grpId,
+      numbers: data.numbers,
+      prdName: data.prdName,
+      prdImage: data.prdImage,
+      leftNumber: data.leftNumber,
+      members: data.members,
+      leftTime: leftTime,
+      leftTime_d: leftTime_d,
+      leftTime_h: leftTime_h,
+      leftTime_m: leftTime_m,
+      leftTime_s: leftTime_s,
+      price_pref: price.pref,
+      price_suff: price.suff
+    };
   }
 };
 
-// 从插件到页面的跳转
-const gotoPageFromPlugin = (data) => {
-  var options = data.detail.options;
-  var target = data.detail.target;    
-  var url = '';
-  var jsonObj = app.globalData.callbackUrl;
-  for(var item in jsonObj) {
-    if(item == target){
-      url = jsonObj[item];
-    }
-  }
-
-  //拼接插件传递给小程序页面的参数（如果有的话）
-  if (options) {
-    console.log(options);
-  }
-  wx.navigateTo({
-    url: url,
-  });
-};
-
-module.exports = {
-  ajax,
-  app,
-  updataGlobalData,
-  updataStorageData,
-  gotoPageFromPlugin
-};
+module.exports = utils;

@@ -1,0 +1,4 @@
+<view>
+  <button bindtap="login">模拟登录画面</button>
+</view>
+  
