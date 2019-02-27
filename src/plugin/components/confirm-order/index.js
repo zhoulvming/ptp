@@ -93,14 +93,13 @@ Component({
           method: 'POST',
           data: data,
           success(res) {
-            console.log(res.data);
-
             // 下单成功后跳转到小程序的支付模块，在小程序的支付页面中支付成功后直接跳转到插件的订单详情页面
             var price = that.data.buywayPrice * that.data.orderNum;
             that.triggerEvent('callback', {
               target: 'pay',
               options: {
                 price: price,
+                orderNo: res.data.orderNo,
                 grp_status: config.grp_status_create
               }
             });

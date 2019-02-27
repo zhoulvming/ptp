@@ -3,6 +3,24 @@ var wxTimer = null;
 
 Component({
   properties: {
+    options: {
+      type: Object,
+      value: {},
+      observer: function (newVal) {
+        if (newVal) {
+          console.log(newVal);
+          // var jsonVal = JSON.parse(newVal.options);
+          // if (jsonVal.grpId) {
+          //   this.setData({ grpId: jsonVal.grpId });
+          // }
+          // this.setData({ prdId: jsonVal.prdId });
+          // this.setData({ orderNum: jsonVal.orderNum });
+          // this.setData({ buyway: jsonVal.buyway });
+          // this.setData({ buywayPrice: jsonVal.buywayPrice });
+          // this.loadPage();
+        }
+      }         
+    }    
   },
 
   data: {
