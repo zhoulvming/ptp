@@ -8,7 +8,6 @@ Component({
       value: {},
       observer: function (newVal) {
         if (newVal) {
-          console.log(newVal);
           // var jsonVal = JSON.parse(newVal.options);
           // if (jsonVal.grpId) {
           //   this.setData({ grpId: jsonVal.grpId });

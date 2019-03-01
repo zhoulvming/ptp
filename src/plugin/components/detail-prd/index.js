@@ -49,9 +49,7 @@ Component({
     gotoNext(event) {
       var that = this;
       var target = event.currentTarget.dataset.target;
-      var status = event.currentTarget.dataset.status;
       var prdId = event.currentTarget.dataset.prdid;
-      wx.setStorageSync( {key: 'status', data: status} );
       this.triggerEvent('callback', {
         target: target,
         options: {
@@ -77,7 +75,6 @@ Component({
     },
 
     loadPage() {
-      console.log('prdId is : ' + this.data.prdId);
       var that = this;
       // 根据prdId获取商品详细信息
       wx.request({

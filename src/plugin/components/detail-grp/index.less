@@ -70,7 +70,6 @@
   }
 }
 
-
 .detail-user {
   text-align: center;
   .members {
@@ -130,4 +129,145 @@
     }
   }
   
+}
+
+
+/*modal*/
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.7;
+}
+.modalDlg {
+  width: 100%;
+  height: 580rpx;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #fff;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .prd-info { 
+    padding: 15rpx;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .picture {
+      width: 200rpx;
+      height: 200rpx;
+      margin-left: 15rpx;
+    }
+    .close {
+      width:30rpx;
+      height:30rpx;
+      position:absolute;
+      right:40rpx;
+      top:40rpx;      
+    }
+    .info {
+      margin-left: 20rpx;
+      display: flex;
+      flex-direction: column;
+      .name {
+        font-size: @fs-1;
+        font-weight: @fw-1;
+      }
+      .gp-info {
+        text-align: center;
+        width: 150rpx;
+        border: 1px solid @color-warning;
+        border-radius: 8rpx;
+        font-size: @fs-4;
+        font-weight: @fw-2;
+        color: @color-warning;
+        margin: 5rpx 10rpx;     
+      }
+      .price {
+        margin-top: 70rpx;
+        font-size: @fs-1;
+        font-weight: 700;
+      }
+    }
+    
+  }
+  .buycount {
+    position: relative;
+    padding: 15rpx;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20rpx;
+    font-size: @fs-3;
+    width: 100%;
+    >.info {
+      padding-left:30rpx;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      text-align: left;
+      .largeText {
+        font-size: @fs-2;
+      }
+      .leftCount {
+        font-size: 30rpx;
+        color: grey;
+        margin-top: 35rpx;
+      }
+    }
+    .count {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      right: 40rpx;
+      .input {
+        display: flex;
+        flex-direction: row;
+        .ic,.ad {
+          float: left;
+          width: 60rpx;
+          height: 60rpx;
+          line-height: 60rpx;
+          border-radius: 60rpx;
+          background: @color-primary;
+          font-size: @fs-1;
+          color: #ffffff;
+          text-align: center;
+         
+        }
+        .in {
+          float: left;
+          width: 90rpx;
+          height: 60rpx;
+          line-height: 60rpx;
+          border-width: 0 ;
+          font-size: @fs-1;
+          color: #333333;
+          margin: 0 20rpx;
+          text-align: center;
+        }
+      }
+      .info {
+        font-size: @fs-3;
+        width:100%;
+        margin-top:25rpx;
+        text-align: center;
+      }
+    } 
+  }
+  button {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: @color-primary;
+    font-weight: @fw-1;
+    border-radius: 0;
+    box-sizing: none;
+    color: white;
+  }
 }

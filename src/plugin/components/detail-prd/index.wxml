@@ -75,7 +75,7 @@
       <swiper-item>
         <view class="record-list">
           <view wx:for="{{records}}" class="record-item display-row">
-            <view><text>{{item.orderTime}}</text></view>
+            <view><text>{{item.leftTime}} 前</text></view>
             <view><text>{{item.nickName}}</text></view>
             <view><text>{{item.quantity}}</text></view>
           </view>

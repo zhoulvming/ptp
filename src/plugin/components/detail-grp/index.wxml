@@ -9,11 +9,11 @@
     <image src="{{grpDetail.prdImage}}"/>
     <view class="content">
       <text class="title">我是商品名称</text>
-      <text class="desc">有效期自购买后 {{grpDetail.leftTime}} 内有效</text>
+      <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
       <view class="price-now">
-        <view class="now-pref"><text>￥{{grpDetail.price_pref}}</text></view>
+        ￥<view class="now-pref"><text>{{grpDetail.price_pref}}</text></view>
         <view class="now-suff"><text>.{{grpDetail.price_suff}}</text></view>
-        <view class="org"><text>￥{{grpDetail.orgPrice}}</text></view>
+        ￥<view class="org"><text>{{grpDetail.orgPrice}}</text></view>
         <view class="gp-info" style="display:{{grp_status == 0?'block':'none'}}"><text>x{{grpDetail.count}}</text></view>
       </view>
     </view>
@@ -42,10 +42,42 @@
       <button open-type='share'>邀请好友</button>
       <button bindtap="formSubmit">生成海报</button>
     </view>
+    <view class="action mb-50" style="display:{{grp_status == 1?'block':'none'}}">
+      <button bindtap='showModal' data-buyway="1">我要参团</button>
+    </view>    
     <button class="link-btn" bindtap="gotoPage" data-target="index">回首页再看看</button>
   </view>
 </view>
 
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
+<view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
+  <view class="prd-info">
+    <image class="picture" src="{{prdDetail.imageSingle}}"/>
+    <view class="info">
+      <text class="name">{{grpDetail.prdName}} </text>
+      <text class="gp-info">{{grpDetail.numbers}} 人拼团价</text>
+      <text class="price">￥{{buywayPrice.pref}}.{{buywayPrice.suff}}</text>
+    </view>
+    <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
+  </view>
+  <view class="buycount">
+    <view class="info">
+      <text class="largeText">购买数量</text>
+      <text class="leftCount">剩余 {{grpDetail.leftCount}} 件数</text>    
+    </view>
+    <view class='count'>
+      <view class="input">
+        <view class='ic' bindtap='evic'>-</view>
+        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'/>
+        <view class='ad' bindtap='evad'>+</view>      
+      </view>
+      <view class="info">
+        <text>每人限购 {{grpDetail.limitNum}} 件</text>
+      </view>
+    </view>
+  </view>
+  <button bindtap="gotoNext" data-target="confirm-order" data-prdid="{{grpDetail.prdId}}">下一步</button>
+</view>
 
 <view hidden="{{maskHidden == false}}" class="mask"></view> 
 <view class="canvas-box">

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const config = require('../../lib/config.js');
 var utils = require('../../utils/util.js');
 var timer = require('../../utils/wxTimer.js');
 var wxTimer = null;
@@ -9,9 +10,6 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        console.log('plugin(detail-grp) -- options value : -----------');
-        console.log(newVal);
-        console.log('plugin(detail-grp) -- options value : -----------');
         if (newVal) {          
           var jsonVal = JSON.parse(newVal.options);
           this.setData({ grpId: jsonVal.grpId });
@@ -27,55 +25,14 @@ Component({
     grp_status: 0,
     status_image_success: '../../images/icons/success.png',
     status_image_fail: '../../images/icons/fail.png',
-    wxTimerList:[]
-  },
-
-  attached() {
-
-    // let self = this;
-    // let tempData = {};
-    // let status = '000';
-
-    // try {
-    //   status = wx.getStorageSync('status');
-    //   if (status == '001') {
-    //     self.setData({
-    //       status: {
-    //         code: status,
-    //         image: '../../images/icons/on.png',
-    //         info: '发起拼团成功',
-    //         css: 'on'
-    //       }
-    //     });
-    //   }
-
-    //   // detail data
-    //   tempData = {
-    //     prdId: '10001',
-    //     prdName: '商品名称',
-    //     prdDesc: '这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容',
-    //     prdImage: '../../images/pt-003.png',
-    //     numbers: 3,
-    //     leftNumbers: 2,
-    //     salesCount: 100,
-    //     price_pref: 99,
-    //     price_suff: 30,
-    //     orgPrice: 1000,
-    //     leftHour: 10,
-    //     leftMinute: 20,
-    //     leftSecond: 20
-    //   };
-    //   self.setData({prdDetail: tempData});
-    // } catch (e) {
-    //   // do something
-    // }
-
-    // // 计数器
-    // let timeStr = tempData.leftHour + ':' + tempData.leftMinute + ':' + tempData.leftSecond;
-    // wxTimer = new timer({
-    //   beginTime: timeStr
-    // });
-    // wxTimer.start(self);    
+    wxTimerList:[],
+    showModal: false,
+    min:1,//最小值 整数类型，null表示不设置
+    max: 5,//最大值 整数类型，null表示不设置
+    num: 1,//输入框数量 整数类型
+    change: 1,//加减变化量 整数类型
+    def_num: 5,//输入框值出现异常默认设置值
+    maskHidden: false
   },
 
   detached() {
@@ -84,8 +41,6 @@ Component({
 
   methods: {
     loadPage() {
-      console.log('grpId is : ' + this.data.grpId);
-
       var that = this;
       // 根据 grpId 获取拼团详细信息
       wx.request({
@@ -115,6 +70,87 @@ Component({
         icon: 'loading',
         duration: 1000
       });
+    },
+
+    showModal: function (e) {
+      console.log('e.currentTarget.dataset.buyway' + e.currentTarget.dataset.buyway);
+      var buyway = e.currentTarget.dataset.buyway;
+      var detail = this.data.grpDetail;
+      this.setData({
+        showModal: true
+      });
+
+      var buywayPrice = detail.price;
+      console.log(buywayPrice);
+
+      this.setData({
+        buyway: buyway,
+        buywayPrice: buywayPrice
+      });
+    },
+
+    hideModalDlg: function() {
+      this.setData({
+        showModal: false
+      });
+    },
+    evblur: function (e) {
+      var zval = parseInt(e.detail.value);
+      //正则 正整数 0 负整数
+      if (/(^-[1-9][0-9]{0,}$)|(^0$)|(^[1-9][0-9]{0,}$)/.test(zval)){
+        //最大值
+        if (this.data.max != null) {
+          if (zval > this.data.max) {
+            console.log('超出最大值');
+            this.setData({ num: this.data.def_num });
+          }else{
+            this.setData({ num: zval });
+          }
+        } else {
+          this.setData({ num: zval });
+        }
+        //最小值
+        if (this.data.min != null) {
+          if (zval < this.data.min) {
+            console.log('低于最小值');
+            this.setData({ num: this.data.def_num });
+          } else {
+            this.setData({ num: zval });
+          }
+        } else {
+          this.setData({ num: zval });
+        }
+      } else {
+        console.log('不是整数');
+        this.setData({ num: this.data.def_num });
+      }
+    },
+    //加
+    evad: function () {
+      var cval = Number(this.data.num) + this.data.change;
+      if (this.data.max != null){
+        if (cval > this.data.max){
+          console.log('超出最大值');
+        }else{
+          this.setData({ num: cval });
+        }
+      }else{
+        this.setData({ num: cval });
+      }
+    },
+    //减
+    evic: function () {
+      var cval = Number(this.data.num) - this.data.change;
+      if (this.data.min != null) {
+        if (cval < this.data.min) {
+          console.log('低于最小值');
+        } else {
+          this.setData({ num: cval });
+        }
+      } else {
+        this.setData({ num: cval });
+      }
     }
+
   }
 });

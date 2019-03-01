@@ -38,7 +38,7 @@
 
   <view class="wrapper">
     <view class="panel total">
-      <text class="title">订单号：EEEEEEEEEEEEEEEEE</text>
+      <text class="title">订单号：{{orderDetail.grpId}}</text>
       <text class="content">创建时间：2018年10月23日 21:21:21</text>
       <text class="content">支付时间：2018年10月23日 21:21:21</text>
     </view>

@@ -95,14 +95,19 @@ const utils = {
       prdName: data.prdName,
       prdImage: data.prdImage,
       leftNumber: data.leftNumber,
+      validDays: data.validDays,
       members: data.members,
       leftTime: leftTime,
       leftTime_d: leftTime_d,
       leftTime_h: leftTime_h,
       leftTime_m: leftTime_m,
       leftTime_s: leftTime_s,
+      price: price,
       price_pref: price.pref,
-      price_suff: price.suff
+      price_suff: price.suff,
+      orgPrice: data.orgPrice,
+      leftCount: data.leftCount,
+      limitNum: data.limitNum
     };
   }
 };
