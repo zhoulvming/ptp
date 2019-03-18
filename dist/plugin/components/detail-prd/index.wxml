@@ -113,7 +113,8 @@
     <view class="info">
       <text class="name">{{prdDetail.prdName}} </text>
       <text class="gp-info">{{prdDetail.numbers}} 人拼团价</text>
-      <text class="price">￥{{buywayPrice}}</text>
+      <text class="price" style="display:{{buyway==1?'block':'none'}}">￥{{prdDetail.price}}</text>
+      <text class="price" style="display:{{buyway==0?'block':'none'}}">￥{{prdDetail.orgPrice}}</text>
     </view>
     <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
   </view>
@@ -125,7 +126,7 @@
     <view class='count'>
       <view class="input">
         <view class='ic' bindtap='evic'>-</view>
-        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'/>
+        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur1'/>
         <view class='ad' bindtap='evad'>+</view>      
       </view>
       <view class="info">

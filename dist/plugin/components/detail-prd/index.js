@@ -50,14 +50,15 @@ Component({
       var that = this;
       var target = event.currentTarget.dataset.target;
       var prdId = event.currentTarget.dataset.prdid;
+      var options = {
+        prdId: prdId,
+        orderNum: that.data.num,
+        buyway: that.data.buyway,
+        buywayPrice: that.data.buywayPrice
+      };
       this.triggerEvent('callback', {
         target: target,
-        options: {
-          prdId: prdId,
-          orderNum: that.data.num,
-          buyway: that.data.buyway,
-          buywayPrice: that.data.buywayPrice
-        }
+        options: options
       });
     },
 
@@ -211,6 +212,7 @@ Component({
     },
     //加
     evad: function () {
+      var that = this;
       var cval = Number(this.data.num) + this.data.change;
       if (this.data.max != null){
         if (cval > this.data.max){
@@ -221,9 +223,19 @@ Component({
       }else{
         this.setData({ num: cval });
       }
+
+      var buyway = that.data.buyway;
+      var price = that.data.prdDetail.price;
+      if (buyway && buyway == config.buyway_single) {
+        price = that.data.prdDetail.orgPrice;
+      }
+      that.setData({ buywayPrice: price * cval });
+      
+
     },
     //减
     evic: function () {
+      var that = this;
       var cval = Number(this.data.num) - this.data.change;
       if (this.data.min != null) {
         if (cval < this.data.min) {
@@ -234,6 +246,13 @@ Component({
       } else {
         this.setData({ num: cval });
       }
+
+      var buyway = that.data.buyway;
+      var price = that.data.prdDetail.price;
+      if (buyway && buyway == config.buyway_single) {
+        price = that.data.prdDetail.orgPrice;
+      }
+      that.setData({ buywayPrice: price * cval });
     }
   }
 });

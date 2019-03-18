@@ -30,7 +30,7 @@
 }
 /** component **/
 page {
-  background-color: #eee;
+  background-color: #FEFEFE;
 }
 .wrapper {
   padding: 20rpx;
@@ -95,13 +95,8 @@ page {
 .link-btn::after {
   border: none;
 }
-.top-swipper {
-  height: 350rpx;
-  width: 100%;
-}
-.top-swipper image {
+.top-swiper image {
   height: 100%;
-  width: 100%;
 }
 .card-list > .title {
   color: #008FDB;
@@ -123,23 +118,21 @@ page {
   float: left;
   height: 70rpx;
   line-height: 70rpx;
-  width: 160rpx;
   text-align: center;
-  margin-left: 40rpx;
 }
 .tab .tab-nav view.on {
   color: #008FDB;
+}
+.tab .tab-nav view.on text {
   border-bottom: 5rpx solid #008FDB;
 }
 .tab .tab-nav view.off {
   color: #888;
 }
 .tab .tab-box {
-  padding: 20rpx 15rpx;
+  padding: 20rpx 35rpx;
 }
 .card-item {
-  margin-left: 40rpx;
-  margin-right: 40rpx;
   overflow: hidden;
   margin-bottom: 40rpx;
   border-radius: 8rpx;
@@ -148,7 +141,6 @@ page {
 }
 .card-item image {
   width: 100%;
-  height: 300rpx;
 }
 .card-item .name {
   padding: 10rpx;

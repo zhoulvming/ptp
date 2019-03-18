@@ -30,7 +30,7 @@
 }
 /** component **/
 page {
-  background-color: #eee;
+  background-color: #FEFEFE;
 }
 .wrapper {
   padding: 20rpx;
@@ -95,27 +95,24 @@ page {
 .link-btn::after {
   border: none;
 }
-.top-swipper {
-  height: 350rpx;
-  width: 100%;
-}
-.top-swipper image {
+.top-swiper image {
   height: 100%;
-  width: 100%;
 }
 .detail {
   display: flex;
   flex-direction: row;
+  padding: 25rpx;
 }
 .detail image {
   height: 200rpx;
-  width: 33%;
+  width: 200rpx;
 }
 .detail .content {
-  width: 67%;
   display: flex;
   flex-direction: column;
   padding-left: 20rpx;
+  position: relative;
+  width: 450rpx;
 }
 .detail .content .title {
   font-size: 35rpx;
@@ -125,29 +122,44 @@ page {
   font-size: 30rpx;
   color: grey;
 }
-.detail .content .price {
-  margin-top: 40rpx;
+.detail .content .buying-info .price {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
 }
-.detail .content .price .type {
-  font-size: 30rpx;
-  margin-top: 9rpx;
+.detail .content .buying-info .price .money-flag {
+  position: absolute;
+  bottom: 0;
+  font-size: 25rpx;
 }
-.detail .content .price .pref {
+.detail .content .buying-info .price .pref {
   font-size: 40rpx;
   font-weight: 600;
-  margin-top: -2rpx;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
 }
-.detail .content .price .suff {
+.detail .content .buying-info .price .suff {
   font-size: 30rpx;
-  margin-top: 11rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
 }
-.detail .content .price .count {
-  font-size: 30rpx;
-  width: 60%;
-  text-align: right;
-  margin-top: 10rpx;
+.detail .content .buying-info .price .count {
+  position: absolute;
+  bottom: 0rpx;
+  right: 20rpx;
+  font-size: 35rpx;
+}
+.detail .content .buying-info .buying-count {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
+  right: 20rpx;
+  font-size: 35rpx;
 }
 .footer {
   position: fixed;
@@ -155,41 +167,28 @@ page {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-.footer .memo {
-  background-color: #ccc;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 15rpx;
-}
-.footer .memo .title {
-  font-size: 30rpx;
-  font-weight: 600;
-  margin-bottom: 10rpx;
-}
-.footer .memo .content {
-  font-size: 25rpx;
+  background-color: #555;
+  height: 120rpx;
 }
 .footer .action {
   display: flex;
   flex-direction: row;
-  background-color: #555;
+  background: #000;
+  position: relative;
 }
-.footer .action .price {
-  margin: auto 0;
-  width: 60%;
-  font-size: 35rpx;
+.footer .action .info {
+  position: absolute;
+  margin-top: 36rpx;
+  margin-left: 60rpx;
   color: white;
-  font-weight: 700;
-  text-align: center;
+  font-size: 40rpx;
 }
-.footer .action button {
+.footer .action .btn {
+  position: absolute;
+  right: 0;
   color: white;
-  font-size: 35rpx;
-  font-weight: 700;
-  width: 40%;
-  background-color: #008FDB;
-  box-sizing: none;
-  border-radius: 0;
+  background: #008FDB;
+  bottom: -120rpx;
+  padding: 36rpx 50rpx;
+  font-weight: 600;
 }

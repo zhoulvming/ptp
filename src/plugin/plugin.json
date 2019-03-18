@@ -6,6 +6,5 @@
     "detail-order": "components/detail-order/index",
     "confirm-order": "components/confirm-order/index",
     "login": "components/login/login"
-  },
-  "main": "index.js"
+  }
 }

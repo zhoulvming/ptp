@@ -30,7 +30,7 @@
 }
 /** component **/
 page {
-  background-color: #eee;
+  background-color: #FEFEFE;
 }
 .wrapper {
   padding: 20rpx;
@@ -95,11 +95,6 @@ page {
 .link-btn::after {
   border: none;
 }
-.top-swipper {
-  height: 350rpx;
-  width: 100%;
-}
-.top-swipper image {
+.top-swiper image {
   height: 100%;
-  width: 100%;
 }

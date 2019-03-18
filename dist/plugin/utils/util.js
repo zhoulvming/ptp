@@ -1,13 +1,14 @@
 const utils = {
   formatPrice(data) {
+    var strData = data + '';
     var pref = '00';
     var suff = '00';
-    var index = data.indexOf('.');
+    var index = strData.indexOf('.');
     if (index > 0) {
-      pref = data.substring(0, index);
-      suff = data.substring(index+1);
+      pref = strData.substring(0, index);
+      suff = strData.substring(index+1);
     } else {
-      pref = data;
+      pref = strData;
       suff = '00';
     }
 
@@ -17,17 +18,18 @@ const utils = {
   // 格式化商品信息
   formatProductData(data) {
     var leftTime = data.leftTime;
-    var fi = leftTime.indexOf(':');
-    var leftTime_d = leftTime.substring(0,fi);
-    var leftTime_h = leftTime.substring(fi+1,fi+3);
-    var leftTime_m = leftTime.substring(fi+4,fi+6);
-    var leftTime_s = leftTime.substring(fi+7,fi+9);
+    var timeTemp = leftTime.split(':');
+    var leftTime_d = timeTemp[0];
+    var leftTime_h = timeTemp[1];
+    var leftTime_m = timeTemp[2];
+    var leftTime_s = timeTemp[3];
 
     var price = this.formatPrice(data.price);
 
     return {
       prdId: data.prdId,
       prdName: data.prdName,
+      prdDesc: data.activityDesc,
       catgryName: data.categoryName,
       numbers: data.numbers,
       salesCount: data.salesCount,
@@ -56,10 +58,12 @@ const utils = {
     var rts = [];
     datas.forEach(function(data){
       var validatedTime = data.validatedTime;
-      var validatedTime_d = validatedTime.substring(0,2);
-      var validatedTime_h = validatedTime.substring(3,5);
-      var validatedTime_m = validatedTime.substring(6,8);
-      var validatedTime_s = validatedTime.substring(9,11);
+
+      var timeTemp = validatedTime.split(':');
+      var validatedTime_d = timeTemp[0];
+      var validatedTime_h = timeTemp[1];
+      var validatedTime_m = timeTemp[2];
+      var validatedTime_s = timeTemp[3];
       
       rts.push({
         prdId: data.prdId,
@@ -83,16 +87,18 @@ const utils = {
   formatGroupDetailData(data) {
 
     var leftTime = data.leftTime;
-    var fi = leftTime.indexOf(':');
-    var leftTime_d = leftTime.substring(0,fi);
-    var leftTime_h = leftTime.substring(fi+1,fi+3);
-    var leftTime_m = leftTime.substring(fi+4,fi+6);
-    var leftTime_s = leftTime.substring(fi+7,fi+9);
+    var timeTmep = leftTime.split(':');
+    var leftTime_d = timeTmep[0];
+    var leftTime_h = timeTmep[1];
+    var leftTime_m = timeTmep[2];
+    var leftTime_s = timeTmep[3];
     var price = this.formatPrice(data.price);
     return {
       grpId: data.grpId,
-      numbers: data.numbers,
+      number: data.number,
+      prdId: data.prdId,
       prdName: data.prdName,
+      prdDesc: data.activityDesc,
       prdImage: data.prdImage,
       leftNumber: data.leftNumber,
       validDays: data.validDays,
@@ -102,14 +108,15 @@ const utils = {
       leftTime_h: leftTime_h,
       leftTime_m: leftTime_m,
       leftTime_s: leftTime_s,
-      price: price,
+      price: data.price,
       price_pref: price.pref,
       price_suff: price.suff,
       orgPrice: data.orgPrice,
       leftCount: data.leftCount,
       limitNum: data.limitNum
     };
-  }
+  },
+
 };
 
 module.exports = utils;

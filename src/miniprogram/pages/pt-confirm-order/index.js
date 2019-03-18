@@ -10,7 +10,7 @@ Page({
     }
 
     var userinfo = wx.getStorageSync('userinfo');
-    this.setData({ userinfo: userinfo });
+    this.setData({ userInfo: userinfo });
     this.setData({options: optionsNew});
   },
   gotoPageFromPlugin(data) {

@@ -10,11 +10,18 @@
     <view class="content">
       <text class="title">我是商品名称</text>
       <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
-      <view class="price-now">
-        ￥<view class="now-pref"><text>{{grpDetail.price_pref}}</text></view>
-        <view class="now-suff"><text>.{{grpDetail.price_suff}}</text></view>
-        ￥<view class="org"><text>{{grpDetail.orgPrice}}</text></view>
-        <view class="gp-info" style="display:{{grp_status == 0?'block':'none'}}"><text>x{{grpDetail.count}}</text></view>
+      <view class="buying-info">
+        <view class="price-now">
+          <text class="money-flag">￥</text>
+          <view class="now-pref">{{grpDetail.price_pref}}</view>
+          <view class="now-suff">.{{grpDetail.price_suff}}</view>
+        </view>
+        <view class="price-org">
+          <text>￥{{grpDetail.orgPrice}}</text>
+        </view>
+        <view class="buying-count" style="display:{{grp_status == 0?'block':'none'}}">
+          <text>x {{buyCount}}</text>
+        </view>      
       </view>
     </view>
   </view>
@@ -26,37 +33,39 @@
       <text class="count">{{grpDetail.leftTime_d}} 天 {{wxTimer}}</text>
       <text>结束</text>
     </view>
-    <view class="members">
-      <view class="avatar" wx:for="{{grpDetail.members}}" wx:for-item="item" wx:for-index="idx">
-        <image src="{{item.atavaUrl}}"></image>
-        <text class="isLeader" style="display:{{idx==0?'block':'none'}}">{{idx}}团长</text>
+    <view>
+      <view class="members">
+        <view class="avatar" wx:for="{{grpDetail.members}}" wx:for-item="item" wx:for-index="idx">
+          <image src="{{item.atavaUrl}}"></image>
+          <text class="isLeader" style="display:{{idx==0?'block':'none'}}">团长</text>
+        </view>
+        <view class="unknown" wx:for="{{grpDetail.leftNumber}}">
+          <image class="unknown" src="../../images/unknown.jpg"></image>
+        </view>    
       </view>
-      <view class="unknown" wx:for="{{grpDetail.numbers - grpDetail.members.length}}">
-        <image class="unknown" src="../../images/unknown.jpg"></image>
-      </view>    
     </view>
-    <view class="left-count" wx:if="{{status.code == 1}}">
+    <view class="left-count" wx:if="{{grp_status != 999}}">
       邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
     </view>
-    <view class="action mb-50" style="display:{{grp_status == 0?'block':'none'}}">
+    <view class="action mb-50" style="display:{{grp_status == 0?'flex':'none'}}">
       <button open-type='share'>邀请好友</button>
-      <button bindtap="formSubmit">生成海报</button>
+      <button bindtap="getSharePoster">生成海报</button>
     </view>
-    <view class="action mb-50" style="display:{{grp_status == 1?'block':'none'}}">
+    <view class="action mb-50" style="display:{{grp_status == 1?'flex':'none'}}">
       <button bindtap='showModal' data-buyway="1">我要参团</button>
     </view>    
-    <button class="link-btn" bindtap="gotoPage" data-target="index">回首页再看看</button>
+    <button class="link-btn" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
   </view>
 </view>
 
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
 <view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
   <view class="prd-info">
-    <image class="picture" src="{{prdDetail.imageSingle}}"/>
+    <image class="picture" src="{{grpDetail.prdImage}}"/>
     <view class="info">
       <text class="name">{{grpDetail.prdName}} </text>
       <text class="gp-info">{{grpDetail.numbers}} 人拼团价</text>
-      <text class="price">￥{{buywayPrice.pref}}.{{buywayPrice.suff}}</text>
+      <text class="price">￥{{grpDetail.price}}</text>
     </view>
     <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
   </view>
@@ -79,7 +88,25 @@
   <button bindtap="gotoNext" data-target="confirm-order" data-prdid="{{grpDetail.prdId}}">下一步</button>
 </view>
 
+
+<!--
+<view class='imagePathBox' hidden="{{maskHidden == false}}">
+  <image src="{{grpDetail.prdImage}}" class='shengcheng'></image>
+  <button class='baocun' bindtap='baocun'>保存图片</button>
+</view>
 <view hidden="{{maskHidden == false}}" class="mask"></view> 
 <view class="canvas-box">
   <canvas  style="width:375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
 </view>
+-->
+
+<my-poster id="poster" bindmyevent="myEventListener"
+  avater="{{grpDetail.prdImage}}"
+  codeimg="http://i4.hexun.com/2018-07-05/193365388.jpg"
+  price="{{grpDetail.price}}"
+  orgPrice="{{grpDetail.orgPrice}}"
+  number="{{grpDetail.number}}"
+  prdName="我是商品名称我是商品名称"
+  prdDesc="我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介34">
+</my-poster>
+<button bindtap="getSharePoster">生成海报</button>

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "拼团详情",
   "usingComponents": {
+    "my-poster":"../poster/index"
   }
 }

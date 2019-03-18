@@ -1,11 +1,10 @@
 <view class="pd-top-20 pd-bottom-20 display-col">
   <view class="order-grp-info" wx:if="{{status.orderGrpStatus == 0}}">
-    <text>还需邀请 {{orderDetail.leftNumbers}} 位好友参团哦，距离结束 {{wxTimer}}</text>
+    <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{wxTimer}}</text>
   </view>
   <view class="order-status">
     <text>订单已完成</text>
   </view>
-
   <view class="wrapper">
     <view class="panel detail">
       <image src="../../images/pt002-detail.jpg"/>
@@ -21,7 +20,6 @@
       </view>
     </view>
   </view>
-
   <view class="wrapper">
     <view class="panel total">
       <view class="total-price">
@@ -35,13 +33,11 @@
       <button class="link-btn mt-30" bindtap="gotoPage" data-target="detail-grp">查看拼团详情</button>
     </view>
   </view>
-
   <view class="wrapper">
     <view class="panel total">
-      <text class="title">订单号：{{orderDetail.grpId}}</text>
+      <text class="title">订单号：{{orderDetail.orderNo}}</text>
       <text class="content">创建时间：2018年10月23日 21:21:21</text>
       <text class="content">支付时间：2018年10月23日 21:21:21</text>
     </view>
   </view>
-
 </view>

@@ -1,32 +1,45 @@
-
-  <view class="pd-top-20 pd-bottom-20 align-center display-col">
-    <text class="fs-warning">距结束仅剩</text>
-    <text class="fs-content">{{order.leftTime_d}} 天 {{wxTimer}}</text>
-  </view>
-  <view class="wrapper">
-    <view class="panel detail">
-      <image src="{{order.imageSingle}}"/>
-      <view class="content">
-        <text class="title">{{order.prdName}}</text>
-        <text class="desc">有效期自购买起 {{order.validDays}} 天内有效</text>
+<view class="pd-top-20 pd-bottom-20 align-center display-col">
+  <text class="fs-warning">距结束仅剩</text>
+  <text class="fs-content">{{order.leftTime_d}} 天 {{wxTimer}}</text>
+</view>
+<view class="wrapper">
+  <view class="panel detail">
+    <image src="{{order.imageSingle}}"/>
+    <view class="content">
+      <text class="title">{{order.prdName}}</text>
+      <text class="desc">有效期自购买起 {{order.validDays}} 天内有效</text>
+      <view class="buying-info">
         <view class="price">
-          <text class="type">￥</text>
-          <text class="pref">{{order.price_pref}}</text>.
-          <text class="suff">{{order.price_suff}}</text>
-          <text class="count">x {{order.orderNum}}</text>
+          <text class="money-flag">￥</text>
+          <text class="pref">{{order.price_pref}}</text>
+          <text class="suff">.{{order.price_suff}}</text>
+        </view>
+        <view class="buying-count">
+          x {{order.orderNum}}
         </view>
       </view>
     </view>
   </view>
+</view>
 
-  <view class="footer">
-    <view class="wrapper display-col">
-      <text class="fs-title">友情提醒</text>
-      <text class="fs-content">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
+
+
+<view class="wrapper display-col" style="position:absolute; bottom:200rpx;">
+  <text class="fs-title">友情提醒</text>
+  <text class="fs-content">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
+</view>
+
+<view class="footer">
+  <view class="action">
+    <view class="info">
+      <view class="buying-price">
+        <text class="money-flag">￥</text>
+        <text class="pref">{{buywayPrice}}</text>
+      </view>
     </view>
-    <view class="action">
-      <text class="price">￥{{buywayPrice}}</text>
-      <button bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">选好了</button>
+    <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
+      <text>选好了</text>
     </view>
   </view>
+</view>
 

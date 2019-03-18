@@ -1,28 +1,29 @@
 <view class="main">
   <view class="header">
-    <swiper class="top-swipper" indicator-dots="{{indicatorDots}}" 
+    <swiper class="top-swiper" indicator-dots="{{indicatorDots}}" style="height:{{bannerHeight}}px"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" width="100%" height="100%"/>
+          <image src="{{item}}" width="100%" height="100%"/>
         </swiper-item>
       </block>
     </swiper>
   </view>
 
   <view class='tab'>
-    <view class='tab-nav'>
+    <view class='tab-nav' style="margin-left:{{tabnavMarginLeft}}px">
       <view wx:for="{{prds}}" wx:for-item="item" 
         wx:for-index="index" 
         class='{{currentTab==index?"on":"off"}}' 
-        data-current="{{index}}" bindtap='tabChange'>
-        {{item.grpCategoryName}}
+        data-current="{{index}}" bindtap='tabChange'
+        style="width:100px;margin-left:{{}}px">
+        <text>{{item.grpCategoryName}}</text>
       </view>
     </view>
-    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight + 'rpx'}}">
+    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight}}px">
       <swiper-item wx:for="{{prds}}" wx:for-item="item" >
         <view wx:for="{{item.items}}" wx:for-item="prd_item" class="card-item">
-          <image class="logo" src="{{prd_item.image}}"></image>
+          <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}px"></image>
           <view class="name display-row">
             <text class="prd-numbers">{{prd_item.numbers}}人团</text>
             <text class="prd-name">{{prd_item.proName}}</text>

@@ -1,3 +1,5 @@
+const config = require('../../lib/config.js');
+
 Component({
   properties: {
     options: {
@@ -6,6 +8,7 @@ Component({
       observer: function (newVal) {
         if (newVal) {
           wx.setStorageSync('brand', newVal.brand );
+          wx.setStorageSync('channelId', newVal.channelId );
           this.loadPage();
         }
       }
@@ -26,6 +29,11 @@ Component({
   }, 
 
   attached() {
+    var windowWidth = wx.getSystemInfoSync().windowWidth;
+    this.setData({bannerHeight: windowWidth/config.scale_banner});
+
+    var cardItemImageHeight = (windowWidth - 70) / config.scale_product;
+    this.setData({cardItemImageHeight: cardItemImageHeight});
   },
 
   /**
@@ -46,6 +54,13 @@ Component({
           // 调整swipper高度
           let swipperHeight = prds[0].items.length * 500;
           that.setData({ swipperHeight: swipperHeight});
+
+          // 调整swipper tab 的居左距离，使其保持居中显示
+          var windowWidth = wx.getSystemInfoSync().windowWidth;
+          var marginLeft = windowWidth/2 - (90*prds.length)/2 - 10;
+          console.log(marginLeft);
+          that.setData({tabnavMarginLeft: marginLeft});
+
         }
       });
     },

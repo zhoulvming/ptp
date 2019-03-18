@@ -1,4 +1,6 @@
 const ptCommon = require('../pt.common.js');
+var app = getApp();
+
 Page({
   data: {},
   onLoad(options) {
@@ -10,13 +12,20 @@ Page({
     ptCommon.gotoPageFromPlugin(data);
   },
   login() {
-    // 此处模拟小程序登录后返回的用户信息，保存在小程序本地缓存，同时跳转到小程序拼团订单的确认页面
-    var userinfo = {
-      userCode: '1000',
-      openid: 'xfjlsfjlsfjsdfsdjafsalfsaf',
-      nickname: 'nickname'
-    };
-    wx.setStorageSync('userinfo', userinfo );
+    var userInfo = app.globalData.userInfo;
+    
+    // TODO: 此处调用小程序系统登录逻辑，登录成功后设置用户手机号码等信息到globalData
+    var mobile = '1234566677';
+    var userCode = '1000';
+    var openid = 'oWolJ5Lis-ex2YiiwJXBF-FqYWfk';
+
+
+    userInfo.mobile = mobile;
+    userInfo.userCode = userCode;
+    userInfo.openid = openid;
+    app.globalData.userInfo = userInfo;
+
+    wx.setStorageSync('userinfo', userInfo );
     wx.setStorageSync('options', this.data.options );
     wx.navigateTo({
       url: '../pt-confirm-order/index'

@@ -1,6 +1,5 @@
 App({
   onLaunch() {
-    // Do something initial when launch.
   },
   onShow() {
     // Do something when show.
@@ -15,7 +14,7 @@ App({
     // 当要打开的页面并不存在时，会回调这个监听器
   },
   globalData: {
-    userInfo: null,
+    userInfo: {},
     
     /*从插件返回到小程序的页面路由*/
     callbackUrl: {
@@ -26,6 +25,9 @@ App({
       'confirm-order': '../pt-confirm-order/index',       // 订单确认
       'pay': '../pt-pay/index',                           // 支付呼出
       'login': '../pt-login/index'                        // 登录呼出
-    }
+    },
+
+    appid:'wx85694629dac0c26a',
+    secret:'17c7b613567ac214c2e8e4f4c4881c0f'
   }
 });

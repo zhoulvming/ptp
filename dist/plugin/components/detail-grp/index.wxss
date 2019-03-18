@@ -30,7 +30,7 @@
 }
 /** component **/
 page {
-  background-color: #eee;
+  background-color: #FEFEFE;
 }
 .wrapper {
   padding: 20rpx;
@@ -95,13 +95,8 @@ page {
 .link-btn::after {
   border: none;
 }
-.top-swipper {
-  height: 350rpx;
-  width: 100%;
-}
-.top-swipper image {
+.top-swiper image {
   height: 100%;
-  width: 100%;
 }
 .status {
   display: flex;
@@ -122,53 +117,78 @@ page {
 .detail {
   display: flex;
   flex-direction: row;
+  padding: 25rpx;
 }
 .detail image {
-  height: 250rpx;
-  width: 250rpx;
+  height: 200rpx;
+  width: 200rpx;
 }
 .detail .content {
   display: flex;
   flex-direction: column;
-  padding-top: 15rpx;
+  padding-left: 20rpx;
   position: relative;
+  width: 450rpx;
 }
 .detail .content .title {
   font-size: 35rpx;
+  font-weight: 600;
 }
 .detail .content .desc {
-  font-size: 25rpx;
-  color: #888;
+  font-size: 30rpx;
+  color: grey;
 }
-.detail .content .price-now {
+.detail .content .buying-info {
   display: flex;
   flex-direction: row;
-  width: 100%;
   position: absolute;
-  bottom: 20rpx;
+  bottom: 0rpx;
+  width: 100%;
 }
-.detail .content .price-now .now-pref {
-  font-size: 35rpx;
-  font-weight: 600;
+.detail .content .buying-info .price-now {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
 }
-.detail .content .price-now .now-suff {
+.detail .content .buying-info .price-now .money-flag {
+  position: absolute;
+  bottom: 0;
   font-size: 25rpx;
-  font-weight: 600;
-  width: 15%;
-  padding-top: 18rpx;
 }
-.detail .content .price-now .org {
+.detail .content .buying-info .price-now .now-pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
+}
+.detail .content .buying-info .price-now .now-suff {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
+}
+.detail .content .buying-info .price-org {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
+  left: 100rpx;
+}
+.detail .content .buying-info .price-org text {
+  color: #888;
   font-size: 30rpx;
   text-decoration: line-through;
-  color: #888;
-  width: 16%;
-  padding-top: 12rpx;
 }
-.detail .content .price-now .gp-info {
-  font-size: 30rpx;
-  padding-top: 12rpx;
-  width: 44%;
-  text-align: right;
+.detail .content .buying-info .buying-count {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
+  right: 20rpx;
+  font-size: 35rpx;
 }
 .detail-user {
   text-align: center;
@@ -176,6 +196,8 @@ page {
 .detail-user .members {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+  width: 370rpx;
 }
 .detail-user .members .avatar {
   padding-top: 20rpx;
@@ -189,12 +211,25 @@ page {
 }
 .detail-user .members .avatar .isLeader {
   position: absolute;
-  bottom: 0;
-  border-radius: 40rpx;
+  bottom: 10rpx;
+  border-radius: 20rpx;
   background-color: #008FDB;
+  margin-left: 30rpx;
+  color: white;
+  font-size: 25rpx;
+  font-weight: 600;
+  padding: 3rpx 10rpx;
 }
 .detail-user .members .unknown {
-  border: 1rpx dotted #888;
+  position: relative;
+  margin-top: 8px;
+}
+.detail-user .members .unknown image {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+  margin: 0 10rpx;
+  border: 1rpx dotted;
 }
 .detail-user .timer {
   font-size: 30rpx;

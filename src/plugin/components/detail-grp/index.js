@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const config = require('../../lib/config.js');
+// const config = require('../../lib/config.js');
 var utils = require('../../utils/util.js');
 var timer = require('../../utils/wxTimer.js');
 var wxTimer = null;
@@ -10,10 +10,15 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
+        console.log('Observer data from app page(detail-grp):--------');
+        console.log(newVal);
         if (newVal) {          
           var jsonVal = JSON.parse(newVal.options);
           this.setData({ grpId: jsonVal.grpId });
           this.setData({ grp_status: jsonVal.grp_status });
+          if (jsonVal.buyCount) {
+            this.setData({ buyCount: jsonVal.buyCount});
+          }
           this.loadPage();
         }
       }
@@ -21,7 +26,7 @@ Component({
   },
 
   data: {
-    grpId: '',
+    grpId: null,
     grp_status: 0,
     status_image_success: '../../images/icons/success.png',
     status_image_fail: '../../images/icons/fail.png',
@@ -32,7 +37,16 @@ Component({
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 5,//输入框值出现异常默认设置值
-    maskHidden: false
+    maskHidden: false,
+    cardInfo: {
+      avater: 'http://t2.hddhhn.com/uploads/tu/201806/9999/91480c0c87.jpg', //需要https图片路径
+      qrCode: 'http://i4.hexun.com/2018-07-05/193365388.jpg', //需要https图片路径
+      TagText: '小姐姐', //标签
+      Name: '小姐姐', //姓名
+      Position: '程序员鼓励师', //职位
+      Mobile: '13888888888', //手机
+      Company: '才华无限有限公司', //公司
+    }
   },
 
   detached() {
@@ -60,35 +74,38 @@ Component({
         }
       });
     },
-    gotoPage(event) {
+    gotoNext(event) {
+      var that = this;
+      var target = event.currentTarget.dataset.target;
+      var prdId = event.currentTarget.dataset.prdid;
+      console.log(that.data.buywayPrice);
+      that.triggerEvent('callback', {
+        target: target,
+        options: {
+          prdId: prdId,
+          grpId: that.data.grpId,
+          orderNum: that.data.num,
+          buyway: that.data.buyway,
+          buywayPrice: that.data.buywayPrice
+        }
+      });
+    },
+    gotoHomePage(event) {
       var value = event.currentTarget.dataset.target;
       this.triggerEvent('callback', {target: value});
     },
-    formSubmit() {
-      wx.showToast({
-        title: '装逼中...',
-        icon: 'loading',
-        duration: 1000
-      });
-    },
-
     showModal: function (e) {
-      console.log('e.currentTarget.dataset.buyway' + e.currentTarget.dataset.buyway);
       var buyway = e.currentTarget.dataset.buyway;
       var detail = this.data.grpDetail;
       this.setData({
         showModal: true
       });
 
-      var buywayPrice = detail.price;
-      console.log(buywayPrice);
-
       this.setData({
         buyway: buyway,
-        buywayPrice: buywayPrice
+        buywayPrice: detail.price
       });
     },
-
     hideModalDlg: function() {
       this.setData({
         showModal: false
@@ -127,6 +144,7 @@ Component({
     },
     //加
     evad: function () {
+      var that = this;
       var cval = Number(this.data.num) + this.data.change;
       if (this.data.max != null){
         if (cval > this.data.max){
@@ -137,9 +155,14 @@ Component({
       }else{
         this.setData({ num: cval });
       }
+
+      var price = that.data.grpDetail.price;
+      that.setData({ buywayPrice: price * cval });
+
     },
     //减
     evic: function () {
+      var that = this;
       var cval = Number(this.data.num) - this.data.change;
       if (this.data.min != null) {
         if (cval < this.data.min) {
@@ -150,7 +173,16 @@ Component({
       } else {
         this.setData({ num: cval });
       }
-    }
+
+      var price = that.data.grpDetail.price;
+      that.setData({ buywayPrice: price * cval });
+    },
+
+
+    // 生成海报
+    getSharePoster() {
+      this.selectComponent('#poster').getAvaterInfo();
+    },
 
   }
 });
