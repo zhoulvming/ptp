@@ -8,7 +8,7 @@
   <view class="panel detail">
     <image src="{{grpDetail.prdImage}}"/>
     <view class="content">
-      <text class="title">我是商品名称</text>
+      <text class="title">{{grpDetail.prdName}}</text>
       <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
       <view class="buying-info">
         <view class="price-now">

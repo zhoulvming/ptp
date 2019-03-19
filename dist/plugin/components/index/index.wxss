@@ -30,13 +30,13 @@
 }
 /** component **/
 page {
-  background-color: #FEFEFE;
+  background-color: #f0f0f0;
 }
 .wrapper {
   padding: 20rpx;
 }
 .panel {
-  padding: 15rpx;
+  padding: 25rpx;
   background-color: white;
   border-radius: 15rpx;
 }
@@ -71,33 +71,66 @@ page {
 .fs-content {
   font-size: 30rpx;
 }
-.btn-primary-normal {
-  padding: 0 30rpx;
-  margin: auto;
-  text-align: center;
-  background: #008FDB;
-  color: white;
-  font-size: 30rpx;
-  font-weight: 600;
+/** font-color **/
+.fc-primary {
+  color: #008FDB;
 }
 .link-normal {
   color: #888;
   font-size: 30rpx;
   text-decoration: underline;
 }
-.link-btn {
+.top-swiper image {
+  height: 100%;
+  width: 100%;
+}
+/** 按钮样式 **/
+.btn.mini {
+  padding: 0rpx 34rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 10rpx;
+}
+.btn.link {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #888 !important;
-  text-decoration: underline;
+  color: #555 !important;
 }
-.link-btn::after {
+.btn.link::after {
   border: none;
 }
-.top-swiper image {
-  height: 100%;
+/** 价格定制样式 **/
+.price-detail {
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }
+.price-detail .flag {
+  position: absolute;
+  bottom: 0;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+.price-detail .pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
+}
+.price-detail .suff {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
+}
+/** 底部按钮样式 **/
 .card-list > .title {
   color: #008FDB;
   font-size: 35rpx;
@@ -136,7 +169,8 @@ page {
   overflow: hidden;
   margin-bottom: 40rpx;
   border-radius: 8rpx;
-  box-shadow: 4px 4px 10px #ccc;
+  box-shadow: 0 6rpx 10rpx 6rpx #bbb;
+  -webkit-box-shadow: 0px 2px 4px 2px #bbb;
   position: relative;
 }
 .card-item image {
@@ -159,18 +193,11 @@ page {
   font-weight: 500;
 }
 .card-item .btn {
-  padding: 0 30rpx;
-  margin: auto;
-  text-align: center;
-  background: #008FDB;
-  color: white;
   position: absolute;
   margin-right: 20rpx;
   float: left;
-  font-size: 30rpx;
   bottom: 30rpx;
   right: 10rpx;
-  border-radius: 10rpx;
 }
 .card-item .footer {
   display: flex;
@@ -180,13 +207,16 @@ page {
 }
 .card-item .footer .price {
   width: 60%;
-}
-.card-item .footer .price .now {
   font-size: 35rpx;
 }
-.card-item .footer .price .org {
+.card-item .footer .price .pref {
+  font-size: 45rpx;
+}
+.card-item .footer .price .suff {
   font-size: 25rpx;
-  color: #888;
+}
+.card-item .footer .price .org {
+  color: #555;
   margin-left: 30rpx;
   text-decoration: line-through;
 }

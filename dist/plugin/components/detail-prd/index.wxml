@@ -1,5 +1,5 @@
 <view class="detail-prd">
-  <swiper>
+  <swiper style="height:{{bannerHeight}}px">
     <block wx:for="{{prdDetail.images}}">
       <swiper-item>
         <image src="{{item}}"/>
@@ -7,7 +7,7 @@
     </block>
   </swiper>
   <view class="logo-info">
-    <text class="name">多人拼团</text>
+    <text class="name">{{prdDetail.numbers}}人拼团</text>
     <view class="info">
       <text>距结束仅剩</text>
       <view class="leftTime">
@@ -15,15 +15,20 @@
       </view>
     </view>
   </view>
-  <view class="panel" style="position:relative;">
-    <view class="price-now">
-      <text class="now-pref">￥{{prdDetail.price_pref}}</text>.
-      <text class="now-suff">{{prdDetail.price_suff}}</text>
-      <text class="gp-info">{{prdDetail.numbers}}人拼团价</text>
+  <view class="panel" style="position:relative">
+    <view class="buying-info">
+      <view class="price-now">
+        <text class="money-flag">￥</text>
+        <view class="now-pref">{{prdDetail.price_pref}}</view>
+        <view class="now-suff">.{{prdDetail.price_suff}}</view>
+        <view class="gp-info">{{prdDetail.numbers}}人拼团价</view>
+      </view>
+      <view class="price-org">
+        <text>原价 ￥{{prdDetail.orgPrice}}</text>
+      </view>
     </view>
-    <view class="price-org">
-      <text class="org">原价 ￥{{prdDetail.orgPrice}}</text>
-    </view>
+
+
     <view class="prd-name display-col">
       <text class="name">{{prdDetail.prdName}}</text>
       <text class="desc">{{prdDetail.prdDesc}}</text>
@@ -42,20 +47,25 @@
 <!-- 凑团列表 -->
 <view class="detail-gp panel-no-radius"> 
   <view class="group-list">
-    <text>以下小伙伴正在发起拼团，您可以直接参与</text>
+    <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
     <view wx:for="{{grps}}" wx:for-item="item" class="item">
       <image class="user-head" src="{{item.atavaUrl}}"></image>
       <view class="content">
-        <text class="user-name">{{item.nickName}}</text>
-        <text class="group-info">
-          还差{{item.leftNumbers}}人成团，剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒
-        </text>
+        <view><text class="user-name">{{item.nickname}}</text></view>
+        <view class="group-info">
+          <view class="number-info">
+            <text>还差</text>
+            <text class="fc-primary">{{item.leftNumbers}}</text>
+            <text>人成团</text>
+          </view>
+          <text class="time-info">剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒</text>
+        </view>
       </view>        
       <!-- <button class="btn-primary-normal" bindtap="showModal" data-buyway="1">去凑团</button> -->
-      <button class="btn-primary-normal" bindtap="gotoGrpDetail" data-target="detail-grp" data-grpid="{{item.grpId}}">去凑团</button>
+      <button class="btn mini" bindtap="gotoGrpDetail" data-target="detail-grp" data-grpid="{{item.grpId}}">去凑团</button>
     </view>
     <view class="lookmore" style="display:{{haveShowAllGroups}}">
-      <button class="link-btn" bindtap="showAllGroups">查看更多拼团 ></button>
+      <button class="btn link" bindtap="showAllGroups">查看更多拼团 ></button>
     </view>       
   </view>
 </view>
@@ -92,18 +102,24 @@
   <view class='customer'>
     <navigator url=''>
       <image mode='widthFix' src="../../images/icons/pin.png" />
-      <text class="fs-warning">客服</text>
+      <text>客服</text>
     </navigator>
   </view>
   <view class='singlePurse' bindtap='showModal' data-buyway="0">
-    <text>¥{{prdDetail.orgPrice}}</text>
-    <text class="fs-warning">单人价</text>
+    <view class="price">
+      <text class="flag">¥</text>
+      <text class="orgPrice">{{prdDetail.orgPrice}}</text>
+    </view>
+    <text>单人价</text>
   </view>
   <view class='groupPurse' bindtap='showModal' data-buyway="1" style="display:{{haveOrder==false?'block':'none'}}">
-    <text>¥{{prdDetail.price_pref}}.{{prdDetail.price_suff}}</text>
-    <text class="fs-warning">开团价</text>
+    <view class="price">
+      <text class="flag">¥</text>
+      <text class="pref">{{prdDetail.price_pref}}.</text>
+      <text class="suff">{{prdDetail.price_suff}}</text>
+    </view>
+    <text>开团价</text>
   </view>
-  
 </view>  
 
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>

@@ -26,15 +26,17 @@
           <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}px"></image>
           <view class="name display-row">
             <text class="prd-numbers">{{prd_item.numbers}}人团</text>
-            <text class="prd-name">{{prd_item.proName}}</text>
+            <text class="prd-name">{{prd_item.prdName}}</text>
           </view>
           <view class="footer">
             <view class="price">
-              <text class="now">￥{{prd_item.price}}</text>
+              <text class="flag">￥</text>
+              <text class="pref">{{prd_item.price_pref}}.</text>
+              <text class="suff">{{prd_item.price_suff}}</text>
               <text class="org">￥{{prd_item.orgPrice}}</text>
             </view>
           </view>
-          <button class="btn" bindtap="gotoNext" data-target="detail-prd" data-prdid="{{prd_item.prdId}}">去开团</button>
+          <button class="btn mini" bindtap="gotoNext" data-target="detail-prd" data-prdid="{{prd_item.prdId}}">去开团</button>
         </view>
       </swiper-item>
     </swiper>

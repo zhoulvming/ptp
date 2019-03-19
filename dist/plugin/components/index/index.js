@@ -1,4 +1,5 @@
 const config = require('../../lib/config.js');
+var utils = require('../../utils/util.js');
 
 Component({
   properties: {
@@ -58,7 +59,6 @@ Component({
           // 调整swipper tab 的居左距离，使其保持居中显示
           var windowWidth = wx.getSystemInfoSync().windowWidth;
           var marginLeft = windowWidth/2 - (90*prds.length)/2 - 10;
-          console.log(marginLeft);
           that.setData({tabnavMarginLeft: marginLeft});
 
         }

@@ -30,13 +30,13 @@
 }
 /** component **/
 page {
-  background-color: #FEFEFE;
+  background-color: #f0f0f0;
 }
 .wrapper {
   padding: 20rpx;
 }
 .panel {
-  padding: 15rpx;
+  padding: 25rpx;
   background-color: white;
   border-radius: 15rpx;
 }
@@ -71,33 +71,66 @@ page {
 .fs-content {
   font-size: 30rpx;
 }
-.btn-primary-normal {
-  padding: 0 30rpx;
-  margin: auto;
-  text-align: center;
-  background: #008FDB;
-  color: white;
-  font-size: 30rpx;
-  font-weight: 600;
+/** font-color **/
+.fc-primary {
+  color: #008FDB;
 }
 .link-normal {
   color: #888;
   font-size: 30rpx;
   text-decoration: underline;
 }
-.link-btn {
+.top-swiper image {
+  height: 100%;
+  width: 100%;
+}
+/** 按钮样式 **/
+.btn.mini {
+  padding: 0rpx 34rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 10rpx;
+}
+.btn.link {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #888 !important;
-  text-decoration: underline;
+  color: #555 !important;
 }
-.link-btn::after {
+.btn.link::after {
   border: none;
 }
-.top-swiper image {
-  height: 100%;
+/** 价格定制样式 **/
+.price-detail {
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }
+.price-detail .flag {
+  position: absolute;
+  bottom: 0;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+.price-detail .pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
+}
+.price-detail .suff {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
+}
+/** 底部按钮样式 **/
 .status {
   display: flex;
   flex-direction: row;

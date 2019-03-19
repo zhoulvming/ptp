@@ -5,19 +5,18 @@
   margin-bottom: 20rpx;
   swiper {
     width: 100%;
-    height: 430rpx;
     image {
       height: 100%;
+      width: 100%;
     }
   }
   .logo-info {
     background-color: @color-primary;
     display: flex;
     flex-direction: row;
-    
-    padding-top:12rpx;
+    padding-top:10rpx;
     padding-left:15rpx;
-    padding-bottom: 15rpx;
+    padding-bottom: 10rpx;
     .name {
       font-size: 40rpx;
       font-weight: 700;
@@ -45,29 +44,57 @@
       }
     }
   }
-  .price-now {
-    .now-pref {
-      font-size: @fs-1;
-      font-weight: @fw-2;
+  .buying-info {
+    position: relative;
+    margin-top: 50rpx;
+    .price-now {
+      display: flex;
+      flex-direction: row;
+      position: absolute;
+      bottom: 0rpx;
+      .money-flag {
+        position:absolute;
+        bottom: 0;
+        font-size: 25rpx;
+        font-weight: @fw-2;
+      }
+      .now-pref {
+        font-size: @fs-0;
+        font-weight: @fw-2;
+        position:absolute;
+        bottom: -6rpx;
+        padding-left: 23rpx;        
+      }
+      .now-suff {
+        font-size: 30rpx;
+        font-weight: @fw-3;
+        position:absolute;
+        bottom: -2rpx;
+        padding-left: 45rpx;           
+      }
+      .gp-info {
+        border: 1px solid #FFAB22;
+        font-size: @fs-4;
+        font-weight: 600;
+        color: #FFAB22;
+        margin: 5rpx 10rpx 0 100rpx;
+        padding: 3rpx 10rpx;
+        border-radius: 15rpx;
+        background-color: #FFF6E8;
+      }      
     }
-    .now-suff {
-      font-size: @fs-4;
-      font-weight: @fw-2;
-      margin-left: -10rpx;
+    .price-org {
+      display: flex;
+      flex-direction: row;
+      position: absolute;
+      bottom: -40rpx;
+      text {
+        color: @color-gray;
+        font-size: 25rpx;
+        text-decoration: line-through;
+      }
     }
-    .gp-info {
-      border: 1px solid @color-warning;
-      font-size: @fs-4;
-      color: @color-warning;
-      margin: 5rpx 10rpx;
-      padding: 3rpx 10rpx;
-      border-radius: 5rpx;
-    }
-  }
-  .price-org {
-    font-size: @fs-4;
-    text-decoration: line-through;
-    color: @color-gray;
+
   }
   .share {
     height: 100rpx;
@@ -86,13 +113,14 @@
     }
   }
   .prd-name {
-    margin-top: 30rpx;
+    margin-top:115rpx;
     .name {
       font-size: @fs-2;
       font-weight: @fw-2;
     }
     .desc {
-      font-size: @fs-3;
+      font-size: @fs-4;
+      color: @color-dark;
     }
   }
   .count {
@@ -115,7 +143,11 @@
   background-color: white;
   margin-bottom: 20rpx;
   .group-list {
-    font-size: @fs-3;
+    >.title {
+      font-size: @fs-3;
+      color: #727272;
+      font-weight: 500;
+    }
     >.item {
       padding: 20rpx 15rpx;
       display: flex;
@@ -129,10 +161,24 @@
       >.content {
         margin-left: 20rpx;
         display: flex;
-        flex-direction: column;
-        font-size: 25rpx;
-        >.user-name {
-          font-weight: 700;
+        flex-direction: row;
+        .user-name {
+          font-weight: 500;
+        }
+        .group-info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          margin-left: 100rpx;
+          .number-info {
+            display: flex;
+            flex-direction: row;
+            font-size: @fs-4;
+            font-weight: 400;
+          }
+          .time-info {
+            font-size: @fs-4;
+          }
         }
       }
       button {
@@ -156,6 +202,7 @@
   .tab-nav {
     height: 70rpx;
     line-height: 70rpx;
+    font-weight: 400;
   }
   .tab-nav view {
     float: left;
@@ -186,36 +233,40 @@
   width: 100%;
   bottom: 0;
   color: white;
+  font-size: @fs-4;
   font-weight: @fw-2;
   display: flex;
   flex-direction: row;
-  view {
-    padding: 10rpx 0;
-    text {
-      display: block;
-    }
-  }
-  view.customer {
+  .customer {
     width: 20%;
     text-align: center;
     background: @color-dark;
+    navigator {
+      margin-top:20rpx;
+      display:flex;
+      flex-direction:column;
+    }
     image {
-      width: 20px;
-      height: 20px;
+      width: 50rpx;
+      height: 50rpx;
       margin: -1px auto;
     }
   }
-  view.singlePurse, view.groupPurse {
+  .singlePurse {
     width: 40%;
-    text-align: center;
-  }
-  view.singlePurse {
     background: @color-gray;
-    font-size: @fs-2;
+    text-align: center;
+    padding: 10rpx 0;
   }
-  view.groupPurse {
+  .groupPurse {
+    width: 40%;
+    padding: 10rpx 0;
+    text-align: center;
     background: @color-primary;
-    font-size: @fs-2;
+  }
+  .price .orgPrice,
+  .price .pref {
+    font-size: @fs-0;
   }
 }
 

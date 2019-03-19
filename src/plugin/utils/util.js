@@ -15,6 +15,31 @@ const utils = {
     return {pref: pref, suff: suff};
   },
 
+  // 格式化商品列表信息
+  formatProductListData(datas) {
+    var that = this;
+    var rts = [];
+    datas.forEach(function(data){     
+      var price = that.formatPrice(data.price); 
+      rts.push({
+        prdId: data.prdId,
+        prdName: data.proName,
+        price: data.price,
+        price_pref: price.pref,
+        price_suff: price.suff,
+        orgPrice: data.orgPrice,
+        pricReduce: data.pricReduce,
+        numbers: data.numbers,
+        limitNum: data.limitNum,
+        image: data.image,
+        orgPrdId: data.orgPrdId,
+        groupBuyPrdId: data.groupBuyPrdId
+      });
+    });
+  
+    return rts;    
+  },
+
   // 格式化商品信息
   formatProductData(data) {
     var leftTime = data.leftTime;
@@ -75,7 +100,7 @@ const utils = {
         validatedTime_h: validatedTime_h,
         validatedTime_m: validatedTime_m,
         validatedTime_s: validatedTime_s,
-        nickname: data.nickname,
+        nickname: data.nickName,
         atavaUrl: data.atavaUrl
       });
     });

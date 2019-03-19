@@ -45,7 +45,8 @@
   overflow: hidden;
   margin-bottom: 40rpx;
   border-radius: 8rpx;
-  box-shadow:4px 4px 10px #ccc;
+  box-shadow:0 6rpx 10rpx 6rpx #bbb;
+  -webkit-box-shadow:0px 2px 4px 2px #bbb;
   position: relative;
   image {
     width: 100%;
@@ -67,18 +68,11 @@
     }
   }
   .btn{
-    padding: 0 30rpx;
-    margin: auto;
-    text-align: center;
-    background: @color-primary;
-    color: white;
     position: absolute;
     margin-right: 20rpx;
     float: left;
-    font-size: @fs-3;
     bottom: 30rpx;
     right: 10rpx;
-    border-radius: 10rpx;
   }
   .footer {
     display: flex;
@@ -87,15 +81,19 @@
     margin: 5rpx 20rpx;
     .price {
       width:60%;
+      font-size: 35rpx;
+      .pref {
+        font-size: 45rpx;
+      }
+      .suff {
+        font-size: 25rpx;
+      }
+      .org {
+        color: @color-dark;
+        margin-left: 30rpx;
+        text-decoration: line-through;
+      }
     }
-    .price .now {
-      font-size: @fs-1;
-    }
-    .price .org {
-      font-size: @fs-4;
-      color: @color-gray;
-      margin-left: 30rpx;
-      text-decoration: line-through;
-    }
+    
   }
 }

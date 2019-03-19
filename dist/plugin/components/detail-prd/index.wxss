@@ -30,13 +30,13 @@
 }
 /** component **/
 page {
-  background-color: #FEFEFE;
+  background-color: #f0f0f0;
 }
 .wrapper {
   padding: 20rpx;
 }
 .panel {
-  padding: 15rpx;
+  padding: 25rpx;
   background-color: white;
   border-radius: 15rpx;
 }
@@ -71,51 +71,84 @@ page {
 .fs-content {
   font-size: 30rpx;
 }
-.btn-primary-normal {
-  padding: 0 30rpx;
-  margin: auto;
-  text-align: center;
-  background: #008FDB;
-  color: white;
-  font-size: 30rpx;
-  font-weight: 600;
+/** font-color **/
+.fc-primary {
+  color: #008FDB;
 }
 .link-normal {
   color: #888;
   font-size: 30rpx;
   text-decoration: underline;
 }
-.link-btn {
+.top-swiper image {
+  height: 100%;
+  width: 100%;
+}
+/** 按钮样式 **/
+.btn.mini {
+  padding: 0rpx 34rpx;
+  margin: auto;
+  text-align: center;
+  background: #008FDB;
+  color: white;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 10rpx;
+}
+.btn.link {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #888 !important;
-  text-decoration: underline;
+  color: #555 !important;
 }
-.link-btn::after {
+.btn.link::after {
   border: none;
 }
-.top-swiper image {
-  height: 100%;
+/** 价格定制样式 **/
+.price-detail {
+  display: flex;
+  flex-direction: row;
+  position: relative;
 }
+.price-detail .flag {
+  position: absolute;
+  bottom: 0;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+.price-detail .pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
+}
+.price-detail .suff {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
+}
+/** 底部按钮样式 **/
 .detail-prd {
   background-color: white;
   margin-bottom: 20rpx;
 }
 .detail-prd swiper {
   width: 100%;
-  height: 430rpx;
 }
 .detail-prd swiper image {
   height: 100%;
+  width: 100%;
 }
 .detail-prd .logo-info {
   background-color: #008FDB;
   display: flex;
   flex-direction: row;
-  padding-top: 12rpx;
+  padding-top: 10rpx;
   padding-left: 15rpx;
-  padding-bottom: 15rpx;
+  padding-bottom: 10rpx;
 }
 .detail-prd .logo-info .name {
   font-size: 40rpx;
@@ -141,27 +174,56 @@ page {
   padding: 0 8rpx;
   border-radius: 5rpx;
 }
-.detail-prd .price-now .now-pref {
-  font-size: 35rpx;
-  font-weight: 600;
+.detail-prd .buying-info {
+  position: relative;
+  margin-top: 50rpx;
 }
-.detail-prd .price-now .now-suff {
+.detail-prd .buying-info .price-now {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
+}
+.detail-prd .buying-info .price-now .money-flag {
+  position: absolute;
+  bottom: 0;
   font-size: 25rpx;
   font-weight: 600;
-  margin-left: -10rpx;
 }
-.detail-prd .price-now .gp-info {
-  border: 1px solid #f9a825;
+.detail-prd .buying-info .price-now .now-pref {
+  font-size: 40rpx;
+  font-weight: 600;
+  position: absolute;
+  bottom: -6rpx;
+  padding-left: 23rpx;
+}
+.detail-prd .buying-info .price-now .now-suff {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  bottom: -2rpx;
+  padding-left: 45rpx;
+}
+.detail-prd .buying-info .price-now .gp-info {
+  border: 1px solid #FFAB22;
   font-size: 25rpx;
-  color: #f9a825;
-  margin: 5rpx 10rpx;
+  font-weight: 600;
+  color: #FFAB22;
+  margin: 5rpx 10rpx 0 100rpx;
   padding: 3rpx 10rpx;
-  border-radius: 5rpx;
+  border-radius: 15rpx;
+  background-color: #FFF6E8;
 }
-.detail-prd .price-org {
+.detail-prd .buying-info .price-org {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: -40rpx;
+}
+.detail-prd .buying-info .price-org text {
+  color: #888;
   font-size: 25rpx;
   text-decoration: line-through;
-  color: #888;
 }
 .detail-prd .share {
   height: 100rpx;
@@ -180,14 +242,15 @@ page {
   margin: 0 auto;
 }
 .detail-prd .prd-name {
-  margin-top: 30rpx;
+  margin-top: 115rpx;
 }
 .detail-prd .prd-name .name {
   font-size: 35rpx;
   font-weight: 600;
 }
 .detail-prd .prd-name .desc {
-  font-size: 30rpx;
+  font-size: 25rpx;
+  color: #555;
 }
 .detail-prd .count {
   margin-top: 20rpx;
@@ -207,8 +270,10 @@ page {
   background-color: white;
   margin-bottom: 20rpx;
 }
-.detail-gp .group-list {
+.detail-gp .group-list > .title {
   font-size: 30rpx;
+  color: #727272;
+  font-weight: 500;
 }
 .detail-gp .group-list > .item {
   padding: 20rpx 15rpx;
@@ -224,11 +289,25 @@ page {
 .detail-gp .group-list > .item > .content {
   margin-left: 20rpx;
   display: flex;
-  flex-direction: column;
-  font-size: 25rpx;
+  flex-direction: row;
 }
-.detail-gp .group-list > .item > .content > .user-name {
-  font-weight: 700;
+.detail-gp .group-list > .item > .content .user-name {
+  font-weight: 500;
+}
+.detail-gp .group-list > .item > .content .group-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 100rpx;
+}
+.detail-gp .group-list > .item > .content .group-info .number-info {
+  display: flex;
+  flex-direction: row;
+  font-size: 25rpx;
+  font-weight: 400;
+}
+.detail-gp .group-list > .item > .content .group-info .time-info {
+  font-size: 25rpx;
 }
 .detail-gp .group-list > .item button {
   position: absolute;
@@ -248,6 +327,7 @@ page {
 .detail-other .tab-nav {
   height: 70rpx;
   line-height: 70rpx;
+  font-weight: 400;
 }
 .detail-other .tab-nav view {
   float: left;
@@ -272,38 +352,41 @@ page {
   width: 100%;
   bottom: 0;
   color: white;
+  font-size: 25rpx;
   font-weight: 600;
   display: flex;
   flex-direction: row;
 }
-.fixedBottom view {
-  padding: 10rpx 0;
-}
-.fixedBottom view text {
-  display: block;
-}
-.fixedBottom view.customer {
+.fixedBottom .customer {
   width: 20%;
   text-align: center;
   background: #555;
 }
-.fixedBottom view.customer image {
-  width: 20px;
-  height: 20px;
+.fixedBottom .customer navigator {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.fixedBottom .customer image {
+  width: 50rpx;
+  height: 50rpx;
   margin: -1px auto;
 }
-.fixedBottom view.singlePurse,
-.fixedBottom view.groupPurse {
+.fixedBottom .singlePurse {
   width: 40%;
-  text-align: center;
-}
-.fixedBottom view.singlePurse {
   background: #888;
-  font-size: 35rpx;
+  text-align: center;
+  padding: 10rpx 0;
 }
-.fixedBottom view.groupPurse {
+.fixedBottom .groupPurse {
+  width: 40%;
+  padding: 10rpx 0;
+  text-align: center;
   background: #008FDB;
-  font-size: 35rpx;
+}
+.fixedBottom .price .orgPrice,
+.fixedBottom .price .pref {
+  font-size: 40rpx;
 }
 /*modal*/
 .mask {

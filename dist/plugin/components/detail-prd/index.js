@@ -37,6 +37,8 @@ Component({
   },
 
   attached() {
+    var windowWidth = wx.getSystemInfoSync().windowWidth;
+    this.setData({bannerHeight: windowWidth/1.48});
   },
   detached() {
     wxTimer.stop();
