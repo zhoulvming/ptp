@@ -23,6 +23,7 @@ Component({
     currentTab: 0, //当前所在滑块的 index
     salesRecord: [],
     showModal: false,
+    showModalPost: false,
     min:1,//最小值 整数类型，null表示不设置
     max: 5,//最大值 整数类型，null表示不设置
     num: 1,//输入框数量 整数类型
@@ -176,9 +177,15 @@ Component({
       });
     },
 
+    showModalPost: function() {
+      this.setData({
+        showModalPost: true
+      });
+    },
     hideModalDlg: function() {
       this.setData({
-        showModal: false
+        showModal: false,
+        showModalPost: false
       });
     },
     evblur: function (e) {
@@ -255,6 +262,11 @@ Component({
         price = that.data.prdDetail.orgPrice;
       }
       that.setData({ buywayPrice: price * cval });
-    }
+    },
+
+    // 生成海报
+    makeSharePoster() {
+      this.selectComponent('#poster').makeSharePoster();
+    },
   }
 });

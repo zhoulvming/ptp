@@ -20,7 +20,11 @@ const config = {
   // 与设备的宽度比例
   width_scale_onebtn: 1.21,
   width_scale_twobtn: 2.60,
-  width_scale_minibtn: 4.75
+  width_scale_minibtn: 4.75,
+
+  // 账号信息
+  appid: 'wx85694629dac0c26a',
+  secret: '17c7b613567ac214c2e8e4f4c4881c0f'
 };
 
 module.exports = config;

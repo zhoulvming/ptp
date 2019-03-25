@@ -34,7 +34,8 @@ Component({
     this.setData({bannerHeight: windowWidth/config.scale_banner});
 
     var cardItemImageHeight = (windowWidth - 70) / config.scale_product;
-    this.setData({cardItemImageHeight: cardItemImageHeight});
+    this.setData({cardItemImageHeight: cardItemImageHeight});   
+
   },
 
   /**

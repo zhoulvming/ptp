@@ -27,15 +27,15 @@
         <text>原价 ￥{{prdDetail.orgPrice}}</text>
       </view>
     </view>
-
-
     <view class="prd-name display-col">
       <text class="name">{{prdDetail.prdName}}</text>
       <text class="desc">{{prdDetail.prdDesc}}</text>
     </view>
     <view class="share">
-      <image src="../../images/icons/fx.png"></image>
-      <text>分享</text>
+      <button class="btn link" bindtap="showModalPost">
+        <image src="../../images/icons/fx.png"></image>
+        <text>分享</text>
+      </button>
     </view>
     <view class="count">
       <text>销量 {{prdDetail.salesCount}}</text>
@@ -43,8 +43,6 @@
     </view>  
   </view>
 </view>
-
-<!-- 凑团列表 -->
 <view class="detail-gp panel-no-radius"> 
   <view class="group-list">
     <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
@@ -69,8 +67,6 @@
     </view>       
   </view>
 </view>
-
-<!-- 底部tab内容 -->
 <view class="detail-other panel-no-radius"> 
   <view class='tab'>
     <view class='tab-nav'>
@@ -97,7 +93,6 @@
     </swiper>
   </view>
 </view>  
-
 <view class='fixedBottom'>
   <view class='customer'>
     <navigator url=''>
@@ -121,11 +116,10 @@
     <text>开团价</text>
   </view>
 </view>  
-
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal || showModalPost}}" bindtap="hideModalDlg"></view>
 <view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
   <view class="prd-info">
-    <image class="picture" src="{{prdDetail.imageSingle}}"/>
+    <view class="picture"><image src="{{prdDetail.imageSingle}}" mode="scaleToFill"/></view>
     <view class="info">
       <text class="name">{{prdDetail.prdName}} </text>
       <text class="gp-info">{{prdDetail.numbers}} 人拼团价</text>
@@ -150,5 +144,18 @@
       </view>
     </view>
   </view>
-  <button bindtap="gotoNext" data-target="confirm-order" data-prdid="{{prdDetail.prdId}}">下一步</button>
+  <button class="btn-bottom" bindtap="gotoNext" data-target="confirm-order" data-prdid="{{prdDetail.prdId}}">下一步</button>
 </view>
+<view class="modalDlg" wx:if="{{showModalPost}}" style="background:#f0f0f0">
+  <button class="btn large-single" open-type='share'>发送给朋友</button>
+  <button class="btn large-single" bindtap="makeSharePoster">生成海报</button>
+  <button class="btn large-single mt-20" bindtap="hideModalDlg">取消</button>
+</view>
+<my-poster id="poster"
+  imageUrl="{{prdDetail.imageSingle}}"
+  price="{{prdDetail.price}}"
+  orgPrice="{{prdDetail.orgPrice}}"
+  numbers="{{prdDetail.numbers}}"
+  prdName="{{prdDetail.prdName}}"
+  prdDesc="{{prdDetail.prdDesc}}">
+</my-poster>

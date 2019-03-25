@@ -1,3 +1,6 @@
+.mt-20 {
+  margin-top: 20rpx;
+}
 .mt-30 {
   margin-top: 30rpx;
 }
@@ -104,6 +107,17 @@ page {
 .btn.link::after {
   border: none;
 }
+.btn.large-single {
+  width: 100%;
+  border-radius: 0;
+  box-sizing: none;
+  border-bottom: 1rpx solid #eee;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+.btn.large-single::after {
+  border: none;
+}
 /** 价格定制样式 **/
 .price-detail {
   display: flex;
@@ -131,6 +145,17 @@ page {
   padding-left: 45rpx;
 }
 /** 底部按钮样式 **/
+/** 遮罩 **/
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9000;
+  opacity: 0.7;
+}
 .detail-prd {
   background-color: white;
   margin-bottom: 20rpx;
@@ -230,16 +255,20 @@ page {
   width: 100rpx;
   position: absolute;
   right: 10rpx;
-  top: 15rpx;
+  top: 30rpx;
   font-size: 25rpx;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 .detail-prd .share image {
-  height: 45rpx;
+  height: 50rpx;
   width: 50rpx;
-  margin: 0 auto;
+}
+.detail-prd .share button {
+  height: 50rpx;
+  width: 50rpx;
+  padding: 0;
 }
 .detail-prd .prd-name {
   margin-top: 115rpx;
@@ -298,7 +327,7 @@ page {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 100rpx;
+  margin-left: 80rpx;
 }
 .detail-gp .group-list > .item > .content .group-info .number-info {
   display: flex;
@@ -389,19 +418,8 @@ page {
   font-size: 40rpx;
 }
 /*modal*/
-.mask {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  z-index: 9000;
-  opacity: 0.7;
-}
 .modalDlg {
   width: 100%;
-  height: 580rpx;
   position: fixed;
   bottom: 0;
   z-index: 9999;
@@ -412,15 +430,17 @@ page {
   align-items: center;
 }
 .modalDlg .prd-info {
-  padding: 15rpx;
+  padding: 30rpx 20rpx;
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 .modalDlg .prd-info .picture {
+  margin-left: 20rpx;
+}
+.modalDlg .prd-info .picture image {
   width: 200rpx;
   height: 200rpx;
-  margin-left: 15rpx;
 }
 .modalDlg .prd-info .close {
   width: 30rpx;
@@ -455,10 +475,10 @@ page {
 }
 .modalDlg .buycount {
   position: relative;
-  padding: 15rpx;
+  padding: 30rpx 20rpx;
+  padding-bottom: 150rpx;
   display: flex;
   flex-direction: row;
-  margin-top: 20rpx;
   font-size: 30rpx;
   width: 100%;
 }
@@ -516,7 +536,7 @@ page {
   margin-top: 25rpx;
   text-align: center;
 }
-.modalDlg button {
+.modalDlg .btn-bottom {
   position: fixed;
   bottom: 0;
   width: 100%;

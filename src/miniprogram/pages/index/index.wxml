@@ -14,9 +14,5 @@
   <button open-type="openSetting">打开授权设置页</button>
   <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
     获取用户信息
-  </button>
-
-  
-    
-
+  </button>    
 </view>

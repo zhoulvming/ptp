@@ -101,15 +101,19 @@
     width: 100rpx;
     position: absolute;
     right: 10rpx;
-    top: 15rpx;
+    top: 30rpx;
     font-size: 25rpx;
     display: flex;
     flex-direction: column;
     text-align:center;
     image {
-      height: 45rpx;
+      height: 50rpx;
       width: 50rpx;
-      margin: 0 auto;
+    }
+    button {
+      height: 50rpx;
+      width: 50rpx;
+      padding: 0;
     }
   }
   .prd-name {
@@ -169,7 +173,7 @@
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          margin-left: 100rpx;
+          margin-left: 80rpx;
           .number-info {
             display: flex;
             flex-direction: row;
@@ -271,19 +275,8 @@
 }
 
 /*modal*/
-.mask{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  z-index: 9000;
-  opacity: 0.7;
-}
 .modalDlg {
   width: 100%;
-  height: 580rpx;
   position: fixed;
   bottom: 0;
   z-index: 9999;
@@ -293,14 +286,16 @@
   flex-direction: column;
   align-items: center;
   .prd-info { 
-    padding: 15rpx;
+    padding: 30rpx 20rpx;
     display: flex;
     flex-direction: row;
     width: 100%;
     .picture {
-      width: 200rpx;
-      height: 200rpx;
-      margin-left: 15rpx;
+      margin-left: 20rpx;
+      image {
+        width: 200rpx;
+        height: 200rpx;
+      }
     }
     .close {
       width:30rpx;
@@ -337,10 +332,10 @@
   }
   .buycount {
     position: relative;
-    padding: 15rpx;
+    padding: 30rpx 20rpx;
+    padding-bottom: 150rpx;
     display: flex;
     flex-direction: row;
-    margin-top: 20rpx;
     font-size: @fs-3;
     width: 100%;
     >.info {
@@ -398,7 +393,7 @@
       }
     } 
   }
-  button {
+  .btn-bottom {
     position: fixed;
     bottom: 0;
     width: 100%;

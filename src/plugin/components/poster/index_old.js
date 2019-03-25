@@ -1,8 +1,11 @@
 var utils = require('../../utils/util.js');
 var config = require('../../lib/config.js');
 Component({
+  /**
+   * 组件的属性列表
+   */
   properties: {
-    imageUrl: {
+    avater: { // 图片
       type: String,
       value: ''
     },
@@ -22,7 +25,11 @@ Component({
       type: String,
       value: ''
     },
-    numbers: { // 几人团
+    codeimg: { // 二维码
+      type: String,
+      value: ''
+    },
+    number: { // 几人团
       type: String,
       value: ''
     }
@@ -46,30 +53,108 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    makeSharePoster: function() {
-      var that = this;
+    //下载产品图片
+    getAvaterInfo: function() {
       wx.showLoading({
         title: '生成中...',
         mask: true,
       });
-
+      var that = this;
       that.setData({
         showpost: true
       });
-      wx.downloadFile({
-        url: that.data.imageUrl,
-        success: function(res) {
-          wx.hideLoading();
-          var imagePath = res.tempFilePath;
-          that.calculateHeight(imagePath, function(imageHeight) {
-            that.drawCanvas(imagePath, imageHeight);
-          });
+      var productImage = that.data.avater;
+      if (productImage) {
+        wx.downloadFile({
+          url: productImage,
+          success: function(res) {
+            wx.hideLoading();
+            if (res.statusCode === 200) {
+              var productSrc = res.tempFilePath;
+              that.calculateImg(productSrc, function(data) {
+                that.getQrCode(productSrc, data);
+              });
+            } else {
+              wx.showToast({
+                title: '产品图片下载失败！',
+                icon: 'none',
+                duration: 2000,
+                success: function() {
+                  var productSrc = '';
+                  that.getQrCode(productSrc);
+                }
+              });
+            }
+          }
+        });
+      } else {
+        wx.hideLoading();
+        var productSrc = '';
+        that.getQrCode(productSrc);
+      }
+    },
+
+    //下载二维码
+    getQrCode: function(productSrc, imgInfo = '') {
+      wx.showLoading({
+        title: '生成中...',
+        mask: true,
+      });
+      var that = this;
+      var productCode = that.data.codeimg;
+      if (productCode) {
+        wx.downloadFile({
+          url: productCode,
+          success: function(res) {
+            wx.hideLoading();
+            if (res.statusCode === 200) {
+              var codeSrc = res.tempFilePath;
+              that.sharePosteCanvas(productSrc, codeSrc, imgInfo);
+            } else {
+              wx.showToast({
+                title: '二维码下载失败！',
+                icon: 'none',
+                duration: 2000,
+                success: function() {
+                  var codeSrc = '';
+                  that.sharePosteCanvas(productSrc, codeSrc, imgInfo);
+                }
+              });
+            }
+          }
+        });
+      } else {
+        wx.hideLoading();
+        var codeSrc = '';
+        that.sharePosteCanvas(productSrc, codeSrc);
+      }
+    },
+
+    getRealQRCode: function() {
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/qrCode',
+        data: {
+          page: 'pages/index/index',
+          scene: '12345',
+          width: 300
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        method:  'POST',
+        dataType: 'json',
+        success: function(res){
+          let qrcodeUrl = res.data;
+          console.log(qrcodeUrl);
+        },
+        fail: function(){
+          console.log('get qr code failed...');
         }
       });
     },
 
     //canvas绘制分享海报
-    drawCanvas: function(imagePath, imageHeight) {
+    sharePosteCanvas: function(avaterSrc, codeSrc, imgInfo) {
       wx.showLoading({
         title: '生成中...',
         mask: true,
@@ -84,11 +169,15 @@ Component({
         var left = rect.left + 5;
         ctx.setFillStyle('#fff');
         ctx.fillRect(0, 0, rect.width, height);
-        var imgheght = parseFloat(imageHeight);
 
         // 图片
-        if (imagePath) {
-          ctx.drawImage(imagePath, 0, 0, width, imgheght);
+        if (avaterSrc) {
+          var imgheght = null;
+          if (imgInfo) {
+            imgheght = parseFloat(imgInfo);
+          }
+          ctx.drawImage(avaterSrc, 0, 0, width, imgheght ? imgheght : width);
+          ctx.setFontSize(14);
           ctx.setFillStyle('#fff');
           ctx.setTextAlign('left');
         }
@@ -99,7 +188,7 @@ Component({
           let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdName).substr(0, 40), CONTENT_ROW_LENGTH);
           ctx.setTextAlign('left');
           ctx.setFillStyle('#000');
-          ctx.setFontSize(14);
+          ctx.setFontSize(12);
           let contentHh = 22 * 1;
           for (let m = 0; m < contentArray.length; m++) {
             ctx.fillText(contentArray[m], 15, imgheght + 25 + contentHh * m);
@@ -108,57 +197,84 @@ Component({
 
         // 产品简介
         if (that.data.prdDesc) {
+          // ctx.setFontSize(10);
+          // ctx.setFillStyle('#999');
+          // ctx.setTextAlign('left');
+          // ctx.fillText(that.data.prdDesc, 15, imgheght + 40);
+
+          // const CONTENT_ROW_LENGTH = 30; // 正文 单行显示字符长度
+          // let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdDesc).substr(0, 40), CONTENT_ROW_LENGTH);
+          // ctx.setTextAlign('left');
+          // ctx.setFillStyle('#999');
+          // ctx.setFontSize(10);
+          // let contentHh = 22 * 1;
+          // for (let m = 0; m < contentArray.length; m++) {
+          //   // ctx.fillText(contentArray[m], 15, imgheght + 10 + contentHh * m);
+          //   ctx.fillText(contentArray[m], 15, imgheght + 40 + contentHh * m, 200);
+          // }
+
           that.fillTextByLength(ctx, '10', '#999', that.data.prdDesc, imgheght + 40);
+
+
         }
 
-        // 产品金额
+        //产品金额
         if (that.data.price || that.data.price == 0) {
           ctx.setFontSize(25);
           ctx.setFillStyle('#F57509');
           ctx.setTextAlign('left');
           var price = utils.formatPrice(that.data.price);
           var orgPrice = that.data.orgPrice;
-          var numbers = that.data.numbers;
+          var number = that.data.number;
 
           // 团购价
           ctx.setFontSize(10);
           ctx.setFillStyle('#000');
-          ctx.fillText('¥', left - 28, imgheght + 80);
+          ctx.fillText('¥', left - 12, imgheght + 80);
 
           ctx.setFontSize(14);
-          ctx.fillText(price.pref + '.', left - 20, imgheght + 80);
+          ctx.fillText(price.pref + '.', left - 5, imgheght + 80);
 
           ctx.setFontSize(10);
-          ctx.fillText(price.suff, left - 12, imgheght + 80);
+          ctx.fillText(price.suff, left + 8, imgheght + 80);
 
           // 原价
           ctx.setFontSize(10);
           ctx.setFillStyle('#666');
-          ctx.fillText('¥' + orgPrice, left + 7, imgheght + 80);
-          ctx.fillText('-----', left + 7, imgheght + 80);
+          ctx.fillText('¥' + orgPrice, left + 22, imgheght + 80);
+          ctx.fillText('-----', left + 22, imgheght + 80);
 
           // 几人团信息
           ctx.setFillStyle('#FFF6E8');
-          ctx.fillRect(left + 40, imgheght + 66, 40, 20);
+          ctx.fillRect(left + 60, imgheght + 66, 40, 20);
           ctx.setFillStyle('#FFBA4A');
           ctx.setFontSize(10);
-          console.log(numbers);
-          ctx.fillText(numbers + '人团', left + 45, imgheght + 80);
+          ctx.fillText(number + '人团', left + 65, imgheght + 80);
 
         }
 
-        // 小程序码
+        //  绘制二维码
+        // if (codeSrc) {
+        //   ctx.drawImage(codeSrc, left + 160, imgheght + 10, width / 4, width / 4);
+        //   ctx.setFontSize(10);
+        //   ctx.setFillStyle('#000');
+        //   ctx.fillText('长按识别小程序码', left + 153, imgheght + 95);
+        // }
         ctx.setFillStyle('#000');
-        ctx.fillText('长按识别小程序码', left + 160, imgheght + 80);
+        ctx.fillText('长按识别小程序码', left + 153, imgheght + 95);
         that.getCodeImage();
 
       }).exec();
-
       setTimeout(function() {
         ctx.draw();
+
+        //  绘制二维码
         that.setData({imageShowFlag: 'block'});
+        
+
         wx.hideLoading();
       }, 1000);
+
     },
 
     fillTextByLength(ctx, fontSize, fontColor, text, y) {
@@ -282,32 +398,37 @@ Component({
       this.setData({
         showpost: false
       });
+      // detail对象，提供给事件监听函数
+      this.triggerEvent('myevent', {
+        showVideo: true
+      });
     },
-
-    //计算个元素高度
-    calculateHeight: function(imagePath, cb) {
-      var mtHeight = 50; // canvas距离屏幕顶部的距离，该值在css文件会有设置, 注意此处都是以 px 为单位的高度
+    //计算图片尺寸
+    calculateImg: function(src, cb) {
       var that = this;
-      wx.getSystemInfo({
+      wx.getImageInfo({
+        src: src,
         success(res) {
-          var canvasHeight = res.windowHeight * 0.66;
-          var imgHeight = canvasHeight * 0.73;
-          var codeimgHeight = res.windowWidth * 0.14;
-          var buttonTop = canvasHeight + mtHeight + 30;
-          var codeimgTop = imgHeight + mtHeight + 30 - codeimgHeight/2;
-          console.log('imgHeight: ' + imgHeight);
-          that.setData({
-            canvasHeight: canvasHeight,
-            imgHeight: imgHeight,
-            codeimgHeight: codeimgHeight,
-            buttonTop: buttonTop,
-            codeimgTop: codeimgTop
+          wx.getSystemInfo({
+            success(res2) {
+              var ratio = res.width / res.height;
+              var imgHeight = (res2.windowWidth  / ratio) + 200;
+              that.setData({
+                imgHeight: imgHeight
+              });
+              cb(imgHeight-160);
+            }
           });
-          cb(imgHeight);
         }
       });
     },
- 
+    // 
+    catchCode: function() {
+      // wx.previewImage({
+      //   current: 'http://i4.hexun.com/2018-07-05/193365388.jpg', // 当前显示图片的http链接  
+      //   urls: ['http://i4.hexun.com/2018-07-05/193365388.jpg'], // 需要预览的图片http链接列表  
+      // });
+    },
     // 小程序码
     getCodeImage() {
       var that = this;

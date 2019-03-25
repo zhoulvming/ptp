@@ -1,14 +1,12 @@
 const app = getApp();
 // const doAuth = require('../doAuth.js');
 
+
 Page({
   data: {},
   onLoad() {
 
-    var jsonStr = "{\"appId\":\"wx4c78682bea26ab3c\",\"partnerId\":null,\"prePayId\":null,\"timeStamp\":\"1552889849\",\"nonceStr\":\"7e19e7c9f208496088ba6b20e795e439\",\"packageStr\":\"prepay_id=wx1814172964920596674e7cb53771780271\",\"signType\":\"MD5\",\"sign\":\"B881896EBDC517F53A3877084A28B02A\"}";
-    var jsonObj = JSON.parse(jsonStr);
-    console.log(jsonObj);
-
+      
 
 
     //doAuth('getUserInfo');
