@@ -10,6 +10,9 @@
 .mt-100 {
   margin-top: 100rpx;
 }
+.mb-30 {
+  margin-bottom: 30rpx;
+}
 .mb-50 {
   margin-bottom: 50rpx;
 }
@@ -103,6 +106,9 @@ page {
   font-size: 25rpx;
   background: none !important;
   color: #555 !important;
+}
+.btn.link.underline {
+  text-decoration: underline;
 }
 .btn.link::after {
   border: none;

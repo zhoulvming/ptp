@@ -15,6 +15,9 @@ Page({
   },
   pay: function() {
     var that = this;
+
+    console.log('------ payment parameters:');
+    console.log(that.data.payInfo);
     
     // TODO: 真机测试
     wx.requestPayment({

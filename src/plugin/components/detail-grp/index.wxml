@@ -51,10 +51,10 @@
       <button open-type='share'>邀请好友</button>
       <button bindtap="getSharePoster">生成海报</button>
     </view>
-    <view class="action mb-50" style="display:{{grp_status == 1?'flex':'none'}}">
-      <button bindtap='showModal' data-buyway="1">我要参团</button>
+    <view class="action mb-30" style="display:{{grp_status == 1?'flex':'none'}}">
+      <button class="btn large-single" bindtap='showModal' data-buyway="1">我要参团</button>
     </view>    
-    <button class="link-btn" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
+    <button class="btn link underline" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
   </view>
 </view>
 
@@ -109,4 +109,3 @@
   prdName="我是商品名称我是商品名称"
   prdDesc="我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介34">
 </my-poster>
-<button bindtap="getSharePoster">生成海报</button>

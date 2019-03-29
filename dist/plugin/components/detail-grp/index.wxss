@@ -10,6 +10,9 @@
 .mt-100 {
   margin-top: 100rpx;
 }
+.mb-30 {
+  margin-bottom: 30rpx;
+}
 .mb-50 {
   margin-bottom: 50rpx;
 }
@@ -103,6 +106,9 @@ page {
   font-size: 25rpx;
   background: none !important;
   color: #555 !important;
+}
+.btn.link.underline {
+  text-decoration: underline;
 }
 .btn.link::after {
   border: none;
@@ -315,11 +321,11 @@ page {
   margin-top: 50rpx;
 }
 .detail-user .action button {
-  font-size: 35rpx;
   background-color: #008FDB;
   border-radius: 15rpx;
   color: white;
-  padding: 0 70rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
 }
 /*modal*/
 .modalDlg {

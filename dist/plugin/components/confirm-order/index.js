@@ -75,7 +75,7 @@ Component({
           activityId = that.data.prd.orgProdId;
         }
         var data = {
-          mobileNo: that.data.userinfo.mobile,
+          mobileNo: userinfo.mobileNo,
           brand: wx.getStorageSync('brand'),
           catgryName: that.data.prd.catgryName,
           userCd: userinfo.userCode,

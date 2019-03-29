@@ -1,5 +1,4 @@
 const config = require('../../lib/config.js');
-var utils = require('../../utils/util.js');
 
 Component({
   properties: {
@@ -32,10 +31,8 @@ Component({
   attached() {
     var windowWidth = wx.getSystemInfoSync().windowWidth;
     this.setData({bannerHeight: windowWidth/config.scale_banner});
-
     var cardItemImageHeight = (windowWidth - 70) / config.scale_product;
     this.setData({cardItemImageHeight: cardItemImageHeight});   
-
   },
 
   /**

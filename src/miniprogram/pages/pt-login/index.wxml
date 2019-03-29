@@ -1,4 +1,7 @@
+<view style="margin-top: 100rpx;">
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+</view>
+
 <view>
   <button bindtap="login">模拟登录画面</button>
 </view>
-  

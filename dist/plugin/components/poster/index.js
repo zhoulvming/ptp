@@ -97,6 +97,8 @@ Component({
         if (that.data.prdName) {
           const CONTENT_ROW_LENGTH = 24; // 正文 单行显示字符长度
           let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdName).substr(0, 40), CONTENT_ROW_LENGTH);
+          console.log(contentLeng);
+          console.log(contentRows);
           ctx.setTextAlign('left');
           ctx.setFillStyle('#000');
           ctx.setFontSize(14);
@@ -149,7 +151,7 @@ Component({
 
         // 小程序码
         ctx.setFillStyle('#000');
-        ctx.fillText('长按识别小程序码', left + 160, imgheght + 80);
+        ctx.fillText('长按识别小程序码', left + 180, imgheght + 80);
         that.getCodeImage();
 
       }).exec();
@@ -307,9 +309,9 @@ Component({
         }
       });
     },
- 
-    // 小程序码
-    getCodeImage() {
+
+
+    getCodeImageOld() {
       var that = this;
       wx.request({
         url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + config.appid + '&secret=' + config.secret,
@@ -326,6 +328,7 @@ Component({
               scene: 'prdId=124'
             },
             success(res) {
+              console.log(res.data);
               if (res.statusCode == 200) {
                 var base64 = wx.arrayBufferToBase64(res.data);
                 that.setData ({
@@ -334,6 +337,53 @@ Component({
               }
             }
           });
+        }
+      });
+    },
+ 
+    // 小程序码
+    getCodeImage() {
+      var that = this;
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        data: {
+          appid: config.appid,
+          secret: config.secret,
+          prdId: '1234'
+        },
+        success(res) {
+          // wx.request({
+          //   url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + res.data.access_token,
+          //   method: 'POST',
+          //   header: { 'content-type': 'application/json;charset=utf-8' },
+          //   responseType: 'arraybuffer',
+          //   data: {
+          //     page: 'pages/index/index',
+          //     scene: 'prdId=124'
+          //   },
+          //   success(res) {
+          //     console.log(res.data);
+          //     if (res.statusCode == 200) {
+          //       var base64 = wx.arrayBufferToBase64(res.data);
+          //       that.setData ({
+          //         captchaImage: 'data:image/PNG;base64,' + base64
+          //       });
+          //     }
+          //   }
+          // });
+
+          console.log(res.data);
+          //var base64 = wx.arrayBufferToBase64(res.data);
+          //console.log(base64);
+          that.setData ({
+            captchaImage: 'data:image/PNG;base64,' + res.data
+          });
+
+      
+
+
         }
       });
     }
