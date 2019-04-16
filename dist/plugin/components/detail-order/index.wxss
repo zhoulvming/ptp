@@ -273,3 +273,9 @@ page {
   text-align: right;
   margin-top: 10rpx;
 }
+.order-info {
+  display: flex;
+  flex-direction: column;
+  color: #ddd;
+  font-size: 30rpx;
+}

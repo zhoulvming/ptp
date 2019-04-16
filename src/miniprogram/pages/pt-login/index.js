@@ -18,7 +18,7 @@ Page({
         var d = app.globalData;
         // var l = 'https://api.weixin.qq.com/sns/jscode2session?appid='
         //   + d.appid + '&secret=' + d.secret + '&js_code=' + code + '&grant_type=authorization_code';
-        var l = 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid';          
+        var l = 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid';
         wx.request({
           url: l,
           data: {

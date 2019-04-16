@@ -1,7 +1,8 @@
 <view class="page">
 
-  <navigator url="../pt-index/index?brand=KFC_MALLNEW&channelId=800008">拼团首页</navigator>
+  <navigator url="../pt-index/index?brand={{brand}}&channelId={{channelId}}">拼团首页</navigator>
 
+<!--
   <button wx:if="{{!hasUserInfo && canIUse && getUserInfoFail}}" 
     open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   <block wx:if="{{hasUserInfo}}">
@@ -15,4 +16,5 @@
   <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
     获取用户信息
   </button>    
+-->
 </view>

@@ -5,13 +5,22 @@ var wxTimer = null;
 
 Component({
   properties: {
+    userinfo: {
+      type: Object,
+      value: {},
+      observer: function (newVal) {
+        if (newVal) {
+          this.setData({ userinfo: newVal });
+        }
+      }
+    },
     options: {
       type: Object,
       value: {},
       observer: function (newVal) {
         if (newVal) {          
-          var jsonVal = JSON.parse(newVal.options);
-          this.setData({ prdId: jsonVal.prdId });
+          // var jsonVal = JSON.parse(newVal.options);
+          this.setData({ prdId: newVal.prdId });
           this.loadPage();
         }
       }
@@ -81,6 +90,7 @@ Component({
     loadPage() {
       var that = this;
       // 根据prdId获取商品详细信息
+      console.log(that.data.prdId)
       wx.request({
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/prddetail',
         data: { prdId: that.data.prdId },
@@ -88,6 +98,7 @@ Component({
         method: 'POST',
         success(res) {
           var detail = res.data;
+          console.log(res.data)
           detail = utils.formatProductData(detail);
           that.setData({prdDetail: detail});
 

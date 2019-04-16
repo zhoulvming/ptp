@@ -12,11 +12,10 @@
 
   <view class='tab'>
     <view class='tab-nav' style="margin-left:{{tabnavMarginLeft}}px">
-      <view wx:for="{{prds}}" wx:for-item="item" 
-        wx:for-index="index" 
+      <view wx:for="{{prds}}" wx:for-item="item" wx:for-index="index" 
         class='{{currentTab==index?"on":"off"}}' 
         data-current="{{index}}" bindtap='tabChange'
-        style="width:100px;margin-left:{{}}px">
+        style="width:100px;">
         <text>{{item.grpCategoryName}}</text>
       </view>
     </view>

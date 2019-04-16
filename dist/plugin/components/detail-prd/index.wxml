@@ -81,7 +81,7 @@
       <swiper-item>
         <view class="record-list">
           <view wx:for="{{records}}" class="record-item display-row">
-            <view><text>{{item.leftTime}} 前</text></view>
+            <view><text>{{item.leftTime}}</text></view>
             <view><text>{{item.nickName}}</text></view>
             <view><text>{{item.quantity}}</text></view>
           </view>
@@ -100,6 +100,7 @@
       <text>客服</text>
     </navigator>
   </view>
+  <!--
   <view class='singlePurse' bindtap='showModal' data-buyway="0">
     <view class="price">
       <text class="flag">¥</text>
@@ -107,6 +108,7 @@
     </view>
     <text>单人价</text>
   </view>
+  -->
   <view class='groupPurse' bindtap='showModal' data-buyway="1" style="display:{{haveOrder==false?'block':'none'}}">
     <view class="price">
       <text class="flag">¥</text>

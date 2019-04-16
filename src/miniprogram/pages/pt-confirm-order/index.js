@@ -1,19 +1,14 @@
-const ptCommon = require('../pt.common.js');
+const ptCommon = require('../pt.common.js')
 Page({
   data: {},
-  onLoad(options) {
-    var optionsNew = options;
+  onLoad() {
+    var options = wx.getStorageSync('DATA_FROM_PLUGIN')
+    this.setData({options: options})
 
-    // 如果是从小程序的登录页面直接过来，则从小程序本地缓存获取options数据
-    if (!options.options) {
-      optionsNew = wx.getStorageSync('options');
-    }
-
-    var userinfo = wx.getStorageSync('userinfo');
-    this.setData({ userInfo: userinfo });
-    this.setData({options: optionsNew});
+    var userinfo = wx.getStorageSync('userinfo')
+    this.setData({ userInfo: userinfo })
   },
   gotoPageFromPlugin(data) {
-    ptCommon.gotoPageFromPlugin(data);
+    ptCommon.gotoPageFromPlugin(data)
   }
-});
+})

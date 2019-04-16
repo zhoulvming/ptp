@@ -6,6 +6,8 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
+        console.log('options parameters from miniPage  : ')
+        console.log(newVal)
         if (newVal) {
           wx.setStorageSync('brand', newVal.brand );
           wx.setStorageSync('channelId', newVal.channelId );
@@ -18,21 +20,19 @@ Component({
   data: {
     currentTab: 0, //当前所在滑块的 index
     swipperHeight: 0,
-    imgUrls: [
-      '../../images/slide001.png',
-      '../../images/slide002.png'
-    ],
+    imgUrls: [],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000
+    duration: 1000,
+    inputData: null
   }, 
 
   attached() {
-    var windowWidth = wx.getSystemInfoSync().windowWidth;
-    this.setData({bannerHeight: windowWidth/config.scale_banner});
-    var cardItemImageHeight = (windowWidth - 70) / config.scale_product;
-    this.setData({cardItemImageHeight: cardItemImageHeight});   
+    var windowWidth = wx.getSystemInfoSync().windowWidth
+    this.setData({bannerHeight: windowWidth/config.scale_banner})
+    var cardItemImageHeight = (windowWidth - 70) / config.scale_product
+    this.setData({cardItemImageHeight: cardItemImageHeight})
   },
 
   /**
@@ -58,31 +58,41 @@ Component({
           var windowWidth = wx.getSystemInfoSync().windowWidth;
           var marginLeft = windowWidth/2 - (90*prds.length)/2 - 10;
           that.setData({tabnavMarginLeft: marginLeft});
-
+        }
+      });
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/image',
+        data: {channelId: that.data.channelId},
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        success(res) {
+          let imgs = res.data;
+          that.setData({imgUrls: imgs});
         }
       });
     },
     gotoNext(event) {
-      var value = event.currentTarget.dataset.target;
+      var target = event.currentTarget.dataset.target;
       var prdId = event.currentTarget.dataset.prdid;
-      this.triggerEvent('callback', {target: value, options: {prdId: prdId}});
+      this.triggerEvent('callback', {target: target, options: {prdId: prdId}});
     },
 
     //tab切换
     tabChange: function (event) {
-      if (event.target.dataset.current == 1) {
+      var that = this
+      if (event.currentTarget.dataset.current == 1) {
         console.log('you change tab , call tabChange function');
       }
 
       // 重新计算swipper最大高度
-      let idex = event.target.dataset.current;
-      let swipperHeight = this.data.prds[idex].items.length * 500;
-      if ( swipperHeight > this.data.swipperHeight) {
+      let idex = event.currentTarget.dataset.current;
+      let swipperHeight = that.data.prds[idex].items.length * 500;
+      if ( swipperHeight > that.data.swipperHeight) {
         this.setData({ swipperHeight: swipperHeight});
       }
  
       // 保存当前tab索引
-      this.setData({ currentTab: event.target.dataset.current});
+      this.setData({ currentTab: event.currentTarget.dataset.current});
     },
     //滑动事件
     tabSwiper: function (event) {

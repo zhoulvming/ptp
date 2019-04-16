@@ -21,7 +21,7 @@ Component({
         console.log('Observer data from app page(confirm-order):--------');
         console.log(newVal);
         if (newVal) { 
-          var jsonVal = JSON.parse(newVal.options);
+          var jsonVal = newVal;
           if (jsonVal.grpId) {
             this.setData({ grpId: jsonVal.grpId });
           }
@@ -101,7 +101,7 @@ Component({
           data: data,
           success(res) {
             if (res.statusCode == 200) {
-              console.log('下单成功:');
+              console.log('下单成功1:');
               // 下单成功后跳转到小程序的支付模块，在小程序的支付页面中支付成功后直接跳转到插件的订单详情页面
               var price = that.data.buywayPrice * that.data.orderNum;
               var grpId = res.data.grpId;
@@ -111,23 +111,28 @@ Component({
                 // 凑团支付后跳转到订单详情页面
                 callbackUrl = 'detail-order';
               }
+
+              console.log('下单成功2:');
   
               // 从支付网关获取支付URL
-              // var openId = userinfo.openid;
-              var openId = 'oWolJ5Lis-ex2YiiwJXBF-FqYWfk';
+              var openId = userinfo.openid;
               var dataPayment = {
                 openId: openId,
                 orderNo: orderNo,
                 channelId: wx.getStorageSync('channelId'),
                 returnUrl: ''
               };
+
+              console.log('下单成功3:');
+              console.log(dataPayment);
+
               wx.request({
                 url: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
                 header: { 'content-type': 'application/json' },
                 method: 'POST',
                 data: dataPayment,
                 success(res) {
-                  if (res.statusCode == 200) {
+                  if (res.statusCode == 200 && res.data.payUrl) {
                     // 跳转到小程序支付模块进行支付
                     var payUrl = JSON.parse(res.data.payUrl);
                     that.triggerEvent('callback', {
@@ -156,6 +161,21 @@ Component({
                   console.log(errMsg);
                 }
               });
+
+              // // TODO: 测试用
+              // that.triggerEvent('callback', {
+              //   target: 'detail-order',
+              //   options: {
+              //     orderNo: orderNo,
+              //     grpId: grpId
+              //   }
+              // });
+
+              
+
+
+
+
             } else {
               console.log('下单失败: ' + res.data.error);
             }

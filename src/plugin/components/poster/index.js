@@ -374,9 +374,9 @@ Component({
           //   }
           // });
 
-          console.log(res.data);
-          //var base64 = wx.arrayBufferToBase64(res.data);
-          //console.log(base64);
+          console.log(res);
+          var base64 = wx.arrayBufferToBase64(res.data);
+          console.log(base64);
           that.setData ({
             captchaImage: 'data:image/PNG;base64,' + res.data
           });

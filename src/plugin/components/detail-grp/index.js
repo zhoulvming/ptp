@@ -10,10 +10,8 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        console.log('Observer data from app page(detail-grp):--------');
-        console.log(newVal);
         if (newVal) {          
-          var jsonVal = JSON.parse(newVal.options);
+          var jsonVal = newVal;
           this.setData({ grpId: jsonVal.grpId });
           this.setData({ grp_status: jsonVal.grp_status });
           if (jsonVal.buyCount) {
@@ -92,7 +90,13 @@ Component({
     },
     gotoHomePage(event) {
       var value = event.currentTarget.dataset.target;
-      this.triggerEvent('callback', {target: value});
+      this.triggerEvent('callback', {
+        target: value,
+        options: {
+          brand: wx.getStorageSync('brand'),
+          channelId: wx.getStorageSync('channelId')
+        }
+      });
     },
     showModal: function (e) {
       var buyway = e.currentTarget.dataset.buyway;

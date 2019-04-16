@@ -1,6 +1,6 @@
-// var utils = require('../../utils/util.js');
-// var timer = require('../../utils/wxTimer.js');
-// var wxTimer = null;
+var utils = require('../../utils/util.js');
+var timer = require('../../utils/wxTimer.js');
+var wxTimer = null;
 
 Component({
   properties: {
@@ -11,61 +11,34 @@ Component({
         console.log('Observer data from app page(detail-order):--------');
         console.log(newVal);
         if (newVal) {
-          var jsonVal = JSON.parse(newVal.options);
-          this.setData({ orderNo: jsonVal.orderNo });
-          this.loadPage();
+          // var jsonVal = JSON.parse(newVal.options)
+          var jsonVal = newVal
+          this.setData({ orderNo: jsonVal.orderNo })
+          this.loadPage()
         }
       }
     }    
   },
 
   data: {
-    wxTimerList:[],
-    status: {
-      orderGrpStatus: 0 
-    }
+    wxTimerList:[]
   },
 
   attached() {
 
-    // let self = this;
-
-    // // detail data
-    // let tempData = {
-    //   orderNo: 'E0000001',
-    //   prdId: '10001',
-    //   prdName: '商品名称',
-    //   prdDesc: '这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容这里提供商品简介内容',
-    //   prdImage: '../../images/pt-003.png',
-    //   numbers: 3,
-    //   count: 1,
-    //   validDays: '11',
-    //   leftNumbers: 2,
-    //   salesCount: 100,
-    //   price_pref: 99,
-    //   price_suff: 30,
-    //   orgPrice: 1000,
-    //   leftHour: 10,
-    //   leftMinute: 20,
-    //   leftSecond: 20
-    // };
-    // self.setData({orderDetail: tempData});
-
-    // // 计数器
-    // let timeStr = tempData.leftHour + ':' + tempData.leftMinute + ':' + tempData.leftSecond;
-    // wxTimer = new timer({
-    //   beginTime: timeStr
-    // });
-    // wxTimer.start(self); 
   },
 
   detached() {
   },  
 
   methods: {
-    gotoPage(event) {
-      var value = event.currentTarget.dataset.target;
-      this.triggerEvent('callback', {target: value});
+    gotoPage() {
+      var detail = this.data.orderDetail
+      this.triggerEvent('callback', {
+        target: 'detail-grp',
+        grpId: detail.grpId,
+        prdId: detail.prdId
+      });
     },
     loadPage() {
       var that = this;
@@ -76,9 +49,32 @@ Component({
         method: 'POST',
         success(res) {
           var detail = res.data;
-          //detail = utils.formatProductData(detail);
-          that.setData({orderDetail: detail});
-          console.log(detail);
+          that.setData({orderDetail: detail})
+
+          var totalPrice = detail.quantity * detail.price
+          that.setData({totalPrice: totalPrice})
+
+          var status = detail.status
+          if (status == 0) {
+            that.setData({order_status_code: status})
+            that.setData({order_status_text: '订单进行中'})
+          }
+
+
+          var leftTime = detail.leftTime;
+          var timeTmep = leftTime.split(':');
+          var leftTime_d = timeTmep[0];
+          var leftTime_h = timeTmep[1];
+          var leftTime_m = timeTmep[2];
+          var leftTime_s = timeTmep[3];
+
+          // 计数器
+          that.setData({left_days: leftTime_d})
+          let timeStr = leftTime_h + ':' + leftTime_m + ':' + leftTime_s;
+          wxTimer = new timer({
+            beginTime: timeStr
+          });
+          wxTimer.start(that); 
           
         }
       });
