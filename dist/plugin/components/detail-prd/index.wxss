@@ -93,7 +93,6 @@ page {
 /** 按钮样式 **/
 .btn.mini {
   padding: 0rpx 34rpx;
-  margin: auto;
   text-align: center;
   background: #008FDB;
   color: white;
@@ -524,6 +523,10 @@ page {
   font-size: 35rpx;
   color: #ffffff;
   text-align: center;
+}
+.modalDlg .buycount .count .input .ic.off,
+.modalDlg .buycount .count .input .ad.off {
+  background: #888;
 }
 .modalDlg .buycount .count .input .in {
   float: left;

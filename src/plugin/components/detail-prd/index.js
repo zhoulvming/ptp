@@ -33,8 +33,10 @@ Component({
     salesRecord: [],
     showModal: false,
     showModalPost: false,
-    min:1,//最小值 整数类型，null表示不设置
+    min: 1,//最小值 整数类型，null表示不设置
+    minflag: true,
     max: 5,//最大值 整数类型，null表示不设置
+    maxflag: false,
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 5,//输入框值出现异常默认设置值
@@ -97,10 +99,11 @@ Component({
         header: { 'content-type': 'application/json' },
         method: 'POST',
         success(res) {
-          var detail = res.data;
+          var detail = res.data
           console.log(res.data)
-          detail = utils.formatProductData(detail);
-          that.setData({prdDetail: detail});
+          detail = utils.formatProductData(detail)
+          that.setData({prdDetail: detail})
+          that.setData({max: detail.limitCount})
 
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s;
@@ -207,9 +210,11 @@ Component({
         if (this.data.max != null) {
           if (zval > this.data.max) {
             console.log('超出最大值');
-            this.setData({ num: this.data.def_num });
+            this.setData({ num: this.data.def_num })
+            this.setData({maxflag: true})
           }else{
             this.setData({ num: zval });
+            this.setData({maxflag: false})
           }
         } else {
           this.setData({ num: zval });
@@ -218,8 +223,10 @@ Component({
         if (this.data.min != null) {
           if (zval < this.data.min) {
             console.log('低于最小值');
+            this.setData({minflag: true})
             this.setData({ num: this.data.def_num });
           } else {
+            this.setData({minflag: false})
             this.setData({ num: zval });
           }
         } else {
@@ -234,14 +241,13 @@ Component({
     evad: function () {
       var that = this;
       var cval = Number(this.data.num) + this.data.change;
-      if (this.data.max != null){
-        if (cval > this.data.max){
-          console.log('超出最大值');
-        }else{
-          this.setData({ num: cval });
-        }
+      if (cval > this.data.max){
+        console.log('超出最大值');
+        this.setData({maxflag: true})
       }else{
         this.setData({ num: cval });
+        this.setData({maxflag: false})
+        this.setData({minflag: false})
       }
 
       var buyway = that.data.buyway;
@@ -250,21 +256,18 @@ Component({
         price = that.data.prdDetail.orgPrice;
       }
       that.setData({ buywayPrice: price * cval });
-      
-
     },
     //减
     evic: function () {
       var that = this;
       var cval = Number(this.data.num) - this.data.change;
-      if (this.data.min != null) {
-        if (cval < this.data.min) {
-          console.log('低于最小值');
-        } else {
-          this.setData({ num: cval });
-        }
+      if (cval < this.data.min) {
+        console.log('低于最小值');
+        this.setData({minflag: true})
       } else {
         this.setData({ num: cval });
+        this.setData({minflag: false})
+        this.setData({maxflag: false})
       }
 
       var buyway = that.data.buyway;

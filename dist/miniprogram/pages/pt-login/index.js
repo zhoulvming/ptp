@@ -14,11 +14,11 @@ Page({
     var that = this;
     wx.login({
       success: function (res) {
-        var code = res.code;
-        var d = app.globalData;
+        var code = res.code
+        var d = app.globalData
         // var l = 'https://api.weixin.qq.com/sns/jscode2session?appid='
-        //   + d.appid + '&secret=' + d.secret + '&js_code=' + code + '&grant_type=authorization_code';
-        var l = 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid';
+        //   + d.appid + '&secret=' + d.secret + '&js_code=' + code + '&grant_type=authorization_code'
+        var l = 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid'
         wx.request({
           url: l,
           data: {
@@ -28,13 +28,14 @@ Page({
           },
           method: 'POST',
           success: function (res) {
-            var openid = res.data.openid;
-            console.log('--- return openid: ' + openid);
-            var userinfo = wx.getStorageSync('userinfo' );
+            console.log(res)
+            var openid = res.data.openid
+            console.log('--- return openid: ' + openid)
+            var userinfo = wx.getStorageSync('userinfo')
             if (userinfo) {
-              userinfo['openid'] = openid;
-              userinfo['userCode'] = '1000'; // 此处需要小程序用户的登录信息
-              userinfo['mobileNo'] = '123456789';// 此处需要小程序用户的登录信息
+              userinfo['openid'] = openid
+              userinfo['userCode'] = '1000' // 此处需要小程序用户的登录信息
+              userinfo['mobileNo'] = '123456789'// 此处需要小程序用户的登录信息
               console.log(userinfo);
               wx.setStorageSync('userinfo', userinfo );
               wx.setStorageSync('options', that.data.options );

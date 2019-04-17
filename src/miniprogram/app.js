@@ -1,7 +1,7 @@
 App({
   globalData: {
     /*用户信息*/
-    userInfo: null,
+    userinfo: {},
     
     /*页面路由*/
     callbackUrl: {
@@ -17,7 +17,7 @@ App({
     /*小程序所属*/
     appid:'wx85694629dac0c26a',
     secret:'17c7b613567ac214c2e8e4f4c4881c0f',
-    brand: 'CJ',
-    channelId:'800001'
+    brand: 'KFC',
+    channelId:'800009'
   }
 })

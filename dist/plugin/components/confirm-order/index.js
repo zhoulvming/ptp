@@ -60,7 +60,7 @@ Component({
       // 用户是否登录小程序系统check
       var userinfo = that.data.userinfo;
 
-      if (userinfo) {
+      if (userinfo && userinfo.userCode) {
         console.log('用户已登录:');
         console.log(userinfo);
 

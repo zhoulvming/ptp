@@ -1,4 +1,4 @@
-var utils = require('../../utils/util.js');
+// var utils = require('../../utils/util.js');
 var timer = require('../../utils/wxTimer.js');
 var wxTimer = null;
 

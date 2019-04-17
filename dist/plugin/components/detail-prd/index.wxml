@@ -137,9 +137,11 @@
     </view>
     <view class='count'>
       <view class="input">
-        <view class='ic' bindtap='evic'>-</view>
+        <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
+        <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
         <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur1'/>
-        <view class='ad' bindtap='evad'>+</view>      
+        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
+        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
       </view>
       <view class="info">
         <text>每人限购 {{prdDetail.limitCount}} 件</text>
@@ -158,6 +160,7 @@
   price="{{prdDetail.price}}"
   orgPrice="{{prdDetail.orgPrice}}"
   numbers="{{prdDetail.numbers}}"
+  prdId="{{prdDetail.prdId}}"
   prdName="{{prdDetail.prdName}}"
   prdDesc="{{prdDetail.prdDesc}}">
 </my-poster>

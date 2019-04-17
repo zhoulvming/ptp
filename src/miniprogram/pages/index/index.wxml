@@ -2,19 +2,10 @@
 
   <navigator url="../pt-index/index?brand={{brand}}&channelId={{channelId}}">拼团首页</navigator>
 
-<!--
-  <button wx:if="{{!hasUserInfo && canIUse && getUserInfoFail}}" 
-    open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  <block wx:if="{{hasUserInfo}}">
-    <image src="{{userInfo.avatarUrl}}" background-size="cover" style="width:300rpx;height:300rpx;"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </block>    
-  <button bindtap="pay">
-    支付测试
-  </button>
-  <button open-type="openSetting">打开授权设置页</button>
-  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
-    获取用户信息
-  </button>    
--->
+</view>
+
+
+<view style="margin-top: 100rpx;">
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+  <button bindtap="getOpenid">获取OPENID</button>
 </view>

@@ -28,6 +28,41 @@ const gotoPageFromPlugin = (data) => {
   // wx.navigateTo({url: url,});
 };
 
+const getOpenid = ()=> {
+  var gd = app.globalData
+  var userinfo = gd.userinfo;
+  if (userinfo && userinfo.openid) {
+    console.log('has got openid from storage')
+    return userinfo.openid
+  }
+  wx.login({
+    success: function (res) {
+      var code = res.code
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid',
+        data: {
+          code: code,
+          appid: gd.appid,
+          secret: gd.secret
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log(res)
+          var openid = res.data.openid
+          userinfo['openid'] = openid
+          gd.userinfo = userinfo
+          console.log('--- server returned openid: ' + openid)
+          return openid
+        },
+        fail: function (err) {
+          console.log(err)
+        }
+      })
+    }
+  })
+}
+
 module.exports = {
-  gotoPageFromPlugin
-};
+  gotoPageFromPlugin,
+  getOpenid
+}

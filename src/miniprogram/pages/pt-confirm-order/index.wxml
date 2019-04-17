@@ -1,1 +1,1 @@
-<pt-confirm-order bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userInfo}}"/>
+<pt-confirm-order bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userinfo}}"/>

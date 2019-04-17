@@ -14,6 +14,15 @@ Component({
           this.loadPage();
         }
       }
+    },
+    userinfo: {
+      type: Object,
+      value: {},
+      observer: function(newVal) {
+        if (newVal) {
+          this.setData({ userinfo: newVal });
+        }
+      }
     }
   },
 
@@ -25,7 +34,9 @@ Component({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    inputData: null
+    inputData: null,
+    showModalDlg1: false,
+    ModalDlgMsg: ''
   }, 
 
   attached() {
@@ -72,9 +83,35 @@ Component({
       });
     },
     gotoNext(event) {
-      var target = event.currentTarget.dataset.target;
-      var prdId = event.currentTarget.dataset.prdid;
-      this.triggerEvent('callback', {target: target, options: {prdId: prdId}});
+      var that = this
+
+      var prdId = event.currentTarget.dataset.prdid
+      var openid = that.data.userinfo.openid
+      wx.request({
+        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/prdvalid',
+        data: {openid: openid, prdId: prdId},
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        success(res) {
+          console.log(res)
+          let ordFlg = res.data.ordFlg
+          let leftCountFlg = res.data.leftCountFlg
+          if (ordFlg == 0) {
+            // 订单进项中
+            that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
+          } else if(leftCountFlg == 0) {
+            // 无库存
+            that.setData({showModalDlg: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
+          } else {
+            var target = event.currentTarget.dataset.target
+            that.triggerEvent('callback', {target: target, options: {prdId: prdId}})
+          }
+        }
+      })
+
+      // var target = event.currentTarget.dataset.target;
+      // var prdId = event.currentTarget.dataset.prdid;
+      // that.triggerEvent('callback', {target: target, options: {prdId: prdId}});      
     },
 
     //tab切换
@@ -97,6 +134,12 @@ Component({
     //滑动事件
     tabSwiper: function (event) {
       this.setData({ currentTab: event.detail.current });
+    },
+
+    hideModalDlg: function() {
+      this.setData({
+        showModalDlg: false
+      });
     }
         
   }

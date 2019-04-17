@@ -14,6 +14,10 @@ Component({
       type: String,
       value: ''
     },
+    prdId: { // Id
+      type: String,
+      value: ''
+    },
     prdName: { // 名称
       type: String,
       value: ''
@@ -37,9 +41,6 @@ Component({
     imgHeight: 600,
     captchaImage: null,
     imageShowFlag: 'none'
-  },
-
-  ready: function() {
   },
 
   /**
@@ -309,81 +310,25 @@ Component({
         }
       });
     },
-
-
-    getCodeImageOld() {
-      var that = this;
-      wx.request({
-        url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + config.appid + '&secret=' + config.secret,
-        header: { 'content-type': 'application/json' },
-        method: 'GET',
-        success(res) {
-          wx.request({
-            url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + res.data.access_token,
-            method: 'POST',
-            header: { 'content-type': 'application/json;charset=utf-8' },
-            responseType: 'arraybuffer',
-            data: {
-              page: 'pages/index/index',
-              scene: 'prdId=124'
-            },
-            success(res) {
-              console.log(res.data);
-              if (res.statusCode == 200) {
-                var base64 = wx.arrayBufferToBase64(res.data);
-                that.setData ({
-                  captchaImage: 'data:image/PNG;base64,' + base64
-                });
-              }
-            }
-          });
-        }
-      });
-    },
  
     // 小程序码
     getCodeImage() {
       var that = this;
       wx.request({
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
-        header: { 'content-type': 'application/json' },
+        header: { 'content-type': 'application/json;charset=utf-8' },
         method: 'POST',
+        responseType: 'arraybuffer',
         data: {
           appid: config.appid,
           secret: config.secret,
-          prdId: '1234'
+          prdId: that.data.prdId
         },
         success(res) {
-          // wx.request({
-          //   url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + res.data.access_token,
-          //   method: 'POST',
-          //   header: { 'content-type': 'application/json;charset=utf-8' },
-          //   responseType: 'arraybuffer',
-          //   data: {
-          //     page: 'pages/index/index',
-          //     scene: 'prdId=124'
-          //   },
-          //   success(res) {
-          //     console.log(res.data);
-          //     if (res.statusCode == 200) {
-          //       var base64 = wx.arrayBufferToBase64(res.data);
-          //       that.setData ({
-          //         captchaImage: 'data:image/PNG;base64,' + base64
-          //       });
-          //     }
-          //   }
-          // });
-
-          console.log(res);
           var base64 = wx.arrayBufferToBase64(res.data);
-          console.log(base64);
           that.setData ({
-            captchaImage: 'data:image/PNG;base64,' + res.data
+            captchaImage: 'data:image/PNG;base64,' + base64
           });
-
-      
-
-
         }
       });
     }
