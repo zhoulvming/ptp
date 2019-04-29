@@ -21,14 +21,10 @@
     </view>
   </view>
 </view>
-
-
-
 <view class="wrapper display-col" style="position:absolute; bottom:200rpx;">
   <text class="fs-title">友情提醒</text>
   <text class="fs-content">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
 </view>
-
 <view class="footer">
   <view class="action">
     <view class="info">
@@ -37,9 +33,10 @@
         <text class="pref">{{buywayPrice}}</text>
       </view>
     </view>
-    <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
-      <text>选好了</text>
-    </view>
+    <block wx:if="{{!nextBtnDisabled}}">
+      <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
+        <text>选好了</text>
+      </view>
+    </block>
   </view>
 </view>
-

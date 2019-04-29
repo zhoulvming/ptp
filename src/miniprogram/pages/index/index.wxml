@@ -5,7 +5,17 @@
 </view>
 
 
-<view style="margin-top: 100rpx;">
+<view style="margin-top: 40rpx;margin-bottom:50rpx;">
   <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
-  <button bindtap="getOpenid">获取OPENID</button>
+</view>
+
+<view style="margin-top: 40rpx;margin-bottom:50rpx;">
+  <button bindtap="login">模拟登录</button>
+</view>
+
+
+
+<view class="ordlist" wx:for="{{ords}}" wx:for-item="item">
+  <text>{{item.prdName}}</text>
+  <button class="btn mini" bindtap="gotoOrderDetail" data-ordno="{{item.ordNo}}">拼团详情</button>
 </view>

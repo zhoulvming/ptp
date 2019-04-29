@@ -1,26 +1,26 @@
 const utils = {
   formatPrice(data) {
-    var strData = data + '';
-    var pref = '00';
-    var suff = '00';
-    var index = strData.indexOf('.');
+    var strData = data + ''
+    var pref = '00'
+    var suff = '00'
+    var index = strData.indexOf('.')
     if (index > 0) {
-      pref = strData.substring(0, index);
-      suff = strData.substring(index+1);
+      pref = strData.substring(0, index)
+      suff = strData.substring(index+1)
     } else {
-      pref = strData;
-      suff = '00';
+      pref = strData
+      suff = '00'
     }
 
-    return {pref: pref, suff: suff};
+    return {pref: pref, suff: suff}
   },
 
   // 格式化商品列表信息
   formatProductListData(datas) {
-    var that = this;
-    var rts = [];
+    var that = this
+    var rts = []
     datas.forEach(function(data){     
-      var price = that.formatPrice(data.price); 
+      var price = that.formatPrice(data.price)
       rts.push({
         prdId: data.prdId,
         prdName: data.proName,
@@ -34,27 +34,34 @@ const utils = {
         image: data.image,
         orgPrdId: data.orgPrdId,
         groupBuyPrdId: data.groupBuyPrdId
-      });
-    });
+      })
+    })
   
-    return rts;    
+    return rts
   },
 
   // 格式化商品信息
   formatProductData(data) {
-    var leftTime = data.leftTime;
-    var timeTemp = leftTime.split(':');
-    var leftTime_d = timeTemp[0];
-    var leftTime_h = timeTemp[1];
-    var leftTime_m = timeTemp[2];
-    var leftTime_s = timeTemp[3];
+    var leftTime = data.leftTime
+    var timeTemp = leftTime.split(':')
+    var leftTime_d = timeTemp[0]
+    var leftTime_h = timeTemp[1]
+    var leftTime_m = timeTemp[2]
+    var leftTime_s = timeTemp[3]
 
-    var price = this.formatPrice(data.price);
-
+    var price = this.formatPrice(data.price)
+    var prdDesc = data.activityDesc
+    if (!prdDesc || prdDesc == 'null') {
+      prdDesc = ''
+    }
+    var detailContent = data.detailContent
+    if (!detailContent || detailContent == 'null') {
+      detailContent = ''
+    }
     return {
       prdId: data.prdId,
       prdName: data.prdName,
-      prdDesc: data.activityDesc,
+      prdDesc: prdDesc,
       catgryName: data.categoryName,
       numbers: data.numbers,
       salesCount: data.salesCount,
@@ -63,7 +70,7 @@ const utils = {
       price_pref: price.pref,
       price_suff: price.suff,
       orgPrice: data.orgPrice,
-      detailContent: data.detailContent,
+      detailContent: detailContent,
       question: data.question,
       leftTime_d: leftTime_d,
       leftTime_h: leftTime_h,
@@ -75,20 +82,20 @@ const utils = {
       validDays: data.validDays,
       orgProdId: data.orgProdId,
       groupBuyProId: data.groupBuyProId
-    };
+    }
   },
 
   // 格式化拼团列表信息
   formatGroupListData(datas) {
-    var rts = [];
+    var rts = []
     datas.forEach(function(data){
-      var validatedTime = data.validatedTime;
+      var validatedTime = data.validatedTime
 
-      var timeTemp = validatedTime.split(':');
-      var validatedTime_d = timeTemp[0];
-      var validatedTime_h = timeTemp[1];
-      var validatedTime_m = timeTemp[2];
-      var validatedTime_s = timeTemp[3];
+      var timeTemp = validatedTime.split(':')
+      var validatedTime_d = timeTemp[0]
+      var validatedTime_h = timeTemp[1]
+      var validatedTime_m = timeTemp[2]
+      var validatedTime_s = timeTemp[3]
       
       rts.push({
         prdId: data.prdId,
@@ -101,23 +108,23 @@ const utils = {
         validatedTime_m: validatedTime_m,
         validatedTime_s: validatedTime_s,
         nickname: data.nickName,
-        atavaUrl: data.atavaUrl
-      });
-    });
+        avatarUrl: data.avatarUrl
+      })
+    })
   
-    return rts;
+    return rts
   },
 
   // 格式化拼团详细信息
   formatGroupDetailData(data) {
 
-    var leftTime = data.leftTime;
-    var timeTmep = leftTime.split(':');
-    var leftTime_d = timeTmep[0];
-    var leftTime_h = timeTmep[1];
-    var leftTime_m = timeTmep[2];
-    var leftTime_s = timeTmep[3];
-    var price = this.formatPrice(data.price);
+    var leftTime = data.leftTime
+    var timeTmep = leftTime.split(':')
+    var leftTime_d = timeTmep[0]
+    var leftTime_h = timeTmep[1]
+    var leftTime_m = timeTmep[2]
+    var leftTime_s = timeTmep[3]
+    var price = this.formatPrice(data.price)
     return {
       grpId: data.grpId,
       number: data.number,
@@ -139,9 +146,48 @@ const utils = {
       orgPrice: data.orgPrice,
       leftCount: data.leftCount,
       limitNum: data.limitNum
-    };
+    }
   },
 
-};
+  // log定制函数
+  log(msg, obj) {
+    console.log('=== ' + msg + ':')
+    if (obj) {
+      console.log(obj)
+    } else {
+      console.log('no data')
+    }
+  },
+  logErr(err) {
+    console.log('=== ' + err + ':')
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('no data')
+    }
+  },
 
-module.exports = utils;
+  // request
+  requestPost(url, data, cb) {
+    utils.log('请求参数', data) 
+    wx.request({
+      url: url,
+      data: data,
+      header: { 'content-type': 'application/json' },
+      method: 'POST',
+      success(res) {
+        if (res.statusCode != 200) {
+          utils.log('后台API返回数据失败') 
+        } else {
+          var d = res.data
+          utils.log(url + ' 返回数据', res.data)
+          if (cb) {
+            cb(d)
+          }
+        }
+      }
+    })
+  }
+}
+
+module.exports = utils

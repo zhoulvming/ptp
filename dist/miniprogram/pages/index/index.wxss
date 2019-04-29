@@ -9,3 +9,20 @@
   background-color: rosybrown;
   margin-top: 20rpx;
 }
+.ordlist {
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  position: relative;
+  border-top: 1rpx solid #ccc;
+}
+.ordlist text {
+  position: absolute;
+  left: 30rpx;
+  top: 25rpx;
+}
+.ordlist button {
+  top: 10rpx;
+  position: absolute;
+  right: 20rpx;
+}

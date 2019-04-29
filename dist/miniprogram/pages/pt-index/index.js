@@ -9,7 +9,6 @@ Page({
       var optionsNew = wx.getStorageSync('DATA_FROM_PLUGIN')
       this.setData({options: optionsNew})
     }
-
     var userinfo = app.globalData.userinfo
     this.setData({userinfo: userinfo})
   },

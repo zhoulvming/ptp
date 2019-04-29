@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-// const config = require('../../lib/config.js');
-var utils = require('../../utils/util.js');
-var timer = require('../../utils/wxTimer.js');
-var wxTimer = null;
+// const config = require('../../lib/config.js')
+var utils = require('../../utils/util.js')
+var timer = require('../../utils/wxTimer.js')
+var wxTimer = null
 
 Component({
   properties: {
@@ -11,13 +11,13 @@ Component({
       value: {},
       observer: function (newVal) {
         if (newVal) {          
-          var jsonVal = newVal;
-          this.setData({ grpId: jsonVal.grpId });
-          this.setData({ grp_status: jsonVal.grp_status });
+          var jsonVal = newVal
+          this.setData({ grpId: jsonVal.grpId })
+          this.setData({ grp_status: jsonVal.grp_status })
           if (jsonVal.buyCount) {
-            this.setData({ buyCount: jsonVal.buyCount});
+            this.setData({ buyCount: jsonVal.buyCount})
           }
-          this.loadPage();
+          this.loadPage()
         }
       }
     }    
@@ -35,25 +35,16 @@ Component({
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 5,//输入框值出现异常默认设置值
-    maskHidden: false,
-    cardInfo: {
-      avater: 'http://t2.hddhhn.com/uploads/tu/201806/9999/91480c0c87.jpg', //需要https图片路径
-      qrCode: 'http://i4.hexun.com/2018-07-05/193365388.jpg', //需要https图片路径
-      TagText: '小姐姐', //标签
-      Name: '小姐姐', //姓名
-      Position: '程序员鼓励师', //职位
-      Mobile: '13888888888', //手机
-      Company: '才华无限有限公司', //公司
-    }
+    maskHidden: false
   },
 
   detached() {
-    wxTimer.stop();
+    wxTimer.stop()
   },
 
   methods: {
     loadPage() {
-      var that = this;
+      var that = this
       // 根据 grpId 获取拼团详细信息
       wx.request({
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/groupdetail',
@@ -61,22 +52,21 @@ Component({
         header: { 'content-type': 'application/json' },
         method: 'POST',
         success(res) {
-          var detail = utils.formatGroupDetailData(res.data);
-          that.setData({grpDetail: detail});
+          var detail = utils.formatGroupDetailData(res.data)
+          that.setData({grpDetail: detail})
           // 计数器
-          var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s;
+          var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s
           wxTimer = new timer({
             beginTime: timeStr
-          });
-          wxTimer.start(that);             
+          })
+          wxTimer.start(that)
         }
-      });
+      })
     },
     gotoNext(event) {
-      var that = this;
-      var target = event.currentTarget.dataset.target;
-      var prdId = event.currentTarget.dataset.prdid;
-      console.log(that.data.buywayPrice);
+      var that = this
+      var target = event.currentTarget.dataset.target
+      var prdId = event.currentTarget.dataset.prdid
       that.triggerEvent('callback', {
         target: target,
         options: {
@@ -86,29 +76,29 @@ Component({
           buyway: that.data.buyway,
           buywayPrice: that.data.buywayPrice
         }
-      });
+      })
     },
     gotoHomePage(event) {
-      var value = event.currentTarget.dataset.target;
+      var value = event.currentTarget.dataset.target
       this.triggerEvent('callback', {
         target: value,
         options: {
           brand: wx.getStorageSync('brand'),
           channelId: wx.getStorageSync('channelId')
         }
-      });
+      })
     },
     showModal: function (e) {
-      var buyway = e.currentTarget.dataset.buyway;
-      var detail = this.data.grpDetail;
+      var buyway = e.currentTarget.dataset.buyway
+      var detail = this.data.grpDetail
       this.setData({
         showModal: true
-      });
+      })
 
       this.setData({
         buyway: buyway,
         buywayPrice: detail.price
-      });
+      })
     },
     hideModalDlg: function() {
       this.setData({
@@ -182,11 +172,9 @@ Component({
       that.setData({ buywayPrice: price * cval });
     },
 
-
     // 生成海报
-    getSharePoster() {
-      this.selectComponent('#poster').getAvaterInfo();
-    },
-
+    makeSharePoster() {
+      this.selectComponent('#poster').makeSharePoster()
+    }
   }
-});
+})

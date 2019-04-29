@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: row;
   image {
-    height: 250rpx;
+    height: 220rpx;
     width: 33%;
   }
   .content {
@@ -47,37 +47,39 @@
     display: flex;
     flex-direction: column;
     padding-top: 15rpx;
+    padding-left: 15rpx;
     position: relative;
     .title {
       font-size: @fs-2;
       font-weight: @fw-2;
     }
     .desc {
-      font-size: @fs-3;
+      font-size: @fs-4;
       color: grey;
     }
     .price {
-      margin-top: 40rpx;
+      position: absolute;
+      bottom: 5rpx;
       display: flex;
       flex-direction: row;
+      width: 100%;
       .type {
-        font-size: @fs-3;
-        margin-top: 9rpx;
+        font-size: 25rpx;
+        margin-top: 15rpx;
       }
       .pref {
-        font-size: @fs-0;
-        font-weight: @fw-2;
-        margin-top: -2rpx;
+        font-size: 40rpx;
+        font-weight: 700;
       }
       .suff {
-        font-size: @fs-3;
-        margin-top: 11rpx;
+        font-size: 25rpx;
+        margin-top: 10rpx;
       }
       .count {
         font-size: @fs-3;
-        width: 60%;
         text-align: right;
         margin-top: 10rpx;
+        width: 85%;
       }
     }
   }
@@ -89,7 +91,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    padding: 10rpx 20rpx;
+    padding: 10rpx;
     border-bottom: 1rpx solid #ddd;
     .price {
       position: absolute;
@@ -115,13 +117,15 @@
       }
     }
   }
-  
+  button {
+    top: 10rpx;
+  }
 }
 
 
 .order-info {
   display: flex;
   flex-direction: column;
-  color: #ddd;
+  color: #aaa;
   font-size: @fs-3;
 }

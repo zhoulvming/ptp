@@ -1,70 +1,44 @@
-const ptCommon = require('../pt.common.js');
-const app = getApp();
+const ptCommon = require('../pt.common.js')
+const app = getApp()
 Page({
   data: {},
-  onLoad(options) {
-    var userinfo = wx.getStorageSync('userinfo');
-    this.setData({ userinfo: userinfo });
-    this.setData({options: options});    
+  onLoad() {
+    var userinfo = wx.getStorageSync('userinfo')
+    this.setData({ userinfo: userinfo })
+
+    var options = wx.getStorageSync('DATA_FROM_PLUGIN')
+    this.setData({options: options})
   },
   gotoPageFromPlugin(data) {
-    ptCommon.gotoPageFromPlugin(data);
+    ptCommon.gotoPageFromPlugin(data)
   },
   login() {
-    var that = this;
-    wx.login({
-      success: function (res) {
-        var code = res.code
-        var d = app.globalData
-        // var l = 'https://api.weixin.qq.com/sns/jscode2session?appid='
-        //   + d.appid + '&secret=' + d.secret + '&js_code=' + code + '&grant_type=authorization_code'
-        var l = 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid'
-        wx.request({
-          url: l,
-          data: {
-            code: code,
-            appid: d.appid,
-            secret: d.secret
-          },
-          method: 'POST',
-          success: function (res) {
-            console.log(res)
-            var openid = res.data.openid
-            console.log('--- return openid: ' + openid)
-            var userinfo = wx.getStorageSync('userinfo')
-            if (userinfo) {
-              userinfo['openid'] = openid
-              userinfo['userCode'] = '1000' // 此处需要小程序用户的登录信息
-              userinfo['mobileNo'] = '123456789'// 此处需要小程序用户的登录信息
-              console.log(userinfo);
-              wx.setStorageSync('userinfo', userinfo );
-              wx.setStorageSync('options', that.data.options );
-              wx.navigateTo({
-                url: '../pt-confirm-order/index'
-              });
-            } else {
-              console.log('请先利用微信授权获得用户信息');
-            }
-          },
-          fail: function (err) {
-            console.log(err);
-          }
-        });
-      }
-    });
+    // 此处调用小程序登录逻辑设置 mobileNo 和 userCode
+    var that = this
+    var userinfo = app.globalData.userinfo
+    userinfo['userCode'] = '1000' // 此处需要小程序用户的登录信息
+    userinfo['mobileNo'] = '123456789'// 此处需要小程序用户的登录信息
+    wx.setStorageSync('userinfo', userinfo )
+    wx.setStorageSync('options', that.data.options )
+    ptCommon.log('模拟登陆后的用户信息', userinfo)
+    wx.navigateTo({
+      url: '../pt-confirm-order/index'
+    })
   },
   onGotUserInfo() {
-    console.log('onGotUserInfo');
+    var gd = app.globalData
+    var userinfo = gd.userinfo
     wx.getUserInfo({
       success: res => {
-        console.log('-----wx.getUserInfo success');
-        console.log(res.userInfo);
-        wx.setStorageSync('userinfo', res.userInfo );
+        userinfo['nickName'] = res.userInfo.nickName
+        userinfo['avatarUrl'] = res.userInfo.avatarUrl
+        gd.userinfo = userinfo
+        wx.setStorageSync('userinfo', userinfo)
+        ptCommon.log('获取用户信息后的数据', userinfo)
       },
       fail: res => {
-        console.log('-----wx.getUserInfo fail');
-        console.log(res);
+        console.log(res)
       }
-    });
+    })
   }
-});
+})

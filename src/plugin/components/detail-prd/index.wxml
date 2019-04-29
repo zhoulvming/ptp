@@ -47,7 +47,7 @@
   <view class="group-list">
     <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
     <view wx:for="{{grps}}" wx:for-item="item" class="item">
-      <image class="user-head" src="{{item.atavaUrl}}"></image>
+      <image class="user-head" src="{{item.avatarUrl}}"></image>
       <view class="content">
         <view><text class="user-name">{{item.nickname}}</text></view>
         <view class="group-info">
@@ -59,7 +59,6 @@
           <text class="time-info">剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒</text>
         </view>
       </view>        
-      <!-- <button class="btn-primary-normal" bindtap="showModal" data-buyway="1">去凑团</button> -->
       <button class="btn mini" bindtap="gotoGrpDetail" data-target="detail-grp" data-grpid="{{item.grpId}}">去凑团</button>
     </view>
     <view class="lookmore" style="display:{{haveShowAllGroups}}">

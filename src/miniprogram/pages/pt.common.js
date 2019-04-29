@@ -1,13 +1,11 @@
-const app = getApp();
+const app = getApp()
 
+// 该页面跳转函数由插件触发
 const gotoPageFromPlugin = (data) => {
-  console.log('gotoPageFromPlugin -- start')
-  console.log(data)
-  console.log('gotoPageFromPlugin -- end')
   var options = data.detail.options
   var target = data.detail.target
   var url = null
-  var jsonObj = app.globalData.callbackUrl
+  var jsonObj = app.globalData.pt_page_route
   for(var item in jsonObj) {
     if(item == target){
       url = jsonObj[item]
@@ -15,24 +13,17 @@ const gotoPageFromPlugin = (data) => {
   }
   if (url) {
     wx.setStorageSync('DATA_FROM_PLUGIN', options)
-    wx.navigateTo({url: url,})
+    wx.navigateTo({url: url})
   } else {
-    console.log('未配置页面callbackUrl')
+    console.log('未配置拼团插件的页面路由')
   }
+}
 
-  // //拼接插件传递给小程序页面的参数（如果有的话）
-  // if (options) {
-  //   wx.setStorageSync('DATA_FROM_PLUGIN', options); // 此处通过放在微信本地缓存来传递给下一个页面数据，因为如果用？接参数传递的话会超长
-  //   url = url + '?options=' + JSON.stringify(options);
-  // }
-  // wx.navigateTo({url: url,});
-};
-
-const getOpenid = ()=> {
+// 获取微信用户的openid
+const getOpenid = (cb) => {
   var gd = app.globalData
-  var userinfo = gd.userinfo;
+  var userinfo = gd.userinfo
   if (userinfo && userinfo.openid) {
-    console.log('has got openid from storage')
     return userinfo.openid
   }
   wx.login({
@@ -47,12 +38,12 @@ const getOpenid = ()=> {
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
           var openid = res.data.openid
           userinfo['openid'] = openid
           gd.userinfo = userinfo
-          console.log('--- server returned openid: ' + openid)
-          return openid
+          if (userinfo.mobileNo) {
+            cb()
+          }
         },
         fail: function (err) {
           console.log(err)
@@ -62,7 +53,28 @@ const getOpenid = ()=> {
   })
 }
 
+// log定制函数
+const log = function(msg, obj) {
+  console.log('------- ' + msg + ':')
+  if (obj) {
+    console.log(obj)
+  } else {
+    console.log('no data')
+  }
+}
+
+const logErr= function(err) {
+  console.log('------- ' + err + ':')
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('no data')
+  }
+}
+
 module.exports = {
   gotoPageFromPlugin,
-  getOpenid
+  getOpenid,
+  log,
+  logErr
 }

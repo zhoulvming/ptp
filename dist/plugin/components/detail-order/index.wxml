@@ -7,7 +7,7 @@
   </view>
   <view class="wrapper">
     <view class="panel detail">
-      <image src="../../images/pt002-detail.jpg"/>
+      <image src="{{orderDetail.prdImage}}"/>
       <view class="content">
         <text class="title">{{orderDetail.prdName}}</text>
         <text class="desc">{{orderDetail.numbers}} 人团，自购买日后 {{orderDetail.validDays}} 天内有效</text>
@@ -28,14 +28,14 @@
           <text class="pref">{{totalPrice}}</text>
         </view>  
       </view>
-      <button class="btn link underline" bindtap="gotoPage">查看拼团详情</button>
+      <button class="btn link underline" bindtap="gotoGrpPage">查看拼团详情</button>
     </view>
   </view>
   <view class="wrapper">
     <view class="panel order-info">
       <text class="title">订单号：{{orderDetail.orderNo}}</text>
-      <text class="content">创建时间：2018年10月23日 21:21:21</text>
-      <text class="content">支付时间：2018年10月23日 21:21:21</text>
+      <text class="content">创建时间：{{orderDetail.orderTime==null?'':orderDetail.orderTime}}</text>
+      <text class="content">支付时间：{{orderDetail.payTime==null?'':orderDetail.payTime}}</text>
     </view>
   </view>
 </view>

@@ -1,7 +1,7 @@
-const config = require('../../lib/config.js');
-var utils = require('../../utils/util.js');
-var timer = require('../../utils/wxTimer.js');
-var wxTimer = null;
+const config = require('../../lib/config.js')
+var utils = require('../../utils/util.js')
+var timer = require('../../utils/wxTimer.js')
+var wxTimer = null
 
 Component({
   properties: {
@@ -9,6 +9,8 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
+        console.log('--- plugin-- userinfo: ')
+        console.log(newVal)
         if (newVal) {
           this.setData({ userinfo: newVal });
         }
@@ -36,6 +38,7 @@ Component({
   },
 
   data: {
+    nextBtnDisabled: false,
     prdId: null,
     grpId: null,
     orderNum: null,
@@ -48,32 +51,31 @@ Component({
   attached() {
   },
   detached() {
-    wxTimer.stop();
+    wxTimer.stop()
   },
 
   methods: {
-
     // '选好了' 按钮对应事件处理
     gotoNext() {
-      var that = this;
-
-      // 用户是否登录小程序系统check
-      var userinfo = that.data.userinfo;
-
+      var that = this
+      var userinfo = that.data.userinfo
+      that.setData({nextBtnDisabled: true})
       if (userinfo && userinfo.userCode) {
-        console.log('用户已登录:');
-        console.log(userinfo);
+        console.log('用户已登录----:')
+        console.log(userinfo)
 
-        // 调用下单接口
-        var isMaster = 1;
+        // 没有grpId的场合，就不是团长，是凑团
+        var isMaster = 1
         if (that.data.grpId) {
-          isMaster = 0;
+          isMaster = 0
         }
 
         var activityId = that.data.prd.groupBuyProId;
         if (that.data.buyway == config.buyway_single) {
           activityId = that.data.prd.orgProdId;
         }
+
+        // 下单参数
         var data = {
           mobileNo: userinfo.mobileNo,
           brand: wx.getStorageSync('brand'),
@@ -84,119 +86,121 @@ Component({
           prdId: that.data.prd.prdId,
           grpId: that.data.grpId,
           nickName: userinfo.nickName,
-          atavaUrl: userinfo.avatarUrl,
+          avatarUrl: userinfo.avatarUrl,
           isMaster: isMaster,
           activityId: activityId,
           buyway: that.data.buyway,
           channelId: wx.getStorageSync('channelId')
-        };
+        }
 
+        console.log('下单数据-------: ')
+        console.log(data)
 
-        console.log('下单数据: ');
-        console.log(data);
-        wx.request({
-          url: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation',
-          header: { 'content-type': 'application/json' },
-          method: 'POST',
-          data: data,
-          success(res) {
-            if (res.statusCode == 200) {
-              console.log('下单成功1:');
-              // 下单成功后跳转到小程序的支付模块，在小程序的支付页面中支付成功后直接跳转到插件的订单详情页面
-              var price = that.data.buywayPrice * that.data.orderNum;
-              var grpId = res.data.grpId;
-              var orderNo = res.data.orderNo;
-              var callbackUrl = 'detail-grp'; // 默认开团情况下支付成功后跳转到拼团详情页面
-              if (data.grpId || data.buyway == config.buyway_single) {
-                // 凑团支付后跳转到订单详情页面
-                callbackUrl = 'detail-order';
-              }
-
-              console.log('下单成功2:');
-  
-              // 从支付网关获取支付URL
-              var openId = userinfo.openid;
-              var dataPayment = {
-                openId: openId,
-                orderNo: orderNo,
-                channelId: wx.getStorageSync('channelId'),
-                returnUrl: ''
-              };
-
-              console.log('下单成功3:');
-              console.log(dataPayment);
-
-              wx.request({
-                url: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
-                header: { 'content-type': 'application/json' },
-                method: 'POST',
-                data: dataPayment,
-                success(res) {
-                  if (res.statusCode == 200 && res.data.payUrl) {
-                    // 跳转到小程序支付模块进行支付
-                    var payUrl = JSON.parse(res.data.payUrl);
-                    that.triggerEvent('callback', {
-                      target: 'pay',
-                      options: {
-                        price: price,
-                        orderNo: orderNo,
-                        grp_status: config.grp_status_create,
-                        grpId: grpId,
-                        targetCallbakUrl: callbackUrl,
-                        buyCount: that.data.orderNum,
-                        payInfo: {
-                          timeStamp: payUrl.timeStamp,
-                          nonceStr: payUrl.nonceStr,
-                          packageStr: payUrl.packageStr,
-                          sign: payUrl.sign
-                        }
-                      }
-                    });
-                  } else {
-                    console.log('获取支付URL失败: ' + res.data.error);
-                  }
-                },
-                fail: function({errMsg}) {
-                  console.log('获取支付URL失败');
-                  console.log(errMsg);
-                }
-              });
-
-              // // TODO: 测试用
-              // that.triggerEvent('callback', {
-              //   target: 'detail-order',
-              //   options: {
-              //     orderNo: orderNo,
-              //     grpId: grpId
-              //   }
-              // });
-
-              
-
-
-
-
-            } else {
-              console.log('下单失败: ' + res.data.error);
-            }
-          },
-          fail: function({errMsg}) {
-            console.log('下单失败');
-            console.log(errMsg);
-          }
-        });
+        // 正式下单
+        //that.createOrder(data, that.pay)
+        
       } else {
         console.log('用户未登录');
         this.triggerEvent('callback', {
           target: 'login',
           options: {
             prdId: that.data.prdId,
+            grpId: that.data.grpId,
             orderNum: that.data.orderNum,
             buyway: that.data.buyway,
             buywayPrice: that.data.buywayPrice
           }
-        });
+        })
       }
+
+      setTimeout(function(){
+        that.setData({nextBtnDisabled: false})
+      }, 1000)
+    },
+    createOrder(data, cb_pay) {
+      var that = this
+      var orderUrl = 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation'
+      wx.request({
+        url: orderUrl,
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        data: data,
+        success(res) {
+          if (res.statusCode == 200) {
+            console.log('下单成功')
+            //下单成功后继续调用支付接口
+            var price = that.data.buywayPrice * that.data.orderNum
+            var grpId = res.data.grpId
+            var callbackUrl = 'detail-grp'
+            if (data.grpId || data.buyway == config.buyway_single) {
+              // 凑团支付后跳转到订单详情页面
+              callbackUrl = 'detail-order'
+            }            
+            var dataPayment = {
+              openId: that.data.userinfo.openid,
+              orderNo: res.data.orderNo,
+              channelId: wx.getStorageSync('channelId'),
+              returnUrl: ''
+            }
+            var callbackData = {
+              orderNo: res.data.orderNo,
+              price: price,
+              grpId: grpId,
+              callbackUrl: callbackUrl
+            }
+
+            console.log('支付参数&回调数据')
+            console.log(dataPayment)
+            console.log(callbackData)
+
+            // 调用支付
+            cb_pay(dataPayment, callbackData)
+          } else {
+            console.log('下单失败: ' + res.data.error)
+          }
+        },
+        fail: function({errMsg}) {
+          console.log('下单失败：' + errMsg)
+        }
+      })
+    },
+    pay(dataPayment, callbackData) {
+      var that = this
+      var apiUrl = 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl'
+      wx.request({
+        url: apiUrl,
+        header: { 'content-type': 'application/json' },
+        method: 'POST',
+        data: dataPayment,
+        success(res) {
+          if (res.statusCode == 200 && res.data.payUrl) {
+            // 跳转到小程序支付模块进行支付
+            var payUrl = JSON.parse(res.data.payUrl);
+            that.triggerEvent('callback', {
+              target: 'pay',
+              options: {
+                price: callbackData.price,
+                orderNo: callbackData.orderNo,
+                grp_status: config.grp_status_create,
+                grpId: callbackData.grpId,
+                targetCallbakUrl: callbackData.callbackUrl,
+                buyCount: that.data.orderNum,
+                payInfo: {
+                  timeStamp: payUrl.timeStamp,
+                  nonceStr: payUrl.nonceStr,
+                  packageStr: payUrl.packageStr,
+                  sign: payUrl.sign
+                }
+              }
+            })
+          } else {
+            console.log('获取支付URL失败: ' + res.data.error)
+          }
+        },
+        fail: function({errMsg}) {
+          console.log('获取支付URL失败: ' + errMsg)
+        }
+      })
     },
     loadPage() {
       var that = this;
@@ -286,4 +290,4 @@ Component({
       return payUrl;
     }
   }
-});
+})

@@ -325,6 +325,7 @@ Component({
           prdId: that.data.prdId
         },
         success(res) {
+          console.log(res)
           var base64 = wx.arrayBufferToBase64(res.data);
           that.setData ({
             captchaImage: 'data:image/PNG;base64,' + base64

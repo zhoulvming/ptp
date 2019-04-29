@@ -23,22 +23,17 @@ Component({
   data: {
     wxTimerList:[]
   },
-
-  attached() {
-
-  },
-
-  detached() {
-  },  
-
   methods: {
-    gotoPage() {
+    gotoGrpPage() {
       var detail = this.data.orderDetail
       this.triggerEvent('callback', {
         target: 'detail-grp',
-        grpId: detail.grpId,
-        prdId: detail.prdId
-      });
+        options: {
+          grpId: detail.grpId,
+          prdId: detail.prdId,
+          buyCount: detail.quantity
+        }
+      })
     },
     loadPage() {
       var that = this;

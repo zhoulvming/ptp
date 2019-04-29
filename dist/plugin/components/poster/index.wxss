@@ -22,6 +22,9 @@
 .mr-8 {
   margin-right: 8rpx;
 }
+.mr-40 {
+  margin-right: 40rpx;
+}
 .pd-left-20 {
   padding-left: 20rpx;
 }
