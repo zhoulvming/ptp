@@ -1,6 +1,7 @@
-// var utils = require('../../utils/util.js');
-var timer = require('../../utils/wxTimer.js');
-var wxTimer = null;
+var utils = require('../../utils/util.js')
+var timer = require('../../utils/wxTimer.js')
+var wxTimer = null
+const config = require('../../lib/config.js')
 
 Component({
   properties: {
@@ -8,7 +9,7 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        console.log('Observer data from app page(detail-order):--------');
+        console.log('Observer data from app page(detail-order):--------')
         console.log(newVal);
         if (newVal) {
           // var jsonVal = JSON.parse(newVal.options)
@@ -31,48 +32,43 @@ Component({
         options: {
           grpId: detail.grpId,
           prdId: detail.prdId,
-          buyCount: detail.quantity
+          orderNum: detail.quantity,
+          grpEnter: config.grpEnter.fromOrder
         }
       })
     },
     loadPage() {
       var that = this;
-      wx.request({
-        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/detail',
-        data: { orderNo: that.data.orderNo },
-        header: { 'content-type': 'application/json' },
-        method: 'POST',
-        success(res) {
-          var detail = res.data;
-          that.setData({orderDetail: detail})
-
-          var totalPrice = detail.quantity * detail.price
+      utils.requestPost(
+        config.restAPI.order_detail,
+        {orderNo: that.data.orderNo},
+        function(resData) {
+          that.setData({orderDetail: resData})
+          var totalPrice = resData.quantity * resData.price
           that.setData({totalPrice: totalPrice})
 
-          var status = detail.status
+          var status = resData.status
           if (status == 0) {
             that.setData({order_status_code: status})
             that.setData({order_status_text: '订单进行中'})
           }
 
-
-          var leftTime = detail.leftTime;
-          var timeTmep = leftTime.split(':');
-          var leftTime_d = timeTmep[0];
-          var leftTime_h = timeTmep[1];
-          var leftTime_m = timeTmep[2];
-          var leftTime_s = timeTmep[3];
+          var leftTime = resData.leftTime
+          var timeTmep = leftTime.split(':')
+          var leftTime_d = timeTmep[0]
+          var leftTime_h = timeTmep[1]
+          var leftTime_m = timeTmep[2]
+          var leftTime_s = timeTmep[3]
 
           // 计数器
           that.setData({left_days: leftTime_d})
-          let timeStr = leftTime_h + ':' + leftTime_m + ':' + leftTime_s;
+          let timeStr = leftTime_h + ':' + leftTime_m + ':' + leftTime_s
           wxTimer = new timer({
             beginTime: timeStr
-          });
-          wxTimer.start(that); 
-          
+          })
+          wxTimer.start(that)
         }
-      });
+      )
     }
   }
-});
+})

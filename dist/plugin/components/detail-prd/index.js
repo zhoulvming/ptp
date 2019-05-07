@@ -10,6 +10,7 @@ Component({
       value: {},
       observer: function (newVal) {
         if (newVal) {
+          utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
           this.setData({ userinfo: newVal })
         }
       }
@@ -18,7 +19,8 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        if (newVal) {          
+        if (newVal) {
+          utils.log('从小程序页面传递过来的参数(options)', newVal)
           this.setData({ prdId: newVal.prdId })
           this.loadPage()
         }
@@ -59,30 +61,30 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotoNext(event) {
+
+    // 发团场合
+    gotoNext() {
       var that = this
-      var target = event.currentTarget.dataset.target
-      var prdId = event.currentTarget.dataset.prdid
-      var options = {
-        prdId: prdId,
-        orderNum: that.data.num,
-        buyway: that.data.buyway,
-        buywayPrice: that.data.buywayPrice
-      }
-      this.triggerEvent('callback', {
-        target: target,
-        options: options
+      that.triggerEvent('callback', {
+        target: config.miniPage.confirm_order,
+        options:  {
+          prdId: that.data.prdDetail.prdId,
+          orderNum: that.data.num,
+          price: that.data.prdDetail.price,
+          grpEnter: config.grpEnter.create
+        }
       })
     },
 
+    // 凑团场合
     gotoGrpDetail(event) {
-      var target = event.currentTarget.dataset.target
-      var grpId = event.currentTarget.dataset.grpid
-      this.triggerEvent('callback', {
-        target: target,
+      var that = this
+      that.triggerEvent('callback', {
+        target: config.miniPage.detail_grp,
         options: {
-          grpId: grpId,
-          grp_status: config.grp_status_join
+          prdId: that.data.prdDetail.prdId,
+          grpId: event.currentTarget.dataset.grpid,
+          grpEnter: config.grpEnter.join
         }
       })     
     },

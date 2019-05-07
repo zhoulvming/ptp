@@ -8,7 +8,7 @@ Component({
       value: {},
       observer: function (newVal) {
         if (newVal) {
-          utils.log('从小程序页面传递过来的参数', newVal)
+          utils.log('从小程序页面传递过来的参数(options)', newVal)
           wx.setStorageSync('brand', newVal.brand )
           wx.setStorageSync('channelId', newVal.channelId )
           this.loadPage()
@@ -20,7 +20,7 @@ Component({
       value: {},
       observer: function(newVal) {
         if (newVal) {
-          utils.log('从小程序页面传递过来的用户信息', newVal)
+          utils.log('从小程序页面传递过来的用户信息(userinfo)', newVal)
           this.setData({ userinfo: newVal })
         }
       }
@@ -101,8 +101,7 @@ Component({
             that.setData({showModalDlg: false})
             that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
           } else {
-            var target = event.currentTarget.dataset.target
-            that.triggerEvent('callback', {target: target, options: {prdId: prdId}})
+            that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
           }          
         }
       )

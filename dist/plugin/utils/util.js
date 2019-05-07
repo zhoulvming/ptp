@@ -117,7 +117,6 @@ const utils = {
 
   // 格式化拼团详细信息
   formatGroupDetailData(data) {
-
     var leftTime = data.leftTime
     var timeTmep = leftTime.split(':')
     var leftTime_d = timeTmep[0]
@@ -145,7 +144,9 @@ const utils = {
       price_suff: price.suff,
       orgPrice: data.orgPrice,
       leftCount: data.leftCount,
-      limitNum: data.limitNum
+      limitNum: data.limitNum,
+      grpStatus: data.grpStatus,
+      orderNum: data.orderNum
     }
   },
 
@@ -177,7 +178,7 @@ const utils = {
       method: 'POST',
       success(res) {
         if (res.statusCode != 200) {
-          utils.log('后台API返回数据失败') 
+          utils.log('后台API返回数据失败', res.data) 
         } else {
           var d = res.data
           utils.log(url + ' 返回数据', res.data)
@@ -185,6 +186,9 @@ const utils = {
             cb(d)
           }
         }
+      },
+      fail(errMsg) {
+        utils.log('请求失败', errMsg)
       }
     })
   }

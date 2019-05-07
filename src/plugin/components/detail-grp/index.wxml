@@ -1,7 +1,12 @@
 <view class="pd-top-20 pd-bottom-20 align-center display-col">
   <view class="status">
+    <!--
     <image src="{{status_image_success}}" style="display:{{grp_status == 2?'block':'none'}}"></image>
     <image src="{{status_image_fail}}" style="display:{{grp_status == 999?'block':'none'}}"></image>
+    -->
+
+    {{status_text}}
+    
   </view>
 </view>
 <view class="wrapper">
@@ -19,8 +24,8 @@
         <view class="price-org">
           <text>￥{{grpDetail.orgPrice}}</text>
         </view>
-        <view class="buying-count" style="display:{{grp_status == 0?'block':'none'}}">
-          <text>x {{buyCount}}</text>
+        <view class="buying-count" style="display:{{btnStatus.joinBtn?'flex':'none'}}">
+          <text>x {{orderNum}}</text>
         </view>      
       </view>
     </view>
@@ -47,12 +52,15 @@
     <view class="left-count" wx:if="{{grp_status != 999}}">
       邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
     </view>
-    <view class="action mb-50" style="display:{{grp_status == 0?'flex':'none'}}">
+    <view class="action mb-50" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
       <button open-type='share'>邀请好友</button>
       <button bindtap="makeSharePoster">生成海报</button>
     </view>
-    <view class="action mb-30" style="display:{{grp_status == 1?'flex':'none'}}">
-      <button class="btn large-single" bindtap='showModal' data-buyway="1">我要参团</button>
+    <view class="action mb-30" style="display:{{btnStatus.joinBtn?'flex':'none'}}">
+      <button class="btn large-single" bindtap='showModal'>我要参团</button>
+    </view>
+    <view class="action mb-30" style="display:{{btnStatus.orderBtn?'flex':'none'}}">
+      <button class="btn large-single" bindtap='gotoOrder'>点击查看订单</button>
     </view>    
     <button class="btn link underline" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
   </view>
@@ -85,7 +93,7 @@
       </view>
     </view>
   </view>
-  <button bindtap="gotoNext" data-target="confirm-order" data-prdid="{{grpDetail.prdId}}">下一步</button>
+  <button bindtap="gotoNext">下一步</button>
 </view>
 
 

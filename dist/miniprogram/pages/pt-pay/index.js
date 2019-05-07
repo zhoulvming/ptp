@@ -43,15 +43,39 @@ Page({
                 options: {
                   price: that.data.input.price,
                   orderNo: that.data.input.orderNo,
-                  grp_status: that.data.input.grp_status,
+                  grpEnter: that.data.input.grpEnter,
                   grpId: that.data.input.grpId,
-                  buyCount: that.data.input.orderNum
+                  orderNum: that.data.input.orderNum
                 }
               }
             })
           }, 2000)
         }
         return
+      }
+    })
+  },
+
+  testPay: function() {
+    var that = this
+    ptCommon.log('支付参数', that.data.input.payInfo)
+
+    wx.showModal({
+      title: '提示',
+      content: '充值成功'
+    })
+
+    var target = that.data.input.targetCallbakUrl
+    ptCommon.gotoPageFromPlugin({
+      detail: {
+        target: target,
+        options: {
+          price: that.data.input.price,
+          orderNo: that.data.input.orderNo,
+          grpEnter: that.data.input.grpEnter,
+          grpId: that.data.input.grpId,
+          orderNum: that.data.input.orderNum
+        }
       }
     })
   }

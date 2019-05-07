@@ -9,10 +9,9 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        console.log('--- plugin-- userinfo: ')
-        console.log(newVal)
         if (newVal) {
-          this.setData({ userinfo: newVal });
+          utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
+          this.setData({ userinfo: newVal })
         }
       }
     },
@@ -20,18 +19,28 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
-        console.log('Observer data from app page(confirm-order):--------');
-        console.log(newVal);
-        if (newVal) { 
-          var jsonVal = newVal;
-          if (jsonVal.grpId) {
-            this.setData({ grpId: jsonVal.grpId });
-          }
-          this.setData({ prdId: jsonVal.prdId });
-          this.setData({ orderNum: jsonVal.orderNum });
-          this.setData({ buyway: jsonVal.buyway });
-          this.setData({ buywayPrice: jsonVal.buywayPrice });
-          this.loadPage();
+        if (newVal) {
+          utils.log('从小程序页面传递过来的参数(options)', newVal)
+
+          // var jsonVal = newVal
+          // if (jsonVal.grpId) {
+          //   this.setData({ grpId: jsonVal.grpId })
+          // }
+          // this.setData({ prdId: jsonVal.prdId })
+          // this.setData({ orderNum: jsonVal.orderNum })
+          // this.setData({ buyway: jsonVal.buyway })
+          // this.setData({ buywayPrice: jsonVal.buywayPrice })
+          // this.loadPage()
+
+          this.setData({inputData: {
+            grpEnter: newVal.grpEnter,
+            prdId: newVal.prdId,
+            orderNum: newVal.orderNum,
+            grpId: newVal.grpId,
+            price: newVal.price
+          }})
+          this.loadPage()
+
         }
       }         
     }
@@ -39,13 +48,9 @@ Component({
 
   data: {
     nextBtnDisabled: false,
-    prdId: null,
-    grpId: null,
-    orderNum: null,
     userinfo: null,
-    buyway: null,
-    buywayPrice: null,
-    wxTimerList:[]
+    wxTimerList:[],
+    inputData: null
   },
 
   attached() {
@@ -55,60 +60,51 @@ Component({
   },
 
   methods: {
+
     // '选好了' 按钮对应事件处理
     gotoNext() {
       var that = this
       var userinfo = that.data.userinfo
       that.setData({nextBtnDisabled: true})
       if (userinfo && userinfo.userCode) {
-        console.log('用户已登录----:')
-        console.log(userinfo)
+        utils.log('微信用户已经登录小程序系统')
 
-        // 没有grpId的场合，就不是团长，是凑团
-        var isMaster = 1
-        if (that.data.grpId) {
-          isMaster = 0
-        }
-
-        var activityId = that.data.prd.groupBuyProId;
-        if (that.data.buyway == config.buyway_single) {
-          activityId = that.data.prd.orgProdId;
-        }
-
-        // 下单参数
-        var data = {
-          mobileNo: userinfo.mobileNo,
-          brand: wx.getStorageSync('brand'),
-          catgryName: that.data.prd.catgryName,
-          userCd: userinfo.userCode,
-          quantity: that.data.orderNum,
-          openId: userinfo.openid,
-          prdId: that.data.prd.prdId,
-          grpId: that.data.grpId,
-          nickName: userinfo.nickName,
-          avatarUrl: userinfo.avatarUrl,
-          isMaster: isMaster,
-          activityId: activityId,
-          buyway: that.data.buyway,
-          channelId: wx.getStorageSync('channelId')
-        }
-
-        console.log('下单数据-------: ')
-        console.log(data)
-
-        // 正式下单
-        //that.createOrder(data, that.pay)
-        
+        // 下单 -> 支付 -> 返回到拼团详情
+        that.crtOrder(function(orderResult) {
+          if (orderResult.resultFlag) {
+            // 下单成功然后支付
+            that.wxPay(orderResult.orderNo, function(payResult) {
+              if (payResult.resultFlag) {
+                that.triggerEvent('callback', {
+                  target: config.miniPage.detail_grp,
+                  options: {
+                    prdId: that.data.inputData.prdId,
+                    grpId: that.data.inputData.grpId,
+                    grpEnter: that.data.inputData.grpEnter
+                  }
+                })
+              } else {
+                utils.log('支付失败')
+              }
+            })
+          } else {
+            // 下单失败
+            wx.showModal({
+              title: '错误',
+              content: '下单失败'
+            })
+          }
+        })
       } else {
-        console.log('用户未登录');
+        utils.log('微信用户未登录小程序系统')
         this.triggerEvent('callback', {
           target: 'login',
           options: {
-            prdId: that.data.prdId,
-            grpId: that.data.grpId,
-            orderNum: that.data.orderNum,
-            buyway: that.data.buyway,
-            buywayPrice: that.data.buywayPrice
+            grpEnter: that.data.inputData.grpEnter,
+            prdId: that.data.inputData.prdId,
+            grpId: that.data.inputData.grpId,
+            orderNum: that.data.inputData.orderNum,
+            price: that.data.inputData.price
           }
         })
       }
@@ -117,74 +113,93 @@ Component({
         that.setData({nextBtnDisabled: false})
       }, 1000)
     },
-    createOrder(data, cb_pay) {
+
+
+    // 下单
+    crtOrder(cb) {
       var that = this
-      var orderUrl = 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation'
-      wx.request({
-        url: orderUrl,
-        header: { 'content-type': 'application/json' },
-        method: 'POST',
-        data: data,
-        success(res) {
-          if (res.statusCode == 200) {
-            console.log('下单成功')
-            //下单成功后继续调用支付接口
-            var price = that.data.buywayPrice * that.data.orderNum
-            var grpId = res.data.grpId
-            var callbackUrl = 'detail-grp'
-            if (data.grpId || data.buyway == config.buyway_single) {
-              // 凑团支付后跳转到订单详情页面
-              callbackUrl = 'detail-order'
-            }            
-            var dataPayment = {
-              openId: that.data.userinfo.openid,
-              orderNo: res.data.orderNo,
-              channelId: wx.getStorageSync('channelId'),
-              returnUrl: ''
-            }
-            var callbackData = {
-              orderNo: res.data.orderNo,
-              price: price,
-              grpId: grpId,
-              callbackUrl: callbackUrl
-            }
-
-            console.log('支付参数&回调数据')
-            console.log(dataPayment)
-            console.log(callbackData)
-
-            // 调用支付
-            cb_pay(dataPayment, callbackData)
-          } else {
-            console.log('下单失败: ' + res.data.error)
+      // 是否是团长
+      var isMaster = 0
+      if (that.data.inputData.grpEnter == config.grpEnter.create) {
+        isMaster = 1
+      }
+      // 原产品ID
+      var activityId = that.data.prd.groupBuyProId
+      if (that.data.buyway == config.buyway_single) {
+        activityId = that.data.prd.orgProdId
+      }      
+      var data = {
+        brand: wx.getStorageSync('brand'),
+        channelId: wx.getStorageSync('channelId'),
+        mobileNo: that.data.userinfo.mobileNo,
+        catgryName: that.data.prd.catgryName,
+        userCd: that.data.userinfo.userCode,
+        quantity: that.data.inputData.orderNum,
+        openId: that.data.userinfo.openid,
+        prdId: that.data.prd.prdId,
+        grpId: that.data.inputData.grpId,
+        nickName: that.data.userinfo.nickName,
+        avatarUrl: that.data.userinfo.avatarUrl,
+        isMaster: isMaster,
+        activityId: activityId
+      }
+      utils.log('下单数据', data)
+      utils.requestPost(
+        config.restAPI.order_create,
+        data,
+        function(resData) {
+          var resultFlag = false
+          var ordreNo = null
+          if (resData && resData.orderNo) {
+            // 下单成功
+            resultFlag = true
+            ordreNo = resData.orderNo
           }
-        },
-        fail: function({errMsg}) {
-          console.log('下单失败：' + errMsg)
+          cb({
+            resultFlag: resultFlag,
+            orderNo: ordreNo
+          })
         }
-      })
+      )
+
+      // TODO: 此为下单测试代码
+      // cb({
+      //   resultFlag: true,
+      //   orderNo: '1234567890'
+      // }) 
+
     },
-    pay(dataPayment, callbackData) {
+
+    // 支付
+    wxPay(orderNo, cb) {
       var that = this
-      var apiUrl = 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl'
-      wx.request({
-        url: apiUrl,
-        header: { 'content-type': 'application/json' },
-        method: 'POST',
-        data: dataPayment,
-        success(res) {
-          if (res.statusCode == 200 && res.data.payUrl) {
-            // 跳转到小程序支付模块进行支付
-            var payUrl = JSON.parse(res.data.payUrl);
+      var dataPayment = {
+        openId: that.data.userinfo.openid,
+        orderNo: orderNo,
+        channelId: wx.getStorageSync('channelId'),
+        price: that.data.inputData.price * that.data.inputData.orderNum,
+        returnUrl: ''
+      }
+      utils.log('支付参数', dataPayment)      
+      utils.requestPost(
+        config.restAPI.wxpay,
+        dataPayment,
+        function(resData) {
+          var resultFlag = false
+          var payUrl = null
+          if (resData && resData.payUrl) {
+            payUrl = JSON.parse(resData.payUrl)
+            utils.log('payUrl', payUrl)
+            // 跳出到小程序页面由小程序呼出支付
             that.triggerEvent('callback', {
-              target: 'pay',
+              target: config.miniPage.pay,
               options: {
-                price: callbackData.price,
-                orderNo: callbackData.orderNo,
-                grp_status: config.grp_status_create,
-                grpId: callbackData.grpId,
-                targetCallbakUrl: callbackData.callbackUrl,
-                buyCount: that.data.orderNum,
+                price: dataPayment.price,
+                orderNo: orderNo,
+                grpEnter: that.data.inputData.grpEnter,
+                grpId: that.data.inputData.grpId,
+                targetCallbakUrl: config.miniPage.detail_grp,
+                buyCount: that.data.inputData.orderNum,
                 payInfo: {
                   timeStamp: payUrl.timeStamp,
                   nonceStr: payUrl.nonceStr,
@@ -192,53 +207,51 @@ Component({
                   sign: payUrl.sign
                 }
               }
-            })
-          } else {
-            console.log('获取支付URL失败: ' + res.data.error)
+            })                
           }
-        },
-        fail: function({errMsg}) {
-          console.log('获取支付URL失败: ' + errMsg)
+          cb({
+            resultFlag: resultFlag,
+            payUrl: payUrl
+          })
         }
-      })
+      )              
     },
-    loadPage() {
-      var that = this;
-      // 根据prdId获取商品详细信息
-      wx.request({
-        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/prddetail',
-        data: { prdId: that.data.prdId },
-        header: { 'content-type': 'application/json' },
-        method: 'POST',        
-        success(res) {
-          var prdData = utils.formatProductData(res.data);
-          that.setData({prd: prdData});
 
-          var orderData = that.formatOrderData(prdData);
-          that.setData({order: orderData});
+    // 页面加载
+    loadPage() {
+      var that = this
+      // 根据prdId获取商品详细信息
+      utils.requestPost(
+        config.restAPI.prd_detail,
+        { prdId: that.data.inputData.prdId },
+        function(resData) {
+          var prdData = utils.formatProductData(resData)
+          var orderData = that.formatOrderData(prdData)
+          that.setData({prd: prdData})
+          that.setData({order: orderData})
 
           // 计数器
-          var timeStr = prdData.leftTime_h + ':' + prdData.leftTime_m + ':' + prdData.leftTime_s;
+          var timeStr = prdData.leftTime_h + ':' + prdData.leftTime_m + ':' + prdData.leftTime_s
           wxTimer = new timer({
             beginTime: timeStr
-          });
-          wxTimer.start(that);
+          })
+          wxTimer.start(that)  
         }
-      });
+      )
     },
-    formatOrderData(prdData) {      
-      var that = this;
-      var price_pref = null;
-      var price_suff = null;
-      var orderNum = that.data.orderNum*1;
+    formatOrderData(prdData) {    
+      var that = this
+      var price_pref = null
+      var price_suff = null
+      var orderNum = that.data.orderNum*1
 
       if (that.data.buyway == config.buyway_single) {
-        var price = utils.formatPrice(that.data.buywayPrice * 1/orderNum);
-        price_pref = price.pref;
-        price_suff = price.suff;
+        var price = utils.formatPrice(that.data.buywayPrice * 1/orderNum)
+        price_pref = price.pref
+        price_suff = price.suff
       } else {
-        price_pref = prdData.price_pref;
-        price_suff = prdData.price_suff;
+        price_pref = prdData.price_pref
+        price_suff = prdData.price_suff
       }
 
       return {
@@ -252,42 +265,7 @@ Component({
         leftTime_s: prdData.leftTime_s,
         imageSingle: prdData.imageSingle,
         validDays: prdData.validDays
-      };
-    },
-    getPaymentURL(orderNo) {
-      var payUrl = '';
-
-      // var that = this;
-      // var userinfo = that.data.userinfo;
-      // var openId = userinfo.openid;
-      var openId = 'oWolJ5Lis-ex2YiiwJXBF-FqYWfk';
-      
-      var data = {
-        openId: openId,
-        orderNo: orderNo,
-        channelId: wx.getStorageSync('channelId'),
-        returnUrl: ''
-      };
-      wx.request({
-        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
-        header: { 'content-type': 'application/json' },
-        method: 'POST',
-        data: data,
-        success(res) {
-          if (res.statusCode == 200) {
-            payUrl = res.data.payUrl;
-          } else {
-            console.log('获取支付URL失败: ' + res.data.error);
-          }
-          
-        },
-        fail: function({errMsg}) {
-          console.log('获取支付URL失败');
-          console.log(errMsg);
-        }
-      });
-      
-      return payUrl;
+      }
     }
   }
 })

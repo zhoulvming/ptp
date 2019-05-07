@@ -7,6 +7,8 @@ Page({
 
     var userinfo = wx.getStorageSync('userinfo')
     this.setData({ userinfo: userinfo })
+
+
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data)

@@ -59,7 +59,7 @@
           <text class="time-info">剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒</text>
         </view>
       </view>        
-      <button class="btn mini" bindtap="gotoGrpDetail" data-target="detail-grp" data-grpid="{{item.grpId}}">去凑团</button>
+      <button class="btn mini" bindtap="gotoGrpDetail" data-grpid="{{item.grpId}}">去凑团</button>
     </view>
     <view class="lookmore" style="display:{{haveShowAllGroups}}">
       <button class="btn link" bindtap="showAllGroups">查看更多拼团 ></button>
@@ -147,7 +147,7 @@
       </view>
     </view>
   </view>
-  <button class="btn-bottom" bindtap="gotoNext" data-target="confirm-order" data-prdid="{{prdDetail.prdId}}">下一步</button>
+  <button class="btn-bottom" bindtap="gotoNext" data-target="confirm-order">下一步</button>
 </view>
 <view class="modalDlg" wx:if="{{showModalPost}}" style="background:#f0f0f0">
   <button class="btn large-single" open-type='share'>发送给朋友</button>
