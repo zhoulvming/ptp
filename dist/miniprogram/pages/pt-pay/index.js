@@ -45,7 +45,8 @@ Page({
                   orderNo: that.data.input.orderNo,
                   grpEnter: that.data.input.grpEnter,
                   grpId: that.data.input.grpId,
-                  orderNum: that.data.input.orderNum
+                  orderNum: that.data.input.orderNum,
+                  paySuccessFlag: true
                 }
               }
             })
@@ -74,7 +75,9 @@ Page({
           orderNo: that.data.input.orderNo,
           grpEnter: that.data.input.grpEnter,
           grpId: that.data.input.grpId,
-          orderNum: that.data.input.orderNum
+          prdId: that.data.input.prdId,
+          orderNum: that.data.input.orderNum,
+          paySuccessFlag: true
         }
       }
     })

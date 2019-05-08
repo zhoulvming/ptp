@@ -33,7 +33,8 @@ const config = {
     order_list: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/orderlist',
     order_create: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation',
     order_detail: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/detail',
-    wxpay: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl'
+    wxpay: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
+    upd_order_status: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus'
     
   },
 

@@ -15,7 +15,7 @@
           <text class="suff">.{{order.price_suff}}</text>
         </view>
         <view class="buying-count">
-          x {{order.orderNum}}
+          x {{inputData.orderNum}}
         </view>
       </view>
     </view>

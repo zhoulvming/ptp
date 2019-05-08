@@ -24,7 +24,7 @@
         <view class="price-org">
           <text>￥{{grpDetail.orgPrice}}</text>
         </view>
-        <view class="buying-count" style="display:{{btnStatus.joinBtn?'flex':'none'}}">
+        <view class="buying-count" style="display:{{inputData.grpEnter==7?'flex':'none'}}">
           <text>x {{orderNum}}</text>
         </view>      
       </view>
@@ -72,7 +72,7 @@
     <image class="picture" src="{{grpDetail.prdImage}}"/>
     <view class="info">
       <text class="name">{{grpDetail.prdName}} </text>
-      <text class="gp-info">{{grpDetail.numbers}} 人拼团价</text>
+      <text class="gp-info">{{grpDetail.number}} 人拼团价</text>
       <text class="price">￥{{grpDetail.price}}</text>
     </view>
     <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
@@ -84,9 +84,11 @@
     </view>
     <view class='count'>
       <view class="input">
-        <view class='ic' bindtap='evic'>-</view>
-        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur'/>
-        <view class='ad' bindtap='evad'>+</view>      
+        <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
+        <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
+        <text class='in'>{{num}}</text>
+        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
+        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
       </view>
       <view class="info">
         <text>每人限购 {{grpDetail.limitNum}} 件</text>

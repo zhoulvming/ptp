@@ -21,17 +21,6 @@ Component({
       observer: function (newVal) {
         if (newVal) {
           utils.log('从小程序页面传递过来的参数(options)', newVal)
-
-          // var jsonVal = newVal
-          // if (jsonVal.grpId) {
-          //   this.setData({ grpId: jsonVal.grpId })
-          // }
-          // this.setData({ prdId: jsonVal.prdId })
-          // this.setData({ orderNum: jsonVal.orderNum })
-          // this.setData({ buyway: jsonVal.buyway })
-          // this.setData({ buywayPrice: jsonVal.buywayPrice })
-          // this.loadPage()
-
           this.setData({inputData: {
             grpEnter: newVal.grpEnter,
             prdId: newVal.prdId,
@@ -80,11 +69,16 @@ Component({
                   options: {
                     prdId: that.data.inputData.prdId,
                     grpId: that.data.inputData.grpId,
-                    grpEnter: that.data.inputData.grpEnter
+                    grpEnter: that.data.inputData.grpEnter,
+                    orderNo: orderResult.orderNo
                   }
                 })
               } else {
                 utils.log('支付失败')
+                wx.showModal({
+                  title: '错误',
+                  content: '无法完成支付'
+                })                
               }
             })
           } else {
@@ -144,6 +138,7 @@ Component({
         activityId: activityId
       }
       utils.log('下单数据', data)
+    
       utils.requestPost(
         config.restAPI.order_create,
         data,
@@ -196,6 +191,7 @@ Component({
               options: {
                 price: dataPayment.price,
                 orderNo: orderNo,
+                prdId: that.data.inputData.prdId,
                 grpEnter: that.data.inputData.grpEnter,
                 grpId: that.data.inputData.grpId,
                 targetCallbakUrl: config.miniPage.detail_grp,
@@ -214,7 +210,15 @@ Component({
             payUrl: payUrl
           })
         }
-      )              
+      )
+      
+      
+      // // TODO: 测试
+      // cb({
+      //   resultFlag: true,
+      //   payUrl: '1232321142048320482034802348032840234238048203'
+      // })
+
     },
 
     // 页面加载

@@ -43,7 +43,7 @@
     </view>  
   </view>
 </view>
-<view class="detail-gp panel-no-radius"> 
+<view class="detail-gp panel-no-radius" style="display:{{grps.length!=0?'block':'none'}}"> 
   <view class="group-list">
     <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
     <view wx:for="{{grps}}" wx:for-item="item" class="item">
@@ -138,7 +138,7 @@
       <view class="input">
         <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
         <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
-        <input class='in' type="text" placeholder="数量" value='{{num}}' bindblur='evblur1'/>
+        <text class='in'>{{num}}</text>
         <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
         <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
       </view>

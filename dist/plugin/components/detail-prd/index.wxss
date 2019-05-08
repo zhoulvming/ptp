@@ -523,7 +523,7 @@ page {
   line-height: 60rpx;
   border-radius: 60rpx;
   background: #008FDB;
-  font-size: 35rpx;
+  font-size: 40rpx;
   color: #ffffff;
   text-align: center;
 }

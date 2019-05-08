@@ -192,43 +192,6 @@ Component({
       })
     },
 
-    evblur: function (e) {
-      var zval = parseInt(e.detail.value)
-      //正则 正整数 0 负整数
-      if (/(^-[1-9][0-9]{0,}$)|(^0$)|(^[1-9][0-9]{0,}$)/.test(zval)){
-        //最大值
-        if (this.data.max != null) {
-          if (zval > this.data.max) {
-            utils.log('超出购买数量最大值')
-            this.setData({ num: this.data.def_num })
-            this.setData({maxflag: true})
-          }else{
-            this.setData({ num: zval })
-            this.setData({maxflag: false})
-          }
-        } else {
-          this.setData({ num: zval })
-        }
-
-        //最小值
-        if (this.data.min != null) {
-          if (zval < this.data.min) {
-            utils.log('低于最小值')
-            this.setData({minflag: true})
-            this.setData({ num: this.data.def_num })
-          } else {
-            this.setData({minflag: false})
-            this.setData({ num: zval })
-          }
-        } else {
-          this.setData({ num: zval })
-        }
-      } else {
-        utils.log('不是整数')
-        this.setData({ num: this.data.def_num })
-      }
-    },
-
     //加
     evad: function () {
       var that = this

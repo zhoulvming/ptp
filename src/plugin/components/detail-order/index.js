@@ -33,7 +33,8 @@ Component({
           grpId: detail.grpId,
           prdId: detail.prdId,
           orderNum: detail.quantity,
-          grpEnter: config.grpEnter.fromOrder
+          grpEnter: config.grpEnter.fromOrder,
+          orderNo: detail.orderNo
         }
       })
     },

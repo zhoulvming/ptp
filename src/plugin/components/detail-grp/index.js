@@ -27,7 +27,8 @@ Component({
             orderNum: newVal.orderNum,
             grpId: newVal.grpId,
             price: newVal.price,
-            orderNo: newVal.orderNo
+            orderNo: newVal.orderNo,
+            paySuccessFlag: newVal.paySuccessFlag
           }})
           this.loadPage()
         }
@@ -40,11 +41,24 @@ Component({
     status_image_fail: '../../images/icons/fail.png',
     wxTimerList:[],
     showModal: false,
-    min:1,//最小值 整数类型，null表示不设置
+
+    // min:1,//最小值 整数类型，null表示不设置
+    // max: 5,//最大值 整数类型，null表示不设置
+    // num: 1,//输入框数量 整数类型
+    // change: 1,//加减变化量 整数类型
+    // def_num: 5,//输入框值出现异常默认设置值
+
+    min: 1,//最小值 整数类型，null表示不设置
+    minflag: true,
     max: 5,//最大值 整数类型，null表示不设置
+    maxflag: false,
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
-    def_num: 5,//输入框值出现异常默认设置值
+    def_num: 1,//输入框值出现异常默认设置值
+
+
+
+
     maskHidden: false,
     status_text: ''
   },
@@ -67,6 +81,7 @@ Component({
           var detail = utils.formatGroupDetailData(resData)
           that.setData({grpDetail: detail})
           that.setGrpStatus(detail)
+          that.setData({max: detail.limitNum})
 
           if (that.data.inputData.orderNum) {
             that.setData({orderNum: that.data.inputData.orderNum})
@@ -82,6 +97,24 @@ Component({
           wxTimer.start(that)
         }
       )
+
+
+      // 如果是从支付成功的小程序页面跳转到此，则需要调用后台API更新数据
+      if (that.data.inputData.paySuccessFlag) {
+        utils.requestPost(
+          config.restAPI.upd_order_status,
+          {
+            prdId: that.data.inputData.prdId,
+            payFlg: 1,
+            grpId: that.data.inputData.grpId,
+            orderNo: that.data.inputData.orderNo            
+          },
+          function(resData) {
+            utils.log('更新支付状态成功', resData)
+          }
+        )
+      }
+
     },
 
     // "下一步" 按钮处理事件
@@ -110,15 +143,13 @@ Component({
         }
       })
     },
-    showModal: function (e) {
-      var buyway = e.currentTarget.dataset.buyway
+    showModal: function () {
       var detail = this.data.grpDetail
       this.setData({
         showModal: true
       })
 
       this.setData({
-        buyway: buyway,
         buywayPrice: detail.price
       })
     },
@@ -127,74 +158,37 @@ Component({
         showModal: false
       })
     },
-    evblur: function (e) {
-      var zval = parseInt(e.detail.value)
-      //正则 正整数 0 负整数
-      if (/(^-[1-9][0-9]{0,}$)|(^0$)|(^[1-9][0-9]{0,}$)/.test(zval)){
-        //最大值
-        if (this.data.max != null) {
-          if (zval > this.data.max) {
-            console.log('超出最大值')
-            this.setData({ num: this.data.def_num })
-          }else{
-            this.setData({ num: zval })
-          }
-        } else {
-          this.setData({ num: zval })
-        }
-        //最小值
-        if (this.data.min != null) {
-          if (zval < this.data.min) {
-            console.log('低于最小值')
-            this.setData({ num: this.data.def_num })
-          } else {
-            this.setData({ num: zval })
-          }
-        } else {
-          this.setData({ num: zval })
-        }
-      } else {
-        console.log('不是整数')
-        this.setData({ num: this.data.def_num })
-      }
-    },
+
     //加
     evad: function () {
       var that = this
       var cval = Number(this.data.num) + this.data.change
-      if (this.data.max != null){
-        if (cval > this.data.max){
-          console.log('超出最大值')
-        }else{
-          this.setData({ num: cval })
-        }
+      if (cval > this.data.max) {
+        utils.log('超出最大值')
+        this.setData({maxflag: true})
       }else{
         this.setData({ num: cval })
+        this.setData({maxflag: false})
+        this.setData({minflag: false})
       }
-
-      var inputData = that.data.inputData
-      inputData.orderNum = cval
-      that.setData({inputData: inputData})
-      
-
+      var price = that.data.grpDetail.price
+      that.setData({ buywayPrice: price * cval })
     },
+
     //减
     evic: function () {
       var that = this
       var cval = Number(this.data.num) - this.data.change
-      if (this.data.min != null) {
-        if (cval < this.data.min) {
-          console.log('低于最小值')
-        } else {
-          this.setData({ num: cval })
-        }
+      if (cval < this.data.min) {
+        utils.log('低于最小值')
+        this.setData({minflag: true})
       } else {
         this.setData({ num: cval })
+        this.setData({minflag: false})
+        this.setData({maxflag: false})
       }
-
-      var inputData = that.data.inputData
-      inputData.orderNum = cval
-      that.setData({inputData: inputData})      
+      var price = that.data.grpDetail.price
+      that.setData({ buywayPrice: price * cval })
     },
 
     // 生成海报
@@ -252,13 +246,16 @@ Component({
 
     // 点击查看订单处理事件
     gotoOrder() {
-      var detail = this.data.grpDetail
-      this.triggerEvent('callback', {
-        target: config.miniPage.detail_order,
-        options: {
-          orderNo: detail.orderNo
-        }
-      })
+      var that = this
+      var orderNo = that.data.inputData.orderNo
+      if (orderNo) {
+        that.triggerEvent('callback', {
+          target: config.miniPage.detail_order,
+          options: {
+            orderNo: orderNo
+          }
+        })
+      }
     }
   }
 })

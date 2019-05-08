@@ -426,9 +426,13 @@ page {
   line-height: 60rpx;
   border-radius: 60rpx;
   background: #008FDB;
-  font-size: 35rpx;
+  font-size: 40rpx;
   color: #ffffff;
   text-align: center;
+}
+.modalDlg .buycount .count .input .ic.off,
+.modalDlg .buycount .count .input .ad.off {
+  background: #888;
 }
 .modalDlg .buycount .count .input .in {
   float: left;
