@@ -12,6 +12,9 @@ Component({
         if (newVal) {
           utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
           this.setData({ userinfo: newVal })
+
+          // 检查是否参与过该拼团产品
+          this.checkExist(newVal)
         }
       }
     },
@@ -22,6 +25,8 @@ Component({
         if (newVal) {
           utils.log('从小程序页面传递过来的参数(options)', newVal)
           this.setData({ prdId: newVal.prdId })
+
+          // 加载页面数据
           this.loadPage()
         }
       }
@@ -32,26 +37,18 @@ Component({
     prdId: '',
     currentTab: 0, //当前所在滑块的 index
     salesRecord: [],
-    showModal: false,
-    showModalPost: false,
-    min: 1,//最小值 整数类型，null表示不设置
-    minflag: true,
-    max: 5,//最大值 整数类型，null表示不设置
-    maxflag: false,
-    num: 1,//输入框数量 整数类型
-    change: 1,//加减变化量 整数类型
-    def_num: 1,//输入框值出现异常默认设置值
-    buyway: 0,
-    buywayPrice: 0,
     haveShowAllGroups: 'block',
     haveOrder: false,
     orderId: '',
-    wxTimerList:[]
+    wxTimerList:[],
+    showModalDlgBuycountFlg: false,
+    showModalDlgPostFlg: false,
+    canBuy: true
   },
 
   attached() {
-    var windowWidth = wx.getSystemInfoSync().windowWidth
-    this.setData({bannerHeight: windowWidth/1.48})
+    //var windowWidth = wx.getSystemInfoSync().windowWidth
+    //this.setData({bannerHeight: windowWidth/1.48})
   },
   detached() {
     wxTimer.stop()
@@ -63,13 +60,14 @@ Component({
   methods: {
 
     // 发团场合
-    gotoNext() {
+    gotoNext(e) {
       var that = this
+      var detail = e.detail
       that.triggerEvent('callback', {
         target: config.miniPage.confirm_order,
         options:  {
           prdId: that.data.prdDetail.prdId,
-          orderNum: that.data.num,
+          orderNum: detail.buycount,
           price: that.data.prdDetail.price,
           grpEnter: config.grpEnter.create
         }
@@ -89,6 +87,7 @@ Component({
       })     
     },
 
+    // 加载产品详情数据
     loadPage() {
       var that = this
 
@@ -121,6 +120,36 @@ Component({
         }
       )
     },
+
+    // 检测是否参与过该产品的拼团活动
+    checkExist(userinfo) {
+      var that = this
+      // 判断是否开团或者参团过，如果已经参与，则不能再次凑团或者开团
+      var openid = userinfo.openid
+      var prdId = that.data.prdId
+      utils.requestPost(
+        config.restAPI.pt_check,
+        {openid: openid, prdId: prdId},
+        function(resData) {
+          let ordFlg = resData.ordFlg
+          let leftCountFlg = resData.leftCountFlg
+          if (ordFlg == 0) {
+            // 订单进项中
+            // that.setData({showModalDlgLeftCount: false})
+            // that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
+            // that.setData({orderNoOfDoing: resData.ordNo})
+            that.setData({canBuy: false})
+          } else if(leftCountFlg == 0) {
+            // 无库存
+            // that.setData({showModalDlg: false})
+            // that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
+            that.setData({canBuy: false})
+          }
+        }
+      )
+    },
+
+    // 获取所有成团数据
     showAllGroups() {
       var that = this
       if (that.data.haveShowAllGroups == 'none') {
@@ -161,77 +190,30 @@ Component({
       this.setData({ currentTab: event.detail.current })
     },
 
-    showModal: function (e) {
-      let buyway = e.currentTarget.dataset.buyway
-      let detail = this.data.prdDetail
+    // 弹出/隐藏 购买件数窗口组件
+    showModalDlgBuycount: function () {
       this.setData({
-        showModal: true
+        showModalDlgBuycountFlg: true
       })
-
-      var buywayPrice = detail.price
-      if (buyway && buyway == config.buyway_single) {
-        buywayPrice = detail.orgPrice
-      }
-
+    },
+    hideModalDlgBuycount: function () {
       this.setData({
-        buyway: buyway,
-        buywayPrice: buywayPrice
+        showModalDlgBuycountFlg: false
       })
     },
 
-    showModalPost: function() {
+    // 弹出/隐藏 海报组件
+    showModalDlgPost: function() {
       this.setData({
-        showModalPost: true
+        showModalDlgPostFlg: true
       })
     },
 
     hideModalDlg: function() {
       this.setData({
-        showModal: false,
-        showModalPost: false
+        showModalDlgBuycountFlg: false,
+        showModalDlgPostFlg: false
       })
-    },
-
-    //加
-    evad: function () {
-      var that = this
-      var cval = Number(this.data.num) + this.data.change
-      if (cval > this.data.max) {
-        utils.log('超出最大值')
-        this.setData({maxflag: true})
-      }else{
-        this.setData({ num: cval })
-        this.setData({maxflag: false})
-        this.setData({minflag: false})
-      }
-
-      var buyway = that.data.buyway
-      var price = that.data.prdDetail.price
-      if (buyway && buyway == config.buyway_single) {
-        price = that.data.prdDetail.orgPrice
-      }
-      that.setData({ buywayPrice: price * cval })
-    },
-
-    //减
-    evic: function () {
-      var that = this
-      var cval = Number(this.data.num) - this.data.change
-      if (cval < this.data.min) {
-        utils.log('低于最小值')
-        this.setData({minflag: true})
-      } else {
-        this.setData({ num: cval })
-        this.setData({minflag: false})
-        this.setData({maxflag: false})
-      }
-
-      var buyway = that.data.buyway
-      var price = that.data.prdDetail.price
-      if (buyway && buyway == config.buyway_single) {
-        price = that.data.prdDetail.orgPrice
-      }
-      that.setData({ buywayPrice: price * cval })
     },
 
     // 生成海报

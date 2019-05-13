@@ -2,5 +2,6 @@
   "navigationBarTitleText": "拼团商品",
   "component": true,
   "usingComponents": {
+    "my-buycount":"../buycount/index"
   }
 }

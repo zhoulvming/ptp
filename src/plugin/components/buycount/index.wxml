@@ -1,0 +1,30 @@
+<view class="modalDlg-buycount">
+  <view class="prd-info">
+    <view class="picture"><image src="{{detail.imageSingle}}" mode="scaleToFill"/></view>
+    <view class="info">
+      <text class="name">{{detail.prdName}} </text>
+      <text class="gp-info">{{detail.numbers}} 人拼团价</text>
+      <text class="price">￥{{detail.price}}</text>
+    </view>
+    <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
+  </view>
+  <view class="buycount">
+    <view class="info">
+      <text class="largeText">购买数量</text>
+      <text class="leftCount">剩余 {{detail.leftCount}} 件数</text>
+    </view>
+    <view class='count'>
+      <view class="input">
+        <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
+        <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
+        <text class='in'>{{num}}</text>
+        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
+        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
+      </view>
+      <view class="info">
+        <text>每人限购 {{detail.limitCount}} 件</text>
+      </view>
+    </view>
+  </view>
+  <button class="btn-bottom" bindtap="gotoNext">下一步</button>
+</view>

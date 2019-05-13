@@ -5,7 +5,7 @@
   </view>
   <image class="codeimg" src="{{captchaImage}}" style="width:{{codeimgHeight}}px;height:{{codeimgHeight}}px;display:{{imageShowFlag}};top:{{codeimgTop}}px"></image>
   <button class="btn" bindtap="saveShareImg" style="top:{{buttonTop}}px">保存图片</button>
-  <view class='close-poste'>
+  <view class='close-poste' style="top:{{buttonTop+60}}px">
     <image src='../../images/icons/dele.png' catchtap='closePoste'></image>
   </view>
 </view>

@@ -80,31 +80,36 @@ Component({
         }
       )
     },
-    gotoNext(event) {
+    gotoCreatePT(event) {
       var that = this
       var prdId = event.currentTarget.dataset.prdid
-      var openid = that.data.userinfo.openid
+      
+      // var openid = that.data.userinfo.openid
+      // utils.requestPost(
+      //   config.restAPI.pt_check,
+      //   {openid: openid, prdId: prdId},
+      //   function(resData) {
+      //     let ordFlg = resData.ordFlg
+      //     let leftCountFlg = resData.leftCountFlg
+      //     if (ordFlg == 0) {
+      //       // 订单进项中
+      //       that.setData({showModalDlgLeftCount: false})
+      //       that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
+      //       that.setData({orderNoOfDoing: resData.ordNo})
+      //     } else if(leftCountFlg == 0) {
+      //       // 无库存
+      //       that.setData({showModalDlg: false})
+      //       that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
+      //     } else {
+      //       that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
+      //     }          
+      //   }
+      // )
 
-      utils.requestPost(
-        config.restAPI.pt_check,
-        {openid: openid, prdId: prdId},
-        function(resData) {
-          let ordFlg = resData.ordFlg
-          let leftCountFlg = resData.leftCountFlg
-          if (ordFlg == 0) {
-            // 订单进项中
-            that.setData({showModalDlgLeftCount: false})
-            that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
-            that.setData({orderNoOfDoing: resData.ordNo})
-          } else if(leftCountFlg == 0) {
-            // 无库存
-            that.setData({showModalDlg: false})
-            that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
-          } else {
-            that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
-          }          
-        }
-      )
+      that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
+
+
+
     },
 
     //tab切换

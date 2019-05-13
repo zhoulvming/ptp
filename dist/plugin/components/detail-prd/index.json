@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "my-poster":"../poster/index"
+    "my-poster":"../poster/index",
+    "my-buycount":"../buycount/index"
   }
 }

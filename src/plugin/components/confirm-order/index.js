@@ -62,25 +62,27 @@ Component({
         that.crtOrder(function(orderResult) {
           if (orderResult.resultFlag) {
             // 下单成功然后支付
-            that.wxPay(orderResult.orderNo, function(payResult) {
-              if (payResult.resultFlag) {
-                that.triggerEvent('callback', {
-                  target: config.miniPage.detail_grp,
-                  options: {
-                    prdId: that.data.inputData.prdId,
-                    grpId: that.data.inputData.grpId,
-                    grpEnter: that.data.inputData.grpEnter,
-                    orderNo: orderResult.orderNo
-                  }
-                })
-              } else {
-                utils.log('支付失败')
-                wx.showModal({
-                  title: '错误',
-                  content: '无法完成支付'
-                })                
-              }
-            })
+            // that.wxPay(orderResult.orderNo, function(payResult) {
+            //   if (payResult.resultFlag) {
+            //     that.triggerEvent('callback', {
+            //       target: config.miniPage.detail_grp,
+            //       options: {
+            //         prdId: that.data.inputData.prdId,
+            //         grpId: that.data.inputData.grpId,
+            //         grpEnter: that.data.inputData.grpEnter,
+            //         orderNo: orderResult.orderNo
+            //       }
+            //     })
+            //   } else {
+            //     utils.log('支付失败')
+            //     wx.showModal({
+            //       title: '错误',
+            //       content: '无法完成支付'
+            //     })                
+            //   }
+            // })
+
+            that.wxPay(orderResult.orderNo)
           } else {
             // 下单失败
             wx.showModal({
@@ -166,7 +168,7 @@ Component({
     },
 
     // 支付
-    wxPay(orderNo, cb) {
+    wxPay(orderNo) {
       var that = this
       var dataPayment = {
         openId: that.data.userinfo.openid,
@@ -180,7 +182,6 @@ Component({
         config.restAPI.wxpay,
         dataPayment,
         function(resData) {
-          var resultFlag = false
           var payUrl = null
           if (resData && resData.payUrl) {
             payUrl = JSON.parse(resData.payUrl)
@@ -205,10 +206,12 @@ Component({
               }
             })                
           }
-          cb({
-            resultFlag: resultFlag,
-            payUrl: payUrl
-          })
+
+          // TODO： 此处有问题，页面已经迁移到小程序页面，执行此回调函数无意义
+          // cb({
+          //   resultFlag: resultFlag,
+          //   payUrl: payUrl
+          // })
         }
       )
       

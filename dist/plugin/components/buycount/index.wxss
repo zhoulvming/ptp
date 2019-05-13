@@ -164,76 +164,135 @@ page {
   z-index: 9000;
   opacity: 0.7;
 }
-.commodity_screen {
+.modalDlg-buycount {
   width: 100%;
-  height: 100%;
   position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  opacity: 0.5;
-  overflow: hidden;
+  bottom: 0;
   z-index: 9999;
-  color: #fff;
-}
-/* 海报 */
-.poste_box {
-  width: 100%;
-  z-index: 9999;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  overflow: hidden;
-}
-.poste_box button {
-  position: absolute;
-  font-size: 35rpx;
-  background-color: #008FDB;
-  border-radius: 15rpx;
-  color: white;
-  padding: 0 70rpx;
-  z-index: 10000;
-}
-.poste_box .codeimg {
-  position: absolute;
-  z-index: 10000;
-  right: 140rpx;
-}
-.poste_content {
-  width: 76%;
-  margin: auto;
-  overflow: hidden;
-  margin-top: 50px;
   background-color: #fff;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modalDlg-buycount .prd-info {
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.modalDlg-buycount .prd-info .picture {
+  margin-left: 20rpx;
+}
+.modalDlg-buycount .prd-info .picture image {
+  width: 200rpx;
+  height: 200rpx;
+}
+.modalDlg-buycount .prd-info .close {
+  width: 30rpx;
+  height: 30rpx;
   position: absolute;
-  top: 0;
-  z-index: 9999;
-  border-radius: 15rpx;
+  right: 40rpx;
+  top: 40rpx;
 }
-.saveposte {
-  width: 100%;
-  border-top: 1rpx solid #ddd;
+.modalDlg-buycount .prd-info .info {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
 }
-.saveposte image {
+.modalDlg-buycount .prd-info .info .name {
+  font-size: 35rpx;
+  font-weight: 700;
+}
+.modalDlg-buycount .prd-info .info .gp-info {
+  text-align: center;
+  width: 150rpx;
+  border: 1px solid #f9a825;
+  border-radius: 8rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #f9a825;
+  margin: 5rpx 10rpx;
+}
+.modalDlg-buycount .prd-info .info .price {
+  margin-top: 70rpx;
+  font-size: 35rpx;
+  font-weight: 700;
+}
+.modalDlg-buycount .buycount {
+  position: relative;
+  padding: 30rpx 20rpx;
+  padding-bottom: 150rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
   width: 100%;
 }
-.close-poste {
-  width: 100%;
-  height: 80rpx;
-  position: fixed;
-  z-index: 9999;
+.modalDlg-buycount .buycount > .info {
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  text-align: left;
+}
+.modalDlg-buycount .buycount > .info .largeText {
+  font-size: 35rpx;
+}
+.modalDlg-buycount .buycount > .info .leftCount {
+  font-size: 30rpx;
+  color: grey;
+  margin-top: 35rpx;
+}
+.modalDlg-buycount .buycount .count {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 40rpx;
+}
+.modalDlg-buycount .buycount .count .input {
+  display: flex;
+  flex-direction: row;
+}
+.modalDlg-buycount .buycount .count .input .ic,
+.modalDlg-buycount .buycount .count .input .ad {
+  float: left;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 60rpx;
+  background: #008FDB;
+  font-size: 40rpx;
+  color: #ffffff;
   text-align: center;
 }
-.close-poste image {
-  z-index: 9999;
-  border-radius: 50%;
-  margin-top: 0rpx;
-  height: 80rpx;
-  width: 130rpx;
+.modalDlg-buycount .buycount .count .input .ic.off,
+.modalDlg-buycount .buycount .count .input .ad.off {
+  background: #888;
 }
-.showImages {
-  position: absolute;
-  top: 0;
-  width: 56rpx;
-  height: 56rpx;
+.modalDlg-buycount .buycount .count .input .in {
+  float: left;
+  width: 90rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-width: 0 ;
+  font-size: 35rpx;
+  color: #333333;
+  margin: 0 20rpx;
+  text-align: center;
+}
+.modalDlg-buycount .buycount .count .info {
+  font-size: 30rpx;
+  width: 100%;
+  margin-top: 25rpx;
+  text-align: center;
+}
+.modalDlg-buycount .btn-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #008FDB;
+  font-weight: 700;
+  border-radius: 0;
+  box-sizing: none;
+  color: white;
 }

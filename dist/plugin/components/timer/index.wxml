@@ -1,0 +1,6 @@
+<view class="timer">
+  <text>{{timer_d}}</text>
+  <text>{{timer_h}}</text>
+  <text>{{timer_m}}</text>
+  <text>{{timer_s}}</text>
+</view>

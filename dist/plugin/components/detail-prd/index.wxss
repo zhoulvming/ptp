@@ -170,32 +170,34 @@ page {
 }
 .detail-prd swiper {
   width: 100%;
+  height: 380rpx;
 }
 .detail-prd swiper image {
-  height: 100%;
   width: 100%;
 }
 .detail-prd .logo-info {
   background-color: #008FDB;
   display: flex;
   flex-direction: row;
-  padding-top: 10rpx;
-  padding-left: 15rpx;
-  padding-bottom: 10rpx;
+  padding-top: 23rpx;
+  padding-left: 17rpx;
+  padding-bottom: 23rpx;
+  position: relative;
 }
 .detail-prd .logo-info .name {
   font-size: 40rpx;
-  font-weight: 700;
   color: white;
   width: 60%;
   margin: auto 0;
 }
 .detail-prd .logo-info .info {
+  position: absolute;
+  right: 30rpx;
+  top: 15rpx;
   display: flex;
   flex-direction: column;
   color: white;
-  font-size: 30rpx;
-  width: 40%;
+  font-size: 25rpx;
   text-align: center;
 }
 .detail-prd .logo-info .info > text {
@@ -209,58 +211,48 @@ page {
 }
 .detail-prd .buying-info {
   position: relative;
-  margin-top: 50rpx;
 }
 .detail-prd .buying-info .price-now {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  bottom: 0rpx;
 }
 .detail-prd .buying-info .price-now .money-flag {
-  position: absolute;
-  bottom: 0;
-  font-size: 25rpx;
-  font-weight: 600;
+  font-size: 35rpx;
+  margin-top: 18rpx;
 }
 .detail-prd .buying-info .price-now .now-pref {
-  font-size: 40rpx;
-  font-weight: 600;
-  position: absolute;
-  bottom: -6rpx;
-  padding-left: 23rpx;
+  font-size: 50rpx;
 }
 .detail-prd .buying-info .price-now .now-suff {
-  font-size: 30rpx;
-  font-weight: 500;
-  position: absolute;
-  bottom: -2rpx;
-  padding-left: 45rpx;
+  font-size: 35rpx;
+  margin-top: 18rpx;
 }
 .detail-prd .buying-info .price-now .gp-info {
+  margin-top: 18rpx;
+  margin-left: 20rpx;
+  height: 34rpx;
   border: 1px solid #FFAB22;
   font-size: 25rpx;
-  font-weight: 600;
+  font-weight: 500;
   color: #FFAB22;
-  margin: 5rpx 10rpx 0 100rpx;
-  padding: 3rpx 10rpx;
-  border-radius: 15rpx;
+  padding: 0rpx 8rpx;
+  border-radius: 10rpx;
   background-color: #FFF6E8;
 }
 .detail-prd .buying-info .price-org {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  bottom: -40rpx;
+  margin-left: 5rpx;
+  margin-top: -10rpx;
 }
 .detail-prd .buying-info .price-org text {
   color: #888;
-  font-size: 25rpx;
+  font-size: 26rpx;
   text-decoration: line-through;
 }
 .detail-prd .share {
-  height: 100rpx;
-  width: 100rpx;
+  height: 80rpx;
+  width: 60rpx;
   position: absolute;
   right: 10rpx;
   top: 30rpx;
@@ -269,24 +261,31 @@ page {
   flex-direction: column;
   text-align: center;
 }
-.detail-prd .share image {
-  height: 50rpx;
-  width: 50rpx;
-}
 .detail-prd .share button {
-  height: 50rpx;
-  width: 50rpx;
+  height: 80rpx;
   padding: 0;
+  position: absolute;
+}
+.detail-prd .share button image {
+  height: 40rpx;
+  width: 40rpx;
+}
+.detail-prd .share text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 30rpx;
+  font-size: 20rpx;
 }
 .detail-prd .prd-name {
-  margin-top: 115rpx;
+  margin-top: 25rpx;
 }
 .detail-prd .prd-name .name {
   font-size: 35rpx;
-  font-weight: 600;
+  font-weight: 500;
 }
 .detail-prd .prd-name .desc {
-  font-size: 25rpx;
+  font-size: 30rpx;
   color: #555;
 }
 .detail-prd .count {
@@ -388,42 +387,41 @@ page {
   position: fixed;
   width: 100%;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
   color: white;
-  font-size: 25rpx;
-  font-weight: 600;
+}
+.fixedBottom .statusBar {
+  font-size: 30rpx;
+  background-color: #009FDB;
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.fixedBottom .actionBar {
   display: flex;
   flex-direction: row;
+  background: #008FDB;
 }
-.fixedBottom .customer {
-  width: 20%;
+.fixedBottom .actionBar .customer {
+  width: 30%;
   text-align: center;
   background: #555;
 }
-.fixedBottom .customer navigator {
+.fixedBottom .actionBar .customer navigator {
   margin-top: 20rpx;
   display: flex;
   flex-direction: column;
 }
-.fixedBottom .customer image {
+.fixedBottom .actionBar .customer image {
   width: 50rpx;
   height: 50rpx;
   margin: -1px auto;
 }
-.fixedBottom .singlePurse {
-  width: 40%;
-  background: #888;
+.fixedBottom .actionBar .groupPurse {
+  width: 70%;
+  margin: auto;
   text-align: center;
-  padding: 10rpx 0;
-}
-.fixedBottom .groupPurse {
-  width: 80%;
-  padding: 10rpx 0;
-  text-align: center;
-  background: #008FDB;
-}
-.fixedBottom .price .orgPrice,
-.fixedBottom .price .pref {
-  font-size: 40rpx;
 }
 /*modal*/
 .modalDlg {

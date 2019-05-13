@@ -19,8 +19,8 @@
     <view class="buying-info">
       <view class="price-now">
         <text class="money-flag">￥</text>
-        <view class="now-pref">{{prdDetail.price_pref}}</view>
-        <view class="now-suff">.{{prdDetail.price_suff}}</view>
+        <text class="now-pref">{{prdDetail.price_pref}}</text>
+        <text class="now-suff">.{{prdDetail.price_suff}}</text>
         <view class="gp-info">{{prdDetail.numbers}}人拼团价</view>
       </view>
       <view class="price-org">
@@ -32,7 +32,7 @@
       <text class="desc">{{prdDetail.prdDesc}}</text>
     </view>
     <view class="share">
-      <button class="btn link" bindtap="showModalPost">
+      <button class="btn link" bindtap="showModalDlgPost">
         <image src="../../images/icons/fx.png"></image>
         <text>分享</text>
       </button>
@@ -43,7 +43,7 @@
     </view>  
   </view>
 </view>
-<view class="detail-gp panel-no-radius" style="display:{{grps.length!=0?'block':'none'}}"> 
+<view class="detail-gp panel-no-radius" style="display:{{grps.length!=0&&canBuy?'block':'none'}}"> 
   <view class="group-list">
     <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
     <view wx:for="{{grps}}" wx:for-item="item" class="item">
@@ -56,7 +56,7 @@
             <text class="fc-primary">{{item.leftNumbers}}</text>
             <text>人成团</text>
           </view>
-          <text class="time-info">剩余{{item.validatedTime_d}}天{{item.validatedTime_h}}时{{item.validatedTime_m}}分{{item.validatedTime_s}}秒</text>
+          <text class="time-info">剩余{{item.validatedTime_h}}:{{item.validatedTime_m}}</text>
         </view>
       </view>        
       <button class="btn mini" bindtap="gotoGrpDetail" data-grpid="{{item.grpId}}">去凑团</button>
@@ -93,63 +93,25 @@
   </view>
 </view>  
 <view class='fixedBottom'>
-  <view class='customer'>
-    <navigator url=''>
-      <image mode='widthFix' src="../../images/icons/pin.png" />
-      <text>客服</text>
-    </navigator>
+  <view class="statusBar" wx:if="{{!canBuy}}">
+    <text>您已经有一个拼团中的订单，点击查看详情</text>
   </view>
-  <!--
-  <view class='singlePurse' bindtap='showModal' data-buyway="0">
-    <view class="price">
-      <text class="flag">¥</text>
-      <text class="orgPrice">{{prdDetail.orgPrice}}</text>
+  <view class="actionBar">
+    <view class='customer'>
+      <navigator url=''>
+        <image mode='widthFix' src="../../images/icons/pin.png" />
+        <text>客服</text>
+      </navigator>
     </view>
-    <text>单人价</text>
-  </view>
-  -->
-  <view class='groupPurse' bindtap='showModal' data-buyway="1" style="display:{{haveOrder==false?'block':'none'}}">
-    <view class="price">
-      <text class="flag">¥</text>
-      <text class="pref">{{prdDetail.price_pref}}.</text>
-      <text class="suff">{{prdDetail.price_suff}}</text>
+    <view class='groupPurse' bindtap='showModalDlgBuycount' wx:if="{{canBuy}}">
+      我要开团
     </view>
-    <text>开团价</text>
   </view>
 </view>  
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal || showModalPost}}" bindtap="hideModalDlg"></view>
-<view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
-  <view class="prd-info">
-    <view class="picture"><image src="{{prdDetail.imageSingle}}" mode="scaleToFill"/></view>
-    <view class="info">
-      <text class="name">{{prdDetail.prdName}} </text>
-      <text class="gp-info">{{prdDetail.numbers}} 人拼团价</text>
-      <text class="price" style="display:{{buyway==1?'block':'none'}}">￥{{prdDetail.price}}</text>
-      <text class="price" style="display:{{buyway==0?'block':'none'}}">￥{{prdDetail.orgPrice}}</text>
-    </view>
-    <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
-  </view>
-  <view class="buycount">
-    <view class="info">
-      <text class="largeText">购买数量</text>
-      <text class="leftCount">剩余 {{prdDetail.leftCount}} 件数</text>    
-    </view>
-    <view class='count'>
-      <view class="input">
-        <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
-        <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
-        <text class='in'>{{num}}</text>
-        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
-        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
-      </view>
-      <view class="info">
-        <text>每人限购 {{prdDetail.limitCount}} 件</text>
-      </view>
-    </view>
-  </view>
-  <button class="btn-bottom" bindtap="gotoNext" data-target="confirm-order">下一步</button>
-</view>
-<view class="modalDlg" wx:if="{{showModalPost}}" style="background:#f0f0f0">
+<view class="mask" wx:if="{{showModalDlgBuycountFlg || showModalDlgPostFlg}}" bindtap="hideModalDlg"></view>
+
+<!-- 海报组件 -->
+<view class="modalDlg" wx:if="{{showModalDlgPostFlg}}" style="background:#f0f0f0">
   <button class="btn large-single" open-type='share'>发送给朋友</button>
   <button class="btn large-single" bindtap="makeSharePoster">生成海报</button>
   <button class="btn large-single mt-20" bindtap="hideModalDlg">取消</button>
@@ -163,3 +125,13 @@
   prdName="{{prdDetail.prdName}}"
   prdDesc="{{prdDetail.prdDesc}}">
 </my-poster>
+
+<!-- 购买数量组件 -->
+<view wx:if="{{showModalDlgBuycountFlg}}">
+  <my-buycount
+    detail="{{prdDetail}}"
+    limitCount="{{prdDetail.limitCount}}"
+    bind:hideEvent="hideModalDlgBuycount"
+    bind:nextEvent="gotoNext">
+  </my-buycount>
+</view>

@@ -105,13 +105,13 @@ Component({
           ctx.setFontSize(14);
           let contentHh = 22 * 1;
           for (let m = 0; m < contentArray.length; m++) {
-            ctx.fillText(contentArray[m], 15, imgheght + 25 + contentHh * m);
+            ctx.fillText(contentArray[m], 15, imgheght + 30 + contentHh * m);
           }
         }
 
         // 产品简介
         if (that.data.prdDesc) {
-          that.fillTextByLength(ctx, '10', '#999', that.data.prdDesc, imgheght + 40);
+          that.fillTextByLength(ctx, '10', '#999', that.data.prdDesc, imgheght + 46);
         }
 
         // 产品金额
@@ -126,10 +126,10 @@ Component({
           // 团购价
           ctx.setFontSize(10);
           ctx.setFillStyle('#000');
-          ctx.fillText('¥', left - 28, imgheght + 80);
+          ctx.fillText('¥', left - 34, imgheght + 80);
 
           ctx.setFontSize(14);
-          ctx.fillText(price.pref + '.', left - 20, imgheght + 80);
+          ctx.fillText(price.pref + '.', left - 25, imgheght + 80);
 
           ctx.setFontSize(10);
           ctx.fillText(price.suff, left - 12, imgheght + 80);
@@ -142,17 +142,18 @@ Component({
 
           // 几人团信息
           ctx.setFillStyle('#FFF6E8');
-          ctx.fillRect(left + 40, imgheght + 66, 40, 20);
+          ctx.fillRect(left + 50, imgheght + 66, 40, 20);
           ctx.setFillStyle('#FFBA4A');
-          ctx.setFontSize(10);
+          ctx.setFontSize(12);
           console.log(numbers);
-          ctx.fillText(numbers + '人团', left + 45, imgheght + 80);
+          ctx.fillText(numbers + '人团', left + 54, imgheght + 80);
 
         }
 
         // 小程序码
         ctx.setFillStyle('#000');
-        ctx.fillText('长按识别小程序码', left + 180, imgheght + 80);
+        ctx.setFontSize(10);
+        ctx.fillText('长按识别小程序码', left + 145, imgheght + 85);
         that.getCodeImage();
 
       }).exec();
@@ -293,11 +294,11 @@ Component({
       var that = this;
       wx.getSystemInfo({
         success(res) {
-          var canvasHeight = res.windowHeight * 0.66;
-          var imgHeight = canvasHeight * 0.73;
+          var canvasHeight = res.windowHeight * 0.56;
+          var imgHeight = canvasHeight * 0.72;
           var codeimgHeight = res.windowWidth * 0.14;
-          var buttonTop = canvasHeight + mtHeight + 30;
-          var codeimgTop = imgHeight + mtHeight + 30 - codeimgHeight/2;
+          var buttonTop = canvasHeight + mtHeight + 20;
+          var codeimgTop = imgHeight + mtHeight + 40 - codeimgHeight/2;
           console.log('imgHeight: ' + imgHeight);
           that.setData({
             canvasHeight: canvasHeight,
