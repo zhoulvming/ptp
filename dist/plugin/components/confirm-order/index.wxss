@@ -164,68 +164,90 @@ page {
   z-index: 9000;
   opacity: 0.7;
 }
+.warning-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 25rpx;
+  padding-top: 20rpx;
+}
+.warning-info .warning {
+  font-weight: 600;
+}
+.warning-info .info {
+  color: #888;
+}
 .detail {
   display: flex;
   flex-direction: row;
-  padding: 25rpx;
+  padding: 35rpx;
 }
-.detail image {
-  height: 200rpx;
-  width: 200rpx;
+.detail .picture {
+  width: 160rpx;
+  height: 160rpx;
 }
-.detail .content {
+.detail .picture image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+}
+.detail .info {
   display: flex;
   flex-direction: column;
-  padding-left: 20rpx;
-  position: relative;
-  width: 450rpx;
+  margin-left: 25rpx;
+  width: 100%;
 }
-.detail .content .title {
-  font-size: 35rpx;
+.detail .info .name {
+  font-size: 30rpx;
   font-weight: 600;
 }
-.detail .content .desc {
-  font-size: 30rpx;
+.detail .info .desc {
   color: grey;
-}
-.detail .content .buying-info .price {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  bottom: 0rpx;
-}
-.detail .content .buying-info .price .money-flag {
-  position: absolute;
-  bottom: 0;
   font-size: 25rpx;
-}
-.detail .content .buying-info .price .pref {
-  font-size: 40rpx;
   font-weight: 600;
-  position: absolute;
-  bottom: -6rpx;
-  padding-left: 23rpx;
 }
-.detail .content .buying-info .price .suff {
-  font-size: 30rpx;
-  font-weight: 500;
-  position: absolute;
-  bottom: -2rpx;
-  padding-left: 45rpx;
+.detail .info .buying-info {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 15rpx;
 }
-.detail .content .buying-info .price .count {
-  position: absolute;
-  bottom: 0rpx;
-  right: 20rpx;
+.detail .info .buying-info .price-now {
+  display: flex;
+  flex-direction: row;
+}
+.detail .info .buying-info .price-now .money-flag {
   font-size: 35rpx;
+  margin-top: 18rpx;
 }
-.detail .content .buying-info .buying-count {
+.detail .info .buying-info .price-now .now-pref {
+  font-size: 50rpx;
+}
+.detail .info .buying-info .price-now .now-suff {
+  font-size: 35rpx;
+  margin-top: 18rpx;
+}
+.detail .info .buying-info .buying-count {
   display: flex;
   flex-direction: row;
   position: absolute;
   bottom: 0rpx;
   right: 20rpx;
-  font-size: 35rpx;
+  font-size: 30rpx;
+}
+.bottom-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 150rpx;
+  padding: 30rpx;
+}
+.bottom-info .warning {
+  font-weight: 600;
+}
+.bottom-info .info {
+  color: #888;
 }
 .footer {
   position: fixed;
@@ -249,12 +271,26 @@ page {
   color: white;
   font-size: 40rpx;
 }
+.footer .action .info .price-total {
+  display: flex;
+  flex-direction: row;
+}
+.footer .action .info .price-total .money-flag {
+  font-size: 35rpx;
+  margin-top: 18rpx;
+}
+.footer .action .info .price-total .now-pref {
+  font-size: 50rpx;
+}
+.footer .action .info .price-total .now-suff {
+  font-size: 35rpx;
+  margin-top: 18rpx;
+}
 .footer .action .btn {
   position: absolute;
   right: 0;
   color: white;
   background: #008FDB;
-  bottom: -120rpx;
   padding: 36rpx 50rpx;
   font-weight: 600;
 }

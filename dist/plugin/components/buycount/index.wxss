@@ -165,6 +165,7 @@ page {
   opacity: 0.7;
 }
 .modalDlg-buycount {
+  padding: 35rpx;
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -176,78 +177,92 @@ page {
   align-items: center;
 }
 .modalDlg-buycount .prd-info {
-  padding: 30rpx 20rpx;
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 .modalDlg-buycount .prd-info .picture {
-  margin-left: 20rpx;
+  width: 160rpx;
+  height: 160rpx;
 }
 .modalDlg-buycount .prd-info .picture image {
-  width: 200rpx;
-  height: 200rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
 }
 .modalDlg-buycount .prd-info .close {
   width: 30rpx;
   height: 30rpx;
   position: absolute;
-  right: 40rpx;
+  right: 105rpx;
   top: 40rpx;
 }
 .modalDlg-buycount .prd-info .info {
-  margin-left: 20rpx;
   display: flex;
   flex-direction: column;
+  margin-left: 25rpx;
 }
 .modalDlg-buycount .prd-info .info .name {
-  font-size: 35rpx;
-  font-weight: 700;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #008FDB;
 }
 .modalDlg-buycount .prd-info .info .gp-info {
+  margin-top: 10rpx;
   text-align: center;
-  width: 150rpx;
+  width: 120rpx;
   border: 1px solid #f9a825;
   border-radius: 8rpx;
   font-size: 25rpx;
   font-weight: 600;
   color: #f9a825;
-  margin: 5rpx 10rpx;
 }
-.modalDlg-buycount .prd-info .info .price {
-  margin-top: 70rpx;
+.modalDlg-buycount .prd-info .info .price-now {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+.modalDlg-buycount .prd-info .info .price-now .money-flag {
   font-size: 35rpx;
-  font-weight: 700;
+  margin-top: 18rpx;
+}
+.modalDlg-buycount .prd-info .info .price-now .now-pref {
+  font-size: 50rpx;
+}
+.modalDlg-buycount .prd-info .info .price-now .now-suff {
+  font-size: 35rpx;
+  margin-top: 18rpx;
 }
 .modalDlg-buycount .buycount {
   position: relative;
-  padding: 30rpx 20rpx;
-  padding-bottom: 150rpx;
+  padding-bottom: 120rpx;
+  margin-top: 30rpx;
   display: flex;
   flex-direction: row;
   font-size: 30rpx;
   width: 100%;
 }
 .modalDlg-buycount .buycount > .info {
-  padding-left: 30rpx;
   display: flex;
   flex-direction: column;
   width: 50%;
   text-align: left;
 }
 .modalDlg-buycount .buycount > .info .largeText {
-  font-size: 35rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 10rpx;
 }
 .modalDlg-buycount .buycount > .info .leftCount {
-  font-size: 30rpx;
+  font-size: 25rpx;
   color: grey;
-  margin-top: 35rpx;
+  margin-top: 30rpx;
 }
 .modalDlg-buycount .buycount .count {
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 40rpx;
+  right: 75rpx;
 }
 .modalDlg-buycount .buycount .count .input {
   display: flex;
@@ -256,14 +271,21 @@ page {
 .modalDlg-buycount .buycount .count .input .ic,
 .modalDlg-buycount .buycount .count .input .ad {
   float: left;
-  width: 60rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 50rpx;
   background: #008FDB;
-  font-size: 40rpx;
+  font-size: 50rpx;
   color: #ffffff;
   text-align: center;
+  position: relative;
+}
+.modalDlg-buycount .buycount .count .input .ic text,
+.modalDlg-buycount .buycount .count .input .ad text {
+  top: -3rpx;
+  position: absolute;
+  left: 10rpx;
 }
 .modalDlg-buycount .buycount .count .input .ic.off,
 .modalDlg-buycount .buycount .count .input .ad.off {
@@ -271,19 +293,20 @@ page {
 }
 .modalDlg-buycount .buycount .count .input .in {
   float: left;
-  width: 90rpx;
+  width: 25rpx;
   height: 60rpx;
   line-height: 60rpx;
   border-width: 0 ;
   font-size: 35rpx;
+  font-weight: 600;
   color: #333333;
   margin: 0 20rpx;
   text-align: center;
 }
 .modalDlg-buycount .buycount .count .info {
-  font-size: 30rpx;
+  font-size: 25rpx;
   width: 100%;
-  margin-top: 25rpx;
+  margin-top: 15rpx;
   text-align: center;
 }
 .modalDlg-buycount .btn-bottom {
@@ -295,4 +318,5 @@ page {
   border-radius: 0;
   box-sizing: none;
   color: white;
+  margin-left: -34rpx;
 }

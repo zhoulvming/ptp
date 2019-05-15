@@ -1,71 +1,93 @@
 @import '../../lib/main.less';
 
+
+.warning-info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: @fs-4;
+  padding-top: 20rpx;
+  .warning {
+    font-weight: @fw-2;
+  }
+  .info {
+    color: @color-gray;
+  }
+}
+
 .detail {
   display: flex;
   flex-direction: row;
-  padding: 25rpx;
-  image {
-    height: 200rpx;
-    width: 200rpx;
-  }
-  .content {
+  padding: 35rpx;
+  .picture {
+    width: 160rpx;
+    height: 160rpx;
+    image {
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 10rpx;
+    }
+  }  
+  .info {
     display: flex;
     flex-direction: column;
-    padding-left: 20rpx;
-    position: relative;
-    width:450rpx;
-    .title {
-      font-size: @fs-2;
+    margin-left: 25rpx;
+    width: 100%;
+    .name {
+      font-size: @fs-3;
       font-weight: @fw-2;
     }
     .desc {
-      font-size: @fs-3;
       color: grey;
+      font-size: @fs-4;
+      font-weight: @fw-2;      
     }
     .buying-info {
-      .price {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      margin-top: 15rpx;
+      .price-now {
         display: flex;
         flex-direction: row;
-        position: absolute;
-        bottom: 0rpx;
         .money-flag {
-          position:absolute;
-          bottom: 0;
-          font-size: 25rpx;
+          font-size: @fs-2;
+          margin-top: 18rpx;
         }
-        .pref {
-          font-size: 40rpx;
-          font-weight: @fw-2;
-          position:absolute;
-          bottom: -6rpx;
-          padding-left: 23rpx;        
+        .now-pref {
+          font-size: @fs-large;
         }
-        .suff {
-          font-size: 30rpx;
-          font-weight: @fw-3;
-          position:absolute;
-          bottom: -2rpx;
-          padding-left: 45rpx;           
+        .now-suff {
+          font-size: @fs-2;
+          margin-top: 18rpx;
         }
-        .count {
-          position: absolute;
-          bottom: 0rpx;
-          right: 20rpx;
-          font-size: 35rpx;
-        }
-      }
+      }      
       .buying-count {
         display: flex;
         flex-direction: row;
         position: absolute;
         bottom: 0rpx;
         right: 20rpx;
-        font-size: 35rpx;
+        font-size: @fs-3;
       }
     }
   }
 }
 
+.bottom-info {
+  display: flex;
+  flex-direction: column;
+  font-size: @fs-3;
+  position: absolute;
+  bottom: 150rpx;
+  padding: 30rpx;
+  .warning {
+    font-weight: @fw-2;
+  }
+  .info {
+    color: @color-gray;
+  }
+}
 
 .footer {
   position: fixed;
@@ -86,13 +108,27 @@
       margin-left: 60rpx;
       color: white;
       font-size: @fs-0;
+      .price-total {
+        display: flex;
+        flex-direction: row;
+        .money-flag {
+          font-size: @fs-2;
+          margin-top: 18rpx;
+        }
+        .now-pref {
+          font-size: @fs-large;
+        }
+        .now-suff {
+          font-size: @fs-2;
+          margin-top: 18rpx;
+        }
+      }      
     }
     .btn {
       position: absolute;
       right: 0;
       color: white;
       background:@color-primary;
-      bottom:-120rpx;
       padding: 36rpx 50rpx;
       font-weight: @fw-2;
     }

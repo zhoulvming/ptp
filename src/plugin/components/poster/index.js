@@ -62,15 +62,75 @@ Component({
         success: function(res) {
           wx.hideLoading();
           var imagePath = res.tempFilePath;
-          that.calculateHeight(imagePath, function(imageHeight) {
-            that.drawCanvas(imagePath, imageHeight);
+
+
+
+          wx.request({
+            url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
+            header: { 'content-type': 'application/json;charset=utf-8' },
+            method: 'POST',
+            data: {
+              appid: config.appid,
+              secret: config.secret,
+              prdId: that.data.prdId
+            },
+            success(res) {
+              wx.downloadFile({
+                url: res.data,
+                success: function(res) {
+                  var codeImagePath = res.tempFilePath;
+                  
+                  that.calculateHeight(imagePath, function(imageHeight) {
+                    that.drawCanvas(imagePath, imageHeight, codeImagePath);
+                  });
+
+
+                }
+              })
+            }
           });
+
+
+
+
+
+
+          // that.calculateHeight(imagePath, function(imageHeight) {
+          //   that.drawCanvas(imagePath, imageHeight);
+          // });
         }
-      });
+      })
+
+
+
+      // wx.request({
+      //   url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
+      //   header: { 'content-type': 'application/json;charset=utf-8' },
+      //   method: 'POST',
+      //   data: {
+      //     appid: config.appid,
+      //     secret: config.secret,
+      //     prdId: that.data.prdId
+      //   },
+      //   success(res) {
+      //     wx.downloadFile({
+      //       url: res.data,
+      //       success: function(res) {
+      //         wx.hideLoading();
+      //         var codeImagePath = res.tempFilePath;
+      //         that.drawCanvas(codeImagePath, 50);
+      //       }
+      //     })
+      //   }
+      // });
+
+
+
+
     },
 
     //canvas绘制分享海报
-    drawCanvas: function(imagePath, imageHeight) {
+    drawCanvas: function(imagePath, imageHeight, codeImagePath) {
       wx.showLoading({
         title: '生成中...',
         mask: true,
@@ -145,7 +205,6 @@ Component({
           ctx.fillRect(left + 50, imgheght + 66, 40, 20);
           ctx.setFillStyle('#FFBA4A');
           ctx.setFontSize(12);
-          console.log(numbers);
           ctx.fillText(numbers + '人团', left + 54, imgheght + 80);
 
         }
@@ -154,7 +213,8 @@ Component({
         ctx.setFillStyle('#000');
         ctx.setFontSize(10);
         ctx.fillText('长按识别小程序码', left + 145, imgheght + 85);
-        that.getCodeImage();
+        // that.getCodeImage();
+        ctx.drawImage(codeImagePath, left + 160, imgheght + 20, 50, 50);
 
       }).exec();
 
@@ -319,18 +379,19 @@ Component({
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
         header: { 'content-type': 'application/json;charset=utf-8' },
         method: 'POST',
-        responseType: 'arraybuffer',
+        // responseType: 'arraybuffer',
         data: {
           appid: config.appid,
           secret: config.secret,
           prdId: that.data.prdId
         },
         success(res) {
-          console.log(res)
-          var base64 = wx.arrayBufferToBase64(res.data);
-          that.setData ({
-            captchaImage: 'data:image/PNG;base64,' + base64
-          });
+          // var base64 = wx.arrayBufferToBase64(res.data);
+          // that.setData ({
+          //   captchaImage: 'data:image/PNG;base64,' + base64
+          // });
+          console.log(res.data)
+          that.setData({captchaImage: res.data})
         }
       });
     }

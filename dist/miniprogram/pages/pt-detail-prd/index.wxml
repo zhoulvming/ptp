@@ -1,1 +1,8 @@
+
 <pt-detail-prd bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userinfo}}"/>
+<view class="contact">
+  <contact-button class='cBtn' type="default-dark" size="20" session-from="weapp">
+    <image mode='widthFix' src="../../images/kefu.png" />
+    <text>客服</text>
+  </contact-button>
+</view>

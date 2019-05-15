@@ -61,7 +61,7 @@ Component({
           that.setData({prds: prds})
 
           // 调整swipper高度
-          let swipperHeight = prds[0].items.length * 500
+          let swipperHeight = prds[0].items.length * 250
           that.setData({ swipperHeight: swipperHeight})
 
           // 调整swipper tab 的居左距离，使其保持居中显示
@@ -117,7 +117,7 @@ Component({
       var that = this
       // 重新计算swipper最大高度
       let idex = event.currentTarget.dataset.current
-      let swipperHeight = that.data.prds[idex].items.length * 500
+      let swipperHeight = that.data.prds[idex].items.length * 250
       if ( swipperHeight > that.data.swipperHeight) {
         this.setData({ swipperHeight: swipperHeight})
       }

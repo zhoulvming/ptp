@@ -98,13 +98,14 @@
   </view>
   <view class="actionBar">
     <view class='customer'>
-      <navigator url=''>
-        <image mode='widthFix' src="../../images/icons/pin.png" />
-        <text>客服</text>
-      </navigator>
     </view>
     <view class='groupPurse' bindtap='showModalDlgBuycount' wx:if="{{canBuy}}">
-      我要开团
+      <view class="price-now">
+        <text class="money-flag">￥</text>
+        <text class="now-pref">{{prdDetail.price_pref}}</text>
+        <text class="now-suff">.{{prdDetail.price_suff}}</text>
+      </view>
+      <text class="btn-name">开团价</text>
     </view>
   </view>
 </view>  

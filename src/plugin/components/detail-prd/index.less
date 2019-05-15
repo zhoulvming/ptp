@@ -93,7 +93,7 @@
     height: 80rpx;
     width: 60rpx;
     position: absolute;
-    right: 10rpx;
+    right: 20rpx;
     top: 30rpx;
     font-size: 25rpx;
     display: flex;
@@ -112,7 +112,7 @@
       position:absolute;
       bottom:0;
       left:0;
-      top:30rpx;
+      top:35rpx;
       font-size:20rpx;
     }
   }
@@ -269,6 +269,31 @@
       width: 70%;
       margin: auto;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      font-size: @fs-3;
+      font-weight: @fw-2;
+      .price-now {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        margin: 0 auto;
+        .money-flag {
+          font-size: @fs-2;
+          margin-top: 18rpx;
+        }
+        .now-pref {
+          font-size: @fs-large;
+        }
+        .now-suff {
+          font-size: @fs-2;
+          margin-top: 18rpx;
+        }
+      }
+      .btn-name {
+        margin-top:-10rpx;
+        padding-bottom:5px;
+      }   
     }    
   }
 }

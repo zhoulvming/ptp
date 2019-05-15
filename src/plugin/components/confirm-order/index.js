@@ -82,6 +82,7 @@ Component({
             //   }
             // })
 
+            utils.log('下单成功：' + orderResult.orderNo)
             that.wxPay(orderResult.orderNo)
           } else {
             // 下单失败
@@ -248,30 +249,23 @@ Component({
     },
     formatOrderData(prdData) {    
       var that = this
-      var price_pref = null
-      var price_suff = null
-      var orderNum = that.data.orderNum*1
-
-      if (that.data.buyway == config.buyway_single) {
-        var price = utils.formatPrice(that.data.buywayPrice * 1/orderNum)
-        price_pref = price.pref
-        price_suff = price.suff
-      } else {
-        price_pref = prdData.price_pref
-        price_suff = prdData.price_suff
-      }
-
+      var price_total = that.data.inputData.orderNum * prdData.price + ''
+      var price_temp = price_total.split('.')
+      var price_total_pref = price_temp[0]
+      var price_total_suff = price_temp[1]
       return {
-        price_pref: price_pref,
-        price_suff: price_suff,
-        orderNum: that.data.orderNum,
+        price_pref: prdData.price_pref,
+        price_suff: prdData.price_suff,
+        orderNum: that.data.inputData.orderNum,
         prdName: prdData.prdName,
         leftTime_d: prdData.leftTime_d,
         leftTime_h: prdData.leftTime_h,
         leftTime_m: prdData.leftTime_m,
         leftTime_s: prdData.leftTime_s,
         imageSingle: prdData.imageSingle,
-        validDays: prdData.validDays
+        validDays: prdData.validDays,
+        price_total_pref: price_total_pref,
+        price_total_suff: price_total_suff
       }
     }
   }

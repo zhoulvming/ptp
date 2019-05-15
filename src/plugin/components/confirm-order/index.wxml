@@ -1,37 +1,38 @@
-<view class="pd-top-20 pd-bottom-20 align-center display-col">
-  <text class="fs-warning">距结束仅剩</text>
-  <text class="fs-content">{{order.leftTime_d}} 天 {{wxTimer}}</text>
+<view class="warning-info">
+  <text class="warning">距结束仅剩</text>
+  <text class="info">{{order.leftTime_h}} 小时 {{wxTimer}}</text>
 </view>
 <view class="wrapper">
   <view class="panel detail">
-    <image src="{{order.imageSingle}}"/>
-    <view class="content">
-      <text class="title">{{order.prdName}}</text>
+    <view class="picture"><image src="{{order.imageSingle}}" mode="scaleToFill"/></view>
+    <view class="info">
+      <text class="name">{{order.prdName}} </text>
       <text class="desc">有效期自购买起 {{order.validDays}} 天内有效</text>
       <view class="buying-info">
-        <view class="price">
+        <view class="price-now">
           <text class="money-flag">￥</text>
-          <text class="pref">{{order.price_pref}}</text>
-          <text class="suff">.{{order.price_suff}}</text>
+          <text class="now-pref">{{order.price_pref}}</text>
+          <text class="now-suff">.{{order.price_suff}}</text>
         </view>
         <view class="buying-count">
-          x {{inputData.orderNum}}
+          x{{inputData.orderNum}}
         </view>
       </view>
     </view>
   </view>
 </view>
-<view class="wrapper display-col" style="position:absolute; bottom:200rpx;">
-  <text class="fs-title">友情提醒</text>
-  <text class="fs-content">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
+<view class="bottom-info">
+  <text class="warning">友情提醒</text>
+  <text class="info">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
 </view>
 <view class="footer">
   <view class="action">
     <view class="info">
-      <view class="buying-price">
+      <view class="price-total">
         <text class="money-flag">￥</text>
-        <text class="pref">{{inputData.orderNum*inputData.price}}</text>
-      </view>
+        <text class="now-pref">{{order.price_total_pref}}</text>
+        <text class="now-suff">.{{order.price_total_suff}}</text>
+      </view>      
     </view>
     <block wx:if="{{!nextBtnDisabled}}">
       <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
