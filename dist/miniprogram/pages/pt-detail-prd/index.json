@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "CJ拼团_商品详情",
+  "navigationBarTitleText": "商品详情",
   "usingComponents": {
     "pt-detail-prd": "plugin://pt_plugin/detail-prd"
   }

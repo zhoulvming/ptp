@@ -1,5 +1,7 @@
 <view class="detail-prd">
-  <swiper style="height:{{bannerHeight}}px">
+  <swiper indicator-dots="true" 
+      indicator-active-color="#fff" style="height:{{bannerHeight}}px"
+      autoplay="true" interval="5000" duration="1000">
     <block wx:for="{{prdDetail.images}}">
       <swiper-item>
         <image src="{{item}}"/>
@@ -20,7 +22,7 @@
       <view class="price-now">
         <text class="money-flag">￥</text>
         <text class="now-pref">{{prdDetail.price_pref}}</text>
-        <text class="now-suff">.{{prdDetail.price_suff}}</text>
+        <text class="now-suff">{{prdDetail.price_suff}}</text>
         <view class="gp-info">{{prdDetail.numbers}}人拼团价</view>
       </view>
       <view class="price-org">
@@ -103,7 +105,7 @@
       <view class="price-now">
         <text class="money-flag">￥</text>
         <text class="now-pref">{{prdDetail.price_pref}}</text>
-        <text class="now-suff">.{{prdDetail.price_suff}}</text>
+        <text class="now-suff">{{prdDetail.price_suff}}</text>
       </view>
       <text class="btn-name">开团价</text>
     </view>

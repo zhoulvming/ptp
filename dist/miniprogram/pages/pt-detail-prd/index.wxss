@@ -1,11 +1,25 @@
-.contact {
-  position: absolute;
+.fixedBottom {
+  position: fixed;
+  width: 30%;
   bottom: 0;
-  color: white;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+}
+.fixedBottom .actionBar .customer {
   text-align: center;
 }
-.contact image {
-  width: 30rpx;
-  height: 30rpx;
+.fixedBottom .actionBar .customer .btn-contact {
+  line-height: 1.9;
+  border: none;
+}
+.fixedBottom .actionBar .customer .btn-contact image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: -10rpx;
+}
+.fixedBottom .actionBar .customer .btn-contact view {
+  color: white;
+  font-weight: 600;
+  font-size: 28rpx;
+  margin-top: -15rpx;
 }

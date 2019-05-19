@@ -31,7 +31,7 @@
       <view class="price-total">
         <text class="money-flag">￥</text>
         <text class="now-pref">{{order.price_total_pref}}</text>
-        <text class="now-suff">.{{order.price_total_suff}}</text>
+        <text class="now-suff">{{order.price_total_suff}}</text>
       </view>      
     </view>
     <block wx:if="{{!nextBtnDisabled}}">

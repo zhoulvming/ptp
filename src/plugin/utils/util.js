@@ -1,15 +1,42 @@
 const utils = {
-  formatPrice(data) {
+  formatPriceOld(data) {
     var strData = data + ''
     var pref = '00'
     var suff = '00'
     var index = strData.indexOf('.')
     if (index > 0) {
       pref = strData.substring(0, index)
-      suff = strData.substring(index+1)
+      suff = strData.substring(index+1, index+2)
     } else {
       pref = strData
       suff = '00'
+    }
+
+    return {pref: pref, suff: suff}
+  },
+
+  formatPrice(data) {
+    var pref = ''
+    var suff = ''
+    var price = data + ''
+    var arr = price.split('.')
+    if (arr) {
+      pref = arr[0]
+      if (arr.length > 1) {
+        suff = arr[1]
+        if (suff.length > 1) {
+          suff = suff.substring(0, 1)
+        }
+      }
+      if (suff != '') {
+        var suffNumber = suff * 1
+        if (suffNumber == 0) {
+          suff = ''
+        }
+      }
+    }
+    if (suff != '') {
+      suff = '.' + suff
     }
 
     return {pref: pref, suff: suff}

@@ -159,13 +159,6 @@ Component({
           })
         }
       )
-
-      // TODO: 此为下单测试代码
-      // cb({
-      //   resultFlag: true,
-      //   orderNo: '1234567890'
-      // }) 
-
     },
 
     // 支付
@@ -207,22 +200,8 @@ Component({
               }
             })                
           }
-
-          // TODO： 此处有问题，页面已经迁移到小程序页面，执行此回调函数无意义
-          // cb({
-          //   resultFlag: resultFlag,
-          //   payUrl: payUrl
-          // })
         }
       )
-      
-      
-      // // TODO: 测试
-      // cb({
-      //   resultFlag: true,
-      //   payUrl: '1232321142048320482034802348032840234238048203'
-      // })
-
     },
 
     // 页面加载

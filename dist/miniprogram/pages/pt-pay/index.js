@@ -41,6 +41,7 @@ Page({
               detail: {
                 target: target,
                 options: {
+                  prdId: that.data.input.pridId,
                   price: that.data.input.price,
                   orderNo: that.data.input.orderNo,
                   grpEnter: that.data.input.grpEnter,
