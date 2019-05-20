@@ -1,4 +1,5 @@
 <view class="modalDlg-buycount">
+  
   <view class="prd-info">
     <view class="picture"><image src="{{detail.imageSingle}}" mode="scaleToFill"/></view>
     <view class="info">
@@ -7,7 +8,7 @@
       <view class="price-now">
         <text class="money-flag">￥</text>
         <text class="now-pref">{{detail.price_pref}}</text>
-        <text class="now-suff">.{{detail.price_suff}}</text>
+        <text class="now-suff">{{detail.price_suff}}</text>
       </view>
     </view>
     <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
@@ -30,5 +31,6 @@
       </view>
     </view>
   </view>
+
   <button class="btn-bottom" bindtap="gotoNext">下一步</button>
 </view>

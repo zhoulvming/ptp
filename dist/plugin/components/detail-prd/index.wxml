@@ -110,7 +110,7 @@
       <text class="btn-name">开团价</text>
     </view>
   </view>
-</view>  
+</view>
 <view class="mask" wx:if="{{showModalDlgBuycountFlg || showModalDlgPostFlg}}" bindtap="hideModalDlg"></view>
 
 <!-- 海报组件 -->

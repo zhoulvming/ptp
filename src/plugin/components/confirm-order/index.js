@@ -29,7 +29,6 @@ Component({
             price: newVal.price
           }})
           this.loadPage()
-
         }
       }         
     }
@@ -61,27 +60,6 @@ Component({
         // 下单 -> 支付 -> 返回到拼团详情
         that.crtOrder(function(orderResult) {
           if (orderResult.resultFlag) {
-            // 下单成功然后支付
-            // that.wxPay(orderResult.orderNo, function(payResult) {
-            //   if (payResult.resultFlag) {
-            //     that.triggerEvent('callback', {
-            //       target: config.miniPage.detail_grp,
-            //       options: {
-            //         prdId: that.data.inputData.prdId,
-            //         grpId: that.data.inputData.grpId,
-            //         grpEnter: that.data.inputData.grpEnter,
-            //         orderNo: orderResult.orderNo
-            //       }
-            //     })
-            //   } else {
-            //     utils.log('支付失败')
-            //     wx.showModal({
-            //       title: '错误',
-            //       content: '无法完成支付'
-            //     })                
-            //   }
-            // })
-
             utils.log('下单成功：' + orderResult.orderNo)
             that.wxPay(orderResult.orderNo)
           } else {
@@ -226,12 +204,10 @@ Component({
         }
       )
     },
-    formatOrderData(prdData) {    
+    formatOrderData(prdData) {
       var that = this
       var price_total = that.data.inputData.orderNum * prdData.price + ''
-      var price_temp = price_total.split('.')
-      var price_total_pref = price_temp[0]
-      var price_total_suff = price_temp[1]
+      var priceObj = utils.formatPrice(price_total)
       return {
         price_pref: prdData.price_pref,
         price_suff: prdData.price_suff,
@@ -243,8 +219,8 @@ Component({
         leftTime_s: prdData.leftTime_s,
         imageSingle: prdData.imageSingle,
         validDays: prdData.validDays,
-        price_total_pref: price_total_pref,
-        price_total_suff: price_total_suff
+        price_total_pref: priceObj.pref,
+        price_total_suff: priceObj.suff
       }
     }
   }

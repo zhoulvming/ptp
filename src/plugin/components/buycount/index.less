@@ -1,6 +1,5 @@
 @import '../../lib/main.less';
 .modalDlg-buycount {
-  padding: 35rpx;
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -9,11 +8,11 @@
   border-radius: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
   .prd-info { 
     display: flex;
     flex-direction: row;
-    width: 100%;
+    padding: 40rpx;
+    position: relative;
     .picture {
       width: 160rpx;
       height: 160rpx;
@@ -27,8 +26,7 @@
       width:30rpx;
       height:30rpx;
       position:absolute;
-      right:105rpx;
-      top:40rpx;      
+      right:50rpx;      
     }
     .info {
       display: flex;
@@ -68,21 +66,15 @@
     }
   }
   .buycount {
-    position: relative;
-    padding-bottom: 120rpx;
-    margin-top: 30rpx;
     display: flex;
     flex-direction: row;
     font-size: @fs-3;
-    width: 100%;
-    >.info {
+    padding: 10rpx 40rpx 60rpx 40rpx;
+    .info {
       display: flex;
       flex-direction: column;
-      width: 50%;
-      text-align: left;
       .largeText {
         font-size: @fs-3;
-        font-weight: @fw-2;
         margin-top: 10rpx;
       }
       .leftCount {
@@ -95,7 +87,7 @@
       display: flex;
       flex-direction: column;
       position: absolute;
-      right: 75rpx;
+      right: 50rpx;
       .input {
         display: flex;
         flex-direction: row;
@@ -105,6 +97,7 @@
           height: 50rpx;
           line-height: 50rpx;
           border-radius: 50rpx;
+          margin-top: 5rpx;
           background: @color-primary;
           font-size: @fs-large;
           color: #ffffff;
@@ -135,20 +128,20 @@
       .info {
         font-size: @fs-4;
         width:100%;
-        margin-top:15rpx;
+        margin-top:20rpx;
         text-align: center;
       }
     } 
   }
+
   .btn-bottom {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     background-color: @color-primary;
     font-weight: @fw-1;
     border-radius: 0;
     box-sizing: none;
     color: white;
-    margin-left:-34rpx;
+    margin:0;
+    padding: 15rpx 0;
   }
 }

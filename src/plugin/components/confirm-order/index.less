@@ -93,44 +93,36 @@
   position: fixed;
   bottom: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   background-color: #555;
-  height:120rpx;
-  .action {
-    display: flex;
-    flex-direction: row;
-    background:#000;
-    position: relative;
-    .info {
-      position: absolute;
-      margin-top: 36rpx;
-      margin-left: 60rpx;
-      color: white;
-      font-size: @fs-0;
-      .price-total {
-        display: flex;
-        flex-direction: row;
-        .money-flag {
-          font-size: @fs-2;
-          margin-top: 18rpx;
-        }
-        .now-pref {
-          font-size: @fs-large;
-        }
-        .now-suff {
-          font-size: @fs-2;
-          margin-top: 18rpx;
-        }
-      }      
-    }
-    .btn {
-      position: absolute;
-      right: 0;
-      color: white;
-      background:@color-primary;
-      padding: 36rpx 50rpx;
-      font-weight: @fw-2;
-    }
+  justify-content:flex-end;
+  .info {
+    color: white;
+    font-size: @fs-0;
+    margin: auto;
+    width:70%;
+    .price-total {
+      display: flex;
+      flex-direction: row;
+      padding-left: 30rpx;
+      .money-flag {
+        font-size: @fs-2;
+        margin-top: 18rpx;
+      }
+      .now-pref {
+        font-size: @fs-large;
+      }
+      .now-suff {
+        font-size: @fs-2;
+        margin-top: 18rpx;
+      }
+    }      
+  }
+  .btn {
+    color: white;
+    background:@color-primary;
+    padding: 36rpx 50rpx;
+    font-weight: @fw-2;
   }
 }
