@@ -139,6 +139,8 @@ Component({
             // that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
             // that.setData({orderNoOfDoing: resData.ordNo})
             that.setData({canBuy: false})
+            that.setData({orderNo: resData.ordNo})
+            that.setData({grpId: resData.grpId})
           } else if(leftCountFlg == 0) {
             // 无库存
             // that.setData({showModalDlg: false})
@@ -192,9 +194,24 @@ Component({
 
     // 弹出/隐藏 购买件数窗口组件
     showModalDlgBuycount: function () {
-      this.setData({
-        showModalDlgBuycountFlg: true
-      })
+      var that = this
+      if (that.data.canBuy) {
+        that.setData({
+          showModalDlgBuycountFlg: true
+        })
+      } else {
+        // 查看我的团
+        that.triggerEvent('callback', {
+          target: config.miniPage.detail_grp,
+          options: {
+            prdId: that.data.prdDetail.prdId,
+            grpEnter: config.grpEnter.fromOrder,
+            grpId: that.data.grpId,
+            orderNo: that.data.orderNo,
+            targetCallbakUrl: config.miniPage.detail_grp
+          }
+        })
+      }
     },
     hideModalDlgBuycount: function () {
       this.setData({

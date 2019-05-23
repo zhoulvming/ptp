@@ -1,5 +1,6 @@
 var utils = require('../../utils/util.js')
 const config = require('../../lib/config.js')
+const singleItemHeight = 450
 
 Component({
   properties: {
@@ -42,10 +43,11 @@ Component({
   }, 
 
   attached() {
-    var windowWidth = wx.getSystemInfoSync().windowWidth
-    this.setData({bannerHeight: windowWidth/config.scale_banner})
-    var cardItemImageHeight = (windowWidth - 70) / config.scale_product
-    this.setData({cardItemImageHeight: cardItemImageHeight})
+    // var windowWidth = wx.getSystemInfoSync().windowWidth
+    // this.setData({bannerHeight: windowWidth/config.scale_banner})
+    // var cardItemImageHeight = (windowWidth - 70) / config.scale_product
+    // this.setData({cardItemImageHeight: cardItemImageHeight})
+    this.setData({cardItemImageHeight: 260})
   },
 
   methods: {
@@ -61,7 +63,7 @@ Component({
           that.setData({prds: prds})
 
           // 调整swipper高度
-          let swipperHeight = prds[0].items.length * 250
+          let swipperHeight = prds[0].items.length * singleItemHeight
           that.setData({ swipperHeight: swipperHeight})
 
           // 调整swipper tab 的居左距离，使其保持居中显示
@@ -83,33 +85,7 @@ Component({
     gotoCreatePT(event) {
       var that = this
       var prdId = event.currentTarget.dataset.prdid
-      
-      // var openid = that.data.userinfo.openid
-      // utils.requestPost(
-      //   config.restAPI.pt_check,
-      //   {openid: openid, prdId: prdId},
-      //   function(resData) {
-      //     let ordFlg = resData.ordFlg
-      //     let leftCountFlg = resData.leftCountFlg
-      //     if (ordFlg == 0) {
-      //       // 订单进项中
-      //       that.setData({showModalDlgLeftCount: false})
-      //       that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
-      //       that.setData({orderNoOfDoing: resData.ordNo})
-      //     } else if(leftCountFlg == 0) {
-      //       // 无库存
-      //       that.setData({showModalDlg: false})
-      //       that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
-      //     } else {
-      //       that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
-      //     }          
-      //   }
-      // )
-
       that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
-
-
-
     },
 
     //tab切换
@@ -117,7 +93,7 @@ Component({
       var that = this
       // 重新计算swipper最大高度
       let idex = event.currentTarget.dataset.current
-      let swipperHeight = that.data.prds[idex].items.length * 250
+      let swipperHeight = that.data.prds[idex].items.length * singleItemHeight
       if ( swipperHeight > that.data.swipperHeight) {
         this.setData({ swipperHeight: swipperHeight})
       }
@@ -127,6 +103,11 @@ Component({
     },
     //滑动事件
     tabSwiper: function (event) {
+      var that = this
+      var currentTab = event.detail.current
+      var prds = that.data.prds[currentTab]
+      var swipperHeight = prds.items.length * singleItemHeight
+      that.setData({ swipperHeight: swipperHeight})
       this.setData({ currentTab: event.detail.current })
     },
 
@@ -147,6 +128,12 @@ Component({
           }
         })
       }
+    },
+
+    tabNav: function(event) {
+      var target = event.target.dataset.target
+      this.triggerEvent('callback', {target: target})
     }
+
   }
 })

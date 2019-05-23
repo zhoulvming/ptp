@@ -204,10 +204,17 @@ page {
   text-align: center;
   margin-bottom: 8rpx;
 }
+.detail-prd .logo-info .info .leftTime {
+  margin-top: -3rpx;
+}
 .detail-prd .logo-info .info .leftTime text {
   color: #fff;
   padding: 0 8rpx;
   border-radius: 5rpx;
+}
+.detail-prd .logo-info .info .leftTime .time {
+  color: #111;
+  background: white;
 }
 .detail-prd .buying-info {
   position: relative;
@@ -426,6 +433,7 @@ page {
   flex-direction: column;
   font-size: 30rpx;
   font-weight: 600;
+  padding-top: 10rpx;
 }
 .fixedBottom .actionBar .groupPurse .price-now {
   display: flex;

@@ -1,0 +1,9 @@
+<view class="bottom">
+  <button>
+    首页
+  </button>
+  <button>
+    订单一览
+  </button>
+    
+</view>

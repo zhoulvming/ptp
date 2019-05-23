@@ -59,9 +59,12 @@ Component({
 
         // 下单 -> 支付 -> 返回到拼团详情
         that.crtOrder(function(orderResult) {
+          utils.log('11111111111111111,下单成功后返回的数据：')
+          console.log(orderResult)
+          utils.log('22222222222222222')
           if (orderResult.resultFlag) {
             utils.log('下单成功：' + orderResult.orderNo)
-            that.wxPay(orderResult.orderNo)
+            that.wxPay(orderResult.orderNo, orderResult.grpId)
           } else {
             // 下单失败
             wx.showModal({
@@ -133,20 +136,25 @@ Component({
           }
           cb({
             resultFlag: resultFlag,
-            orderNo: ordreNo
+            orderNo: ordreNo,
+            grpId: resData.grpId
           })
         }
       )
     },
 
     // 支付
-    wxPay(orderNo) {
+    wxPay(orderNo, grpId) {
       var that = this
+
+      // TODO: 测试价格写了死值
+      var price = that.data.inputData.price * that.data.inputData.orderNum
+
       var dataPayment = {
         openId: that.data.userinfo.openid,
         orderNo: orderNo,
         channelId: wx.getStorageSync('channelId'),
-        price: that.data.inputData.price * that.data.inputData.orderNum,
+        price: price,
         returnUrl: ''
       }
       utils.log('支付参数', dataPayment)      
@@ -164,9 +172,9 @@ Component({
               options: {
                 price: dataPayment.price,
                 orderNo: orderNo,
+                grpId: grpId,
                 prdId: that.data.inputData.prdId,
                 grpEnter: that.data.inputData.grpEnter,
-                grpId: that.data.inputData.grpId,
                 targetCallbakUrl: config.miniPage.detail_grp,
                 buyCount: that.data.inputData.orderNum,
                 payInfo: {
@@ -176,7 +184,7 @@ Component({
                   sign: payUrl.sign
                 }
               }
-            })                
+            })
           }
         }
       )

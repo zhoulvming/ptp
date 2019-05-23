@@ -1,4 +1,4 @@
-<view class="main">
+<view class="main" style="margin-bottom: 40rpx">
   <view class="header">
     <swiper class="top-swiper" indicator-dots="{{indicatorDots}}" 
       indicator-active-color="#fff" style="height:{{bannerHeight}}px"
@@ -20,10 +20,10 @@
         <text>{{item.grpCategoryName}}</text>
       </view>
     </view>
-    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight}}px">
+    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight}}rpx">
       <swiper-item wx:for="{{prds}}" wx:for-item="item" >
         <view wx:for="{{item.items}}" wx:for-item="prd_item" class="card-item">
-          <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}px"></image>
+          <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}rpx"></image>
           <view class="name display-row">
             <text class="prd-numbers">{{prd_item.numbers}}人团</text>
             <text class="prd-name">{{prd_item.prdName}}</text>
@@ -41,8 +41,26 @@
       </swiper-item>
     </swiper>
   </view>
-
 </view>
+<view class="bottom-tab">
+  <view class="item">
+    <image src="../../images/home.png"/>
+    <text bindtap="tabNav" data-target="app-home">首页</text>
+  </view>
+  <view class="item">
+    <image src="../../images/menu.png"/>
+    <text bindtap="tabNav" data-target="app-home">点单</text>
+  </view>
+  <view class="item">
+    <image src="../../images/activity-sel.png"/>
+    <text bindtap="tabNav" data-target="app-home" style="color: #008FDB">拼团</text>
+  </view>
+  <view class="item">
+    <image src="../../images/person.png"/>
+    <text bindtap="tabNav" data-target="app-home">我的</text>
+  </view>
+</view>
+
 
 
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModalDlg||showModalDlgLeftCount}}" bindtap="hideModalDlg"></view>

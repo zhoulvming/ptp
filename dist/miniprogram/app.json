@@ -6,7 +6,6 @@
     "pages/pt-detail-grp/index",
     "pages/pt-confirm-order/index",
     "pages/pt-detail-order/index",
-    "pages/pt-pay/index",
     "pages/pt-login/index"
   ],
   "window": {
@@ -29,6 +28,5 @@
       "provider": "wx85694629dac0c26a"
     }
   },
-  "functionalPages": true,
-  "sitemapLocation": "sitemap.json"
+  "functionalPages": true
 }

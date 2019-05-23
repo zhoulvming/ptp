@@ -13,7 +13,13 @@
     <view class="info">
       <text>距结束仅剩</text>
       <view class="leftTime">
-        <text>{{prdDetail.leftTime_d}} 天 {{wxTimer}}</text>
+        <text class="time">{{prdDetail.leftTime_d}}</text>
+        天
+        <text class="time">{{wxTimerArr[0]}}</text>
+        :
+        <text class="time">{{wxTimerArr[1]}}</text>
+        :
+        <text class="time">{{wxTimerArr[2]}}</text>
       </view>
     </view>
   </view>
@@ -95,19 +101,17 @@
   </view>
 </view>  
 <view class='fixedBottom'>
-  <view class="statusBar" wx:if="{{!canBuy}}">
-    <text>您已经有一个拼团中的订单，点击查看详情</text>
-  </view>
   <view class="actionBar">
     <view class='customer'>
     </view>
-    <view class='groupPurse' bindtap='showModalDlgBuycount' wx:if="{{canBuy}}">
-      <view class="price-now">
+    <view class='groupPurse' bindtap='showModalDlgBuycount'>
+      <view class="price-now" wx:if="{{canBuy}}">
         <text class="money-flag">￥</text>
         <text class="now-pref">{{prdDetail.price_pref}}</text>
         <text class="now-suff">{{prdDetail.price_suff}}</text>
       </view>
-      <text class="btn-name">开团价</text>
+      <text class="btn-name" wx:if="{{canBuy}}">开团价</text>
+      <text class="btn-name" wx:if="{{!canBuy}}">查看我的团</text>
     </view>
   </view>
 </view>
@@ -138,3 +142,4 @@
     bind:nextEvent="gotoNext">
   </my-buycount>
 </view>
+

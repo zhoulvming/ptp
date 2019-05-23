@@ -13,8 +13,11 @@ App({
       'detail-grp': '../pt-detail-grp/index',             // 拼团详情
       'detail-order': '../pt-detail-order/index',         // 订单详情
       'confirm-order': '../pt-confirm-order/index',       // 订单确认
-      'pay': '../pt-pay/index',                           // 支付呼出
-      'login': '../pt-login/index'                        // 登录呼出
+      'login': '../pt-login/index',                       // 登录呼出
+
+      'app-home': '../index/index',                       // app首页
+      'app-menu': '../menu/menu',                         // 点单
+      'app-mine': '../usercenter/main'                    // 我的  
     },
 
     /*小程序所属*/

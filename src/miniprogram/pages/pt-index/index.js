@@ -13,6 +13,9 @@ Page({
     this.setData({userinfo: userinfo})
   },
   gotoPageFromPlugin(data) {
+    console.log(111)
+    console.log(data.detail.target)
+    console.log(222)
     ptCommon.gotoPageFromPlugin(data)
   }
 })

@@ -32,7 +32,10 @@ wxTimer.prototype = {
         wxTimerSecond: wxTimerSecond,
       };
 
+      var timeArr = tmpTimeStr.split(':')
+
       self.setData({
+        wxTimerArr: timeArr,
         wxTimer: tmpTimeStr,
         wxTimerSecond: wxTimerSecond,
         wxTimerList: wxTimerList
