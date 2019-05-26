@@ -1,7 +1,7 @@
 <view class="modalDlg-buycount">
   
   <view class="prd-info">
-    <view class="picture"><image src="{{detail.imageSingle}}" mode="scaleToFill"/></view>
+    <view class="picture"><image src="{{prdImage}}" mode="scaleToFill"/></view>
     <view class="info">
       <text class="name">{{detail.prdName}} </text>
       <text class="gp-info">{{detail.numbers}}人拼团价</text>

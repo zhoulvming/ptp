@@ -28,5 +28,6 @@
       "provider": "wx85694629dac0c26a"
     }
   },
-  "functionalPages": true
+  "functionalPages": true,
+  "sitemapLocation": "sitemap.json"
 }

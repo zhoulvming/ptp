@@ -37,10 +37,9 @@ Component({
   },
 
   data: {
-    status_image_success: '../../images/icons/success.png',
-    status_image_fail: '../../images/icons/fail.png',
+    status_pt_success: '../../images/icons/success.png',
+    status_pt_fail: '../../images/icons/fail.png',
     wxTimerList:[],
-    showModal: false,
 
     // min:1,//最小值 整数类型，null表示不设置
     // max: 5,//最大值 整数类型，null表示不设置
@@ -60,7 +59,9 @@ Component({
 
 
     maskHidden: false,
-    status_text: ''
+    status_text: '',
+
+    showModalDlgBuycountFlg: false
   },
 
   detached() {
@@ -118,14 +119,15 @@ Component({
     },
 
     // "下一步" 按钮处理事件
-    gotoNext() {
+    gotoNext(e) {
       var that = this
+      var detail = e.detail
       that.triggerEvent('callback', {
         target: config.miniPage.confirm_order,
         options: {
           prdId: that.data.inputData.prdId,
           grpId: that.data.inputData.grpId,
-          orderNum: that.data.inputData.orderNum,
+          orderNum: detail.buycount,
           price: that.data.inputData.price,
           grpEnter: that.data.inputData.grpEnter
         }
@@ -146,7 +148,7 @@ Component({
     showModal: function () {
       var detail = this.data.grpDetail
       this.setData({
-        showModal: true
+        showModalDlgBuycountFlg: true
       })
 
       this.setData({
@@ -155,40 +157,8 @@ Component({
     },
     hideModalDlg: function() {
       this.setData({
-        showModal: false
+        showModalDlgBuycountFlg: false
       })
-    },
-
-    //加
-    evad: function () {
-      var that = this
-      var cval = Number(this.data.num) + this.data.change
-      if (cval > this.data.max) {
-        utils.log('超出最大值')
-        this.setData({maxflag: true})
-      }else{
-        this.setData({ num: cval })
-        this.setData({maxflag: false})
-        this.setData({minflag: false})
-      }
-      var price = that.data.grpDetail.price
-      that.setData({ buywayPrice: price * cval })
-    },
-
-    //减
-    evic: function () {
-      var that = this
-      var cval = Number(this.data.num) - this.data.change
-      if (cval < this.data.min) {
-        utils.log('低于最小值')
-        this.setData({minflag: true})
-      } else {
-        this.setData({ num: cval })
-        this.setData({minflag: false})
-        this.setData({maxflag: false})
-      }
-      var price = that.data.grpDetail.price
-      that.setData({ buywayPrice: price * cval })
     },
 
     // 生成海报
@@ -204,6 +174,7 @@ Component({
       var joinBtn = false
       var orderBtn = false
       var status_text = ''
+      var status_flag = false
 
       // 拼团状态1：发起拼团成功(显示’发起拼团成功‘，按钮为’邀请好友‘和’生成海报‘)
       // 拼团状态2：凑团初始状态(不用显示任何状态文字，按钮为’我要参团‘)
@@ -211,20 +182,24 @@ Component({
       // 拼团状态4：凑团失败状态(显示’拼团未成功‘，按钮为’我要参团‘)
       // 后台返回的拼团状态 grpStatus（0/拼团失败、1/拼团成功、2/待成团）
 
-      var grpEnter = that.data.inputData.grpEnter      
+      var grpEnter = that.data.inputData.grpEnter
       if (grpEnter == config.grpEnter.create_success) {
         status_text = '发起拼团成功'
         inviteBtn = true
         makepostBtn = true
+        status_flag = true
       } else if (grpEnter == config.grpEnter.join) {
         joinBtn = true
       } else if (grpEnter == config.grpEnter.join_success) {
         status_text = '拼团成功'
         orderBtn = true
+        status_flag = true
       } else if (grpEnter == config.grpEnter.join_fail) {
         status_text = '拼团未成功'
         joinBtn = true
+        status_flag = true
       } else if (grpEnter == config.grpEnter.fromOrder) {
+        status_flag = true
         if (grpDetail.grpStatus == 0) {
           status_text = '拼团未成功'
         } else if (grpDetail.grpStatus == 1) {
@@ -233,9 +208,13 @@ Component({
           status_text = '待成团'
         }
         orderBtn = true
+      } else {
+        status_flag = true
+        status_text = '有未catch的grpEnter状态: ' + grpEnter
       }
 
       that.setData({status_text: status_text})
+      that.setData({status_flag: status_flag})
       that.setData({btnStatus:{
         inviteBtn: inviteBtn,
         makepostBtn: makepostBtn,

@@ -110,8 +110,8 @@
         <text class="now-pref">{{prdDetail.price_pref}}</text>
         <text class="now-suff">{{prdDetail.price_suff}}</text>
       </view>
-      <text class="btn-name" wx:if="{{canBuy}}">开团价</text>
-      <text class="btn-name" wx:if="{{!canBuy}}">查看我的团</text>
+      <text class="btn-pt" wx:if="{{canBuy}}">开团价</text>
+      <text class="btn-look" wx:if="{{!canBuy}}">查看我的团</text>
     </view>
   </view>
 </view>
@@ -138,6 +138,7 @@
   <my-buycount
     detail="{{prdDetail}}"
     limitCount="{{prdDetail.limitCount}}"
+    prdImage="{{prdDetail.imageSingle}}"
     bind:hideEvent="hideModalDlgBuycount"
     bind:nextEvent="gotoNext">
   </my-buycount>

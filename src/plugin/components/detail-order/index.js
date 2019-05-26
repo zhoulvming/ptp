@@ -49,9 +49,12 @@ Component({
           that.setData({totalPrice: totalPrice})
 
           var status = resData.status
-          if (status == 0) {
+          if (status == 1) {
             that.setData({order_status_code: status})
             that.setData({order_status_text: '订单进行中'})
+          } else if (status == 6) {
+            that.setData({order_status_code: status})
+            that.setData({order_status_text: '订单已完成'})
           }
 
           var leftTime = resData.leftTime

@@ -1,41 +1,51 @@
-<view class="pd-top-20 pd-bottom-20 align-center display-col">
-  <view class="status">
-    <!--
-    <image src="{{status_image_success}}" style="display:{{grp_status == 2?'block':'none'}}"></image>
-    <image src="{{status_image_fail}}" style="display:{{grp_status == 999?'block':'none'}}"></image>
-    -->
-
-    {{status_text}}
-    
+<view class="pd-top-20 align-center display-col">
+  <view class="status" wx:if="{{status_flag}}">
+    <image wx:if="{{inputData.grpEnter == 2}}" src="{{status_pt_success}}"/>
+    <image wx:if="{{inputData.grpEnter == 3 || inputData.grpEnter == 6}}" src="{{status_pt_fail}}"/>
+    <text class="{{inputData.grpEnter == 2? 'on':''}}">{{status_text}}</text>
+  </view>
+  <view class="status" wx:if="{{inputData.grpEnter == 3 || inputData.grpEnter == 6}}">
+    <image src="{{status_pt_fail}}"/>
+    <text>{{status_text}}</text>
   </view>
 </view>
 <view class="wrapper">
   <view class="panel detail">
-    <image src="{{grpDetail.prdImage}}"/>
-    <view class="content">
-      <text class="title">{{grpDetail.prdName}}</text>
+    <view class="picture"><image src="{{grpDetail.prdImage}}" mode="scaleToFill"/></view>
+
+    <view class="info">
+      <text class="name">{{grpDetail.prdName}}</text>
       <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
       <view class="buying-info">
         <view class="price-now">
           <text class="money-flag">￥</text>
           <view class="now-pref">{{grpDetail.price_pref}}</view>
-          <view class="now-suff">.{{grpDetail.price_suff}}</view>
+          <view class="now-suff">{{grpDetail.price_suff}}</view>
         </view>
         <view class="price-org">
           <text>￥{{grpDetail.orgPrice}}</text>
         </view>
-        <view class="buying-count" style="display:{{inputData.grpEnter==7?'flex':'none'}}">
-          <text>x {{orderNum}}</text>
-        </view>      
       </view>
     </view>
+
+
+
+
+
+
+
+
   </view>
 </view>
 <view class="wrapper">
   <view class="detail-user">
     <view class="timer">
       <text>剩余</text>
-      <text class="count">{{grpDetail.leftTime_d}} 天 {{wxTimer}}</text>
+      <text class="count">{{wxTimerArr[0]}}</text>
+      <text>:</text>
+      <text class="count">{{wxTimerArr[1]}}</text>
+      <text>:</text>
+      <text class="count">{{wxTimerArr[2]}}</text>
       <text>结束</text>
     </view>
     <view>
@@ -49,7 +59,7 @@
         </view>    
       </view>
     </view>
-    <view class="left-count" wx:if="{{grp_status != 999}}">
+    <view class="left-count" wx:if="{{grpDetail.leftNumber > 0}}">
       邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
     </view>
     <view class="action mb-50" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
@@ -66,67 +76,27 @@
   </view>
 </view>
 
-<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}" bindtap="hideModalDlg"></view>
-<view class="modalDlg" wx:if="{{showModal}}" bindtap="handleTapDlg">
-  <view class="prd-info">
-    <image class="picture" src="{{grpDetail.prdImage}}"/>
-    <view class="info">
-      <text class="name">{{grpDetail.prdName}} </text>
-      <text class="gp-info">{{grpDetail.number}} 人拼团价</text>
-      <text class="price">￥{{grpDetail.price}}</text>
-    </view>
-    <image class="close" src="../../images/icons/close.png" bindtap="hideModalDlg" />
-  </view>
-  <view class="buycount">
-    <view class="info">
-      <text class="largeText">购买数量</text>
-      <text class="leftCount">剩余 {{grpDetail.leftCount}} 件数</text>    
-    </view>
-    <view class='count'>
-      <view class="input">
-        <view class='ic' bindtap='evic' wx:if="{{!minflag}}">-</view>
-        <view class='ic off' bindtap='evic' wx:if="{{minflag}}">-</view>
-        <text class='in'>{{num}}</text>
-        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}">+</view>
-        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}">+</view>
-      </view>
-      <view class="info">
-        <text>每人限购 {{grpDetail.limitNum}} 件</text>
-      </view>
-    </view>
-  </view>
-  <button bindtap="gotoNext">下一步</button>
+
+
+
+
+<view class="mask" wx:if="{{showModalDlgBuycountFlg}}" bindtap="hideModalDlg"></view>
+<!-- 购买数量组件 -->
+<view wx:if="{{showModalDlgBuycountFlg}}">
+  <my-buycount
+    detail="{{grpDetail}}"
+    limitCount="{{grpDetail.limitNum}}"
+    prdImage="{{grpDetail.prdImage}}"
+    bind:hideEvent="hideModalDlgBuycount"
+    bind:nextEvent="gotoNext">
+  </my-buycount>
 </view>
-
-
-<!--
-<view class='imagePathBox' hidden="{{maskHidden == false}}">
-  <image src="{{grpDetail.prdImage}}" class='shengcheng'></image>
-  <button class='baocun' bindtap='baocun'>保存图片</button>
-</view>
-<view hidden="{{maskHidden == false}}" class="mask"></view> 
-<view class="canvas-box">
-  <canvas  style="width:375px;height: 667px;position:fixed;top:9999px" canvas-id="mycanvas"/>
-</view>
--->
-
-<!--
-<my-poster id="poster" bindmyevent="myEventListener"
-  avater="{{grpDetail.prdImage}}"
-  price="{{grpDetail.price}}"
-  orgPrice="{{grpDetail.orgPrice}}"
-  number="{{grpDetail.number}}"
-  prdName="我是商品名称我是商品名称"
-  prdDesc="我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介我是商品简介34">
-</my-poster>
--->
-
 
 <my-poster id="poster"
   imageUrl="{{grpDetail.prdImage}}"
   price="{{grpDetail.price}}"
   orgPrice="{{grpDetail.orgPrice}}"
-  numbers="{{grpDetail.number}}"
+  numbers="{{grpDetail.numbers}}"
   prdId="{{grpDetail.prdId}}"
   prdName="{{grpDetail.prdName}}"
   prdDesc="{{grpDetail.prdDesc}}">

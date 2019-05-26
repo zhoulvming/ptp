@@ -59,12 +59,32 @@ Component({
 
         // 下单 -> 支付 -> 返回到拼团详情
         that.crtOrder(function(orderResult) {
-          utils.log('11111111111111111,下单成功后返回的数据：')
-          console.log(orderResult)
-          utils.log('22222222222222222')
           if (orderResult.resultFlag) {
             utils.log('下单成功：' + orderResult.orderNo)
-            that.wxPay(orderResult.orderNo, orderResult.grpId)
+
+            // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
+            //that.wxPay(orderResult.orderNo, orderResult.grpId)
+
+            // TODO: 测试代码，绕过支付
+            var grpEnter = that.data.inputData.grpEnter
+            if (grpEnter == 1) {
+              grpEnter = 2
+            } else if (grpEnter == 4) {
+              grpEnter = 5
+            }
+  
+            that.triggerEvent('callback', {
+              target: config.miniPage.detail_grp,
+              options: {
+                grpEnter: grpEnter,
+                prdId: that.data.inputData.prdId,
+                grpId: orderResult.grpId,
+                price: that.data.inputData.price,
+                paySuccessFlag: true,
+                orderNo: orderResult.orderNo
+              }
+            })
+             
           } else {
             // 下单失败
             wx.showModal({

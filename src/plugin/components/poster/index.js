@@ -157,7 +157,7 @@ Component({
         //产品名称
         if (that.data.prdName) {
           const CONTENT_ROW_LENGTH = 24; // 正文 单行显示字符长度
-          let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdName).substr(0, 40), CONTENT_ROW_LENGTH);
+          let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdName).substr(0, 40), CONTENT_ROW_LENGTH)
           console.log(contentLeng);
           console.log(contentRows);
           ctx.setTextAlign('left');
@@ -189,10 +189,10 @@ Component({
           ctx.fillText('¥', left - 34, imgheght + 80);
 
           ctx.setFontSize(14);
-          ctx.fillText(price.pref + '.', left - 25, imgheght + 80);
+          ctx.fillText(price.pref, left - 25, imgheght + 80);
 
           ctx.setFontSize(10);
-          ctx.fillText(price.suff, left - 12, imgheght + 80);
+          ctx.fillText(price.suff, left - 15, imgheght + 80);
 
           // 原价
           ctx.setFontSize(10);

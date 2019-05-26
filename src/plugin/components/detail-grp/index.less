@@ -22,53 +22,47 @@
   display: flex;
   flex-direction: row;
   padding: 25rpx;
-  image {
-    height: 200rpx;
-    width: 200rpx;
+  .picture {
+    width: 160rpx;
+    height: 160rpx;
+    image {
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 10rpx;
+    }
   }
-  .content {
+  .info {
     display: flex;
     flex-direction: column;
-    padding-left: 20rpx;
-    position: relative;
-    width:450rpx;
-    .title {
-      font-size: @fs-2;
+    margin-left: 25rpx;
+    width: 100%;    
+    .name {
+      font-size: @fs-3;
       font-weight: @fw-2;      
     }
     .desc {
-      font-size: @fs-3;
-      color: grey;      
+      color: grey;
+      font-size: @fs-4;
+      font-weight: @fw-2;  
     }
     .buying-info {
       display: flex;
       flex-direction: row;
-      position: absolute;
-      bottom: 0rpx;
-      width:100%;
+      position: relative;
+      margin-top: 35rpx;
       .price-now {
         display: flex;
         flex-direction: row;
-        position: absolute;
-        bottom: 0rpx;
+        align-items:flex-end;
         .money-flag {
-          position:absolute;
-          bottom: 0;
-          font-size: 25rpx;
+          font-size: @fs-3;
         }
         .now-pref {
-          font-size: 40rpx;
-          font-weight: @fw-2;
-          position:absolute;
-          bottom: -6rpx;
-          padding-left: 23rpx;        
+          font-size: @fs-0;
+          margin-bottom:-4rpx;
         }
         .now-suff {
-          font-size: 30rpx;
-          font-weight: @fw-3;
-          position:absolute;
-          bottom: -2rpx;
-          padding-left: 45rpx;           
+          font-size: @fs-3;
         }
       }
       .price-org {
@@ -100,7 +94,9 @@
   .members {
     display: flex;
     flex-direction: row;
+    justify-content:center;
     margin: 0 auto;
+    margin-top:30rpx;
     width: 370rpx;
     .avatar {
       padding-top: 20rpx;
@@ -137,14 +133,17 @@
   }
 
   .timer {
-    font-size: 30rpx;
+    font-size: @fs-4;
     margin-top: 20rpx;
-    font-weight: @fw-2;
+    text {
+      margin-right: 15rpx;
+    }
     .count{
-      font-size: 35rpx;
-      color: @color-primary;
-      margin-left: 20rpx;
-      margin-right: 20rpx;
+      color: #fff;
+      background: #000;
+      border-radius: 10rpx;
+      padding: 10rpx;
+      font-size: @fs-3;
     }
   }
   .left-count {
@@ -164,8 +163,7 @@
       background-color: @color-primary;
       border-radius: 15rpx;
       color: white;
-      padding-left: 70rpx;
-      padding-right: 70rpx;
+      width:42%;
     }
   }
   

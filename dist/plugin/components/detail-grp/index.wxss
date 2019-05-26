@@ -185,70 +185,64 @@ page {
   flex-direction: row;
   padding: 25rpx;
 }
-.detail image {
-  height: 200rpx;
-  width: 200rpx;
+.detail .picture {
+  width: 160rpx;
+  height: 160rpx;
 }
-.detail .content {
+.detail .picture image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+}
+.detail .info {
   display: flex;
   flex-direction: column;
-  padding-left: 20rpx;
-  position: relative;
-  width: 450rpx;
-}
-.detail .content .title {
-  font-size: 35rpx;
-  font-weight: 600;
-}
-.detail .content .desc {
-  font-size: 30rpx;
-  color: grey;
-}
-.detail .content .buying-info {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  bottom: 0rpx;
+  margin-left: 25rpx;
   width: 100%;
 }
-.detail .content .buying-info .price-now {
+.detail .info .name {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.detail .info .desc {
+  color: grey;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+.detail .info .buying-info {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  bottom: 0rpx;
+  position: relative;
+  margin-top: 35rpx;
 }
-.detail .content .buying-info .price-now .money-flag {
-  position: absolute;
-  bottom: 0;
-  font-size: 25rpx;
+.detail .info .buying-info .price-now {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
-.detail .content .buying-info .price-now .now-pref {
-  font-size: 40rpx;
-  font-weight: 600;
-  position: absolute;
-  bottom: -6rpx;
-  padding-left: 23rpx;
-}
-.detail .content .buying-info .price-now .now-suff {
+.detail .info .buying-info .price-now .money-flag {
   font-size: 30rpx;
-  font-weight: 500;
-  position: absolute;
-  bottom: -2rpx;
-  padding-left: 45rpx;
 }
-.detail .content .buying-info .price-org {
+.detail .info .buying-info .price-now .now-pref {
+  font-size: 40rpx;
+  margin-bottom: -4rpx;
+}
+.detail .info .buying-info .price-now .now-suff {
+  font-size: 30rpx;
+}
+.detail .info .buying-info .price-org {
   display: flex;
   flex-direction: row;
   position: absolute;
   bottom: 0rpx;
   left: 100rpx;
 }
-.detail .content .buying-info .price-org text {
+.detail .info .buying-info .price-org text {
   color: #888;
   font-size: 30rpx;
   text-decoration: line-through;
 }
-.detail .content .buying-info .buying-count {
+.detail .info .buying-info .buying-count {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -262,7 +256,9 @@ page {
 .detail-user .members {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin: 0 auto;
+  margin-top: 30rpx;
   width: 370rpx;
 }
 .detail-user .members .avatar {
@@ -298,15 +294,18 @@ page {
   border: 1rpx dotted;
 }
 .detail-user .timer {
-  font-size: 30rpx;
+  font-size: 25rpx;
   margin-top: 20rpx;
-  font-weight: 600;
+}
+.detail-user .timer text {
+  margin-right: 15rpx;
 }
 .detail-user .timer .count {
-  font-size: 35rpx;
-  color: #008FDB;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  color: #fff;
+  background: #000;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  font-size: 30rpx;
 }
 .detail-user .left-count {
   margin-top: 20rpx;
@@ -326,8 +325,7 @@ page {
   background-color: #008FDB;
   border-radius: 15rpx;
   color: white;
-  padding-left: 70rpx;
-  padding-right: 70rpx;
+  width: 42%;
 }
 /*modal*/
 .modalDlg {

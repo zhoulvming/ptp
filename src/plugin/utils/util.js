@@ -153,7 +153,7 @@ const utils = {
     var price = this.formatPrice(data.price)
     return {
       grpId: data.grpId,
-      number: data.number,
+      numbers: data.number,
       prdId: data.prdId,
       prdName: data.prdName,
       prdDesc: data.activityDesc,

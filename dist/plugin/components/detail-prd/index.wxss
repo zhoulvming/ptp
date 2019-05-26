@@ -452,9 +452,13 @@ page {
   font-size: 35rpx;
   margin-top: 18rpx;
 }
-.fixedBottom .actionBar .groupPurse .btn-name {
+.fixedBottom .actionBar .groupPurse .btn-pt {
   margin-top: -10rpx;
   padding-bottom: 5px;
+}
+.fixedBottom .actionBar .groupPurse .btn-look {
+  padding-top: 30rpx;
+  padding-bottom: 20px;
 }
 /*modal*/
 .modalDlg {

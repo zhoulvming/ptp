@@ -8,6 +8,10 @@ Component({
     limitCount: {
       type: Number,
       value: 5
+    },
+    prdImage: {
+      type: String,
+      value: ''
     }
   },
   data: {
@@ -17,6 +21,12 @@ Component({
     maxflag: false,
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
+  },
+  attached() {
+    var that = this
+    if ( that.data.limitCount == 1) {
+      that.setData({maxflag: true})
+    }
   },
   methods: {
     hideModalDlg: function() {

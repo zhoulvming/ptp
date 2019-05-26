@@ -10,11 +10,11 @@ Page({
     this.setData({ userinfo: userinfo })
   },
   gotoPageFromPlugin(data) {
-    var target = data.detail.target
-    if (target == 'login') {
-      ptCommon.gotoPageFromPlugin(data)
-    } else {
+    var target = data.detail.target    
+    if (target == 'pay') {
       this.pay(data)
+    } else {
+      ptCommon.gotoPageFromPlugin(data)
     }
   },
   pay: function (data) {
@@ -32,18 +32,31 @@ Page({
       },
       'fail': function (res) {
         ptCommon.log('支付失败', res)
-        wx.showModal({
-          title: '提示',
-          content: '支付失败'
-        })        
         return
       },
       'complete': function (res) {
         if (res.errMsg == 'requestPayment:ok') {
-          wx.showModal({
-            title: '提示',
-            content: '支付成功'
-          })
+
+          // grpEnter: {
+          //   create: 1,
+          //   create_success: 2,
+          //   create_fail: 3,
+          //   join: 4,
+          //   join_success: 5,
+          //   join_fail: 6,
+          //   fromOrder: 7
+          // },
+
+          var grpEnter = options.grpEnter
+          if (grpEnter == 1) {
+            grpEnter = 2
+          } else if (grpEnter == 4) {
+            grpEnter = 5
+          }
+
+          console.log('grpEnter value :')
+          console.log(grpEnter)
+
           setTimeout(function () {
             var target = options.targetCallbakUrl
             ptCommon.gotoPageFromPlugin({
@@ -53,7 +66,7 @@ Page({
                   prdId: options.prdId,
                   price: options.price,
                   orderNo: options.orderNo,
-                  grpEnter: options.grpEnter,
+                  grpEnter: grpEnter,
                   grpId: options.grpId,
                   orderNum: options.orderNum,
                   paySuccessFlag: true

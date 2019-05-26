@@ -135,16 +135,11 @@ Component({
           let leftCountFlg = resData.leftCountFlg
           if (ordFlg == 0) {
             // 订单进项中
-            // that.setData({showModalDlgLeftCount: false})
-            // that.setData({showModalDlg: true, ModalDlgMsg: '您已经购买过此产品，请完成订单后再次购买'})
-            // that.setData({orderNoOfDoing: resData.ordNo})
             that.setData({canBuy: false})
             that.setData({orderNo: resData.ordNo})
             that.setData({grpId: resData.grpId})
           } else if(leftCountFlg == 0) {
             // 无库存
-            // that.setData({showModalDlg: false})
-            // that.setData({showModalDlgLeftCount: true, ModalDlgMsg: '很抱歉，该产品已经售卖完毕'})
             that.setData({canBuy: false})
           }
         }

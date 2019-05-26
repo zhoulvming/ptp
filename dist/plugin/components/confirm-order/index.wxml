@@ -1,6 +1,6 @@
 <view class="warning-info">
   <text class="warning">距结束仅剩</text>
-  <text class="info">{{order.leftTime_h}} 小时 {{wxTimer}}</text>
+  <text class="info">{{wxTimerArr[0]}} 时 {{wxTimerArr[1]}} 分 {{wxTimerArr[2]}} 秒</text>
 </view>
 <view class="wrapper">
   <view class="panel detail">

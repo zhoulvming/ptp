@@ -1,6 +1,6 @@
 <view class="pd-top-20 pd-bottom-20 display-col">
-  <view class="order-grp-info" wx:if="{{order_status_code == 0}}">
-    <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{left_days}}天{{wxTimer}}</text>
+  <view class="order-grp-info" wx:if="{{order_status_code == 1}}">
+    <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{wxTimer}}</text>
   </view>
   <view class="order-status">
     <text>{{order_status_text}}</text>
