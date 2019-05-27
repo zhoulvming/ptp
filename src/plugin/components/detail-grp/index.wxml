@@ -67,10 +67,10 @@
       <button bindtap="makeSharePoster">生成海报</button>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.joinBtn?'flex':'none'}}">
-      <button class="btn large-single" bindtap='showModal'>我要参团</button>
+      <button class="btn large-single order-btn" bindtap='showModal'>我要参团</button>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.orderBtn?'flex':'none'}}">
-      <button class="btn large-single" bindtap='gotoOrder'>点击查看订单</button>
+      <button class="btn large-singl order-btn" bindtap='gotoOrder'>查看订单详情</button>
     </view>    
     <button class="btn link underline" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
   </view>

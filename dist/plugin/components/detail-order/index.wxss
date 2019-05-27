@@ -199,50 +199,57 @@ page {
   display: flex;
   flex-direction: row;
 }
-.detail image {
-  height: 220rpx;
-  width: 33%;
+.detail .picture {
+  width: 160rpx;
+  height: 160rpx;
 }
-.detail .content {
-  width: 67%;
+.detail .picture image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+}
+.detail .info {
   display: flex;
   flex-direction: column;
-  padding-top: 15rpx;
-  padding-left: 15rpx;
-  position: relative;
+  margin-left: 25rpx;
+  width: 100%;
 }
-.detail .content .title {
+.detail .info .name {
   font-size: 35rpx;
   font-weight: 600;
 }
-.detail .content .desc {
+.detail .info .desc {
   font-size: 25rpx;
   color: grey;
 }
-.detail .content .price {
-  position: absolute;
-  bottom: 5rpx;
+.detail .info .buying-info {
   display: flex;
   flex-direction: row;
-  width: 100%;
-}
-.detail .content .price .type {
-  font-size: 25rpx;
+  position: relative;
   margin-top: 15rpx;
 }
-.detail .content .price .pref {
-  font-size: 40rpx;
-  font-weight: 700;
+.detail .info .buying-info .price-now {
+  display: flex;
+  flex-direction: row;
 }
-.detail .content .price .suff {
-  font-size: 25rpx;
-  margin-top: 10rpx;
+.detail .info .buying-info .price-now .money-flag {
+  font-size: 35rpx;
+  margin-top: 18rpx;
 }
-.detail .content .price .count {
+.detail .info .buying-info .price-now .now-pref {
+  font-size: 50rpx;
+}
+.detail .info .buying-info .price-now .now-suff {
+  font-size: 35rpx;
+  margin-top: 18rpx;
+}
+.detail .info .buying-info .buying-count {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0rpx;
+  right: 20rpx;
   font-size: 30rpx;
-  text-align: right;
-  margin-top: 10rpx;
-  width: 85%;
 }
 .total {
   text-align: center;
@@ -277,8 +284,15 @@ page {
   text-align: right;
   margin-top: 10rpx;
 }
-.total button {
-  top: 10rpx;
+.total .order-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #888;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 .order-info {
   display: flex;

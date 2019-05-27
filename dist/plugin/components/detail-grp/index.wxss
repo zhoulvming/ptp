@@ -322,10 +322,15 @@ page {
   margin-top: 50rpx;
 }
 .detail-user .action button {
+  font-size: 30rpx;
   background-color: #008FDB;
   border-radius: 15rpx;
   color: white;
   width: 42%;
+  line-height: 3;
+}
+.detail-user .action .order-btn {
+  width: 92%;
 }
 /*modal*/
 .modalDlg {

@@ -44,18 +44,8 @@ Component({
         config.restAPI.order_detail,
         {orderNo: that.data.orderNo},
         function(resData) {
-          that.setData({orderDetail: resData})
-          var totalPrice = resData.quantity * resData.price
-          that.setData({totalPrice: totalPrice})
-
-          var status = resData.status
-          if (status == 1) {
-            that.setData({order_status_code: status})
-            that.setData({order_status_text: '订单进行中'})
-          } else if (status == 6) {
-            that.setData({order_status_code: status})
-            that.setData({order_status_text: '订单已完成'})
-          }
+          var orderObj = that.formatOrderData(resData)
+          that.setData({orderDetail: orderObj})
 
           var leftTime = resData.leftTime
           var timeTmep = leftTime.split(':')
@@ -73,6 +63,49 @@ Component({
           wxTimer.start(that)
         }
       )
+    },
+
+    formatOrderData(data) {      
+      var totalPrice = data.quantity * data.price
+      var priceObj = utils.formatPrice(data.price)
+      var statusText = ''
+
+      var status = data.status
+      if (status == 1) {  // 支付成功
+        statusText = '订单进行中'
+      } else if (status == 6) { // 订单已完成
+        statusText = '订单已完成'
+      } else if (status == 8) { // 已退单
+        statusText = '订单已关闭'
+      }
+
+      return {
+        activityDesc: data.activityDesc,
+        activityId: data.activityId,
+        amount: data.amount,
+        deliveryTime: data.deliveryTime,
+        returnTime: data.returnTime,
+        doneTime: data.doneTime,
+        grpId: data.grpId,
+        leftNumber: data.leftNumber,
+        leftTime: data.leftTime,
+        numbers: data.numbers,
+        orderNo: data.orderNo,
+        orderTime: data.orderTime,
+        orgPrice: data.orgPrice,
+        payTime: data.payTime,
+        prdId: data.prdId,
+        prdImage: data.prdImage,
+        prdName: data.prdName,
+        price: data.price,
+        quantity: data.quantity,
+        status: data.status,
+        validDays: data.validDays,
+        totalPrice: totalPrice,
+        price_pref: priceObj.pref,
+        price_suff: priceObj.suff,
+        statusText: statusText
+      }
     }
   }
 })

@@ -63,16 +63,15 @@ Component({
             utils.log('下单成功：' + orderResult.orderNo)
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
-            //that.wxPay(orderResult.orderNo, orderResult.grpId)
+            // that.wxPay(orderResult.orderNo, orderResult.grpId)
 
-            // TODO: 测试代码，绕过支付
+            // TODO: 测试代码，绕过支付      ------ start
             var grpEnter = that.data.inputData.grpEnter
             if (grpEnter == 1) {
               grpEnter = 2
             } else if (grpEnter == 4) {
               grpEnter = 5
             }
-  
             that.triggerEvent('callback', {
               target: config.miniPage.detail_grp,
               options: {
@@ -84,6 +83,7 @@ Component({
                 orderNo: orderResult.orderNo
               }
             })
+            // TODO: 测试代码，绕过支付      ------ end
              
           } else {
             // 下单失败
@@ -166,10 +166,7 @@ Component({
     // 支付
     wxPay(orderNo, grpId) {
       var that = this
-
-      // TODO: 测试价格写了死值
       var price = that.data.inputData.price * that.data.inputData.orderNum
-
       var dataPayment = {
         openId: that.data.userinfo.openid,
         orderNo: orderNo,

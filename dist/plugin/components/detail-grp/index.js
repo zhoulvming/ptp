@@ -69,14 +69,13 @@ Component({
   },
 
   methods: {
-    loadPage() {
+
+    takeDetailData() {
       var that = this
-      // 根据 grpId 获取拼团详细信息
       utils.requestPost(
         config.restAPI.grp_detail,
         { 
-          grpId: that.data.inputData.grpId,
-          orderNo: that.data.inputData.orderNo
+          grpId: that.data.inputData.grpId
         },
         function(resData) {
           var detail = utils.formatGroupDetailData(resData)
@@ -98,8 +97,10 @@ Component({
           wxTimer.start(that)
         }
       )
+    },
 
-
+    loadPage() {
+      var that = this
       // 如果是从支付成功的小程序页面跳转到此，则需要调用后台API更新数据
       if (that.data.inputData.paySuccessFlag) {
         utils.requestPost(
@@ -112,10 +113,13 @@ Component({
           },
           function(resData) {
             utils.log('更新支付状态成功', resData)
+            // load grp detail
+            that.takeDetailData()
           }
         )
+      } else {
+        that.takeDetailData()
       }
-
     },
 
     // "下一步" 按钮处理事件
@@ -188,6 +192,7 @@ Component({
         inviteBtn = true
         makepostBtn = true
         status_flag = true
+        orderBtn = true
       } else if (grpEnter == config.grpEnter.join) {
         joinBtn = true
       } else if (grpEnter == config.grpEnter.join_success) {
@@ -206,6 +211,8 @@ Component({
           status_text = '拼团成功'
         } else {
           status_text = '待成团'
+          inviteBtn = true
+          makepostBtn = true          
         }
         orderBtn = true
       } else {
