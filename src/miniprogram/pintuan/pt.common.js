@@ -24,6 +24,7 @@ const getOpenid = (cb) => {
   var gd = app.globalData
   var userinfo = gd.userinfo
   if (userinfo && userinfo.openid) {
+    console.log(33333333333333)
     return userinfo.openid
 
   }
@@ -41,11 +42,10 @@ const getOpenid = (cb) => {
         },
         method: 'POST',
         success: function (res) {
-          console.log(res)
+          console.log(5555555)
           var openid = res.data.openid
-          console.log(4555555555555555)
+          console.log(66666666)
           console.log('==== 小程序侧首页获取openid：' + openid)
-          console.log(566666666666666666)
           userinfo['openid'] = openid
           gd.userinfo = userinfo
           if (userinfo.mobileNo) {

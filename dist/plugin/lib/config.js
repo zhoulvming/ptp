@@ -26,16 +26,15 @@ const config = {
   restAPI: {
     banner: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/image',
     prds: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/productlist',
-    pt_check: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/prdvalid',
     prd_detail: 'https://apigroupbuy.kfc.com.cn/groupbuying/product/prddetail',
     grp_list: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/grouplist',
     grp_detail: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/groupdetail',
     order_list: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/orderlist',
-    order_create: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation',
     order_detail: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/detail',
+    pt_check: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/prdvalid',
+    order_create: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation',
     wxpay: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
     upd_order_status: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus'
-    
   },
 
   // 拼团详情页入口场合

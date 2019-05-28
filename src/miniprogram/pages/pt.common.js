@@ -25,10 +25,13 @@ const getOpenid = (cb) => {
   var userinfo = gd.userinfo
   if (userinfo && userinfo.openid) {
     return userinfo.openid
+
   }
   wx.login({
     success: function (res) {
+      console.log(444444)
       var code = res.code
+      console.log(code)
       wx.request({
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid',
         data: {
@@ -38,7 +41,11 @@ const getOpenid = (cb) => {
         },
         method: 'POST',
         success: function (res) {
+          console.log(res)
           var openid = res.data.openid
+          console.log(4555555555555555)
+          console.log('==== 小程序侧首页获取openid：' + openid)
+          console.log(566666666666666666)
           userinfo['openid'] = openid
           gd.userinfo = userinfo
           if (userinfo.mobileNo) {

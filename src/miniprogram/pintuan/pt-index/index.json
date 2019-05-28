@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "CJ拼团",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "pt-index": "plugin://pt_plugin/index"
+  }
+}

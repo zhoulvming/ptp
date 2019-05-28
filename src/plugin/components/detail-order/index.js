@@ -65,7 +65,7 @@ Component({
       )
     },
 
-    formatOrderData(data) {      
+    formatOrderData(data) {
       var totalPrice = data.quantity * data.price
       var priceObj = utils.formatPrice(data.price)
       var statusText = ''

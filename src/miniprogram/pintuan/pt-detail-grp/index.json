@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "拼团详情",
+  "usingComponents": {
+    "pt-detail-prd": "plugin://pt_plugin/detail-grp"
+  }
+}
