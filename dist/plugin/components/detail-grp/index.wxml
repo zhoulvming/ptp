@@ -85,7 +85,7 @@
 <view wx:if="{{showModalDlgBuycountFlg}}">
   <my-buycount
     detail="{{grpDetail}}"
-    limitCount="{{grpDetail.limitNum}}"
+    limitCount="{{grpDetail.restCount}}"
     prdImage="{{grpDetail.prdImage}}"
     bind:hideEvent="hideModalDlgBuycount"
     bind:nextEvent="gotoNext">

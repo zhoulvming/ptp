@@ -73,6 +73,8 @@ Component({
       var status = data.status
       if (status == 1) {  // 支付成功
         statusText = '订单进行中'
+      } else if (status == 2) { // 发货中，等待后台job
+        statusText = '发货中'
       } else if (status == 6) { // 订单已完成
         statusText = '订单已完成'
       } else if (status == 8) { // 已退单

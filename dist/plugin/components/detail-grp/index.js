@@ -75,7 +75,8 @@ Component({
       utils.requestPost(
         config.restAPI.grp_detail,
         { 
-          grpId: that.data.inputData.grpId
+          grpId: that.data.inputData.grpId,
+          openid: that.data.userinfo.openid
         },
         function(resData) {
           var detail = utils.formatGroupDetailData(resData)

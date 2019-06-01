@@ -15,9 +15,9 @@ App({
       'confirm-order': '../pt-confirm-order/index',       // 订单确认
       'login': '../pt-login/index',                       // 登录呼出
 
-      'app-home': '../index/index',                       // app首页
-      'app-menu': '../menu/menu',                         // 点单
-      'app-mine': '../usercenter/main'                    // 我的  
+      'app-home': '../../pages/index/index',                       // app首页
+      'app-menu': '../../pages/menu/menu',                         // 点单
+      'app-mine': '../../pages/usercenter/main'                    // 我的  
     },
 
     /*小程序所属*/

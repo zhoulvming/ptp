@@ -1,6 +1,6 @@
 <view class="page">
 
-  <navigator url="../pt-index/index?brand={{brand}}&channelId={{channelId}}">拼团首页</navigator>
+  <navigator url="../../pintuan/pt-index/index?brand={{brand}}&channelId={{channelId}}">拼团首页</navigator>
 
 </view>
 

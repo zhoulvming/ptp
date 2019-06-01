@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/pt-index/index",
-    "pages/pt-detail-prd/index",
-    "pages/pt-detail-grp/index",
-    "pages/pt-confirm-order/index",
-    "pages/pt-detail-order/index",
-    "pages/pt-login/index"
+    "pintuan/pt-index/index",
+    "pintuan/pt-detail-prd/index",
+    "pintuan/pt-detail-grp/index",
+    "pintuan/pt-confirm-order/index",
+    "pintuan/pt-detail-order/index",
+    "pintuan/pt-login/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

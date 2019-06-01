@@ -88,7 +88,7 @@
       <swiper-item>
         <view class="record-list">
           <view wx:for="{{records}}" class="record-item display-row">
-            <view><text>{{item.leftTime}}</text></view>
+            <view><text>{{item.timeAgo}}</text></view>
             <view><text>{{item.nickName}}</text></view>
             <view><text>{{item.quantity}}</text></view>
           </view>
@@ -137,7 +137,7 @@
 <view wx:if="{{showModalDlgBuycountFlg}}">
   <my-buycount
     detail="{{prdDetail}}"
-    limitCount="{{prdDetail.limitCount}}"
+    limitCount="{{prdDetail.restCount}}"
     prdImage="{{prdDetail.imageSingle}}"
     bind:hideEvent="hideModalDlgBuycount"
     bind:nextEvent="gotoNext">

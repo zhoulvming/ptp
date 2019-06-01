@@ -63,7 +63,7 @@ Component({
             utils.log('下单成功：' + orderResult.orderNo)
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
-            // that.wxPay(orderResult.orderNo, orderResult.grpId)
+            //that.wxPay(orderResult.orderNo, orderResult.grpId)
 
             // TODO: 测试代码，绕过支付      ------ start
             var grpEnter = that.data.inputData.grpEnter

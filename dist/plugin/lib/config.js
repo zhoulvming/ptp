@@ -55,11 +55,13 @@ const config = {
   miniPage: {
     index: 'index',
     login: 'login',
-    pay: 'pay',
     detail_prd: 'detail-prd',
     detail_grp: 'detail-grp',
     detail_order: 'detail-order',
-    confirm_order: 'confirm-order'
+    confirm_order: 'confirm-order',
+    app_home: 'app-home',
+    app_menu: 'app-menu',
+    app_mine: 'app-mine'
   },
 
   // 账号信息

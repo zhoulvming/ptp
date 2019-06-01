@@ -24,7 +24,6 @@ const getOpenid = (cb) => {
   var gd = app.globalData
   var userinfo = gd.userinfo
   if (userinfo && userinfo.openid) {
-    console.log(33333333333333)
     return userinfo.openid
 
   }

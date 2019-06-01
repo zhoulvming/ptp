@@ -93,6 +93,7 @@ const utils = {
       numbers: data.numbers,
       salesCount: data.salesCount,
       leftCount: data.leftCount,
+      restCount: data.restCount,
       price: data.price,
       price_pref: price.pref,
       price_suff: price.suff,
@@ -173,7 +174,8 @@ const utils = {
       leftCount: data.leftCount,
       limitNum: data.limitNum,
       grpStatus: data.grpStatus,
-      orderNum: data.orderNum
+      orderNum: data.orderNum,
+      restCount: data.restCount
     }
   },
 

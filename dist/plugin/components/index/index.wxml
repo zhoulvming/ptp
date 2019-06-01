@@ -43,21 +43,21 @@
   </view>
 </view>
 <view class="bottom-tab">
-  <view class="item">
-    <image src="../../images/home.png"/>
-    <text bindtap="tabNav" data-target="app-home">首页</text>
+  <view class="item" bindtap="tabNav" data-target="app-home">
+    <image src="../../images/home.png" data-target="app-home"/>
+    <text data-target="app-home">首页</text>
   </view>
-  <view class="item">
-    <image src="../../images/menu.png"/>
-    <text bindtap="tabNav" data-target="app-home">点单</text>
+  <view class="item" bindtap="tabNav" data-target="app-menu">
+    <image src="../../images/menu.png" data-target="app-menu"/>
+    <text data-target="app-menu">点单</text>
   </view>
   <view class="item">
     <image src="../../images/activity-sel.png"/>
-    <text bindtap="tabNav" data-target="app-home" style="color: #008FDB">拼团</text>
+    <text style="color: #008FDB">拼团</text>
   </view>
-  <view class="item">
-    <image src="../../images/person.png"/>
-    <text bindtap="tabNav" data-target="app-home">我的</text>
+  <view class="item" bindtap="tabNav" data-target="app-mine">
+    <image src="../../images/person.png" data-target="app-mine"/>
+    <text data-target="app-mine">我的</text>
   </view>
 </view>
 

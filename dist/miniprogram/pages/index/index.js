@@ -1,11 +1,9 @@
 const app = getApp()
-const ptCommon = require('../pt.common.js')
 Page({
   data: {},
   onLoad() {
+    var that = this
     var userinfo = wx.getStorageSync('userinfo')
-    ptCommon.log('userinfo from wx storage of enter page', userinfo)
-
     var gd = app.globalData
     if (userinfo) {
       gd.userinfo = userinfo
@@ -13,7 +11,7 @@ Page({
 
     this.setData({brand: gd.brand, channelId: gd.channelId})
     if (!userinfo.openid) {
-      ptCommon.getOpenid(this.getOrderList)
+      that.getOpenid(this.getOrderList)
     } else {
       this.getOrderList()
     }
@@ -47,7 +45,7 @@ Page({
       orderNo: orderNo
     })
     wx.navigateTo({
-      url: '../pt-detail-order/index'
+      url: '../../pages/pt-detail-order/index'
     })
   },
   onGotUserInfo() {
@@ -59,10 +57,9 @@ Page({
         userinfo['avatarUrl'] = res.userInfo.avatarUrl
         gd.userinfo = userinfo
         wx.setStorageSync('userinfo', userinfo)
-        ptCommon.log('利用 获取用户信息 按钮后的用户数据', userinfo)
       },
       fail: res => {
-        ptCommon.logErr(res)
+        console.log(res)
       }
     })
   },
@@ -72,9 +69,45 @@ Page({
     userinfo['userCode'] = '1000' // 此处需要小程序用户的登录信息
     userinfo['mobileNo'] = '123456789'// 此处需要小程序用户的登录信息
     wx.setStorageSync('userinfo', userinfo )
-    ptCommon.log('模拟登陆后的用户数据', userinfo)
     wx.navigateTo({
       url: '../index/index'
     })
+  },
+
+  // 获取微信用户的openid
+  getOpenid(cb) {
+    var gd = app.globalData
+    var userinfo = gd.userinfo
+    if (userinfo && userinfo.openid) {
+      return userinfo.openid
+    }
+    wx.login({
+      success: function (res) {
+        var code = res.code
+        wx.request({
+          url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid',
+          data: {
+            code: code,
+            appid: gd.appid,
+            secret: gd.secret
+          },
+          method: 'POST',
+          success: function (res) {
+            var openid = res.data.openid
+            console.log('==== 小程序侧获取到的openid：' + openid)
+            userinfo['openid'] = openid
+            gd.userinfo = userinfo
+            if (userinfo.mobileNo) {
+              cb()
+            }
+          },
+          fail: function (err) {
+            console.log(err)
+          }
+        })
+      }
+    })
   }
+
+
 })
