@@ -28,7 +28,6 @@ Component({
             grpId: newVal.grpId,
             price: newVal.price
           }})
-          this.loadPage()
         }
       }         
     }
@@ -38,7 +37,8 @@ Component({
     nextBtnDisabled: false,
     userinfo: null,
     wxTimerList:[],
-    inputData: null
+    inputData: null,
+    nextBtn_canClick: true
   },
 
   attached() {
@@ -47,13 +47,22 @@ Component({
     wxTimer.stop()
   },
 
+  ready() {
+    this.loadPage()
+  },
+
   methods: {
 
     // '选好了' 按钮对应事件处理
     gotoNext() {
       var that = this
       var userinfo = that.data.userinfo
-      that.setData({nextBtnDisabled: true})
+      var nextBtn_canClick = that.data.nextBtn_canClick
+      if (!nextBtn_canClick) {
+        return ;
+      } else {
+        that.setData({nextBtn_canClick: false})
+      }
       if (userinfo && userinfo.userCode) {
         utils.log('微信用户已经登录小程序系统')
 
@@ -63,7 +72,7 @@ Component({
             utils.log('下单成功：' + orderResult.orderNo)
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
-            //that.wxPay(orderResult.orderNo, orderResult.grpId)
+            // that.wxPay(orderResult.orderNo, orderResult.grpId)
 
             // TODO: 测试代码，绕过支付      ------ start
             var grpEnter = that.data.inputData.grpEnter
@@ -89,10 +98,11 @@ Component({
             // 下单失败
             wx.showModal({
               title: '错误',
-              content: '下单失败'
+              content: '下单失败，请重新选择拼团产品'
             })
           }
         })
+        that.setData({nextBtn_canClick: true})
       } else {
         utils.log('微信用户未登录小程序系统')
         this.triggerEvent('callback', {
@@ -106,26 +116,19 @@ Component({
           }
         })
       }
-
-      setTimeout(function(){
-        that.setData({nextBtnDisabled: false})
-      }, 1000)
     },
-
 
     // 下单
     crtOrder(cb) {
       var that = this
+
       // 是否是团长
       var isMaster = 0
       if (that.data.inputData.grpEnter == config.grpEnter.create) {
         isMaster = 1
       }
-      // 原产品ID
-      var activityId = that.data.prd.groupBuyProId
-      if (that.data.buyway == config.buyway_single) {
-        activityId = that.data.prd.orgProdId
-      }      
+
+      // 下单数据
       var data = {
         brand: wx.getStorageSync('brand'),
         channelId: wx.getStorageSync('channelId'),
@@ -139,26 +142,33 @@ Component({
         nickName: that.data.userinfo.nickName,
         avatarUrl: that.data.userinfo.avatarUrl,
         isMaster: isMaster,
-        activityId: activityId
+        activityId: that.data.prd.groupBuyProId
       }
       utils.log('下单数据', data)
     
       utils.requestPost(
         config.restAPI.order_create,
         data,
-        function(resData) {
+        function(res) {
+          console.log(111)
+          console.log(res)
+          console.log(222)
+          var resData = res.data
           var resultFlag = false
           var ordreNo = null
-          if (resData && resData.orderNo) {
+          var grpId = null
+          if (res.statusCode == config.apiStatusCode.sucess) {
             // 下单成功
             resultFlag = true
             ordreNo = resData.orderNo
+            grpId = resData.grpId
           }
           cb({
             resultFlag: resultFlag,
             orderNo: ordreNo,
-            grpId: resData.grpId
-          })
+            grpId: grpId,
+            statusCode: res.statusCode
+          })  
         }
       )
     },
@@ -178,7 +188,8 @@ Component({
       utils.requestPost(
         config.restAPI.wxpay,
         dataPayment,
-        function(resData) {
+        function(res) {
+          var resData = res.data
           var payUrl = null
           if (resData && resData.payUrl) {
             payUrl = JSON.parse(resData.payUrl)
@@ -213,8 +224,13 @@ Component({
       // 根据prdId获取商品详细信息
       utils.requestPost(
         config.restAPI.prd_detail,
-        { prdId: that.data.inputData.prdId },
-        function(resData) {
+        { 
+          prdId: that.data.inputData.prdId,
+          openid: that.data.userinfo.openid
+        },
+
+        function(res) {
+          var resData = res.data
           var prdData = utils.formatProductData(resData)
           var orderData = that.formatOrderData(prdData)
           that.setData({prd: prdData})

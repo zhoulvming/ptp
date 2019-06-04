@@ -30,7 +30,6 @@ Component({
             orderNo: newVal.orderNo,
             paySuccessFlag: newVal.paySuccessFlag
           }})
-          this.loadPage()
         }
       }
     }    
@@ -68,6 +67,10 @@ Component({
     wxTimer.stop()
   },
 
+  ready() {
+    this.loadPage()
+  },
+
   methods: {
 
     takeDetailData() {
@@ -78,7 +81,8 @@ Component({
           grpId: that.data.inputData.grpId,
           openid: that.data.userinfo.openid
         },
-        function(resData) {
+        function(res) {
+          var resData = res.data
           var detail = utils.formatGroupDetailData(resData)
           that.setData({grpDetail: detail})
           that.setGrpStatus(detail)
@@ -112,8 +116,18 @@ Component({
             grpId: that.data.inputData.grpId,
             orderNo: that.data.inputData.orderNo            
           },
-          function(resData) {
-            utils.log('更新支付状态成功', resData)
+          function(res) {
+            var resData = res.data
+            var statusCode = res.statusCode
+            if (statusCode == config.apiStatusCode.sucess) {
+              utils.log('更新支付状态成功', resData)
+            } else {
+              utils.log('更新支付状态失败', res)
+              wx.showModal({
+                title: '错误',
+                content: '拼团失败，请重新选择拼团产品'
+              })
+            }
             // load grp detail
             that.takeDetailData()
           }

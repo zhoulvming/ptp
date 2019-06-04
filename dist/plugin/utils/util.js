@@ -1,3 +1,4 @@
+const config = require('../lib/config.js')
 const utils = {
   formatPriceOld(data) {
     var strData = data + ''
@@ -206,20 +207,41 @@ const utils = {
       header: { 'content-type': 'application/json' },
       method: 'POST',
       success(res) {
-        if (res.statusCode != 200) {
+        if (res.statusCode != config.apiStatusCode.sucess) {
           utils.log('后台API返回数据失败', res.data) 
         } else {
-          var d = res.data
           utils.log(url + ' 返回数据', res.data)
-          if (cb) {
-            cb(d)
-          }
+        }
+        if (cb) {
+          cb(res)
         }
       },
       fail(errMsg) {
         utils.log('请求失败', errMsg)
       }
     })
+  },
+
+  // iphoneX
+  isIphoneX(page) {
+    // var isIphoneX = false
+    // var that = this
+    page.setData({isIphoneX: false})
+    if (config.isIphoneX) {
+      page.setData({isIphoneX: true})
+    } else {
+      wx.getSystemInfo({
+        success: function (res) {
+          if (res.model == 'iphonerx') {
+            // isIphoneX = true
+            config.isIphoneX = true
+            page.setData({isIphoneX: true})
+          }
+          // cb(isIphoneX)
+        }
+      })
+    }
+    
   }
 }
 

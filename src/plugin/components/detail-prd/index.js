@@ -12,9 +12,6 @@ Component({
         if (newVal) {
           utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
           this.setData({ userinfo: newVal })
-
-          // 检查是否参与过该拼团产品
-          this.checkExist(newVal)
         }
       }
     },
@@ -25,9 +22,6 @@ Component({
         if (newVal) {
           utils.log('从小程序页面传递过来的参数(options)', newVal)
           this.setData({ prdId: newVal.prdId })
-
-          // 加载页面数据
-          this.loadPage()
         }
       }
     }
@@ -47,8 +41,11 @@ Component({
   },
 
   attached() {
-    //var windowWidth = wx.getSystemInfoSync().windowWidth
-    //this.setData({bannerHeight: windowWidth/1.48})
+    utils.isIphoneX(this)
+  },
+  ready() {
+    this.checkExist()
+    this.loadPage()
   },
   detached() {
     wxTimer.stop()
@@ -84,7 +81,7 @@ Component({
           grpId: event.currentTarget.dataset.grpid,
           grpEnter: config.grpEnter.join
         }
-      })     
+      })
     },
 
     // 加载产品详情数据
@@ -94,8 +91,12 @@ Component({
       // 根据prdId获取商品详细信息
       utils.requestPost(
         config.restAPI.prd_detail,
-        { prdId: that.data.prdId },
-        function(resData) {
+        { 
+          prdId: that.data.prdId,
+          openid: that.data.userinfo.openid
+        },
+        function(res) {
+          var resData = res.data
           var detail = resData
           detail = utils.formatProductData(detail)
           that.setData({prdDetail: detail})
@@ -114,23 +115,25 @@ Component({
       utils.requestPost(
         config.restAPI.grp_list,
         {prdId: that.data.prdId, flag: 0},
-        function(resData) {
-          var grps = utils.formatGroupListData(resData)
+        function(res) {
+          var grps = utils.formatGroupListData(res.data)
           that.setData({grps: grps})
         }
       )
     },
 
     // 检测是否参与过该产品的拼团活动
-    checkExist(userinfo) {
+    checkExist() {
       var that = this
+      var userinfo = that.data.userinfo
       // 判断是否开团或者参团过，如果已经参与，则不能再次凑团或者开团
       var openid = userinfo.openid
       var prdId = that.data.prdId
       utils.requestPost(
         config.restAPI.pt_check,
         {openid: openid, prdId: prdId},
-        function(resData) {
+        function(res) {
+          var resData = res.data
           let ordFlg = resData.ordFlg
           let leftCountFlg = resData.leftCountFlg
           if (ordFlg == 0) {
@@ -156,8 +159,8 @@ Component({
       utils.requestPost(
         config.restAPI.grp_list,
         {prdId: that.data.prdId, flag: 1},
-        function(resData) {
-          that.setData({grps: utils.formatGroupListData(resData)})
+        function(res) {
+          that.setData({grps: utils.formatGroupListData(res.data)})
         }
       )      
     },
@@ -172,8 +175,8 @@ Component({
           utils.requestPost(
             config.restAPI.order_list,
             {prdId: that.data.prdId, flag: 0},
-            function(resData) {
-              that.setData({records: resData})
+            function(res) {
+              that.setData({records: res.data})
             }
           )
         }

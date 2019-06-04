@@ -100,7 +100,7 @@
     </swiper>
   </view>
 </view>  
-<view class='fixedBottom'>
+<view class="fixedBottom{{isIphoneX?' fix-iphonex-button':''}}">
   <view class="actionBar">
     <view class='customer'>
     </view>

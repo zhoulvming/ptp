@@ -15,7 +15,6 @@ Component({
           // var jsonVal = JSON.parse(newVal.options)
           var jsonVal = newVal
           this.setData({ orderNo: jsonVal.orderNo })
-          this.loadPage()
         }
       }
     }    
@@ -23,6 +22,10 @@ Component({
 
   data: {
     wxTimerList:[]
+  },
+
+  ready() {
+    this.loadPage()
   },
   methods: {
     gotoGrpPage() {
@@ -43,7 +46,8 @@ Component({
       utils.requestPost(
         config.restAPI.order_detail,
         {orderNo: that.data.orderNo},
-        function(resData) {
+        function(res) {
+          var resData = res.data
           var orderObj = that.formatOrderData(resData)
           that.setData({orderDetail: orderObj})
 

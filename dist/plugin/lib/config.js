@@ -1,11 +1,5 @@
 const config = {
-  buyway_single: 0,
-  buyway_group: 1,
-  // grp_status_create: 0,   //拼团状态：发起拼团
-  // grp_status_join: 1,     //拼团状态：参团
-  // grp_status_success: 2,  //拼团状态：拼团成功
-  // grp_status_fail: 999,    //拼团状态：拼团失败
-
+  
   // 首页banner图片长宽比例
   scale_banner: 2.43,
 
@@ -37,6 +31,12 @@ const config = {
     upd_order_status: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus'
   },
 
+  // 后台API返回code定义
+  apiStatusCode: {
+    sucess: 200,
+    createOrder_joinFail: 9999
+  },
+
   // 拼团详情页入口场合
   // 1. 发团场合: 拼团首页(插件)  -> 产品详情 -> confirm -> 拼团详情
   // 2. 凑团场合: 拼团首页(插件)  -> 产品详情 -> 拼团详情 -> confirm
@@ -66,7 +66,10 @@ const config = {
 
   // 账号信息
   appid: 'wx85694629dac0c26a',
-  secret: '17c7b613567ac214c2e8e4f4c4881c0f'
+  secret: '17c7b613567ac214c2e8e4f4c4881c0f',
+
+  // iphonerx
+  iphonerx: false
 }
 
 module.exports = config

@@ -12,7 +12,6 @@ Component({
           utils.log('从小程序页面传递过来的参数(options)', newVal)
           wx.setStorageSync('brand', newVal.brand )
           wx.setStorageSync('channelId', newVal.channelId )
-          this.loadPage()
         }
       }
     },
@@ -49,6 +48,9 @@ Component({
     // this.setData({cardItemImageHeight: cardItemImageHeight})
     this.setData({cardItemImageHeight: 260})
   },
+  ready() {
+    this.loadPage()
+  },
 
   methods: {
     loadPage() {
@@ -58,8 +60,8 @@ Component({
       utils.requestPost(
         config.restAPI.prds, 
         {offset:0, listsize:10}, 
-        function(resData) {
-          var prds = resData
+        function(res) {
+          var prds = res.data
           that.setData({prds: prds})
 
           // 调整swipper高度
@@ -77,8 +79,8 @@ Component({
       utils.requestPost(
         config.restAPI.banner,
         {channelId: that.data.channelId},
-        function(resData) {
-          that.setData({imgUrls: resData})  
+        function(res) {
+          that.setData({imgUrls: res.data})  
         }
       )
     },
