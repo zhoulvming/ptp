@@ -175,6 +175,18 @@ page {
   width: 100%;
   background: #fff;
 }
+.iphoneX {
+  display: flex;
+  flex-direction: row;
+  height: 68rpx;
+}
+.iphoneX .left {
+  width: 30%;
+  background: #555;
+}
+.iphoneX .right {
+  background: #008FDB;
+}
 .card-list > .title {
   color: #008FDB;
   font-size: 35rpx;
@@ -309,4 +321,11 @@ page {
   height: 60rpx;
   width: 60rpx;
   margin: auto;
+}
+.iphoneX {
+  height: 68rpx;
+  background-color: #fff;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

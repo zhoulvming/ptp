@@ -9,4 +9,5 @@
         </button>      
       </view>
   </view>
+  <view class="iphoneX" wx:if="{{isIphoneX}}"></view>
 </view>

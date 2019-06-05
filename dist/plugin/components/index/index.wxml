@@ -42,7 +42,7 @@
     </swiper>
   </view>
 </view>
-<view class="bottom-tab">
+<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="item" bindtap="tabNav" data-target="app-home">
     <image src="../../images/home.png" data-target="app-home"/>
     <text data-target="app-home">首页</text>
@@ -59,6 +59,8 @@
     <image src="../../images/person.png" data-target="app-mine"/>
     <text data-target="app-mine">我的</text>
   </view>
+</view>
+<view class="iphoneX" wx:if="{{isIphoneX}}">
 </view>
 
 

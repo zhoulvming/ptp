@@ -98,7 +98,7 @@ Component({
             // 下单失败
             wx.showModal({
               title: '错误',
-              content: '下单失败，请重新选择拼团产品'
+              content: '他人已凑团成功，您本次拼团失败'
             })
           }
         })

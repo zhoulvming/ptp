@@ -27,7 +27,7 @@
         <view class="ad off" bindtap='evad' wx:if="{{maxflag}}"><text>+</text></view>
       </view>
       <view class="info">
-        <text>每人限购 {{detail.limitCount}} 件</text>
+        <text>每人限购 {{limitCount}} 件</text>
       </view>
     </view>
   </view>

@@ -61,7 +61,8 @@ const config = {
     confirm_order: 'confirm-order',
     app_home: 'app-home',
     app_menu: 'app-menu',
-    app_mine: 'app-mine'
+    app_mine: 'app-mine',
+    pay: 'pay'
   },
 
   // 账号信息

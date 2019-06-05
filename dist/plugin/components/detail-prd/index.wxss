@@ -175,6 +175,18 @@ page {
   width: 100%;
   background: #fff;
 }
+.iphoneX {
+  display: flex;
+  flex-direction: row;
+  height: 68rpx;
+}
+.iphoneX .left {
+  width: 30%;
+  background: #555;
+}
+.iphoneX .right {
+  background: #008FDB;
+}
 .detail-prd {
   background-color: white;
   margin-bottom: 20rpx;
@@ -470,6 +482,22 @@ page {
 .fixedBottom .actionBar .groupPurse .btn-look {
   padding-top: 30rpx;
   padding-bottom: 20px;
+}
+.fixedBottom .iphoneX {
+  height: 68rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+}
+.fixedBottom .iphoneX .left {
+  width: 30%;
+  background: #555;
+}
+.fixedBottom .iphoneX .right {
+  width: 70%;
+  background: #008FDB;
 }
 /*modal*/
 .modalDlg {

@@ -175,6 +175,18 @@ page {
   width: 100%;
   background: #fff;
 }
+.iphoneX {
+  display: flex;
+  flex-direction: row;
+  height: 68rpx;
+}
+.iphoneX .left {
+  width: 30%;
+  background: #555;
+}
+.iphoneX .right {
+  background: #008FDB;
+}
 .bottom {
   display: flex;
   flex-direction: row;

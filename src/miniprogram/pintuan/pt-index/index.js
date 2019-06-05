@@ -13,6 +13,15 @@ Page({
     this.setData({userinfo: userinfo})
   },
   gotoPageFromPlugin(data) {
-    ptCommon.gotoPageFromPlugin(data)
+    var target = data.detail.target
+    if (target == 'app-home') {
+      wx.switchTab({url: '../../pages/index/index'})
+    } else if (target == 'app-menu') {
+      wx.switchTab({url: '../../pages/menu/menu'})
+    } else if (target == 'app-mine') {
+      wx.switchTab({url: '../../pages/usercenter/main'})
+    } else {
+      ptCommon.gotoPageFromPlugin(data)
+    }
   }
 })

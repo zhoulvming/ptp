@@ -141,6 +141,16 @@ Component({
     gotoNext(e) {
       var that = this
       var detail = e.detail
+
+      var restCount = that.data.grpDetail.restCount  - detail.buycount
+      if (restCount < 1) {
+        wx.showModal({
+          title: '错误',
+          content: '您的购买数量已经超过该商品的最大购买数量'
+        })
+        return
+      }
+
       that.triggerEvent('callback', {
         target: config.miniPage.confirm_order,
         options: {
@@ -174,12 +184,11 @@ Component({
         buywayPrice: detail.price
       })
     },
-    hideModalDlg: function() {
+    hideModalDlgBuycount: function () {
       this.setData({
         showModalDlgBuycountFlg: false
       })
     },
-
     // 生成海报
     makeSharePoster() {
       this.selectComponent('#poster').makeSharePoster()

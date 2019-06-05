@@ -41,6 +41,7 @@ Component({
     evad: function () {
       var that = this
       var cval = Number(that.data.num) + that.data.change
+      console.log('......' + cval)
       if (cval > that.data.limitCount) {
         utils.log('超出最大值')
         that.setData({maxflag: true})

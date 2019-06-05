@@ -84,6 +84,7 @@ Page({
     wx.login({
       success: function (res) {
         var code = res.code
+        console.log('wx.login获取到的code：' + code)
         wx.request({
           url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid',
           data: {
@@ -93,6 +94,8 @@ Page({
           },
           method: 'POST',
           success: function (res) {
+            console.log('小程序端页面获取到用户的openid：')
+            console.log(res)
             var openid = res.data.openid
             console.log('==== 小程序侧获取到的openid：' + openid)
             userinfo['openid'] = openid
