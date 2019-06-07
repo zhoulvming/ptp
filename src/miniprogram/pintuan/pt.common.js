@@ -47,7 +47,7 @@ const getOpenid = (cb) => {
           console.log('==== 小程序侧首页获取openid：' + openid)
           userinfo['openid'] = openid
           gd.userinfo = userinfo
-          if (userinfo.mobileNo) {
+          if (cb) {
             cb()
           }
         },

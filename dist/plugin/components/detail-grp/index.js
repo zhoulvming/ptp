@@ -125,7 +125,7 @@ Component({
               utils.log('更新支付状态失败', res)
               wx.showModal({
                 title: '错误',
-                content: '拼团失败，请重新选择拼团产品'
+                content: '他人已凑团成功，您本次拼团失败'
               })
             }
             // load grp detail

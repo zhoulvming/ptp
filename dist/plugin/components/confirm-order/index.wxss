@@ -309,3 +309,12 @@ page {
   padding: 36rpx 50rpx;
   font-weight: 600;
 }
+.processing {
+  display: flex;
+  align-items: center;
+}
+.processing image {
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto;
+}

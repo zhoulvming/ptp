@@ -38,7 +38,8 @@ Component({
     userinfo: null,
     wxTimerList:[],
     inputData: null,
-    nextBtn_canClick: true
+    nextBtn_canClick: true,
+    processing: false
   },
 
   attached() {
@@ -57,12 +58,13 @@ Component({
     gotoNext() {
       var that = this
       var userinfo = that.data.userinfo
-      var nextBtn_canClick = that.data.nextBtn_canClick
-      if (!nextBtn_canClick) {
+      var processing = that.data.processing
+      if (processing) {
         return ;
       } else {
-        that.setData({nextBtn_canClick: false})
+        that.setData({processing: true})
       }
+      
       if (userinfo && userinfo.userCode) {
         utils.log('微信用户已经登录小程序系统')
 
@@ -70,6 +72,7 @@ Component({
         that.crtOrder(function(orderResult) {
           if (orderResult.resultFlag) {
             utils.log('下单成功：' + orderResult.orderNo)
+            that.setData({processing: false})
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
             // that.wxPay(orderResult.orderNo, orderResult.grpId)
@@ -96,15 +99,16 @@ Component({
              
           } else {
             // 下单失败
+            that.setData({processing: false})
             wx.showModal({
               title: '错误',
               content: '他人已凑团成功，您本次拼团失败'
             })
           }
         })
-        that.setData({nextBtn_canClick: true})
       } else {
         utils.log('微信用户未登录小程序系统')
+        that.setData({processing: false})
         this.triggerEvent('callback', {
           target: 'login',
           options: {

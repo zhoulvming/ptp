@@ -8,17 +8,14 @@ Page({
     this.setData({options: options})
 
     var userinfo = app.globalData.userinfo
-    this.setData({userinfo: userinfo})
-
-    wx.getSystemInfo({
-      success: function (res) {
-        if (res.model == 'iphonerx') {
-          that.setData({isIphoneX: true})
-        } else {
-          that.setData({isIphoneX: false})
-        }
-      }
-    })
+    if (!userinfo.openid) {
+      ptCommon.getOpenid(function(){
+        userinfo = app.globalData.userinfo
+        that.setData({ userinfo: userinfo })
+      })
+    } else {
+      that.setData({ userinfo: userinfo })
+    }
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data)

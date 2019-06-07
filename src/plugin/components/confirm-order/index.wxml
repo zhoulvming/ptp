@@ -35,8 +35,13 @@
   </view>
   <block>
     <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
-      <text wx:if="{{nextBtn_canClick}}">选好了</text>
-      <text wx:if="{{!nextBtn_canClick}}">下单中</text>
+      <text>选好了</text>
     </view>
   </block>
+</view>
+
+
+
+<view class="mask processing" wx:if="{{processing}}">
+  <image src="../../images/loading.gif"/>
 </view>
