@@ -27,19 +27,11 @@
         </view>
       </view>
     </view>
-
-
-
-
-
-
-
-
   </view>
 </view>
 <view class="wrapper">
   <view class="detail-user">
-    <view class="timer">
+    <view class="timer" wx:if="{{grpDetail.grpStatus != 1}}">
       <text>剩余</text>
       <text class="count">{{wxTimerArr[0]}}</text>
       <text>:</text>
@@ -75,11 +67,6 @@
     <button class="btn link underline" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
   </view>
 </view>
-
-
-
-
-
 <view class="mask" wx:if="{{showModalDlgBuycountFlg}}" bindtap="hideModalDlg"></view>
 <!-- 购买数量组件 -->
 <view wx:if="{{showModalDlgBuycountFlg}}">
@@ -91,7 +78,6 @@
     bind:nextEvent="gotoNext">
   </my-buycount>
 </view>
-
 <my-poster id="poster"
   imageUrl="{{grpDetail.prdImage}}"
   price="{{grpDetail.price}}"
