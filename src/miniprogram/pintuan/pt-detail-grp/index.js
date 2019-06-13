@@ -19,5 +19,16 @@ Page({
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data);
+  },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      var shareModel = res.target.dataset.sharemodel
+      return {
+        title: shareModel.title,
+        path: 'pintuan/pt-detail-grp/index',
+        imageUrl: shareModel.imageUrl
+      }
+    }
   }
 })

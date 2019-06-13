@@ -113,6 +113,13 @@ Component({
           detail = utils.formatProductData(detail)
           that.setData({prdDetail: detail})
           that.setData({max: detail.limitCount})
+          that.setData({
+            shareModel: {
+              title: detail.prdName,
+              path: config.miniPage.detail_prd,
+              imageUrl: detail.imageSingle
+            }
+          })
 
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s

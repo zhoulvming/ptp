@@ -83,6 +83,8 @@ Component({
         statusText = '订单已完成'
       } else if (status == 8) { // 已退单
         statusText = '订单已关闭'
+      } else if (status == 9) { // 退单中
+        statusText = '退单中'
       }
 
       return {

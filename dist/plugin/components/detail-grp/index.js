@@ -88,6 +88,15 @@ Component({
           that.setGrpStatus(detail)
           that.setData({max: detail.limitNum})
 
+          that.setData({
+            shareModel: {
+              title: detail.prdName,
+              path: config.miniPage.detail_grp,
+              imageUrl: detail.prdImage
+            }
+          })
+
+
           if (that.data.inputData.orderNum) {
             that.setData({orderNum: that.data.inputData.orderNum})
           } else {
@@ -236,7 +245,7 @@ Component({
         } else {
           status_text = '待成团'
           inviteBtn = true
-          makepostBtn = true          
+          makepostBtn = true
         }
         orderBtn = true
       } else {

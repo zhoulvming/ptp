@@ -123,7 +123,7 @@
 
 <!-- 海报组件 -->
 <view class="modalDlg" wx:if="{{showModalDlgPostFlg}}" style="background:#f0f0f0">
-  <button class="btn large-single" open-type='share'>发送给朋友</button>
+  <button class="btn large-single" open-type='share' data-shareModel='{{shareModel}}'>发送给朋友</button>
   <button class="btn large-single" bindtap="makeSharePoster">生成海报</button>
   <button class="btn large-single mt-20" bindtap="hideModalDlg">取消</button>
 </view>

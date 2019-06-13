@@ -55,7 +55,7 @@
       邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
     </view>
     <view class="action mb-50" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
-      <button open-type='share'>邀请好友</button>
+      <button open-type='share' data-shareModel='{{shareModel}}'>邀请好友</button>
       <button bindtap="makeSharePoster">生成海报</button>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.joinBtn?'flex':'none'}}">

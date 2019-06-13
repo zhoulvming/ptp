@@ -2,13 +2,13 @@ const ptCommon = require('../pt.common.js')
 const app = getApp()
 Page({
   data: {},
-  onLoad(options) {
-    if (options.brand) {
-      this.setData({options: options})
-    } else {
-      var optionsNew = wx.getStorageSync('DATA_FROM_PLUGIN')
-      this.setData({options: optionsNew})
-    }
+  onLoad() {
+    this.setData({
+      options: {
+        brand: app.globalData.brand,
+        channelId: app.globalData.channelId
+      }
+    })
     var userinfo = app.globalData.userinfo
     this.setData({userinfo: userinfo})
   },

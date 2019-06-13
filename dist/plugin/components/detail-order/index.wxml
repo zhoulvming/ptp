@@ -33,7 +33,7 @@
           <text class="pref">{{orderDetail.totalPrice}}</text>
         </view>  
       </view>
-      <view class="order-btn" bindtap="gotoGrpPage">
+      <view class="order-btn" bindtap="gotoGrpPage" wx:if="{{orderDetail.status!=9}}">
         <text>查看拼团详情</text>
         <text>></text>
       </view>

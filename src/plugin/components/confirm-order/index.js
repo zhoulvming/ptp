@@ -72,7 +72,6 @@ Component({
         that.crtOrder(function(orderResult) {
           if (orderResult.resultFlag) {
             utils.log('下单成功：' + orderResult.orderNo)
-            that.setData({processing: false})
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
             that.wxPay(orderResult.orderNo, orderResult.grpId)
@@ -198,6 +197,7 @@ Component({
           if (resData && resData.payUrl) {
             payUrl = JSON.parse(resData.payUrl)
             utils.log('payUrl', payUrl)
+            that.setData({processing: false})
             // 跳出到小程序页面由小程序呼出支付
             that.triggerEvent('callback', {
               target: config.miniPage.pay,
