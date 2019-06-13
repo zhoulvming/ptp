@@ -177,7 +177,6 @@ Component({
         ctx.setFillStyle('#000')
         ctx.setFontSize(10)
         ctx.fillText('长按识别小程序码', left + 145, imgheght + 85)
-        // that.getCodeImage()
         ctx.drawImage(codeImagePath, left + 160, imgheght + 20, 50, 50)
 
       }).exec();
@@ -343,30 +342,6 @@ Component({
             codeimgTop: codeimgTop
           })
           cb(imgHeight)
-        }
-      })
-    },
- 
-    // 小程序码
-    getCodeImage() {
-      var that = this
-      wx.request({
-        url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
-        header: { 'content-type': 'application/json;charset=utf-8' },
-        method: 'POST',
-        // responseType: 'arraybuffer',
-        data: {
-          appid: config.appid,
-          secret: config.secret,
-          prdId: that.data.prdId
-        },
-        success(res) {
-          // var base64 = wx.arrayBufferToBase64(res.data);
-          // that.setData ({
-          //   captchaImage: 'data:image/PNG;base64,' + base64
-          // });
-          console.log(res.data)
-          that.setData({captchaImage: res.data})
         }
       })
     }

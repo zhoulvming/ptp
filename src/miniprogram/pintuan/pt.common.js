@@ -36,8 +36,7 @@ const getOpenid = (cb) => {
         url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/openid',
         data: {
           code: code,
-          appid: gd.appid,
-          secret: gd.secret
+          appid: gd.appid
         },
         method: 'POST',
         success: function (res) {
