@@ -134,8 +134,14 @@ Component({
               utils.log('更新支付状态失败', res)
               wx.showModal({
                 title: '错误',
-                content: '他人已凑团成功，您本次拼团失败'
+                content: '他人已凑团成功，您本次拼团失败',
+                showCancel: false,
+                success: function() {
+                  // 跳转到商品详情页面
+                  that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: that.data.inputData.prdId}})
+                }
               })
+              return
             }
             // load grp detail
             that.takeDetailData()
