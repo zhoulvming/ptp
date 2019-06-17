@@ -84,6 +84,6 @@
   orgPrice="{{grpDetail.orgPrice}}"
   numbers="{{grpDetail.numbers}}"
   prdId="{{grpDetail.prdId}}"
-  prdName="{{grpDetail.prdName}}"
+  prdName="{{grpDetail.shortPrdName}}"
   prdDesc="{{grpDetail.prdDesc}}">
 </my-poster>

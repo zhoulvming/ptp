@@ -133,7 +133,7 @@
   orgPrice="{{prdDetail.orgPrice}}"
   numbers="{{prdDetail.numbers}}"
   prdId="{{prdDetail.prdId}}"
-  prdName="{{prdDetail.prdName}}"
+  prdName="{{prdDetail.shortPrdName}}"
   prdDesc="{{prdDetail.prdDesc}}">
 </my-poster>
 

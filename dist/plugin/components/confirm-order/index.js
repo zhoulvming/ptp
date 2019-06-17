@@ -98,10 +98,16 @@ Component({
              
           } else {
             // 下单失败
+            var errMsg = ''
             that.setData({processing: false})
+            if (orderResult.statusCode == config.apiStatusCode.createOrder_joinFail) {
+              errMsg = '他人已凑团成功，您本次拼团失败'
+            } else {
+              errMsg = '发生系统错误，请联系客服'
+            }
             wx.showModal({
               title: '错误',
-              content: '他人已凑团成功，您本次拼团失败'
+              content: errMsg
             })
           }
         })

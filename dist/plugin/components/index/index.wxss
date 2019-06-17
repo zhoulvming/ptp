@@ -307,7 +307,7 @@ page {
   justify-content: center;
   width: 100%;
   font-size: 25rpx;
-  color: #000;
+  color: #333;
   background-color: #fff;
 }
 .bottom-tab .item {

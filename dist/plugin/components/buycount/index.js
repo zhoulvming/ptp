@@ -41,10 +41,12 @@ Component({
     evad: function () {
       var that = this
       var cval = Number(that.data.num) + that.data.change
-      console.log('......' + cval)
-      if (cval > that.data.limitCount) {
+      if (cval > that.data.limitCount - 1) {
         utils.log('超出最大值')
         that.setData({maxflag: true})
+        if (cval == that.data.limitCount) {
+          that.setData({ num: cval })
+        }
       }else{
         that.setData({ num: cval })
         that.setData({maxflag: false})
@@ -56,9 +58,12 @@ Component({
     evic: function () {
       var that = this
       var cval = Number(that.data.num) - that.data.change
-      if (cval < that.data.min) {
+      if (cval < that.data.min + 1) {
         utils.log('低于最小值')
         that.setData({minflag: true})
+        if (cval == that.data.min) {
+          that.setData({ num: cval })
+        }
       } else {
         that.setData({ num: cval })
         that.setData({minflag: false})

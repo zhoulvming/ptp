@@ -62,9 +62,6 @@ Component({
         success: function(res) {
           wx.hideLoading()
           var imagePath = res.tempFilePath
-
-
-
           wx.request({
             url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
             header: { 'content-type': 'application/json;charset=utf-8' },
@@ -79,12 +76,9 @@ Component({
                 url: res.data,
                 success: function(res) {
                   var codeImagePath = res.tempFilePath
-                  
                   that.calculateHeight(imagePath, function(imageHeight) {
                     that.drawCanvas(imagePath, imageHeight, codeImagePath)
-                  });
-
-
+                  })
                 }
               })
             }
