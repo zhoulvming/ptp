@@ -62,16 +62,35 @@ Component({
         success: function(res) {
           wx.hideLoading()
           var imagePath = res.tempFilePath
-          wx.request({
-            url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
-            header: { 'content-type': 'application/json;charset=utf-8' },
-            method: 'POST',
-            data: {
+          // wx.request({
+          //   url: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg',
+          //   header: { 'content-type': 'application/json;charset=utf-8' },
+          //   method: 'POST',
+          //   data: {
+          //     appid: config.appid,
+          //     secret: config.secret,
+          //     prdId: that.data.prdId
+          //   },
+          //   success(res) {
+          //     wx.downloadFile({
+          //       url: res.data,
+          //       success: function(res) {
+          //         var codeImagePath = res.tempFilePath
+          //         that.calculateHeight(imagePath, function(imageHeight) {
+          //           that.drawCanvas(imagePath, imageHeight, codeImagePath)
+          //         })
+          //       }
+          //     })
+          //   }
+          // })
+
+          utils.requestPost(config.restAPI.wxcodeimg,
+            {
               appid: config.appid,
               secret: config.secret,
               prdId: that.data.prdId
             },
-            success(res) {
+            function(res){
               wx.downloadFile({
                 url: res.data,
                 success: function(res) {
@@ -81,8 +100,7 @@ Component({
                   })
                 }
               })
-            }
-          })
+            })          
         }
       })
     },

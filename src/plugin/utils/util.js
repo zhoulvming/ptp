@@ -206,9 +206,13 @@ const utils = {
     wx.request({
       url: url,
       data: data,
-      header: { 'content-type': 'application/json' },
+      header: { 'content-type': 'application/json;charset=utf-8' },
       method: 'POST',
       success(res) {
+        if (res.statusCode == 502) {
+          console.log('后台系统错误，错误代码502')
+          return
+        }
         if (res.statusCode != config.apiStatusCode.sucess) {
           utils.log('后台API返回数据失败', res.data) 
         } else {

@@ -57,6 +57,12 @@ Component({
     loadPage() {
       var that = this
 
+      if (that.data.userinfo) {
+        that.setData({isTest: false})
+      } else {
+        that.setData({isTest: true})
+      }
+
       // 拼团产品一览
       utils.requestPost(
         config.restAPI.prds, 

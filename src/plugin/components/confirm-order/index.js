@@ -159,9 +159,6 @@ Component({
         config.restAPI.order_create,
         data,
         function(res) {
-          console.log(111)
-          console.log(res)
-          console.log(222)
           var resData = res.data
           var resultFlag = false
           var ordreNo = null

@@ -42,7 +42,7 @@
     </swiper>
   </view>
 </view>
-<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}">
+<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}" wx:if="{{!isTest}}">
   <view class="item" bindtap="tabNav" data-target="app-home">
     <image src="../../images/home.png" data-target="app-home"/>
     <text data-target="app-home">首页</text>

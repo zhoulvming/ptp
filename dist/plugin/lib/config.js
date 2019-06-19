@@ -28,7 +28,8 @@ const config = {
     pt_check: 'https://apigroupbuy.kfc.com.cn/groupbuying/group/prdvalid',
     order_create: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/creation',
     wxpay: 'https://apigroupbuy.kfc.com.cn/groupbuying/payment/payurl',
-    upd_order_status: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus'
+    upd_order_status: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus',
+    wxcodeimg: 'https://apigroupbuy.kfc.com.cn/groupbuying/weixin/codeimg'
   },
 
   // 后台API返回code定义
