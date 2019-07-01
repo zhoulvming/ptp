@@ -1,4 +1,3 @@
-//Component Object
 Component({
   properties: {
     myProperty:{
@@ -9,9 +8,24 @@ Component({
 
   },
   data: {
-
+    showModalDlgWhenError: false,
+    errorMsg: ''
   },
   methods: {
+
+    gotoHomePage: function() {
+      this.triggerEvent('gotoPageWhenErrorEvent')
+      this.setData({
+        showModalDlgWhenError: false
+      })
+    },
+    showError: function(msg) {
+      var that = this
+      that.setData({
+        showModalDlgWhenError: true,
+        errorMsg: msg
+      })
+    }
     
   },
   created: function() {

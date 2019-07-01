@@ -1,14 +1,22 @@
 const app = getApp()
+const pt_page_route = {
+  'index': '../pt-index/index',                       // 拼团首页
+  'detail-prd': '../pt-detail-prd/index',             // 拼团商品详情
+  'detail-grp': '../pt-detail-grp/index',             // 拼团详情
+  'detail-order': '../pt-detail-order/index',         // 订单详情
+  'confirm-order': '../pt-confirm-order/index',       // 订单确认
+  'login': '../pt-login/index',                        // 登录呼出
+  'error': '../pt-error/index'
+}
 
 // 该页面跳转函数由插件触发
 const gotoPageFromPlugin = (data) => {
   var options = data.detail.options
   var target = data.detail.target
   var url = null
-  var jsonObj = app.globalData.pt_page_route
-  for(var item in jsonObj) {
+  for(var item in pt_page_route) {
     if(item == target){
-      url = jsonObj[item]
+      url = pt_page_route[item]
     }
   }
   if (url) {

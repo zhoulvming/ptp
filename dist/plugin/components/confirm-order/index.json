@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "error-modal": "../error/index"
+  }
+}

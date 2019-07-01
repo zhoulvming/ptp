@@ -42,7 +42,7 @@
     </swiper>
   </view>
 </view>
-<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}" wx:if="{{!isTest}}">
+<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="item" bindtap="tabNav" data-target="app-home">
     <image src="../../images/home.png" data-target="app-home"/>
     <text data-target="app-home">首页</text>
@@ -79,3 +79,8 @@
     <button class="btn mini mr-40" bindtap="hideModalDlg">确定</button>
   </view>
 </view>
+
+
+<error-modal id="errorModal"
+  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
+</error-modal>

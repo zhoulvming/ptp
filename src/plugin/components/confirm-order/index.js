@@ -175,7 +175,7 @@ Component({
             grpId: grpId,
             statusCode: res.statusCode
           })  
-        }
+        }, that
       )
     },
 
@@ -221,7 +221,7 @@ Component({
               }
             })
           }
-        }
+        }, that
       )
     },
 
@@ -249,7 +249,7 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)  
-        }
+        }, that
       )
     },
     formatOrderData(prdData) {
@@ -270,6 +270,10 @@ Component({
         price_total_pref: priceObj.pref,
         price_total_suff: priceObj.suff
       }
+    },
+
+    gotoPageWhenError() {
+      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

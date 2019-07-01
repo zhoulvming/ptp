@@ -1,7 +1,9 @@
+<!--
 <view class="warning-info">
   <text class="warning">距结束仅剩</text>
   <text class="info">{{wxTimerArr[0]}} 时 {{wxTimerArr[1]}} 分 {{wxTimerArr[2]}} 秒</text>
 </view>
+-->
 <view class="wrapper">
   <view class="panel detail">
     <view class="picture"><image src="{{order.imageSingle}}" mode="scaleToFill"/></view>
@@ -45,3 +47,7 @@
 <view class="mask processing" wx:if="{{processing}}">
   <image src="../../images/loading.gif"/>
 </view>
+
+<error-modal id="errorModal"
+  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
+</error-modal>

@@ -91,11 +91,10 @@ Component({
           that.setData({
             shareModel: {
               title: detail.prdName,
-              path: config.miniPage.detail_grp,
+              grpId: detail.grpId,
               imageUrl: detail.prdImage
             }
           })
-
 
           if (that.data.inputData.orderNum) {
             that.setData({orderNum: that.data.inputData.orderNum})
@@ -109,7 +108,7 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)
-        }
+        }, that
       )
     },
 
@@ -145,7 +144,7 @@ Component({
             }
             // load grp detail
             that.takeDetailData()
-          }
+          }, that
         )
       } else {
         that.takeDetailData()
@@ -179,10 +178,9 @@ Component({
     },
 
     // 回到拼团首页
-    gotoHomePage(event) {
-      var value = event.currentTarget.dataset.target
+    gotoHomePage() {
       this.triggerEvent('callback', {
-        target: value,
+        target: config.miniPage.index,
         options: {
           brand: wx.getStorageSync('brand'),
           channelId: wx.getStorageSync('channelId')
@@ -281,6 +279,10 @@ Component({
           }
         })
       }
+    },
+
+    gotoPageWhenError() {
+      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

@@ -50,3 +50,7 @@
     </view>
   </view>
 </view>
+
+<error-modal id="errorModal"
+  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
+</error-modal>

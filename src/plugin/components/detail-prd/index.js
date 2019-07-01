@@ -116,10 +116,41 @@ Component({
           that.setData({
             shareModel: {
               title: detail.prdName,
-              path: config.miniPage.detail_prd,
+              prdId: detail.prdId,
               imageUrl: detail.imageSingle
             }
           })
+
+          //计算SwiperItem高度
+          var swiperItem1Height = 300
+          var swiperItem2Height = 300
+          var swiperItem3Height = 300
+          var swiperItemMaxHeight = 300
+          const query = wx.createSelectorQuery().in(that)
+          query.selectAll('#swiperItem1').boundingClientRect()
+          query.exec(function (res) {
+            swiperItem1Height = res[0][0].top
+          })
+          query.selectAll('#swiperItem2').boundingClientRect()
+          query.exec(function (res) {
+            swiperItem2Height = res[0][0].top
+          })
+          query.selectAll('#swiperItem3').boundingClientRect()
+          query.exec(function (res) {
+            swiperItem3Height = res[0][0].top
+          })
+          if (swiperItem1Height > swiperItemMaxHeight) {
+            swiperItemMaxHeight = swiperItem1Height
+          }
+          if (swiperItem2Height > swiperItemMaxHeight) {
+            swiperItemMaxHeight = swiperItem2Height
+          }
+          if (swiperItem3Height > swiperItemMaxHeight) {
+            swiperItemMaxHeight = swiperItem3Height
+          }
+          that.setData({swiperItemMaxHeight: swiperItemMaxHeight+100})
+
+
 
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s
@@ -127,7 +158,7 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)
-        }
+        }, that
       )
       
       //根据prdId获取该商品的成团列表(默认显示3条)
@@ -137,7 +168,7 @@ Component({
         function(res) {
           var grps = utils.formatGroupListData(res.data)
           that.setData({grps: grps})
-        }
+        }, that
       )
     },
 
@@ -164,7 +195,7 @@ Component({
             // 无库存
             that.setData({canBuy: false})
           }
-        }
+        }, that
       )
     },
 
@@ -180,7 +211,7 @@ Component({
         {prdId: that.data.prdId, flag: 1},
         function(res) {
           that.setData({grps: utils.formatGroupListData(res.data)})
-        }
+        }, that
       )      
     },
 
@@ -196,7 +227,7 @@ Component({
             {prdId: that.data.prdId, flag: 0},
             function(res) {
               that.setData({records: res.data})
-            }
+            }, that
           )
         }
       }
@@ -253,6 +284,10 @@ Component({
     // 生成海报
     makeSharePoster() {
       this.selectComponent('#poster').makeSharePoster()
+    },
+
+    gotoPageWhenError() {
+      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

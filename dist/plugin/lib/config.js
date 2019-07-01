@@ -63,7 +63,7 @@ const config = {
     app_home: 'app-home',
     app_menu: 'app-menu',
     app_mine: 'app-mine',
-    pay: 'pay'
+    error: 'error'
   },
 
   // 账号信息

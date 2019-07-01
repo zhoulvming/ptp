@@ -3,6 +3,7 @@
   "usingComponents": {
     "my-poster":"../poster/index",
     "my-buycount":"../buycount/index",
-    "my-bottom":"../bottom/index"
+    "my-bottom":"../bottom/index",
+    "error-modal": "../error/index"
   }
 }

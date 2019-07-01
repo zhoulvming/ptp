@@ -57,12 +57,6 @@ Component({
     loadPage() {
       var that = this
 
-      if (that.data.userinfo) {
-        that.setData({isTest: false})
-      } else {
-        that.setData({isTest: true})
-      }
-
       // 拼团产品一览
       utils.requestPost(
         config.restAPI.prds, 
@@ -79,16 +73,16 @@ Component({
           var windowWidth = wx.getSystemInfoSync().windowWidth
           var marginLeft = windowWidth/2 - (90*prds.length)/2 - 10
           that.setData({tabnavMarginLeft: marginLeft})          
-        }
+        }, that
       )
 
       // 首页横幅
       utils.requestPost(
         config.restAPI.banner,
-        {channelId: that.data.channelId},
+        {channelId: wx.getStorageSync('channelId')},
         function(res) {
           that.setData({imgUrls: res.data})  
-        }
+        }, that
       )
     },
     gotoCreatePT(event) {
@@ -142,6 +136,10 @@ Component({
     tabNav: function(event) {
       var target = event.target.dataset.target
       this.triggerEvent('callback', {target: target})
+    },
+
+    gotoPageWhenError() {
+      this.triggerEvent('callback', {target: config.miniPage.index})
     }
 
   }

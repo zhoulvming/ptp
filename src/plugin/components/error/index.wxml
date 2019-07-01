@@ -1,3 +1,5 @@
-<view class="bottom">
-  <text>错误页面</text>
+<view class="errormask" wx:if="{{showModalDlgWhenError}}">
+  <image src="../../images/error01.png"/>
+  <text>哎呀，页面出问题啦！</text>
+  <button class="btn" bindtap="gotoHomePage">点击刷新</button>
 </view>

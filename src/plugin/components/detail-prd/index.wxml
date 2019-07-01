@@ -81,11 +81,11 @@
       <view class='{{currentTab==1?"on":""}}' data-current="1" bindtap='tabChange'>成交记录</view>
       <view class='{{currentTab==2?"on":""}}' data-current="2" bindtap='tabChange'>相关问题</view>
     </view>
-    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper">
-      <swiper-item>
+    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swiperItemMaxHeight}}px">
+      <swiper-item id="swiperItem1">
         {{prdDetail.detailContent}}
       </swiper-item>
-      <swiper-item>
+      <swiper-item id="swiperItem2">
         <view class="record-list">
           <view wx:for="{{records}}" class="record-item display-row">
             <view><text>{{item.timeAgo}}</text></view>
@@ -94,12 +94,12 @@
           </view>
         </view>
       </swiper-item>
-      <swiper-item>
+      <swiper-item id="swiperItem3">
         {{prdDetail.question}}
       </swiper-item>
     </swiper>
   </view>
-</view>  
+</view>
 <view class="fixedBottom" style="bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="actionBar">
     <view class='customer'>
@@ -119,6 +119,7 @@
     <view class="right"></view>
   </view>
 </view>
+
 <view class="mask" wx:if="{{showModalDlgBuycountFlg || showModalDlgPostFlg}}" bindtap="hideModalDlg"></view>
 
 <!-- 海报组件 -->
@@ -148,3 +149,8 @@
   </my-buycount>
 </view>
 
+
+
+<error-modal id="errorModal"
+  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
+</error-modal>

@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {},
   onLoad() {
+    console.log('has com in...?')
     this.setData({
       options: {
         brand: app.globalData.brand,

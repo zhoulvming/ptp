@@ -29,6 +29,8 @@ Page({
       'paySign': payInfo.sign,
       'success': function (res) {
         ptCommon.log('支付成功', res)
+
+        // TODO: 添加更新状态的逻辑代码
       },
       'fail': function (res) {
         ptCommon.log('支付失败', res)

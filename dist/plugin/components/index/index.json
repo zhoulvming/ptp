@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "my-buycount":"../buycount/index"
+    "my-buycount": "../buycount/index",
+    "error-modal": "../error/index"
   }
 }

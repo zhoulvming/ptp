@@ -6,8 +6,6 @@ const imagemin = require('gulp-imagemin');
 const path = require('path');
 const eslint = require('gulp-eslint');
 
-const srcPath = './src/**';
-const distPath = './dist/';
 const srcPath_mp = './src/miniprogram/**';
 const srcPath_pg = './src/plugin/**';
 const distPath_mp = './dist/miniprogram/';
@@ -43,10 +41,10 @@ const lessFiles_pg = [
 // ];
 const jsonFiles_mp = [`${srcPath_mp}/*.json`, `!${srcPath_mp}/_template/*.json`];
 const jsFiles_mp = [`${srcPath_mp}/*.js`, `!${srcPath_mp}/_template/*.js`, `!${srcPath_mp}/env/*.js`];
-// const imgFiles_mp = [
-//   `${srcPath_mp}/images/*.{png,jpg,gif,ico}`,
-//   `${srcPath_mp}/images/**/*.{png,jpg,gif,ico}`
-// ];
+const imgFiles_mp = [
+  `${srcPath_mp}/**/images/*.{png,jpg,gif,ico}`,
+  `${srcPath_mp}/**/images/**/*.{png,jpg,gif,ico}`
+];
 const jsonFiles_pg = [`${srcPath_pg}/*.json`, `!${srcPath_pg}/_template/*.json`];
 const jsFiles_pg = [`${srcPath_pg}/*.js`, `!${srcPath_pg}/_template/*.js`, `!${srcPath_pg}/env/*.js`];
 const jsFiles_utils = [`${srcPath_utils}/*.js`];
@@ -157,6 +155,15 @@ const img_pg = () => {
 };
 gulp.task(img_pg);
 
+/* 编译压缩图片（小程序侧） */
+const img_mp = () => {
+  return gulp
+    .src(imgFiles_mp, { since: gulp.lastRun(img_mp)})
+    .pipe(imagemin())
+    .pipe(gulp.dest(distPath_mp));
+};
+gulp.task(img_mp);
+
 /* watch */
 gulp.task('watch', () => {
   let watchLessFiles_mp = [...lessFiles_mp];
@@ -169,6 +176,7 @@ gulp.task('watch', () => {
   gulp.watch(jsFiles_pg, js_pg);
   gulp.watch(jsFiles_utils, js_utils);
   gulp.watch(imgFiles_pg, img_pg);
+  gulp.watch(imgFiles_mp, img_mp);
   gulp.watch(jsonFiles_mp, json_mp);
   gulp.watch(jsonFiles_pg, json_pg);
   gulp.watch(wxmlFiles_mp, wxml_mp);
@@ -179,21 +187,21 @@ gulp.task('watch', () => {
 /* build */
 gulp.task('build',
   gulp.series('clean', 
-    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'js_utils', 'json_pg', 'wxss_mp', 'wxss_pg', 'img_pg', 'prodEnv')
+    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'js_utils', 'json_pg', 'wxss_mp', 'wxss_pg', 'img_pg', 'img_mp', 'prodEnv')
   )
 );
 
 /* dev */
 gulp.task('dev', 
   gulp.series('clean', 
-    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'js_utils', 'json_pg', 'wxss_mp', 'wxss_pg', 'img_pg', 'devEnv'), 
+    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'js_utils', 'json_pg', 'wxss_mp', 'wxss_pg', 'img_pg', 'img_mp', 'devEnv'), 
     'watch')
 );
 
 /* test */
 gulp.task('test', 
   gulp.series('clean', 
-    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'json_pg', 'js_utils', 'wxss_mp', 'wxss_pg', 'img_pg', 'testEnv')
+    gulp.parallel( 'wxml_mp', 'wxml_pg', 'js_mp', 'js_pg', 'json_mp', 'json_pg', 'js_utils', 'wxss_mp', 'wxss_pg', 'img_pg', 'img_mp', 'testEnv')
   )
 );
 

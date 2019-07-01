@@ -201,7 +201,7 @@ const utils = {
   },
 
   // request
-  requestPost(url, data, cb) {
+  requestPost(url, data, cb, that) {
     utils.log('请求参数', data) 
     wx.request({
       url: url,
@@ -209,21 +209,18 @@ const utils = {
       header: { 'content-type': 'application/json;charset=utf-8' },
       method: 'POST',
       success(res) {
-        if (res.statusCode == 502) {
-          console.log('后台系统错误，错误代码502')
-          return
-        }
         if (res.statusCode != config.apiStatusCode.sucess) {
-          utils.log('后台API返回数据失败', res.data) 
+          // TODO:发生后台异常或者错误
+          console.log('发生后台异常或者错误')
+          that.triggerEvent('callback', {target: config.miniPage.error})
         } else {
-          utils.log(url + ' 返回数据', res.data)
-        }
-        if (cb) {
+          // 正常场合
           cb(res)
         }
       },
       fail(errMsg) {
-        utils.log('请求失败', errMsg)
+        utils.log('请求失败', errMsg),
+        that.triggerEvent('callback', {target: config.miniPage.error})
       }
     })
   },

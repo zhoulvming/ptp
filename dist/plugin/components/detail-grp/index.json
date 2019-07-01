@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "my-poster":"../poster/index",
-    "my-buycount":"../buycount/index"
+    "my-buycount":"../buycount/index",
+    "error-modal": "../error/index"
   }
 }

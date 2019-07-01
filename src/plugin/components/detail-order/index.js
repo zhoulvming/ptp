@@ -65,7 +65,7 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)
-        }
+        }, that
       )
     },
 
@@ -114,6 +114,10 @@ Component({
         price_suff: priceObj.suff,
         statusText: statusText
       }
+    },
+
+    gotoPageWhenError() {
+      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

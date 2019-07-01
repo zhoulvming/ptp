@@ -64,7 +64,7 @@
     <view class="action mb-30" style="display:{{btnStatus.orderBtn?'flex':'none'}}">
       <button class="btn large-singl order-btn" bindtap='gotoOrder'>查看订单详情</button>
     </view>    
-    <button class="btn link underline" bindtap="gotoHomePage" data-target="index">回首页再看看</button>
+    <button class="btn link underline" bindtap="gotoHomePage">回首页再看看</button>
   </view>
 </view>
 <view class="mask" wx:if="{{showModalDlgBuycountFlg}}" bindtap="hideModalDlg"></view>
@@ -84,6 +84,11 @@
   orgPrice="{{grpDetail.orgPrice}}"
   numbers="{{grpDetail.numbers}}"
   prdId="{{grpDetail.prdId}}"
+  grpId="{{grpDetail.grpId}}"
   prdName="{{grpDetail.shortPrdName}}"
   prdDesc="{{grpDetail.prdDesc}}">
 </my-poster>
+
+<error-modal id="errorModal"
+  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
+</error-modal>
