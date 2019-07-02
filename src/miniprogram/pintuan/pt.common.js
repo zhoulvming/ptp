@@ -21,7 +21,11 @@ const gotoPageFromPlugin = (data) => {
   }
   if (url) {
     wx.setStorageSync('DATA_FROM_PLUGIN', options)
-    wx.navigateTo({url: url})
+    if (url.indexOf('pt-error') > 0) {
+      wx.reLaunch({url: url})
+    } else {
+      wx.navigateTo({url: url})
+    }
   } else {
     console.log('未配置拼团插件的页面路由')
   }

@@ -210,7 +210,6 @@ page {
 .detail-prd .logo-info .name {
   font-size: 40rpx;
   color: white;
-  width: 60%;
   margin: auto 0;
 }
 .detail-prd .logo-info .info {

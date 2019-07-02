@@ -72,16 +72,16 @@ Component({
           // 调整swipper tab 的居左距离，使其保持居中显示
           var windowWidth = wx.getSystemInfoSync().windowWidth
           var marginLeft = windowWidth/2 - (90*prds.length)/2 - 10
-          that.setData({tabnavMarginLeft: marginLeft})          
-        }, that
-      )
+          that.setData({tabnavMarginLeft: marginLeft})
 
-      // 首页横幅
-      utils.requestPost(
-        config.restAPI.banner,
-        {channelId: wx.getStorageSync('channelId')},
-        function(res) {
-          that.setData({imgUrls: res.data})  
+          // 首页横幅
+          utils.requestPost(
+            config.restAPI.banner,
+            {channelId: wx.getStorageSync('channelId')},
+            function(res) {
+              that.setData({imgUrls: res.data})
+            }, that
+          )
         }, that
       )
     },

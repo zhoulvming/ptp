@@ -150,26 +150,26 @@ Component({
           }
           that.setData({swiperItemMaxHeight: swiperItemMaxHeight+100})
 
-
-
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s
           wxTimer = new timer({
             beginTime: timeStr
           })
           wxTimer.start(that)
+
+          //根据prdId获取该商品的成团列表(默认显示3条)
+          utils.requestPost(
+            config.restAPI.grp_list,
+            {prdId: that.data.prdId, flag: 0},
+            function(res) {
+              var grps = utils.formatGroupListData(res.data)
+              that.setData({grps: grps})
+            }, that
+          )
         }, that
       )
       
-      //根据prdId获取该商品的成团列表(默认显示3条)
-      utils.requestPost(
-        config.restAPI.grp_list,
-        {prdId: that.data.prdId, flag: 0},
-        function(res) {
-          var grps = utils.formatGroupListData(res.data)
-          that.setData({grps: grps})
-        }, that
-      )
+
     },
 
     // 检测是否参与过该产品的拼团活动
