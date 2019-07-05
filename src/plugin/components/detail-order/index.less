@@ -100,17 +100,19 @@
     flex-direction: row;
     position: relative;
     padding: 10rpx;
-    border-bottom: 1rpx solid #ddd;
+    .title {
+      font-size:36rpx;
+    }
     .price {
       position: absolute;
       right: 0;
+      margin-top:-6rpx;
       .type {
         font-size: @fs-3;
         margin-top: 9rpx;
       }
       .pref {
         font-size: @fs-0;
-        font-weight: @fw-2;
         margin-top: -2rpx;
       }
       .suff {

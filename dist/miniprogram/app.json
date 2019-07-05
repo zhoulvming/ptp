@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/menu/menu",
+    "pages/usercenter/main",
+    "pages/pintuanindex/index",
+    "pintuan/pt-index/index",
+    "pintuan/pt-detail-prd/index",
+    "pintuan/pt-detail-grp/index",
+    "pintuan/pt-confirm-order/index",
+    "pintuan/pt-detail-order/index",
+    "pintuan/pt-login/index",
+    "pintuan/pt-error/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "微信小程序",
+    "navigationStyle": "default",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+  },
+  "networkTimeout": {},
+  "debug": false,
+  "plugins": {
+    "pt_plugin": {
+      "version": "dev",
+      "provider": "wx85694629dac0c26a"
+    }
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "list": [
+      {
+        "selectedIconPath": "images/home-sel.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/menu-sel.png",
+        "iconPath": "images/menu.png",
+        "pagePath": "pages/menu/menu",
+        "text": "点单"
+      },
+      {
+        "selectedIconPath": "images/activity-sel.png",
+        "iconPath": "images/activity.png",
+        "pagePath": "pages/pintuanindex/index",
+        "text": "拼团"
+      },
+      {
+        "selectedIconPath": "images/person-sel.png",
+        "iconPath": "images/person.png",
+        "pagePath": "pages/usercenter/main",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

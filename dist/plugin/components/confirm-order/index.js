@@ -190,7 +190,7 @@ Component({
         price: price,
         returnUrl: ''
       }
-      utils.log('支付参数', dataPayment)      
+      utils.log('支付参数', dataPayment)
       utils.requestPost(
         config.restAPI.wxpay,
         dataPayment,
@@ -270,10 +270,6 @@ Component({
         price_total_pref: priceObj.pref,
         price_total_suff: priceObj.suff
       }
-    },
-
-    gotoPageWhenError() {
-      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

@@ -314,14 +314,16 @@ page {
   width: 100rpx;
   border-radius: 50rpx;
   margin: 0 10rpx;
-  border: 1rpx dotted;
 }
 .detail-user .timer {
   font-size: 25rpx;
   margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .detail-user .timer text {
-  margin-right: 15rpx;
+  padding: 10rpx;
 }
 .detail-user .timer .count {
   color: #fff;
@@ -329,6 +331,8 @@ page {
   border-radius: 10rpx;
   padding: 10rpx;
   font-size: 30rpx;
+  margin: 0 5rpx;
+  width: 45rpx;
 }
 .detail-user .left-count {
   margin-top: 20rpx;

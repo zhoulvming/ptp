@@ -11,6 +11,11 @@ Page({
         that.setData({height: height})
       }
     })
+
+    var options = wx.getStorageSync('DATA_FROM_PLUGIN')
+    console.log('errror page options: ')
+    console.log(options)
+    that.setData({errMsg: options.errMsg})
   },
   gotoHomePage() {
     wx.navigateTo({url: '../pt-index/index'})

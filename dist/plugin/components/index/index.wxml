@@ -63,8 +63,6 @@
 <view class="iphoneX" wx:if="{{isIphoneX}}">
 </view>
 
-
-
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModalDlg||showModalDlgLeftCount}}" bindtap="hideModalDlg"></view>
 <view class="modalDlg" wx:if="{{showModalDlg}}" style="background:#f0f0f0">
   <text>您已经购买过此产品，请完成订单后再次购买</text>
@@ -79,8 +77,3 @@
     <button class="btn mini mr-40" bindtap="hideModalDlg">确定</button>
   </view>
 </view>
-
-
-<error-modal id="errorModal"
-  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
-</error-modal>

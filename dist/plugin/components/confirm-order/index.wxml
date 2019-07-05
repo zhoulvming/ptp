@@ -47,7 +47,3 @@
 <view class="mask processing" wx:if="{{processing}}">
   <image src="../../images/loading.gif"/>
 </view>
-
-<error-modal id="errorModal"
-  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
-</error-modal>

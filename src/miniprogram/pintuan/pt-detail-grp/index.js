@@ -9,10 +9,10 @@ Page({
       // 通过分享进来的场合
       console.log(po.scene)
       var scene = decodeURIComponent(po.scene)
-      that.setData({options: {grpId: scene.grpId}})
+      that.setData({options: {grpId: scene.grpId, grpEnter: 8}})
     } else if (po.grpId) {
       // 通过分享好友进来的场合
-      that.setData({options: {grpId: po.grpId}})
+      that.setData({options: {grpId: po.grpId, grpEnter: 8}})
     } else {
       var options = wx.getStorageSync('DATA_FROM_PLUGIN')
       that.setData({options: options})

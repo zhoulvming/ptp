@@ -282,11 +282,14 @@ page {
   flex-direction: row;
   position: relative;
   padding: 10rpx;
-  border-bottom: 1rpx solid #ddd;
+}
+.total .total-price .title {
+  font-size: 36rpx;
 }
 .total .total-price .price {
   position: absolute;
   right: 0;
+  margin-top: -6rpx;
 }
 .total .total-price .price .type {
   font-size: 30rpx;
@@ -294,7 +297,6 @@ page {
 }
 .total .total-price .price .pref {
   font-size: 40rpx;
-  font-weight: 600;
   margin-top: -2rpx;
 }
 .total .total-price .price .suff {

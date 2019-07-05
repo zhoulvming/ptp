@@ -31,15 +31,20 @@
 </view>
 <view class="wrapper">
   <view class="detail-user">
-    <view class="timer" wx:if="{{grpDetail.grpStatus != 1}}">
+
+    <view class="timer" wx:if="{{grpDetail.grpStatus == 2}}">
       <text>剩余</text>
-      <text class="count">{{wxTimerArr[0]}}</text>
+      <view class="count">{{wxTimerArr[0]}}</view>
       <text>:</text>
-      <text class="count">{{wxTimerArr[1]}}</text>
+      <view class="count">{{wxTimerArr[1]}}</view>
       <text>:</text>
-      <text class="count">{{wxTimerArr[2]}}</text>
+      <view class="count">{{wxTimerArr[2]}}</view>
       <text>结束</text>
     </view>
+
+
+
+
     <view>
       <view class="members">
         <view class="avatar" wx:for="{{grpDetail.members}}" wx:for-item="item" wx:for-index="idx">
@@ -51,7 +56,7 @@
         </view>    
       </view>
     </view>
-    <view class="left-count" wx:if="{{grpDetail.leftNumber > 0}}">
+    <view class="left-count" wx:if="{{grpDetail.leftNumber > 0 && grpDetail.grpStatus == 2}}">
       邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
     </view>
     <view class="action mb-50" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
@@ -88,7 +93,3 @@
   prdName="{{grpDetail.shortPrdName}}"
   prdDesc="{{grpDetail.prdDesc}}">
 </my-poster>
-
-<error-modal id="errorModal"
-  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
-</error-modal>

@@ -13,13 +13,13 @@
     <view class="info">
       <text>距结束仅剩</text>
       <view class="leftTime">
-        <text class="time">{{prdDetail.leftTime_d}}</text>
+        <view class="time">{{prdDetail.leftTime_d}}</view>
         天
-        <text class="time">{{wxTimerArr[0]}}</text>
+        <view class="time">{{wxTimerArr[0]}}</view>
         :
-        <text class="time">{{wxTimerArr[1]}}</text>
+        <view class="time">{{wxTimerArr[1]}}</view>
         :
-        <text class="time">{{wxTimerArr[2]}}</text>
+        <view class="time">{{wxTimerArr[2]}}</view>
       </view>
     </view>
   </view>
@@ -148,9 +148,3 @@
     bind:nextEvent="gotoNext">
   </my-buycount>
 </view>
-
-
-
-<error-modal id="errorModal"
-  bind:gotoPageWhenErrorEvent="gotoPageWhenError">
-</error-modal>

@@ -228,6 +228,8 @@ page {
 }
 .detail-prd .logo-info .info .leftTime {
   margin-top: -3rpx;
+  display: flex;
+  flex-direction: row;
 }
 .detail-prd .logo-info .info .leftTime text {
   color: #fff;
@@ -237,6 +239,9 @@ page {
 .detail-prd .logo-info .info .leftTime .time {
   color: #111;
   background: white;
+  width: 36rpx;
+  border-radius: 5rpx;
+  margin: 0 8rpx;
 }
 .detail-prd .buying-info {
   position: relative;

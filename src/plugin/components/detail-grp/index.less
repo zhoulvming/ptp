@@ -127,7 +127,6 @@
         width: 100rpx;
         border-radius: 50rpx;
         margin: 0 10rpx;
-        border:1rpx dotted;
       }      
     }
   }
@@ -135,8 +134,11 @@
   .timer {
     font-size: @fs-4;
     margin-top: 20rpx;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
     text {
-      margin-right: 15rpx;
+      padding: 10rpx;
     }
     .count{
       color: #fff;
@@ -144,6 +146,8 @@
       border-radius: 10rpx;
       padding: 10rpx;
       font-size: @fs-3;
+      margin: 0 5rpx;
+      width:45rpx;
     }
   }
   .left-count {

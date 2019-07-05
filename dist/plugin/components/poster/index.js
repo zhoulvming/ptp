@@ -61,23 +61,42 @@ Component({
       that.setData({
         showpost: true
       })
+
+
+      console.log('param imageUrl: ' + that.data.imageUrl)
       wx.downloadFile({
         url: that.data.imageUrl,
         success: function(res) {
+          console.log('download prd image success')
+          console.log(res)
           wx.hideLoading()
           var imagePath = res.tempFilePath
+
+          // TODO: 当小程序端发布到生产环境后此处要修改为商品详情和拼团详情，目前暂时全部迁移到首页
+          var page = 'pages/index/index'
+          if (that.data.grpId) {
+            page = 'pages/index/index'
+          } else {
+            page = 'pages/index/index'
+          }
           utils.requestPost(
             config.restAPI.wxcodeimg,
             {
               appid: config.appid,
-              secret: config.secret,
+              page: page,
               prdId: that.data.prdId,
-              grpId: that.data.grpId
+              grpId: that.data.grpId,
+
             },
             function(res){
+              console.log('generate wxcode image success')
+              console.log(res)
+            
               wx.downloadFile({
                 url: res.data,
                 success: function(res) {
+                  console.log('download wxcode image success')
+                  console.log(res)
                   var codeImagePath = res.tempFilePath
                   that.calculateHeight(imagePath, function(imageHeight) {
                     that.drawCanvas(imagePath, imageHeight, codeImagePath)
@@ -85,7 +104,7 @@ Component({
                 }
               })
             }, that
-          )   
+          )
         }
       })
     },
@@ -153,15 +172,27 @@ Component({
           ctx.fillText(price.pref, left - 25, imgheght + 80)
 
           ctx.setFontSize(10)
+          if (price.pref.length > 1) {
+            left = left + 7
+          }
           ctx.fillText(price.suff, left - 15, imgheght + 80)
+
 
           // 原价
           ctx.setFontSize(10)
           ctx.setFillStyle('#666')
+          var underline = '-----'
+          console.log(orgPrice.length)
+          if (orgPrice.length > 4) {
+            underline = '------'
+          }
           ctx.fillText('¥' + orgPrice, left + 7, imgheght + 80)
-          ctx.fillText('-----', left + 7, imgheght + 80)
+          ctx.fillText(underline, left + 7, imgheght + 80)
 
           // 几人团信息
+          if (orgPrice.length > 4) {
+            left = left + 10
+          }
           ctx.setFillStyle('#FFF6E8')
           ctx.fillRect(left + 50, imgheght + 66, 40, 20)
           ctx.setFillStyle('#FFBA4A')
@@ -173,8 +204,8 @@ Component({
         // 小程序码
         ctx.setFillStyle('#000')
         ctx.setFontSize(10)
-        ctx.fillText('长按识别小程序码', left + 145, imgheght + 85)
-        ctx.drawImage(codeImagePath, left + 160, imgheght + 20, 50, 50)
+        ctx.fillText('长按识别小程序码', left + 130, imgheght + 85)
+        ctx.drawImage(codeImagePath, left + 145, imgheght + 20, 50, 50)
 
       }).exec();
 
@@ -330,7 +361,6 @@ Component({
           var codeimgHeight = res.windowWidth * 0.14
           var buttonTop = canvasHeight + mtHeight + 20
           var codeimgTop = imgHeight + mtHeight + 40 - codeimgHeight/2
-          console.log('imgHeight: ' + imgHeight)
           that.setData({
             canvasHeight: canvasHeight,
             imgHeight: imgHeight,

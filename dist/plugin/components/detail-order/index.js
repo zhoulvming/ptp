@@ -114,10 +114,6 @@ Component({
         price_suff: priceObj.suff,
         statusText: statusText
       }
-    },
-
-    gotoPageWhenError() {
-      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

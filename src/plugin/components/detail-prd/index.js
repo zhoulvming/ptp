@@ -284,10 +284,6 @@ Component({
     // 生成海报
     makeSharePoster() {
       this.selectComponent('#poster').makeSharePoster()
-    },
-
-    gotoPageWhenError() {
-      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })

@@ -35,7 +35,11 @@ const config = {
   // 后台API返回code定义
   apiStatusCode: {
     sucess: 200,
-    createOrder_joinFail: 9999
+    createOrder_joinFail: 9999,
+    product_invalid: 50036,
+    duplicator_join: 50031,
+    stock_none: 50021,
+
   },
 
   // 拼团详情页入口场合
@@ -49,7 +53,8 @@ const config = {
     join: 4,
     join_success: 5,
     join_fail: 6,
-    fromOrder: 7
+    fromOrder: 7,
+    fromJoin: 8
   },
 
   // 小程序接口页面定义

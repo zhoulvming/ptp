@@ -136,10 +136,6 @@ Component({
     tabNav: function(event) {
       var target = event.target.dataset.target
       this.triggerEvent('callback', {target: target})
-    },
-
-    gotoPageWhenError() {
-      this.triggerEvent('callback', {target: config.miniPage.index})
     }
 
   }

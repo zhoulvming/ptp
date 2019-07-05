@@ -40,12 +40,6 @@ Component({
     status_pt_fail: '../../images/icons/fail.png',
     wxTimerList:[],
 
-    // min:1,//最小值 整数类型，null表示不设置
-    // max: 5,//最大值 整数类型，null表示不设置
-    // num: 1,//输入框数量 整数类型
-    // change: 1,//加减变化量 整数类型
-    // def_num: 5,//输入框值出现异常默认设置值
-
     min: 1,//最小值 整数类型，null表示不设置
     minflag: true,
     max: 5,//最大值 整数类型，null表示不设置
@@ -53,9 +47,6 @@ Component({
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 1,//输入框值出现异常默认设置值
-
-
-
 
     maskHidden: false,
     status_text: '',
@@ -252,6 +243,12 @@ Component({
           makepostBtn = true
         }
         orderBtn = true
+      } else if (grpEnter == config.grpEnter.fromJoin) {
+        status_flag = true
+        status_text = '待成团'
+        inviteBtn = true
+        makepostBtn = true
+        joinBtn = true
       } else {
         status_flag = true
         status_text = '有未catch的grpEnter状态: ' + grpEnter
@@ -279,10 +276,6 @@ Component({
           }
         })
       }
-    },
-
-    gotoPageWhenError() {
-      this.triggerEvent('callback', {target: config.miniPage.index})
     }
   }
 })
