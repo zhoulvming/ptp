@@ -83,7 +83,7 @@
     </view>
     <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swiperItemMaxHeight}}px">
       <swiper-item id="swiperItem1">
-        {{prdDetail.detailContent}}
+        <image src="{{prdDetail.detailContent}}"/>
       </swiper-item>
       <swiper-item id="swiperItem2">
         <view class="record-list">
@@ -95,7 +95,7 @@
         </view>
       </swiper-item>
       <swiper-item id="swiperItem3">
-        {{prdDetail.question}}
+        <image src="{{prdDetail.question}}"/>
       </swiper-item>
     </swiper>
   </view>

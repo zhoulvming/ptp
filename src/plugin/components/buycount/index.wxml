@@ -20,11 +20,11 @@
     </view>
     <view class='count'>
       <view class="input">
-        <view class='ic' bindtap='evic' wx:if="{{!minflag}}"><text>-</text></view>
-        <view class='ic off' bindtap='evic' wx:if="{{minflag}}"><text>-</text></view>
-        <text class='in'>{{num}}</text>
-        <view class="ad" bindtap='evad' wx:if="{{!maxflag}}"><text>+</text></view>
-        <view class="ad off" bindtap='evad' wx:if="{{maxflag}}"><text>+</text></view>
+        <image bindtap='evic' src="../../images/minus.png" wx:if="{{!minflag}}"/>
+        <image bindtap='evic' src="../../images/minus_off.png" wx:if="{{minflag}}"/>
+        <view><text class='in'>{{num}}</text></view>
+        <image bindtap='evad' src="../../images/plus.png" wx:if="{{!maxflag}}"/>
+        <image bindtap='evad' src="../../images/plus_off.png" wx:if="{{maxflag}}"/>
       </view>
       <view class="info">
         <text>每人限购 {{limitCount}} 件</text>

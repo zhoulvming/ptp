@@ -107,36 +107,36 @@ Component({
       var that = this
       // 如果是从支付成功的小程序页面跳转到此，则需要调用后台API更新数据
       if (that.data.inputData.paySuccessFlag) {
-        utils.requestPost(
-          config.restAPI.upd_order_status,
-          {
-            prdId: that.data.inputData.prdId,
-            payFlg: 1,
-            grpId: that.data.inputData.grpId,
-            orderNo: that.data.inputData.orderNo            
-          },
-          function(res) {
-            var resData = res.data
-            var statusCode = res.statusCode
-            if (statusCode == config.apiStatusCode.sucess) {
-              utils.log('更新支付状态成功', resData)
-            } else {
-              utils.log('更新支付状态失败', res)
-              wx.showModal({
-                title: '错误',
-                content: '他人已凑团成功，您本次拼团失败',
-                showCancel: false,
-                success: function() {
-                  // 跳转到商品详情页面
-                  that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: that.data.inputData.prdId}})
-                }
-              })
-              return
-            }
-            // load grp detail
-            that.takeDetailData()
-          }, that
-        )
+        // utils.requestPost(
+        //   config.restAPI.upd_order_status,
+        //   {
+        //     prdId: that.data.inputData.prdId,
+        //     payFlg: 1,
+        //     grpId: that.data.inputData.grpId,
+        //     orderNo: that.data.inputData.orderNo            
+        //   },
+        //   function(res) {
+        //     var resData = res.data
+        //     var statusCode = res.statusCode
+        //     if (statusCode == config.apiStatusCode.sucess) {
+        //       utils.log('更新支付状态成功', resData)
+        //     } else {
+        //       utils.log('更新支付状态失败', res)
+        //       wx.showModal({
+        //         title: '错误',
+        //         content: '他人已凑团成功，您本次拼团失败',
+        //         showCancel: false,
+        //         success: function() {
+        //           // 跳转到商品详情页面
+        //           that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: that.data.inputData.prdId}})
+        //         }
+        //       })
+        //       return
+        //     }
+        //     // load grp detail
+        //     that.takeDetailData()
+        //   }, that
+        // )
       } else {
         that.takeDetailData()
       }

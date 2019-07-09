@@ -22,9 +22,6 @@ const gotoPageFromPlugin = (data) => {
   if (url) {
     wx.setStorageSync('DATA_FROM_PLUGIN', options)
     if (url.indexOf('pt-error') > 0) {
-      console.log(111111111111111111111111)
-      console.log(options)
-      console.log(222222222222222222222)
       wx.reLaunch({url: url})
     } else {
       wx.navigateTo({url: url})

@@ -14,7 +14,7 @@ App({
   },
 
   isLogin() {
-    if (this.userinfo.userCode) {
+    if (this.globalData.userinfo.userCode) {
       return true
     }
     return false

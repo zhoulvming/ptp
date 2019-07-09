@@ -30,49 +30,34 @@ Page({
       'success': function (res) {
         ptCommon.log('支付成功', res)
 
-        // TODO: 添加更新状态的逻辑代码
-        // wx.request({
-        //   url: '',
-        //   data: data,
-        //   header: { 'content-type': 'application/json;charset=utf-8' },
-        //   method: 'POST',
-        //   success(res) {
-        //     console.log('server response: 111111')
-        //     console.log(res)
-        //     console.log('server response: 222222')
-        //     if (res.statusCode != config.apiStatusCode.sucess) {
-        //       // TODO:发生后台异常或者错误
-        //       console.log('发生后台异常或者错误')
-        //       var dataCode = res.data.code
-        //       console.log(dataCode)
+        wx.request({
+          url: 'https://apigroupbuy.kfc.com.cn/groupbuying/order/updstatus',
+          data: {
+            prdId: options.prdId,
+            payFlg: 1,
+            grpId: options.grpId,
+            orderNo: options.orderNo            
+          },
+          header: { 'content-type': 'application/json;charset=utf-8' },
+          method: 'POST',
+          success(res) {
+            if (res.statusCode != 200) {
+              console.log('发生后台异常或者错误')
+              var dataCode = res.data.code
+              console.log(dataCode)
     
-        //       var errMsg = '哎呀，页面出问题啦！'
-        //       if (dataCode == config.apiStatusCode.duplicator_join) {
-        //         errMsg = '您已存在拼团订单，不能重复下单'
-        //       } else if (dataCode == config.apiStatusCode.createOrder_joinFail) {
-        //         errMsg = '拼团失败，付款金额将在 7 个工作日内退到您的支付账号'
-        //       } else if (dataCode == config.apiStatusCode.product_invalid) {
-        //         errMsg = '商品库存不足，请选择其他商品'
-        //       }
-    
-        //       that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: errMsg}})
-        //     } else {
-        //       // 正常场合
-
-        //     }
-        //   },
-        //   fail(errMsg) {
-        //     utils.log('请求失败', errMsg),
-        //     that.triggerEvent('callback', {target: config.miniPage.error})
-        //   }
-        // })
-
-
-        
-
-
-
-
+              var errMsg = '哎呀...，页面出问题啦！'
+              if (dataCode == 9999) {
+                errMsg = '您的拼团失败，付款金额将在 7 个工作日内退到您的支付账号'
+              }
+              wx.setStorageSync('DATA_FROM_PLUGIN', {errMsg: errMsg})
+              wx.reLaunch({url: '../pt-error/index'})
+            }
+          },
+          fail() {
+            wx.reLaunch({url: '../pt-error/index'})
+          }
+        })
         
       },
       'fail': function (res) {

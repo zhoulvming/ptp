@@ -91,13 +91,21 @@
       .input {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        image {
+          width: 58rpx;
+          height: 58rpx;
+        }
         .ic,.ad {
-          float: left;
           width: 50rpx;
           height: 50rpx;
           line-height: 50rpx;
-          border-radius: 50rpx;
-          margin-top: 5rpx;
+
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -o-border-radius: 50%;
+          -ms-border-radius: 50%;
+
           background: @color-primary;
           font-size: @fs-large;
           color: #ffffff;

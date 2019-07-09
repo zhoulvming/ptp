@@ -111,7 +111,7 @@ Page({
               userinfo['openid'] = openid
             } else {
               // TODO: 测试用（因为用手机扫码开发工具二维码的测试场合，获取不到openid
-              userinfo['openid'] = 'oAs4Q5f-LOAmNghgUF4jEOAxfH60'
+              //userinfo['openid'] = 'oAs4Q5f-LOAmNghgUF4jEOAxfH60'
             }
             gd.userinfo = userinfo
             if (userinfo.mobileNo) {

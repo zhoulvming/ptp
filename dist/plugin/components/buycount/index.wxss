@@ -282,15 +282,21 @@ page {
 .modalDlg-buycount .buycount .count .input {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+.modalDlg-buycount .buycount .count .input image {
+  width: 58rpx;
+  height: 58rpx;
 }
 .modalDlg-buycount .buycount .count .input .ic,
 .modalDlg-buycount .buycount .count .input .ad {
-  float: left;
   width: 50rpx;
   height: 50rpx;
   line-height: 50rpx;
-  border-radius: 50rpx;
-  margin-top: 5rpx;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
   background: #008FDB;
   font-size: 50rpx;
   color: #ffffff;
