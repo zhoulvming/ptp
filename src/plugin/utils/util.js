@@ -213,6 +213,13 @@ const utils = {
         console.log(res)
         console.log('server response: 222222')
         if (res.statusCode != config.apiStatusCode.sucess) {
+
+          // 502
+          if (res.statusCode == 502 || res.statusCode == 508) {
+            that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试'}})
+            return
+          }
+
           // TODO:发生后台异常或者错误
           console.log('发生后台异常或者错误')
           var dataCode = res.data.code
@@ -222,8 +229,10 @@ const utils = {
           if (dataCode == config.apiStatusCode.duplicator_join) {
             errMsg = '您已存在拼团订单，不能重复下单'
           } else if (dataCode == config.apiStatusCode.createOrder_joinFail) {
-            errMsg = '拼团失败，付款金额将在 7 个工作日内退到您的支付账号'
+            errMsg = '拼团失败，付款将在7个工作日内退到您的支付账号'
           } else if (dataCode == config.apiStatusCode.product_invalid) {
+            errMsg = '拼团活动已过期'
+          } else if (dataCode == config.apiStatusCode.stock_none) {
             errMsg = '商品库存不足，请选择其他商品'
           }
 
@@ -235,7 +244,7 @@ const utils = {
       },
       fail(errMsg) {
         utils.log('请求失败', errMsg),
-        that.triggerEvent('callback', {target: config.miniPage.error})
+        that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试'}})
       }
     })
   },

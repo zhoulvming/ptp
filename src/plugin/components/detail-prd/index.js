@@ -29,7 +29,6 @@ Component({
 
   data: {
     prdId: '',
-    currentTab: 0, //当前所在滑块的 index
     salesRecord: [],
     haveShowAllGroups: 'block',
     haveOrder: false,
@@ -37,15 +36,21 @@ Component({
     wxTimerList:[],
     showModalDlgBuycountFlg: false,
     showModalDlgPostFlg: false,
-    canBuy: true
+    canBuy: true,
+    prd_other_item1_flag: true,
+    prd_other_item2_flag: false,
+    prd_other_item3_flag: false
   },
 
   attached() {
     utils.isIphoneX(this)
   },
   ready() {
-    this.checkExist()
-    this.loadPage()
+    var that = this
+    setTimeout(function(){
+      that.checkExist()
+      that.loadPage()
+    }, 300)  
   },
   detached() {
     wxTimer.stop()
@@ -121,35 +126,6 @@ Component({
             }
           })
 
-          //计算SwiperItem高度
-          var swiperItem1Height = 300
-          var swiperItem2Height = 300
-          var swiperItem3Height = 300
-          var swiperItemMaxHeight = 300
-          const query = wx.createSelectorQuery().in(that)
-          query.selectAll('#swiperItem1').boundingClientRect()
-          query.exec(function (res) {
-            swiperItem1Height = res[0][0].top
-          })
-          query.selectAll('#swiperItem2').boundingClientRect()
-          query.exec(function (res) {
-            swiperItem2Height = res[0][0].top
-          })
-          query.selectAll('#swiperItem3').boundingClientRect()
-          query.exec(function (res) {
-            swiperItem3Height = res[0][0].top
-          })
-          if (swiperItem1Height > swiperItemMaxHeight) {
-            swiperItemMaxHeight = swiperItem1Height
-          }
-          if (swiperItem2Height > swiperItemMaxHeight) {
-            swiperItemMaxHeight = swiperItem2Height
-          }
-          if (swiperItem3Height > swiperItemMaxHeight) {
-            swiperItemMaxHeight = swiperItem3Height
-          }
-          that.setData({swiperItemMaxHeight: swiperItemMaxHeight+100})
-
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s
           wxTimer = new timer({
@@ -168,8 +144,6 @@ Component({
           )
         }, that
       )
-      
-
     },
 
     // 检测是否参与过该产品的拼团活动
@@ -199,6 +173,35 @@ Component({
       )
     },
 
+    showPrdOtherInfo(event) {
+      var that = this
+      var target = event.target.dataset.current
+      if (target == 0) {
+        that.setData({prd_other_item1_flag: true})
+        that.setData({prd_other_item2_flag: false})
+        that.setData({prd_other_item3_flag: false})
+      } else if (target == 1) {
+        that.setData({prd_other_item1_flag: false})
+        that.setData({prd_other_item2_flag: true})
+        that.setData({prd_other_item3_flag: false})        
+        // 当切换到成交记录tab时，获取数据
+        var records = that.data.records
+        if (!records) {
+          utils.requestPost(
+            config.restAPI.order_list,
+            {prdId: that.data.prdId, flag: 0},
+            function(res) {
+              that.setData({records: res.data})
+            }, that
+          )
+        }
+      } else if (target == 2) {
+        that.setData({prd_other_item1_flag: false})
+        that.setData({prd_other_item2_flag: false})
+        that.setData({prd_other_item3_flag: true})        
+      }
+    },
+
     // 获取所有成团数据
     showAllGroups() {
       var that = this
@@ -213,31 +216,6 @@ Component({
           that.setData({grps: utils.formatGroupListData(res.data)})
         }, that
       )      
-    },
-
-    //tab切换
-    tabChange: function (event) {
-      var that = this
-      // 当切换到成交记录tab时，获取数据
-      if (event.target.dataset.current == 1) {
-        var records = that.data.records
-        if (!records) {
-          utils.requestPost(
-            config.restAPI.order_list,
-            {prdId: that.data.prdId, flag: 0},
-            function(res) {
-              that.setData({records: res.data})
-            }, that
-          )
-        }
-      }
-
-      this.setData({ currentTab: event.target.dataset.current})
-    },
-
-    //滑动事件
-    tabSwiper: function (event) {
-      this.setData({ currentTab: event.detail.current })
     },
 
     // 弹出/隐藏 购买件数窗口组件

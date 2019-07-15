@@ -67,25 +67,12 @@ Page({
       'complete': function (res) {
         if (res.errMsg == 'requestPayment:ok') {
 
-          // grpEnter: {
-          //   create: 1,
-          //   create_success: 2,
-          //   create_fail: 3,
-          //   join: 4,
-          //   join_success: 5,
-          //   join_fail: 6,
-          //   fromOrder: 7
-          // },
-
           var grpEnter = options.grpEnter
           if (grpEnter == 1) {
             grpEnter = 2
           } else if (grpEnter == 4) {
             grpEnter = 5
           }
-
-          console.log('grpEnter value :')
-          console.log(grpEnter)
 
           setTimeout(function () {
             var target = options.targetCallbakUrl

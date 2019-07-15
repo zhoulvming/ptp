@@ -208,45 +208,55 @@
   }
 }
 
-.detail-other {
+.prd-other-title {
+  display: flex;
+  flex-direction: row;
   background-color: white;
   font-size: @fs-3;
-  .tab-nav {
-    height: 70rpx;
-    line-height: 70rpx;
-    font-weight: 400;
-  }
-  .tab-nav view {
-    float: left;
-    height: 70rpx;
-    line-height: 70rpx;
-    width: 33.33%;
-    text-align: center;
-  }
-  .tab-nav view.on {
+  justify-content: space-around;
+  padding:15rpx 0;
+  font-weight:500;
+  .item.on {
     color: @color-primary;
     border-bottom: 5rpx solid @color-primary;
   }
-  .tab-box {
-    padding: 20rpx 15rpx;
-    swiper-item {
-      text-align: center;
-      bottom: 100rpx;
-    }
-    image {
-      height:100%;
-      width:100%;
-    }
-  }
-  .record-list {
-    .record-item {
-      >view {
-        width: 33%;
-        text-align: center;
-      }
-    }
+  .item.off {
+    color: #666;
+    border-bottom: 0rpx solid @color-primary;
   }
 }
+.prd-other-content {
+  padding-top:10rpx;
+  margin-bottom: 100rpx;
+  background-color: white;
+  min-height:500rpx;
+  .item {
+    text-align:center;
+    image {
+      width:100%;
+    }
+    .record-list {
+      .record-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: @fs-4;
+        color: #333;
+        >view {
+          width: 33%;
+          text-align: center;
+        }
+      }
+    }    
+  }
+  .item.on {
+    display: block;
+  }
+  .item.off {
+    display: none;
+  }
+}
+
 
 .fixedBottom {
   position: fixed;

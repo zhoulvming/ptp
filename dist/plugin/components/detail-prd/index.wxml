@@ -74,30 +74,26 @@
     </view>       
   </view>
 </view>
-<view class="detail-other panel-no-radius"> 
-  <view class='tab'>
-    <view class='tab-nav'>
-      <view class='{{currentTab==0?"on":""}}' data-current="0" bindtap='tabChange'>商品详情</view>
-      <view class='{{currentTab==1?"on":""}}' data-current="1" bindtap='tabChange'>成交记录</view>
-      <view class='{{currentTab==2?"on":""}}' data-current="2" bindtap='tabChange'>相关问题</view>
+<view class="prd-other-title">
+  <view class="item{{prd_other_item1_flag? ' on':' off'}}" data-current="0" bindtap="showPrdOtherInfo">商品详情</view>
+  <view class="item{{prd_other_item2_flag? ' on':' off'}}" data-current="1" bindtap="showPrdOtherInfo">成交记录</view>
+  <view class="item{{prd_other_item3_flag? ' on':' off'}}" data-current="2" bindtap="showPrdOtherInfo">相关问题</view>
+</view>
+<view class="prd-other-content">
+  <view class="item{{prd_other_item1_flag? ' on':' off'}}">
+    <image id="dcImage" src="{{prdDetail.detailContent}}" mode="widthFix"/>
+  </view>
+  <view class="item{{prd_other_item2_flag? ' on':' off'}}">
+    <view class="record-list">
+      <view wx:for="{{records}}" class="record-item display-row">
+        <view><text>{{item.timeAgo}}</text></view>
+        <view><text>{{item.nickName}}</text></view>
+        <view><text>{{item.quantity}}</text></view>
+      </view>
     </view>
-    <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swiperItemMaxHeight}}px">
-      <swiper-item id="swiperItem1">
-        <image src="{{prdDetail.detailContent}}"/>
-      </swiper-item>
-      <swiper-item id="swiperItem2">
-        <view class="record-list">
-          <view wx:for="{{records}}" class="record-item display-row">
-            <view><text>{{item.timeAgo}}</text></view>
-            <view><text>{{item.nickName}}</text></view>
-            <view><text>{{item.quantity}}</text></view>
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item id="swiperItem3">
-        <image src="{{prdDetail.question}}"/>
-      </swiper-item>
-    </swiper>
+  </view>
+  <view class="item{{prd_other_item3_flag? ' on':' off'}}">
+    <image id="dcImage" src="{{prdDetail.question}}" mode="widthFix"/>
   </view>
 </view>
 <view class="fixedBottom" style="bottom:{{isIphoneX?'68rpx':'0'}}">

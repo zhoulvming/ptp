@@ -26,7 +26,6 @@ function get(k) {
   if (deadtime) {
     if (parseInt(deadtime) < Date.parse(new Date()) / 1000) {
       wx.removeStorageSync(k);
-      console.log('过期了');
       return null;
     }
   }

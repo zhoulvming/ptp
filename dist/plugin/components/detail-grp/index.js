@@ -59,7 +59,10 @@ Component({
   },
 
   ready() {
-    this.loadPage()
+    var that = this
+    setTimeout(function(){
+      that.loadPage()
+    }, 300)  
   },
 
   methods: {
@@ -137,6 +140,10 @@ Component({
         //     that.takeDetailData()
         //   }, that
         // )
+        
+        // load grp detail
+        that.takeDetailData()
+
       } else {
         that.takeDetailData()
       }
@@ -159,10 +166,10 @@ Component({
       that.triggerEvent('callback', {
         target: config.miniPage.confirm_order,
         options: {
-          prdId: that.data.inputData.prdId,
-          grpId: that.data.inputData.grpId,
+          prdId: that.data.grpDetail.prdId,
+          grpId: that.data.grpDetail.grpId,
           orderNum: detail.buycount,
-          price: that.data.inputData.price,
+          price: that.data.grpDetail.price,
           grpEnter: that.data.inputData.grpEnter
         }
       })
@@ -245,10 +252,22 @@ Component({
         orderBtn = true
       } else if (grpEnter == config.grpEnter.fromJoin) {
         status_flag = true
-        status_text = '待成团'
-        inviteBtn = true
-        makepostBtn = true
-        joinBtn = true
+        // status_text = '待成团'
+        // inviteBtn = true
+        // makepostBtn = true
+        // joinBtn = true
+        if (grpDetail.grpStatus == 0) {
+          status_text = '拼团未成功'
+        } else if (grpDetail.grpStatus == 1) {
+          status_text = '拼团成功'
+        } else {
+          status_text = '待成团'
+          inviteBtn = true
+          makepostBtn = true
+          joinBtn = true
+        }
+
+
       } else {
         status_flag = true
         status_text = '有未catch的grpEnter状态: ' + grpEnter

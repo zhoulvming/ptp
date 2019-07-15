@@ -390,40 +390,51 @@ page {
   text-align: center;
   font-size: 30rpx;
 }
-.detail-other {
+.prd-other-title {
+  display: flex;
+  flex-direction: row;
   background-color: white;
   font-size: 30rpx;
+  justify-content: space-around;
+  padding: 15rpx 0;
+  font-weight: 500;
 }
-.detail-other .tab-nav {
-  height: 70rpx;
-  line-height: 70rpx;
-  font-weight: 400;
-}
-.detail-other .tab-nav view {
-  float: left;
-  height: 70rpx;
-  line-height: 70rpx;
-  width: 33.33%;
-  text-align: center;
-}
-.detail-other .tab-nav view.on {
+.prd-other-title .item.on {
   color: #008FDB;
   border-bottom: 5rpx solid #008FDB;
 }
-.detail-other .tab-box {
-  padding: 20rpx 15rpx;
+.prd-other-title .item.off {
+  color: #666;
+  border-bottom: 0rpx solid #008FDB;
 }
-.detail-other .tab-box swiper-item {
+.prd-other-content {
+  padding-top: 10rpx;
+  margin-bottom: 100rpx;
+  background-color: white;
+  min-height: 500rpx;
+}
+.prd-other-content .item {
   text-align: center;
-  bottom: 100rpx;
 }
-.detail-other .tab-box image {
-  height: 100%;
+.prd-other-content .item image {
   width: 100%;
 }
-.detail-other .record-list .record-item > view {
+.prd-other-content .item .record-list .record-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25rpx;
+  color: #333;
+}
+.prd-other-content .item .record-list .record-item > view {
   width: 33%;
   text-align: center;
+}
+.prd-other-content .item.on {
+  display: block;
+}
+.prd-other-content .item.off {
+  display: none;
 }
 .fixedBottom {
   position: fixed;

@@ -306,7 +306,7 @@ page {
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  font-size: 22rpx;
+  font-size: 23rpx;
   color: #333;
   background-color: #fff;
 }
@@ -318,8 +318,8 @@ page {
   text-align: center;
 }
 .bottom-tab .item image {
-  height: 48rpx;
-  width: 48rpx;
+  height: 50rpx;
+  width: 50rpx;
   margin: auto;
 }
 .iphoneX {
