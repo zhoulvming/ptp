@@ -25,7 +25,7 @@
 </view>
 <view class="bottom-info">
   <text class="warning">友情提醒</text>
-  <text class="info">拼团成功后，商品将放入“我的卡包”，可随时享用</text>
+  <text class="info">拼团成功后，商品将放入“我的卡包”中，可随时享用</text>
 </view>
 <view class="footer">
   <view class="info">

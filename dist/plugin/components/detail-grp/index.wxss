@@ -44,6 +44,9 @@
 page {
   background-color: #f0f0f0;
 }
+.main {
+  background-color: #fff;
+}
 .wrapper {
   padding: 20rpx;
 }
@@ -105,6 +108,7 @@ page {
   font-size: 28rpx;
   font-weight: 500;
   border-radius: 10rpx;
+  line-height: 2.3;
 }
 .btn.link {
   display: inline;
@@ -274,7 +278,7 @@ page {
   position: absolute;
   bottom: 0rpx;
   right: 20rpx;
-  font-size: 35rpx;
+  font-size: 30rpx;
 }
 .detail-user {
   text-align: center;
@@ -342,7 +346,7 @@ page {
 }
 .detail-user .left-count {
   margin-top: 20rpx;
-  font-size: 35rpx;
+  font-size: 30rpx;
 }
 .detail-user .left-count text {
   font-size: 40rpx;

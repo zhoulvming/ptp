@@ -44,6 +44,9 @@
 page {
   background-color: #f0f0f0;
 }
+.main {
+  background-color: #fff;
+}
 .wrapper {
   padding: 20rpx;
 }
@@ -105,6 +108,7 @@ page {
   font-size: 28rpx;
   font-weight: 500;
   border-radius: 10rpx;
+  line-height: 2.3;
 }
 .btn.link {
   display: inline;
@@ -343,55 +347,66 @@ page {
   background-color: white;
   margin-bottom: 20rpx;
 }
-.detail-gp .group-list > .title {
-  font-size: 30rpx;
-  color: #727272;
+.detail-gp .group-list .title {
+  color: #777;
+  font-size: 28rpx;
   font-weight: 500;
+  margin-bottom: 50rpx;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
 }
-.detail-gp .group-list > .item {
-  padding: 20rpx 15rpx;
+.detail-gp .group-list .group-list-item {
   display: flex;
   flex-direction: row;
-  position: relative;
+  justify-content: space-between;
+  padding: 0 15rpx;
+  margin-bottom: 30rpx;
 }
-.detail-gp .group-list > .item > .user-head {
+.detail-gp .group-list .group-list-item .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.detail-gp .group-list .group-list-item .left .avatar {
   width: 60rpx;
   height: 60rpx;
   border-radius: 30rpx;
 }
-.detail-gp .group-list > .item > .content {
+.detail-gp .group-list .group-list-item .left .nickname {
   margin-left: 20rpx;
+  font-weight: 400;
+  font-size: 30rpx;
+}
+.detail-gp .group-list .group-list-item .right {
   display: flex;
   flex-direction: row;
+  justify-content: row-reverse;
 }
-.detail-gp .group-list > .item > .content .user-name {
-  font-weight: 500;
-}
-.detail-gp .group-list > .item > .content .group-info {
+.detail-gp .group-list .group-list-item .right .info {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 80rpx;
 }
-.detail-gp .group-list > .item > .content .group-info .number-info {
+.detail-gp .group-list .group-list-item .right .info .number {
   display: flex;
   flex-direction: row;
-  font-size: 25rpx;
-  font-weight: 400;
-}
-.detail-gp .group-list > .item > .content .group-info .time-info {
-  font-size: 25rpx;
-}
-.detail-gp .group-list > .item button {
-  position: absolute;
-  right: 0;
-}
-.detail-gp .group-list > .lookmore {
-  margin-top: 15rpx;
-  color: #888;
+  font-size: 28rpx;
   font-weight: 500;
+}
+.detail-gp .group-list .group-list-item .right .info .time-info {
+  font-weight: 500;
+  font-size: 23rpx;
+  color: #777;
+}
+.detail-gp .group-list .group-list-item .right .action {
+  margin-left: 30rpx;
+}
+.detail-gp .group-list .lookmore {
   text-align: center;
-  font-size: 30rpx;
+}
+.detail-gp .group-list .lookmore button {
+  color: #aaa !important;
+  font-size: 28rpx !important;
 }
 .prd-other-title {
   display: flex;

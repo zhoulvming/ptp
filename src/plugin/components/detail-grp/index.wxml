@@ -24,6 +24,9 @@
         <view class="price-org">
           <text>￥{{grpDetail.orgPrice}}</text>
         </view>
+        <view class="buying-count" wx:if="{{grpDetail.orderNum!=0}}">
+          x{{grpDetail.orderNum}}
+        </view>
       </view>
     </view>
   </view>

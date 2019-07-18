@@ -207,6 +207,8 @@ Component({
       var that = this
       if (that.data.haveShowAllGroups == 'none') {
         return
+      } else {
+        that.setData({haveShowAllGroups: 'none'})
       }
       //根据prdId获取该商品的成团列表(全部显示)
       utils.requestPost(

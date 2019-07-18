@@ -155,57 +155,70 @@
   background-color: white;
   margin-bottom: 20rpx;
   .group-list {
-    >.title {
-      font-size: @fs-3;
-      color: #727272;
+    .title {
+      color: #777;
+      font-size: 28rpx;
       font-weight: 500;
+      margin-bottom: 50rpx;
+      margin-left: 10rpx;
+      margin-top: 10rpx;
     }
-    >.item {
-      padding: 20rpx 15rpx;
+    .group-list-item {
       display: flex;
       flex-direction: row;
-      position: relative;
-      >.user-head {
-        width: 60rpx;
-        height: 60rpx;
-        border-radius:30rpx;
-      }
-      >.content {
-        margin-left: 20rpx;
+      justify-content: space-between;
+      padding: 0 15rpx;
+      margin-bottom: 30rpx;
+      .left {
         display: flex;
         flex-direction: row;
-        .user-name {
-          font-weight: 500;
+        align-items: center;
+        .avatar {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius:30rpx;
         }
-        .group-info {
+        .nickname {
+          margin-left: 20rpx;
+          font-weight: 400;
+          font-size: @fs-3;
+        }
+      }
+      .right {
+        display: flex;
+        flex-direction: row;
+        justify-content: row-reverse;
+        .info {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          margin-left: 80rpx;
-          .number-info {
+          
+          .number {
             display: flex;
             flex-direction: row;
-            font-size: @fs-4;
-            font-weight: 400;
+            font-size: 28rpx;
+            font-weight: 500;
           }
           .time-info {
-            font-size: @fs-4;
+            font-weight: 500;
+            font-size: 23rpx;
+            color: #777;
           }
         }
+        .action {
+          margin-left: 30rpx;
+        }
       }
-      button {
-        position: absolute;
-        right: 0;
-      }
+      
     }
-    >.lookmore {
-      margin-top: 15rpx;
-      color: @color-gray;
-      font-weight: @fw-3;
+    .lookmore {
       text-align: center;
-      font-size: @fs-3;
+      button {
+        color: #aaa !important;
+        font-size: 28rpx !important;
+      }
     }
-  }
+  } 
 }
 
 .prd-other-title {

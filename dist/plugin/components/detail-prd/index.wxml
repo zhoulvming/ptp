@@ -53,25 +53,29 @@
 </view>
 <view class="detail-gp panel-no-radius" style="display:{{grps.length!=0&&canBuy?'block':'none'}}"> 
   <view class="group-list">
-    <text class="title">以下小伙伴正在发起拼团，您可以直接参与</text>
-    <view wx:for="{{grps}}" wx:for-item="item" class="item">
-      <image class="user-head" src="{{item.avatarUrl}}"></image>
-      <view class="content">
-        <view><text class="user-name">{{item.nickname}}</text></view>
-        <view class="group-info">
-          <view class="number-info">
+    <view class="title"><text>以下小伙伴正在发起拼团，您可以直接参与</text></view>
+    <view  class="group-list-item" wx:for="{{grps}}" wx:for-item="item">
+      <view class="left">
+        <image class="avatar" src="{{item.avatarUrl}}"></image>
+        <text class="nickname">{{item.nickname}}</text>
+      </view>
+      <view class="right">
+        <view class="info">
+          <view class="number">
             <text>还差</text>
-            <text class="fc-primary">{{item.leftNumbers}}</text>
-            <text>人成团</text>
+            <text class="fc-primary">{{item.leftNumbers}}人</text>
+            <text>成团</text>
           </view>
           <text class="time-info">剩余{{item.validatedTime_h}}:{{item.validatedTime_m}}</text>
         </view>
-      </view>        
-      <button class="btn mini" bindtap="gotoGrpDetail" data-grpid="{{item.grpId}}">去凑团</button>
+        <view class="action">
+          <button class="btn mini" bindtap="gotoGrpDetail" data-grpid="{{item.grpId}}">去参团</button>
+        </view>
+      </view>
     </view>
     <view class="lookmore" style="display:{{haveShowAllGroups}}">
       <button class="btn link" bindtap="showAllGroups">查看更多拼团 ></button>
-    </view>       
+    </view>      
   </view>
 </view>
 <view class="prd-other-title">
@@ -88,7 +92,7 @@
       <view wx:for="{{records}}" class="record-item display-row">
         <view><text>{{item.timeAgo}}</text></view>
         <view><text>{{item.nickName}}</text></view>
-        <view><text>{{item.quantity}}</text></view>
+        <view><text>{{item.quantity}}份</text></view>
       </view>
     </view>
   </view>
