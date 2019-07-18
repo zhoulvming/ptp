@@ -108,6 +108,7 @@ const utils = {
       limitCount: data.limitCount,
       images: data.images,
       imageSingle: data.imageSingle,
+      imagePoster: data.imagePoster,
       validDays: data.validDays,
       orgProdId: data.orgProdId,
       groupBuyProId: data.groupBuyProId,
@@ -178,7 +179,8 @@ const utils = {
       grpStatus: data.grpStatus,
       orderNum: data.orderNum,
       restCount: data.restCount,
-      shortPrdName: data.shortPrdName
+      shortPrdName: data.shortPrdName,
+      imagePoster: data.imagePoster
     }
   },
 

@@ -26,6 +26,8 @@ const gotoPageFromPlugin = (data) => {
       wx.reLaunch({url: url})
     } else if (url.indexOf('pt-detail-grp') > 0) {
       wx.reLaunch({url: url})
+    } else if (url.indexOf('pt-index') > 0) {
+      wx.reLaunch({url: url})
     } else {
       wx.navigateTo({url: url})
     }

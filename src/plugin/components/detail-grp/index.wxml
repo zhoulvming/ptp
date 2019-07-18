@@ -12,7 +12,6 @@
 <view class="wrapper">
   <view class="panel detail">
     <view class="picture"><image src="{{grpDetail.prdImage}}" mode="scaleToFill"/></view>
-
     <view class="info">
       <text class="name">{{grpDetail.prdName}}</text>
       <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
@@ -31,7 +30,6 @@
 </view>
 <view class="wrapper">
   <view class="detail-user">
-
     <view class="timer" wx:if="{{grpDetail.grpStatus == 2}}">
       <text>剩余</text>
       <view class="count">{{wxTimerArr[0]}}</view>
@@ -41,11 +39,7 @@
       <view class="count">{{wxTimerArr[2]}}</view>
       <text>结束</text>
     </view>
-
-
-
-
-    <view>
+    <view class="mb-50">
       <view class="members">
         <view class="avatar" wx:for="{{grpDetail.members}}" wx:for-item="item" wx:for-index="idx">
           <image src="{{item.avatarUrl}}"></image>
@@ -55,20 +49,20 @@
           <image class="unknown" src="../../images/unknown.jpg"></image>
         </view>    
       </view>
+      <view class="left-count" wx:if="{{grpDetail.leftNumber > 0 && grpDetail.grpStatus == 2}}">
+        邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
+      </view>
     </view>
-    <view class="left-count" wx:if="{{grpDetail.leftNumber > 0 && grpDetail.grpStatus == 2}}">
-      邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
-    </view>
-    <view class="action mb-50" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
-      <button open-type='share' data-shareModel='{{shareModel}}'>邀请好友</button>
-      <button bindtap="makeSharePoster">生成海报</button>
+    <view class="action mb-30" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">
+      <view class="invite-btn"><button open-type='share' data-shareModel='{{shareModel}}'>邀请好友</button></view>
+      <view class="poster-btn"><button bindtap="makeSharePoster">生成海报</button></view>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.joinBtn?'flex':'none'}}">
-      <button class="btn large-single order-btn" bindtap='showModal'>我要参团</button>
+      <button class="btn order-btn" bindtap='showModal'>我要参团</button>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.orderBtn?'flex':'none'}}">
-      <button class="btn large-singl order-btn" bindtap='gotoOrder'>查看订单详情</button>
-    </view>    
+      <button class="btn order-btn-ref" bindtap='gotoOrder'>查看订单详情</button>
+    </view>
     <button class="btn link underline" bindtap="gotoHomePage">回首页再看看</button>
   </view>
 </view>
@@ -84,7 +78,7 @@
   </my-buycount>
 </view>
 <my-poster id="poster"
-  imageUrl="{{grpDetail.prdImage}}"
+  imageUrl="{{grpDetail.imagePoster}}"
   price="{{grpDetail.price}}"
   orgPrice="{{grpDetail.orgPrice}}"
   numbers="{{grpDetail.numbers}}"

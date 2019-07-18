@@ -58,44 +58,26 @@ Component({
         mask: true,
       })
 
-      that.setData({
-        showpost: true
-      })
-
-
       console.log('param imageUrl: ' + that.data.imageUrl)
       wx.downloadFile({
         url: that.data.imageUrl,
         success: function(res) {
-          console.log('download prd image success')
-          console.log(res)
-          wx.hideLoading()
           var imagePath = res.tempFilePath
-
-          // TODO: 当小程序端发布到生产环境后此处要修改为商品详情和拼团详情，目前暂时全部迁移到首页
-          var page = 'pages/index/index'
-          if (that.data.grpId) {
-            page = 'pages/index/index'
-          } else {
-            page = 'pages/index/index'
-          }
           utils.requestPost(
             config.restAPI.wxcodeimg,
             {
               appid: config.appid,
-              page: page,
               prdId: that.data.prdId,
-              grpId: that.data.grpId,
-
+              grpId: that.data.grpId
             },
             function(res){
               console.log('generate wxcode image success')
               console.log(res)
-            
+              
               wx.downloadFile({
                 url: res.data,
                 success: function(res) {
-                  console.log('download wxcode image success')
+                  console.log('download wxcode image success.')
                   console.log(res)
                   var codeImagePath = res.tempFilePath
                   that.calculateHeight(imagePath, function(imageHeight) {
@@ -111,11 +93,11 @@ Component({
 
     //canvas绘制分享海报
     drawCanvas: function(imagePath, imageHeight, codeImagePath) {
-      wx.showLoading({
-        title: '生成中...',
-        mask: true,
-      })
+      
       var that = this
+      that.setData({
+        showpost: true
+      })
       const ctx = wx.createCanvasContext('myCanvas', that)
       var width = ''
       const query = wx.createSelectorQuery().in(this)
@@ -207,12 +189,17 @@ Component({
         ctx.fillText('长按识别小程序码', left + 130, imgheght + 85)
         ctx.drawImage(codeImagePath, left + 145, imgheght + 20, 50, 50)
 
-      }).exec();
+      }).exec()
 
       setTimeout(function() {
         ctx.draw()
         that.setData({imageShowFlag: 'block'})
         wx.hideLoading()
+
+        that.setData({
+          showpost: true
+        })
+
       }, 1000)
     },
 

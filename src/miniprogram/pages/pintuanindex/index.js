@@ -1,6 +1,6 @@
 Page({
   data: {},
   onLoad() {
-    wx.navigateTo({url: '../../pintuan/pt-index/index'})
+    wx.reLaunch({url: '../../pintuan/pt-index/index'})
   }
 })

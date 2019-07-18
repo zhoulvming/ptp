@@ -10,6 +10,9 @@
 .mt-100 {
   margin-top: 100rpx;
 }
+.mb-15 {
+  margin-bottom: 15rpx;
+}
 .mb-30 {
   margin-bottom: 30rpx;
 }

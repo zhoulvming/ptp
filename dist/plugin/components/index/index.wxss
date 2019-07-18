@@ -10,6 +10,9 @@
 .mt-100 {
   margin-top: 100rpx;
 }
+.mb-15 {
+  margin-bottom: 15rpx;
+}
 .mb-30 {
   margin-bottom: 30rpx;
 }
@@ -318,8 +321,8 @@ page {
   text-align: center;
 }
 .bottom-tab .item image {
-  height: 50rpx;
-  width: 50rpx;
+  height: 51rpx;
+  width: 51rpx;
   margin: auto;
 }
 .iphoneX {

@@ -125,7 +125,7 @@
   <button class="btn large-single mt-20" bindtap="hideModalDlg">取消</button>
 </view>
 <my-poster id="poster"
-  imageUrl="{{prdDetail.imageSingle}}"
+  imageUrl="{{prdDetail.imagePoster}}"
   price="{{prdDetail.price}}"
   orgPrice="{{prdDetail.orgPrice}}"
   numbers="{{prdDetail.numbers}}"
