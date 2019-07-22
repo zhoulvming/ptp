@@ -252,10 +252,6 @@ Component({
         orderBtn = true
       } else if (grpEnter == config.grpEnter.fromJoin) {
         status_flag = true
-        // status_text = '待成团'
-        // inviteBtn = true
-        // makepostBtn = true
-        // joinBtn = true
         if (grpDetail.grpStatus == 0) {
           status_text = '拼团未成功'
         } else if (grpDetail.grpStatus == 1) {
@@ -266,8 +262,6 @@ Component({
           makepostBtn = true
           joinBtn = true
         }
-
-
       } else {
         status_flag = true
         status_text = '有未catch的grpEnter状态: ' + grpEnter

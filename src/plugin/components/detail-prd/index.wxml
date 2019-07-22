@@ -54,7 +54,7 @@
 <view class="detail-gp panel-no-radius" style="display:{{grps.length!=0&&canBuy?'block':'none'}}"> 
   <view class="group-list">
     <view class="title"><text>以下小伙伴正在发起拼团，您可以直接参与</text></view>
-    <view  class="group-list-item" wx:for="{{grps}}" wx:for-item="item">
+    <view  class="group-list-item" wx:for="{{grps_top}}" wx:for-item="item">
       <view class="left">
         <image class="avatar" src="{{item.avatarUrl}}"></image>
         <text class="nickname">{{item.nickname}}</text>
@@ -73,7 +73,7 @@
         </view>
       </view>
     </view>
-    <view class="lookmore" style="display:{{haveShowAllGroups}}">
+    <view class="lookmore" style="display:{{isShowLookMore?'block':'none'}}">
       <button class="btn link" bindtap="showAllGroups">查看更多拼团 ></button>
     </view>      
   </view>

@@ -1,5 +1,5 @@
 <view class="error" style="height:{{height}}rpx">
-  <image src="{{errImg}}"/>
+  <image src="{{errImg}}" mode="aspectFit"/>
   <text>{{errMsg}}</text>
   <button class="btn" bindtap="gotoHomePage">点击刷新</button>
 </view>

@@ -194,8 +194,12 @@ page {
 .iphoneX .right {
   background: #008FDB;
 }
+page {
+  background: #fff !important;
+}
 .top-stauts {
   height: 200rpx;
+  background: #f0f0f0;
 }
 .top-stauts .status {
   display: flex;
@@ -203,6 +207,7 @@ page {
   font-size: 35rpx;
   margin: 0 auto;
   font-weight: 700;
+  margin-top: 30rpx;
 }
 .top-stauts .status image {
   width: 40rpx;
@@ -213,69 +218,75 @@ page {
 .top-stauts .status text.on {
   color: #008FDB;
 }
-.detail {
+.card {
+  background: #fff;
+}
+.card .detail {
   display: flex;
   flex-direction: row;
   padding: 25rpx;
+  box-shadow: 0 6rpx 10rpx 6rpx #bbb;
+  -webkit-box-shadow: 0px 2px 4px 2px #bbb;
+  margin-top: -120rpx;
 }
-.detail .picture {
+.card .detail .picture {
   width: 160rpx;
   height: 160rpx;
 }
-.detail .picture image {
+.card .detail .picture image {
   width: 160rpx;
   height: 160rpx;
   border-radius: 10rpx;
 }
-.detail .info {
+.card .detail .info {
   display: flex;
   flex-direction: column;
   margin-left: 25rpx;
   width: 100%;
 }
-.detail .info .name {
+.card .detail .info .name {
   font-size: 30rpx;
   font-weight: 600;
 }
-.detail .info .desc {
+.card .detail .info .desc {
   color: grey;
   font-size: 25rpx;
   font-weight: 600;
 }
-.detail .info .buying-info {
+.card .detail .info .buying-info {
   display: flex;
   flex-direction: row;
   position: relative;
   margin-top: 35rpx;
 }
-.detail .info .buying-info .price-now {
+.card .detail .info .buying-info .price-now {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
 }
-.detail .info .buying-info .price-now .money-flag {
+.card .detail .info .buying-info .price-now .money-flag {
   font-size: 30rpx;
 }
-.detail .info .buying-info .price-now .now-pref {
+.card .detail .info .buying-info .price-now .now-pref {
   font-size: 40rpx;
   margin-bottom: -4rpx;
 }
-.detail .info .buying-info .price-now .now-suff {
+.card .detail .info .buying-info .price-now .now-suff {
   font-size: 30rpx;
 }
-.detail .info .buying-info .price-org {
+.card .detail .info .buying-info .price-org {
   display: flex;
   flex-direction: row;
   position: absolute;
   bottom: 0rpx;
   left: 100rpx;
 }
-.detail .info .buying-info .price-org text {
+.card .detail .info .buying-info .price-org text {
   color: #888;
   font-size: 30rpx;
   text-decoration: line-through;
 }
-.detail .info .buying-info .buying-count {
+.card .detail .info .buying-info .buying-count {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -283,10 +294,13 @@ page {
   right: 20rpx;
   font-size: 30rpx;
 }
-.detail-user {
+.content {
+  background: #fff;
+}
+.content .detail-user {
   text-align: center;
 }
-.detail-user .members {
+.content .detail-user .members {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -294,17 +308,17 @@ page {
   margin-top: 30rpx;
   width: 370rpx;
 }
-.detail-user .members .avatar {
+.content .detail-user .members .avatar {
   padding-top: 20rpx;
   position: relative;
 }
-.detail-user .members .avatar image {
+.content .detail-user .members .avatar image {
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
   margin: 0 10rpx;
 }
-.detail-user .members .avatar .isLeader {
+.content .detail-user .members .avatar .isLeader {
   position: absolute;
   bottom: 10rpx;
   border-radius: 20rpx;
@@ -315,28 +329,28 @@ page {
   font-weight: 600;
   padding: 3rpx 10rpx;
 }
-.detail-user .members .unknown {
+.content .detail-user .members .unknown {
   position: relative;
   margin-top: 8px;
 }
-.detail-user .members .unknown image {
+.content .detail-user .members .unknown image {
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
   margin: 0 10rpx;
 }
-.detail-user .timer {
+.content .detail-user .timer {
   font-size: 30rpx;
   margin-top: 20rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.detail-user .timer text {
+.content .detail-user .timer text {
   padding: 10rpx;
   padding-top: 7rpx;
 }
-.detail-user .timer .count {
+.content .detail-user .timer .count {
   color: #fff;
   background: #000;
   border-radius: 10rpx;
@@ -347,41 +361,41 @@ page {
   width: 45rpx;
   height: 45rpx;
 }
-.detail-user .left-count {
+.content .detail-user .left-count {
   margin-top: 20rpx;
   font-size: 30rpx;
 }
-.detail-user .left-count text {
+.content .detail-user .left-count text {
   font-size: 40rpx;
   font-weight: 600;
   color: #008FDB;
 }
-.detail-user .action {
+.content .detail-user .action {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-left: 33rpx;
   padding-right: 33rpx;
 }
-.detail-user .action button {
+.content .detail-user .action button {
   font-size: 35rpx;
   background-color: #008FDB;
   border-radius: 15rpx;
   color: white;
   line-height: 3;
 }
-.detail-user .action .invite-btn {
+.content .detail-user .action .invite-btn {
   width: 50%;
   padding-right: 20rpx;
 }
-.detail-user .action .poster-btn {
+.content .detail-user .action .poster-btn {
   width: 50%;
   padding-left: 20rpx;
 }
-.detail-user .action .order-btn {
+.content .detail-user .action .order-btn {
   width: 100%;
 }
-.detail-user .action .order-btn-ref {
+.content .detail-user .action .order-btn-ref {
   width: 100%;
   background-color: #fff;
   border: 1rpx solid #008FDB;

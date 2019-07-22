@@ -1,3 +1,4 @@
+<!-- top-stauts -->
 <view class="top-stauts align-center display-col">
   <view class="status" wx:if="{{status_flag}}">
     <image wx:if="{{inputData.grpEnter == 2}}" src="{{status_pt_success}}"/>
@@ -9,7 +10,9 @@
     <text>{{status_text}}</text>
   </view>
 </view>
-<view class="wrapper">
+
+<!-- 卡牌 -->
+<view class="wrapper card">
   <view class="panel detail">
     <view class="picture"><image src="{{grpDetail.prdImage}}" mode="scaleToFill"/></view>
     <view class="info">
@@ -31,7 +34,10 @@
     </view>
   </view>
 </view>
-<view class="wrapper">
+
+
+<!-- content -->
+<view class="content wrapper">
   <view class="detail-user">
     <view class="timer" wx:if="{{grpDetail.grpStatus == 2}}">
       <text>剩余</text>

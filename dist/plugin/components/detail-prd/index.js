@@ -30,7 +30,6 @@ Component({
   data: {
     prdId: '',
     salesRecord: [],
-    haveShowAllGroups: 'block',
     haveOrder: false,
     orderId: '',
     wxTimerList:[],
@@ -39,18 +38,21 @@ Component({
     canBuy: true,
     prd_other_item1_flag: true,
     prd_other_item2_flag: false,
-    prd_other_item3_flag: false
+    prd_other_item3_flag: false,
+    isShowLookMore: false
   },
 
   attached() {
+    console.log('...................attached method...................')
     utils.isIphoneX(this)
   },
   ready() {
+    console.log('...................ready method...................')
     var that = this
     setTimeout(function(){
       that.checkExist()
       that.loadPage()
-    }, 300)  
+    }, 400)  
   },
   detached() {
     wxTimer.stop()
@@ -66,7 +68,7 @@ Component({
       var that = this
       var detail = e.detail
 
-
+      // 检查购买数量是否在限定购买数量之内
       var restCount = that.data.prdDetail.restCount - detail.buycount
       if (restCount < 1) {
         wx.showModal({
@@ -76,7 +78,7 @@ Component({
         return
       }
 
-
+      // 跳转到订单确认页面
       that.triggerEvent('callback', {
         target: config.miniPage.confirm_order,
         options:  {
@@ -136,10 +138,22 @@ Component({
           //根据prdId获取该商品的成团列表(默认显示3条)
           utils.requestPost(
             config.restAPI.grp_list,
-            {prdId: that.data.prdId, flag: 0},
-            function(res) {
-              var grps = utils.formatGroupListData(res.data)
-              that.setData({grps: grps})
+            {prdId: that.data.prdId, flag: 1},
+            function(res) {              
+              var grps_all = utils.formatGroupListData(res.data)
+              var grps_top = []
+
+              if (grps_all.length > 3) {
+                grps_top.push(grps_all[0])
+                grps_top.push(grps_all[1])
+                grps_top.push(grps_all[2])
+                that.setData({isShowLookMore: true})
+              } else {
+                grps_top = grps_all
+                that.setData({isShowLookMore: false})
+              }
+              that.setData({grps_top: grps_top})
+              that.setData({grps_all: grps_all})
             }, that
           )
         }, that
@@ -205,19 +219,9 @@ Component({
     // 获取所有成团数据
     showAllGroups() {
       var that = this
-      if (that.data.haveShowAllGroups == 'none') {
-        return
-      } else {
-        that.setData({haveShowAllGroups: 'none'})
-      }
-      //根据prdId获取该商品的成团列表(全部显示)
-      utils.requestPost(
-        config.restAPI.grp_list,
-        {prdId: that.data.prdId, flag: 1},
-        function(res) {
-          that.setData({grps: utils.formatGroupListData(res.data)})
-        }, that
-      )      
+      var grps_all = that.data.grps_all
+      that.setData({grps_top: grps_all})
+      that.setData({isShowLookMore: false})
     },
 
     // 弹出/隐藏 购买件数窗口组件

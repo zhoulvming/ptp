@@ -1,14 +1,19 @@
 @import '../../lib/main.less';
 
+page {
+  background:#fff !important;
+}
 
 .top-stauts {
   height: 200rpx;
+  background: #f0f0f0;
   .status {
     display: flex;
     flex-direction: row;
     font-size: @fs-2;
     margin: 0 auto;
     font-weight: @fw-1;
+    margin-top:30rpx;
     image {
       width: 40rpx;
       height: 40rpx;
@@ -21,186 +26,194 @@
   }
 }
 
-
-
-
-.detail {
-  display: flex;
-  flex-direction: row;
-  padding: 25rpx;
-  .picture {
-    width: 160rpx;
-    height: 160rpx;
-    image {
+.card {
+  background: #fff;
+  .detail {
+    display: flex;
+    flex-direction: row;
+    padding: 25rpx;
+    box-shadow:0 6rpx 10rpx 6rpx #bbb;
+    -webkit-box-shadow:0px 2px 4px 2px #bbb;
+    margin-top:-120rpx;
+    .picture {
       width: 160rpx;
       height: 160rpx;
-      border-radius: 10rpx;
+      image {
+        width: 160rpx;
+        height: 160rpx;
+        border-radius: 10rpx;
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 25rpx;
+      width: 100%;    
+      .name {
+        font-size: @fs-3;
+        font-weight: @fw-2;      
+      }
+      .desc {
+        color: grey;
+        font-size: @fs-4;
+        font-weight: @fw-2;  
+      }
+      .buying-info {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        margin-top: 35rpx;
+        .price-now {
+          display: flex;
+          flex-direction: row;
+          align-items:flex-end;
+          .money-flag {
+            font-size: @fs-3;
+          }
+          .now-pref {
+            font-size: @fs-0;
+            margin-bottom:-4rpx;
+          }
+          .now-suff {
+            font-size: @fs-3;
+          }
+        }
+        .price-org {
+          display: flex;
+          flex-direction: row;
+          position: absolute;
+          bottom: 0rpx;
+          left: 100rpx;
+          text {
+            color: @color-gray;
+            font-size: 30rpx;
+            text-decoration:line-through;
+          }
+        }
+        .buying-count {
+          display: flex;
+          flex-direction: row;
+          position: absolute;
+          bottom: 0rpx;
+          right: 20rpx;
+          font-size: @fs-3;
+        }
+      }
     }
   }
-  .info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 25rpx;
-    width: 100%;    
-    .name {
-      font-size: @fs-3;
-      font-weight: @fw-2;      
-    }
-    .desc {
-      color: grey;
-      font-size: @fs-4;
-      font-weight: @fw-2;  
-    }
-    .buying-info {
+}
+
+.content {
+  background: #fff;
+  // margin-top: -100rpx;
+  // padding-top: 100rpx;
+  .detail-user {
+    text-align: center;
+    .members {
       display: flex;
       flex-direction: row;
-      position: relative;
-      margin-top: 35rpx;
-      .price-now {
-        display: flex;
-        flex-direction: row;
-        align-items:flex-end;
-        .money-flag {
-          font-size: @fs-3;
+      justify-content:center;
+      margin: 0 auto;
+      margin-top:30rpx;
+      width: 370rpx;
+      .avatar {
+        padding-top: 20rpx;
+        position: relative;
+        image {
+          height: 100rpx;
+          width: 100rpx;
+          border-radius: 50rpx;
+          margin: 0 10rpx;
         }
-        .now-pref {
-          font-size: @fs-0;
-          margin-bottom:-4rpx;
-        }
-        .now-suff {
-          font-size: @fs-3;
-        }
-      }
-      .price-org {
-        display: flex;
-        flex-direction: row;
-        position: absolute;
-        bottom: 0rpx;
-        left: 100rpx;
-        text {
-          color: @color-gray;
-          font-size: 30rpx;
-          text-decoration:line-through;
+        .isLeader {
+          position: absolute;
+          bottom: 10rpx;
+          border-radius: 20rpx;
+          background-color: @color-primary;
+          margin-left:30rpx;
+          color:white;
+          font-size: @fs-4;
+          font-weight: 600;
+          padding: 3rpx 10rpx;
         }
       }
-      .buying-count {
-        display: flex;
-        flex-direction: row;
-        position: absolute;
-        bottom: 0rpx;
-        right: 20rpx;
-        font-size: @fs-3;
+      .unknown {
+        position: relative;
+        margin-top:8px;
+        image {
+          height: 100rpx;
+          width: 100rpx;
+          border-radius: 50rpx;
+          margin: 0 10rpx;
+        }      
       }
     }
-  }
-}
-
-.detail-user {
-  text-align: center;
-  .members {
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    margin: 0 auto;
-    margin-top:30rpx;
-    width: 370rpx;
-    .avatar {
-      padding-top: 20rpx;
-      position: relative;
-      image {
-        height: 100rpx;
-        width: 100rpx;
-        border-radius: 50rpx;
-        margin: 0 10rpx;
-      }
-      .isLeader {
-        position: absolute;
-        bottom: 10rpx;
-        border-radius: 20rpx;
-        background-color: @color-primary;
-        margin-left:30rpx;
-        color:white;
-        font-size: @fs-4;
-        font-weight: 600;
-        padding: 3rpx 10rpx;
-      }
-    }
-    .unknown {
-      position: relative;
-      margin-top:8px;
-      image {
-        height: 100rpx;
-        width: 100rpx;
-        border-radius: 50rpx;
-        margin: 0 10rpx;
-      }      
-    }
-  }
-
-  .timer {
-    font-size: @fs-3;
-    margin-top: 20rpx;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    text {
-      padding: 10rpx;
-      padding-top:7rpx;
-    }
-    .count{
-      color: #fff;
-      background: #000;
-      border-radius: 10rpx;
-      padding: 5rpx;
-      font-size: @fs-3;
-      margin: 0 5rpx;
-      margin-top: 5rpx;
-      width:45rpx;
-      height:45rpx;
-    }
-  }
-  .left-count {
-    margin-top: 20rpx;
-    font-size: @fs-3;
-    text {
-      font-size: 40rpx;
-      font-weight: @fw-2;
-      color: @color-primary;
-    }
-  }
-  .action {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 33rpx;
-    padding-right: 33rpx;
-    button {
-      font-size: @fs-2;
-      background-color: @color-primary;
-      border-radius: 15rpx;
-      color: white;
-      line-height:3;
-    }
-    .invite-btn {
-      width: 50%;
-      padding-right: 20rpx;
-    }
-    .poster-btn {
-      width: 50%;
-      padding-left: 20rpx;
-    }
-    .order-btn {
-      width: 100%;
-    }
-    .order-btn-ref {
-      width: 100%;
-      background-color: #fff;
-      border: 1rpx solid @color-primary;
-      color: @color-primary;
-    }
-  }
   
+    .timer {
+      font-size: @fs-3;
+      margin-top: 20rpx;
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      text {
+        padding: 10rpx;
+        padding-top:7rpx;
+      }
+      .count{
+        color: #fff;
+        background: #000;
+        border-radius: 10rpx;
+        padding: 5rpx;
+        font-size: @fs-3;
+        margin: 0 5rpx;
+        margin-top: 5rpx;
+        width:45rpx;
+        height:45rpx;
+      }
+    }
+    .left-count {
+      margin-top: 20rpx;
+      font-size: @fs-3;
+      text {
+        font-size: 40rpx;
+        font-weight: @fw-2;
+        color: @color-primary;
+      }
+    }
+    .action {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-left: 33rpx;
+      padding-right: 33rpx;
+      button {
+        font-size: @fs-2;
+        background-color: @color-primary;
+        border-radius: 15rpx;
+        color: white;
+        line-height:3;
+      }
+      .invite-btn {
+        width: 50%;
+        padding-right: 20rpx;
+      }
+      .poster-btn {
+        width: 50%;
+        padding-left: 20rpx;
+      }
+      .order-btn {
+        width: 100%;
+      }
+      .order-btn-ref {
+        width: 100%;
+        background-color: #fff;
+        border: 1rpx solid @color-primary;
+        color: @color-primary;
+      }
+    }
+  }
 }
+
 
 /*modal*/
 .modalDlg {

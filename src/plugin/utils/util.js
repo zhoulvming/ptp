@@ -246,7 +246,7 @@ const utils = {
       },
       fail(errMsg) {
         utils.log('请求失败', errMsg),
-        that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试', errType: 'request fail'}})
+        that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '啊，网络不给力呀！', errType: 'request fail'}})
       }
     })
   },
