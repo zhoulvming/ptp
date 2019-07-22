@@ -1,4 +1,4 @@
-<view class="pd-top-20 align-center display-col">
+<view class="top-stauts align-center display-col">
   <view class="status" wx:if="{{status_flag}}">
     <image wx:if="{{inputData.grpEnter == 2}}" src="{{status_pt_success}}"/>
     <image wx:if="{{inputData.grpEnter == 3 || inputData.grpEnter == 6}}" src="{{status_pt_fail}}"/>

@@ -1,21 +1,27 @@
 @import '../../lib/main.less';
 
-.status {
-  display: flex;
-  flex-direction: row;
-  font-size: @fs-2;
-  margin: 0 auto;
-  font-weight: @fw-1;
-  image {
-    width: 40rpx;
-    height: 40rpx;
-    margin: auto;
-    margin-right: 20rpx;
-  }
-  text.on {
-    color: @color-primary;
+
+.top-stauts {
+  height: 200rpx;
+  .status {
+    display: flex;
+    flex-direction: row;
+    font-size: @fs-2;
+    margin: 0 auto;
+    font-weight: @fw-1;
+    image {
+      width: 40rpx;
+      height: 40rpx;
+      margin: auto;
+      margin-right: 20rpx;
+    }
+    text.on {
+      color: @color-primary;
+    }
   }
 }
+
+
 
 
 .detail {

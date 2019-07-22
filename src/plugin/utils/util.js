@@ -211,9 +211,9 @@ const utils = {
       header: { 'content-type': 'application/json;charset=utf-8' },
       method: 'POST',
       success(res) {
-        console.log('server response: 111111')
+        console.log('server response: 111111111111111')
         console.log(res)
-        console.log('server response: 222222')
+        console.log('server response: 222222222222222')
         if (res.statusCode != config.apiStatusCode.sucess) {
 
           // 502
@@ -246,7 +246,7 @@ const utils = {
       },
       fail(errMsg) {
         utils.log('请求失败', errMsg),
-        that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试'}})
+        that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试', errType: 'request fail'}})
       }
     })
   },

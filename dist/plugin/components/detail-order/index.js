@@ -73,6 +73,7 @@ Component({
       var totalPrice = data.quantity * data.price
       var priceObj = utils.formatPrice(data.price)
       var statusText = ''
+      var statusMemo = ''
 
       var status = data.status
       if (status == 1) {  // 支付成功
@@ -83,8 +84,12 @@ Component({
         statusText = '订单已完成'
       } else if (status == 8) { // 已退单
         statusText = '订单已关闭'
+        statusMemo = '拼团失败，付款将在7个工作日内退到您的支付账号'
       } else if (status == 9) { // 退单中
         statusText = '退单中'
+      } else if (status == 10) {  // 拼团已过期
+        statusText = '订单已关闭'
+        statusMemo = '拼团失败，付款将在7个工作日内退到您的支付账号'
       }
 
       return {
@@ -112,7 +117,8 @@ Component({
         totalPrice: totalPrice,
         price_pref: priceObj.pref,
         price_suff: priceObj.suff,
-        statusText: statusText
+        statusText: statusText,
+        statusMemo: statusMemo
       }
     }
   }

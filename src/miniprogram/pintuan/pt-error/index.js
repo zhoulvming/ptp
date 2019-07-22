@@ -16,6 +16,12 @@ Page({
     console.log('errror page options: ')
     console.log(options)
     that.setData({errMsg: options.errMsg})
+    that.setData({errImg: '../images/error.png'})
+
+    if (options.errType && options.errType == 'request fail') {
+      that.setData({errImg: '../images/error2.png'})
+    }
+
   },
   gotoHomePage() {
     wx.navigateTo({url: '../pt-index/index'})

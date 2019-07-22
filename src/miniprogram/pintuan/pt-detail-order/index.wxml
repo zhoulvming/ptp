@@ -1,1 +1,10 @@
 <pt-detail-order bindcallback="gotoPageFromPlugin" options="{{options}}"/>
+<view class='fixedBottom'>
+  <view class="actionBar">
+      <view class='customer'>
+        <button bindtap='onlineService' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>
+          <view>在线客服</view>
+        </button>
+      </view>
+  </view>
+</view>

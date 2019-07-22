@@ -194,20 +194,23 @@ page {
 .iphoneX .right {
   background: #008FDB;
 }
-.status {
+.top-stauts {
+  height: 200rpx;
+}
+.top-stauts .status {
   display: flex;
   flex-direction: row;
   font-size: 35rpx;
   margin: 0 auto;
   font-weight: 700;
 }
-.status image {
+.top-stauts .status image {
   width: 40rpx;
   height: 40rpx;
   margin: auto;
   margin-right: 20rpx;
 }
-.status text.on {
+.top-stauts .status text.on {
   color: #008FDB;
 }
 .detail {
