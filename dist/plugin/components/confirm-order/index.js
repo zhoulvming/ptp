@@ -105,6 +105,8 @@ Component({
             } else {
               errMsg = '发生系统错误，请联系客服'
             }
+
+            //TODO: 要考虑放到统一错误页面显示，不采用弹出提示的方式
             wx.showModal({
               title: '错误',
               content: errMsg

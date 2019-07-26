@@ -92,9 +92,11 @@ Page({
             })
           }, 2000)
         } else {
-          wx.showModal({
-            title: '提示',
-            content: '支付失败'
+          wx.showToast({
+            icon: 'none',
+            duration: 2000,
+            title: '订单未支付',
+            mask:true
           })
         }
         return

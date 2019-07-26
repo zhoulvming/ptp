@@ -2,9 +2,6 @@
   <view class="order-grp-info" wx:if="{{orderDetail.status == 1}}">
     <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{wxTimer}}</text>
   </view>
-  <view class="order-grp-info" wx:if="{{orderDetail.status == 8 || orderDetail.status == 10}}">
-    <text>{{orderDetail.statusMemo}}</text>
-  </view>  
   <view class="order-status">
     <text>{{orderDetail.statusText}}</text>
   </view>
@@ -40,7 +37,12 @@
         <text>查看拼团详情</text>
         <text>></text>
       </view>
-      
+    </view>
+  </view>
+  <view class="wrapper" wx:if="{{orderDetail.status == 8 || orderDetail.status == 10}}">
+    <view class="panel order-back">
+      <text class="title">友情提醒</text>
+      <text class="content">您的退款金额将在7个工作日退还至您的支付账户</text>
     </view>
   </view>
   <view class="wrapper">

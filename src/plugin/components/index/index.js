@@ -47,9 +47,9 @@ Component({
     // var cardItemImageHeight = (windowWidth - 70) / config.scale_product
     // this.setData({cardItemImageHeight: cardItemImageHeight})
     this.setData({cardItemImageHeight: 260})
-    utils.isIphoneX(this)
   },
   ready() {
+    utils.isIphone(this)
     this.loadPage()
   },
 

@@ -35,9 +35,7 @@
     color: @color-gray;
   }  
   .tab-box {
-    padding: 20rpx 35rpx;
-    swiper-item {
-    }
+    padding: 20rpx 15rpx;
   }  
 }
 
@@ -48,19 +46,34 @@
   box-shadow:0 6rpx 10rpx 6rpx #bbb;
   -webkit-box-shadow:0px 2px 4px 2px #bbb;
   position: relative;
+  margin-left:20rpx;
+  margin-right:20rpx;
   image {
     width: 100%;
   }
   .name {
     padding: 10rpx;
+    padding-left:25rpx;
     .prd-numbers {
       border: 1rpx solid @color-warning;
-      border-radius: 8rpx;
+      border-radius: 20rpx;
       color: @color-warning;
       font-size: @fs-4;
       padding: 0 10rpx;
       font-weight: @fw-3;
       margin-right: 10rpx;
+      background:#FFF6E8;
+    }
+    .prd-numbers-ios {
+      border: 1rpx solid @color-warning;
+      border-radius: 20rpx;
+      color: @color-warning;
+      font-size: @fs-4;
+      padding: 0 10rpx;
+      font-weight: @fw-3;
+      margin-right: 10rpx;
+      background:#FFF6E8;
+      padding-top: 5rpx;
     }
     .prd-name {
       font-size: @fs-3;
@@ -71,14 +84,16 @@
     position: absolute;
     margin-right: 20rpx;
     float: left;
-    bottom: 30rpx;
-    right: 10rpx;
+    bottom: 35rpx;
+    right: 0;
   }
   .footer {
     display: flex;
     flex-direction:row;
     overflow: hidden;
     margin: 5rpx 20rpx;
+    margin-top:-5rpx;
+    margin-bottom:10rpx;
     .price {
       width:60%;
       font-size: 35rpx;
@@ -125,7 +140,7 @@
 }
 
 
-.bottom-tab {
+.bottom-tab-android {
   position: fixed;
   bottom: 0;
   display: flex;
@@ -133,6 +148,7 @@
   justify-content: center;
   width: 100%;
   font-size: 23rpx;
+  font-weight: 500;
   color: #333;
   background-color: #fff;
   .item {
@@ -142,16 +158,57 @@
     flex-direction: column;
     text-align: center;
     image {
-      height: 51rpx;
-      width: 51rpx;
+      height: 52rpx;
+      width: 52rpx;
       margin: auto;
     }
   }
 }
-.iphoneX {
-  height: 68rpx;
-  background-color: #fff;
-  width:100%;
+.bottom-tab-iphone {
   position: fixed;
-  bottom:0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  font-size: 19rpx;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  .item {
+    width: 25%;
+    padding: 10rpx;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    image {
+      height: 46rpx;
+      width: 46rpx;
+      margin: auto;
+    }
+  }
+}
+.bottom-tab-iphonex {
+  position: fixed;
+  bottom: 68rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  font-size: 20rpx;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  .item {
+    width: 25%;
+    padding: 10rpx;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    image {
+      height: 49rpx;
+      width: 49rpx;
+      margin: auto;
+    }
+  }
 }

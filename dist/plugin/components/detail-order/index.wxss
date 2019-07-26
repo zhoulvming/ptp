@@ -326,6 +326,17 @@ page {
   padding-left: 10rpx;
   padding-right: 10rpx;
 }
+.order-back {
+  display: flex;
+  flex-direction: column;
+}
+.order-back .title {
+  font-weight: 500;
+  font-size: 30rpx;
+}
+.order-back .content {
+  font-size: 30rpx;
+}
 .order-info {
   display: flex;
   flex-direction: column;

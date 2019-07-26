@@ -5,7 +5,7 @@
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}">
         <swiper-item>
-          <image src="{{item}}" width="100%" height="100%"/>
+          <image src="{{item}}" width="100%" height="100%" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
@@ -23,9 +23,10 @@
     <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight}}rpx">
       <swiper-item wx:for="{{prds}}" wx:for-item="item" >
         <view wx:for="{{item.items}}" wx:for-item="prd_item" class="card-item">
-          <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}rpx"></image>
+          <image class="logo" src="{{prd_item.image}}" style="height:{{cardItemImageHeight}}rpx" mode="aspectFill"></image>
           <view class="name display-row">
-            <text class="prd-numbers">{{prd_item.numbers}}人团</text>
+            <text class="prd-numbers" wx:if="{{!isIphone && !isIphoneX}}">{{prd_item.numbers}}人团</text>
+            <text class="prd-numbers-ios" wx:if="{{isIphone || isIphoneX}}">{{prd_item.numbers}}人团</text>
             <text class="prd-name">{{prd_item.prdName}}</text>
           </view>
           <view class="footer">
@@ -42,7 +43,7 @@
     </swiper>
   </view>
 </view>
-<view class="bottom-tab" style="bottom:{{isIphoneX?'68rpx':'0'}}">
+<view class="bottom-tab-android" wx:if="{{isAndroid}}">
   <view class="item" bindtap="tabNav" data-target="app-home">
     <image src="../../images/home.png" data-target="app-home"/>
     <text data-target="app-home">首页</text>
@@ -60,7 +61,41 @@
     <text data-target="app-mine">我的</text>
   </view>
 </view>
-<view class="iphoneX" wx:if="{{isIphoneX}}">
+<view class="bottom-tab-iphone" wx:if="{{isIphone}}">
+  <view class="item" bindtap="tabNav" data-target="app-home">
+    <image src="../../images/home.png" data-target="app-home"/>
+    <text data-target="app-home">首页</text>
+  </view>
+  <view class="item" bindtap="tabNav" data-target="app-menu">
+    <image src="../../images/menu.png" data-target="app-menu"/>
+    <text data-target="app-menu">点单</text>
+  </view>
+  <view class="item">
+    <image src="../../images/activity-sel.png"/>
+    <text style="color: #008FDB">拼团</text>
+  </view>
+  <view class="item" bindtap="tabNav" data-target="app-mine">
+    <image src="../../images/person.png" data-target="app-mine"/>
+    <text data-target="app-mine">我的</text>
+  </view>
+</view>
+<view class="bottom-tab-iphonex" wx:if="{{isIphoneX}}">
+  <view class="item" bindtap="tabNav" data-target="app-home">
+    <image src="../../images/home.png" data-target="app-home"/>
+    <text data-target="app-home">首页</text>
+  </view>
+  <view class="item" bindtap="tabNav" data-target="app-menu">
+    <image src="../../images/menu.png" data-target="app-menu"/>
+    <text data-target="app-menu">点单</text>
+  </view>
+  <view class="item">
+    <image src="../../images/activity-sel.png"/>
+    <text style="color: #008FDB">拼团</text>
+  </view>
+  <view class="item" bindtap="tabNav" data-target="app-mine">
+    <image src="../../images/person.png" data-target="app-mine"/>
+    <text data-target="app-mine">我的</text>
+  </view>
 </view>
 
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModalDlg||showModalDlgLeftCount}}" bindtap="hideModalDlg"></view>

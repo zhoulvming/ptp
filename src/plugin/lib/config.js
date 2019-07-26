@@ -77,7 +77,10 @@ const config = {
   secret: '17c7b613567ac214c2e8e4f4c4881c0f',
 
   // iphonerx
-  iphonerx: false
+  isIphoneX: false,
+
+  // iphoner
+  isIphone: false
 }
 
 module.exports = config

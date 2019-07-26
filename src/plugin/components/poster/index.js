@@ -161,12 +161,24 @@ Component({
 
 
           // 原价
+          utils.isIphone(that)
+          var isIphone = that.data.isIphone
+          var isIphoneX = that.data.isIphoneX
+          var isAndroid = that.data.isAndroid
+
+          console.log('isIphone: :' + isIphone)
+          console.log('isIphoneX: :' + isIphoneX)
+          console.log('isAndroid: :' + isAndroid)
+
+
           ctx.setFontSize(10)
           ctx.setFillStyle('#666')
-          var underline = '-----'
+          var underline = '------'
           console.log(orgPrice.length)
           if (orgPrice.length > 4) {
-            underline = '------'
+            if (!isAndroid) {
+              underline = '------------'
+            }
           }
           ctx.fillText('¥' + orgPrice, left + 7, imgheght + 80)
           ctx.fillText(underline, left + 7, imgheght + 80)
@@ -276,8 +288,9 @@ Component({
     saveShareImg: function() {
       var that = this
       wx.showLoading({
-        title: '正在保存',
+        title: '保存中',
         mask: true,
+        image: '../../images/loading.gif'
       })
       setTimeout(function() {
         wx.canvasToTempFilePath({
@@ -288,34 +301,18 @@ Component({
             wx.saveImageToPhotosAlbum({
               filePath: tempFilePath,
               success() {
-                wx.showModal({
-                  content: '保存成功，从相册中分享到朋友圈吧',
-                  showCancel: false,
-                  confirmText: '好的',
-                  confirmColor: '#333',
-                  success: function(res) {
-                    that.closePoste()
-                    if (res.confirm) {
-                      console.log('do nothing...')
-                    }
-                  },
-                  fail: function(res) {
-                    utils.logErr(res)
-                    wx.showToast({
-                      title: '图片保存失败',
-                      icon: 'none',
-                      duration: 2000
-                    })
-                  }
+                wx.showToast({
+                  icon: '../../images/save_success.png',
+                  duration: 2000,
+                  title: '保存成功'
                 })
               },
-              fail: function(res) {
-                utils.logErr(res)
+              fail: function() {
                 wx.showToast({
-                  title: '图片保存失败',
                   icon: 'none',
-                  duration: 2000
-                })   
+                  duration: 2000,
+                  title: '保存失败'
+                })
               }
             })
           },

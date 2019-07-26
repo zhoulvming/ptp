@@ -22,11 +22,11 @@ const gotoPageFromPlugin = (data) => {
   if (url) {
     console.log(url)
     wx.setStorageSync('DATA_FROM_PLUGIN', options)
-    if (url.indexOf('pt-error') > 0) {
+    if (url.indexOf('pt-error') >= 0) {
       wx.reLaunch({url: url})
     // } else if (url.indexOf('pt-detail-grp') > 0) {
     //   wx.reLaunch({url: url})
-    } else if (url.indexOf('pt-index') > 0) {
+    } else if (url.indexOf('pt-index') >= 0) {
       wx.reLaunch({url: url})
     } else {
       wx.navigateTo({url: url})

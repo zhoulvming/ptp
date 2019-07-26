@@ -251,26 +251,39 @@ const utils = {
     })
   },
 
-  // iphoneX
-  isIphoneX(page) {
-    // var isIphoneX = false
-    // var that = this
+  // iphone
+  isIphone(page) {
+    page.setData({isAndroid: false})
+    page.setData({isIphone: false})
     page.setData({isIphoneX: false})
-    if (config.isIphoneX) {
-      page.setData({isIphoneX: true})
-    } else {
-      wx.getSystemInfo({
-        success: function (res) {
-          if (res.model == 'iphonerx') {
-            // isIphoneX = true
-            config.isIphoneX = true
+
+    // #### iphoneX
+    // model = iPhone XR
+    // platform = ios
+    // brand = iPhone
+    // #### iphone
+    // model = iPhone 6s Plus
+    // platform = ios
+    // brand = iPhone
+
+    wx.getSystemInfo({
+      success: function (res) {
+        if (res.platform == 'ios') {
+          var model = res.model
+          console.log(model)
+          if (model.indexOf('iPhone X') >= 0) {
             page.setData({isIphoneX: true})
+            console.log('.............................iphonex.................')
+          } else {
+            page.setData({isIphone: true})
+            console.log('.............................iphone.................')
           }
-          // cb(isIphoneX)
+        } else {
+          page.setData({isAndroid: true})
+          console.log('.............................android.................')
         }
-      })
-    }
-    
+      }
+    })
   }
 }
 

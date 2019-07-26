@@ -28,6 +28,9 @@ Page({
       that.setData({ userinfo: userinfo })
     }
   },
+  onUnload() {
+    wx.reLaunch({url: '../pt-index/index'})
+  },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data);
   },
@@ -54,10 +57,5 @@ Page({
         path: 'pintuan/pt-detail-grp/index?openid=' + openid + '&grpId=' + grpId
       }
     }
-
-
-
-
-    
   }
 })
