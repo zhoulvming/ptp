@@ -1,3 +1,12 @@
+.mt-5 {
+  margin-top: 5rpx;
+}
+.mt-10 {
+  margin-top: 10rpx;
+}
+.mt-15 {
+  margin-top: 15rpx;
+}
 .mt-20 {
   margin-top: 20rpx;
 }
@@ -9,6 +18,12 @@
 }
 .mt-100 {
   margin-top: 100rpx;
+}
+.mb-5 {
+  margin-bottom: 5rpx;
+}
+.mb-10 {
+  margin-bottom: 10rpx;
 }
 .mb-15 {
   margin-bottom: 15rpx;
@@ -216,6 +231,10 @@ page {
   line-height: 70rpx;
   text-align: center;
 }
+.tab .tab-nav view text {
+  font-size: 35rpx;
+  font-weight: 500;
+}
 .tab .tab-nav view.on {
   color: #008FDB;
 }
@@ -232,8 +251,8 @@ page {
   overflow: hidden;
   margin-bottom: 40rpx;
   border-radius: 8rpx;
-  box-shadow: 0 6rpx 10rpx 6rpx #bbb;
-  -webkit-box-shadow: 0px 2px 4px 2px #bbb;
+  box-shadow: 0 6rpx 10rpx 6rpx #ededed;
+  -webkit-box-shadow: 0px 2px 4px 2px #ededed;
   position: relative;
   margin-left: 20rpx;
   margin-right: 20rpx;
@@ -334,6 +353,7 @@ page {
   font-weight: 500;
   color: #333;
   background-color: #fff;
+  border-top: 1rpx solid #eee;
 }
 .bottom-tab-android .item {
   width: 25%;
@@ -358,6 +378,7 @@ page {
   font-weight: 500;
   color: #333;
   background-color: #fff;
+  border-top: 1rpx solid #eee;
 }
 .bottom-tab-iphone .item {
   width: 25%;
@@ -373,15 +394,17 @@ page {
 }
 .bottom-tab-iphonex {
   position: fixed;
-  bottom: 68rpx;
+  bottom: 0;
+  padding-bottom: 68rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  font-size: 20rpx;
+  font-size: 19rpx;
   font-weight: 500;
   color: #333;
   background-color: #fff;
+  border-top: 1rpx solid #eee;
 }
 .bottom-tab-iphonex .item {
   width: 25%;

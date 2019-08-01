@@ -38,9 +38,8 @@
       font-weight: @fw-2;
     }
     .desc {
-      color: grey;
+      color: #aaa;
       font-size: @fs-4;
-      font-weight: @fw-2;      
     }
     .buying-info {
       display: flex;
@@ -86,9 +85,48 @@
   }
   .info {
     color: @color-gray;
+    font-size: 25rpx;
+  }
+}
+.bottom-info-ipx {
+  display: flex;
+  flex-direction: column;
+  font-size: @fs-3;
+  position: absolute;
+  bottom: 218rpx;
+  padding: 30rpx;
+  .warning {
+    font-weight: @fw-2;
+  }
+  .info {
+    color: @color-gray;
+    font-size: 25rpx;
   }
 }
 
+.style-for-ipx {
+  height:68rpx;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #555;
+  .left {
+    color: white;
+    font-size: @fs-0;
+    margin: auto;
+    width:70%;
+  }
+  .right {
+    color:@color-primary;
+    background:@color-primary;
+    padding: 36rpx 50rpx;
+    font-weight: @fw-2;
+    font-size:38rpx;
+    font-weight:600;
+  }
+}
 .footer {
   position: fixed;
   bottom: 0;
@@ -96,7 +134,6 @@
   flex-direction: row;
   width: 100%;
   background-color: #555;
-  justify-content:flex-end;
   .info {
     color: white;
     font-size: @fs-0;
@@ -123,7 +160,9 @@
     color: white;
     background:@color-primary;
     padding: 36rpx 50rpx;
-    font-weight: @fw-2;
+    font-size:38rpx;
+    font-weight:600;
+
   }
 }
 

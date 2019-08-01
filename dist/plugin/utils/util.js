@@ -221,8 +221,7 @@ const utils = {
             that.triggerEvent('callback', {target: config.miniPage.error, options:{errMsg: '系统正在维护中，请稍后再试'}})
             return
           }
-
-          // TODO:发生后台异常或者错误
+          
           console.log('发生后台异常或者错误')
           var dataCode = res.data.code
           console.log(dataCode)
@@ -233,7 +232,7 @@ const utils = {
           } else if (dataCode == config.apiStatusCode.createOrder_joinFail) {
             errMsg = '拼团失败，付款将在7个工作日内退到您的支付账号'
           } else if (dataCode == config.apiStatusCode.product_invalid) {
-            errMsg = '拼团活动已过期'
+            errMsg = '拼团商品已过期'
           } else if (dataCode == config.apiStatusCode.stock_none) {
             errMsg = '商品库存不足，请选择其他商品'
           }

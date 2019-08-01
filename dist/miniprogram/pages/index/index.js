@@ -95,10 +95,11 @@ Page({
             var openid = res.data.openid
             console.log('==== 小程序侧获取到的openid：(' + openid + ')')
             if (openid) {
-              userinfo['openid'] = openid
+              // userinfo['openid'] = openid
+              userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
             } else {
               // TODO: 测试用（因为用手机扫码开发工具二维码的测试场合，获取不到openid
-              //userinfo['openid'] = 'oAs4Q5f-LOAmNghgUF4jEOAxfH60'
+              userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
             }
             gd.userinfo = userinfo
             if (userinfo.mobileNo) {

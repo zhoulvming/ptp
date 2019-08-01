@@ -1,5 +1,4 @@
-<view class="modalDlg-buycount">
-  
+<view class="modalDlg-buycount" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="prd-info">
     <view class="picture"><image src="{{prdImage}}" mode="scaleToFill"/></view>
     <view class="info">
@@ -31,6 +30,10 @@
       </view>
     </view>
   </view>
-
+  <view class='btn-bottom' bindtap="gotoNext">
+    下一步
+  </view>
+  <!--
   <button class="btn-bottom" bindtap="gotoNext">下一步</button>
+  -->
 </view>

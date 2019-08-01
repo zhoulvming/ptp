@@ -86,7 +86,7 @@ Component({
             shareModel: {
               title: detail.prdName,
               grpId: detail.grpId,
-              imageUrl: detail.prdImage
+              imageUrl: detail.imagePoster
             }
           })
 
@@ -155,11 +155,14 @@ Component({
       var detail = e.detail
 
       var restCount = that.data.grpDetail.restCount  - detail.buycount
+      var buyedCount = that.data.grpDetail.limitNum - that.data.grpDetail.restCount
       if (restCount < 1) {
-        wx.showModal({
-          title: '错误',
-          content: '您的购买数量已经超过该商品的最大购买数量'
-        })
+        wx.showToast({
+          icon: 'none',
+          duration: 5000,
+          title: '该商品每人限购' + that.data.grpDetail.limitNum + '件，您之前已购买过' + buyedCount + '件~',
+          mask:true
+        })        
         return
       }
 

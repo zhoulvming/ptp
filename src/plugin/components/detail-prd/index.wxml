@@ -85,7 +85,7 @@
 </view>
 <view class="prd-other-content">
   <view class="item{{prd_other_item1_flag? ' on':' off'}}">
-    <image id="dcImage" src="{{prdDetail.detailContent}}" mode="widthFix"/>
+    <image wx:for="{{prdDetail.detailContent}}" src="{{item}}" mode="widthFix"/>
   </view>
   <view class="item{{prd_other_item2_flag? ' on':' off'}}">
     <view class="record-list">
@@ -97,10 +97,10 @@
     </view>
   </view>
   <view class="item{{prd_other_item3_flag? ' on':' off'}}">
-    <image id="dcImage" src="{{prdDetail.question}}" mode="widthFix"/>
+    <image src="{{prdDetail.question}}" mode="widthFix"/>
   </view>
 </view>
-<view class="fixedBottom" style="bottom:{{isIphoneX?'68rpx':'0'}}">
+<view class="fixedBottom" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="actionBar">
     <view class='customer'>
     </view>
@@ -141,6 +141,7 @@
 <!-- 购买数量组件 -->
 <view wx:if="{{showModalDlgBuycountFlg}}">
   <my-buycount
+    isIphoneX="{{isIphoneX}}"
     detail="{{prdDetail}}"
     limitCount="{{prdDetail.limitCount}}"
     prdImage="{{prdDetail.imageSingle}}"

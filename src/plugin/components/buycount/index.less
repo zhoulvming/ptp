@@ -4,15 +4,16 @@
   position: fixed;
   bottom: 0;
   z-index: 9999;
-  background-color: #fff;
+  background-color: @color-primary;
   border-radius: 0;
   display: flex;
   flex-direction: column;
-  .prd-info { 
+  .prd-info {
     display: flex;
     flex-direction: row;
     padding: 40rpx;
     position: relative;
+    background-color: #fff;
     .picture {
       width: 160rpx;
       height: 160rpx;
@@ -46,6 +47,7 @@
         font-size: @fs-4;
         font-weight: @fw-2;
         color: @color-warning;
+        background:#FFF6E8;
       }
       .price-now {
         display: flex;
@@ -66,6 +68,7 @@
     }
   }
   .buycount {
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     font-size: @fs-3;
@@ -92,6 +95,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 180rpx;
         image {
           width: 58rpx;
           height: 58rpx;
@@ -122,14 +126,14 @@
         }
         .in {
           float: left;
-          width: 25rpx;
+          
           height: 60rpx;
           line-height: 60rpx;
           border-width: 0 ;
           font-size: @fs-1;
           font-weight: @fw-2;
           color: #333333;
-          margin: 0 20rpx;
+          margin: 0 10rpx;
           text-align: center;
         }
       }
@@ -145,11 +149,13 @@
   .btn-bottom {
     width: 100%;
     background-color: @color-primary;
-    font-weight: @fw-1;
     border-radius: 0;
     box-sizing: none;
     color: white;
     margin:0;
-    padding: 15rpx 0;
+    padding: 30rpx 0;
+    text-align: center;
+    font-size:38rpx;
+    font-weight:600;
   }
 }

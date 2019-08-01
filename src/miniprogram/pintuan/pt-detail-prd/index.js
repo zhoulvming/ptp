@@ -26,6 +26,9 @@ Page({
     } else {
       that.setData({ userinfo: userinfo })
     }
+
+    // 设配匹配
+    ptCommon.isIphone(that)
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data)

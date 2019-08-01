@@ -1,4 +1,4 @@
-<view class="pd-top-20 pd-bottom-20 display-col">
+<view class="pd-bottom-20 display-col">
   <view class="order-grp-info" wx:if="{{orderDetail.status == 1}}">
     <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{wxTimer}}</text>
   </view>
@@ -9,8 +9,8 @@
     <view class="panel detail">
       <view class="picture"><image src="{{orderDetail.prdImage}}" mode="scaleToFill"/></view>
       <view class="info">
-        <text class="name">{{orderDetail.prdName}}</text>
-        <text class="desc">{{orderDetail.numbers}} 人团，自购买日后 {{orderDetail.validDays}} 天内有效</text>
+        <text class="name">{{orderDetail.shortPrdName}}</text>
+        <text class="desc">{{orderDetail.numbers}}人团，自购买日后 {{orderDetail.validDays}}天内有效</text>
         <view class="buying-info">
           <view class="price-now">
             <text class="money-flag">￥</text>
@@ -24,13 +24,15 @@
       </view>
     </view>
   </view>
-  <view class="wrapper">
+  <view class="wrapper" style="margin-top: -20rpx;">
     <view class="panel total">
       <view class="total-price" style="border-bottom:{{orderDetail.status==9?'':'1rpx solid #ddd'}}">
         <text class="title">合计</text>
         <view class="price">
           <text class="type">￥</text>
-          <text class="pref">{{orderDetail.totalPrice}}</text>
+          <!--<text class="pref">{{orderDetail.totalPrice}}</text>-->
+          <text class="pref">{{orderDetail.price_pref}}</text>
+          <text class="suff">{{orderDetail.price_suff}}</text>
         </view>  
       </view>
       <view class="order-btn" bindtap="gotoGrpPage" wx:if="{{orderDetail.status!=9}}">
@@ -39,19 +41,19 @@
       </view>
     </view>
   </view>
-  <view class="wrapper" wx:if="{{orderDetail.status == 8 || orderDetail.status == 10}}">
+  <view class="wrapper" style="margin-top: -20rpx;" wx:if="{{orderDetail.status == 8 || orderDetail.status == 10}}">
     <view class="panel order-back">
       <text class="title">友情提醒</text>
       <text class="content">您的退款金额将在7个工作日退还至您的支付账户</text>
     </view>
   </view>
-  <view class="wrapper">
+  <view class="wrapper" style="margin-top: -20rpx;">
     <view class="panel order-info">
-      <text class="title">订单号：{{orderDetail.orderNo}}</text>
-      <text class="content">创建时间：{{orderDetail.orderTime==null?'':orderDetail.orderTime}}</text>
+      <text class="content mb-5">订单号：{{orderDetail.orderNo}}</text>
+      <text class="content mb-5">创建时间：{{orderDetail.orderTime==null?'':orderDetail.orderTime}}</text>
       <text class="content">支付时间：{{orderDetail.payTime==null?'':orderDetail.payTime}}</text>
-      <text class="content" wx:if="{{orderDetail.status == 6}}">发货时间：{{orderDetail.deliveryTime==null?'':orderDetail.deliveryTime}}</text>
-      <text class="content" wx:if="{{orderDetail.status == 8}}">退款时间：{{orderDetail.returnTime==null?'':orderDetail.returnTime}}</text>
+      <text class="content mt-5" wx:if="{{orderDetail.status == 6}}">发货时间：{{orderDetail.deliveryTime==null?'':orderDetail.deliveryTime}}</text>
+      <text class="content mt-5" wx:if="{{orderDetail.status == 8 || orderDetail.status == 10}}">退款时间：{{orderDetail.returnTime==null?'':orderDetail.returnTime}}</text>
     </view>
   </view>
 </view>

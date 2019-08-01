@@ -118,7 +118,8 @@ Component({
         price_pref: priceObj.pref,
         price_suff: priceObj.suff,
         statusText: statusText,
-        statusMemo: statusMemo
+        statusMemo: statusMemo,
+        shortPrdName: data.shortPrdName
       }
     }
   }

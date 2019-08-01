@@ -94,9 +94,35 @@ const logErr= function(err) {
   }
 }
 
+const isIphone = function(page) {
+  page.setData({isAndroid: false})
+  page.setData({isIphone: false})
+  page.setData({isIphoneX: false})
+
+  wx.getSystemInfo({
+    success: function (res) {
+      if (res.platform == 'ios') {
+        var model = res.model
+        console.log(model)
+        if (model.indexOf('iPhone X') >= 0) {
+          page.setData({isIphoneX: true})
+          console.log('.............................iphonex.................')
+        } else {
+          page.setData({isIphone: true})
+          console.log('.............................iphone.................')
+        }
+      } else {
+        page.setData({isAndroid: true})
+        console.log('.............................android.................')
+      }
+    }
+  })
+}
+
 module.exports = {
   gotoPageFromPlugin,
   getOpenid,
   log,
-  logErr
+  logErr,
+  isIphone
 }

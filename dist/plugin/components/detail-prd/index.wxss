@@ -1,3 +1,12 @@
+.mt-5 {
+  margin-top: 5rpx;
+}
+.mt-10 {
+  margin-top: 10rpx;
+}
+.mt-15 {
+  margin-top: 15rpx;
+}
 .mt-20 {
   margin-top: 20rpx;
 }
@@ -9,6 +18,12 @@
 }
 .mt-100 {
   margin-top: 100rpx;
+}
+.mb-5 {
+  margin-bottom: 5rpx;
+}
+.mb-10 {
+  margin-bottom: 10rpx;
 }
 .mb-15 {
   margin-bottom: 15rpx;
@@ -433,6 +448,8 @@ page {
 }
 .prd-other-content .item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .prd-other-content .item image {
   width: 100%;
@@ -449,7 +466,7 @@ page {
   text-align: center;
 }
 .prd-other-content .item.on {
-  display: block;
+  display: flex;
 }
 .prd-other-content .item.off {
   display: none;

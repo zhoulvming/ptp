@@ -82,7 +82,7 @@
 <view class="bottom-tab-iphonex" wx:if="{{isIphoneX}}">
   <view class="item" bindtap="tabNav" data-target="app-home">
     <image src="../../images/home.png" data-target="app-home"/>
-    <text data-target="app-home">首页</text>
+    <text data-target="app-home">首页1</text>
   </view>
   <view class="item" bindtap="tabNav" data-target="app-menu">
     <image src="../../images/menu.png" data-target="app-menu"/>

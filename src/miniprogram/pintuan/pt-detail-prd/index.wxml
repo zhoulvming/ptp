@@ -1,6 +1,6 @@
 
 <pt-detail-prd bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userinfo}}"/>
-<view class='fixedBottom'>
+<view class="fixedBottom" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="actionBar">
       <view class='customer'>
         <button bindtap='onlineService' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>

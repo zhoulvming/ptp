@@ -1,3 +1,12 @@
+.mt-5 {
+  margin-top: 5rpx;
+}
+.mt-10 {
+  margin-top: 10rpx;
+}
+.mt-15 {
+  margin-top: 15rpx;
+}
 .mt-20 {
   margin-top: 20rpx;
 }
@@ -9,6 +18,12 @@
 }
 .mt-100 {
   margin-top: 100rpx;
+}
+.mb-5 {
+  margin-bottom: 5rpx;
+}
+.mb-10 {
+  margin-bottom: 10rpx;
 }
 .mb-15 {
   margin-bottom: 15rpx;
@@ -199,7 +214,7 @@ page {
   position: fixed;
   bottom: 0;
   z-index: 9999;
-  background-color: #fff;
+  background-color: #008FDB;
   border-radius: 0;
   display: flex;
   flex-direction: column;
@@ -209,6 +224,7 @@ page {
   flex-direction: row;
   padding: 40rpx;
   position: relative;
+  background-color: #fff;
 }
 .modalDlg-buycount .prd-info .picture {
   width: 160rpx;
@@ -244,6 +260,7 @@ page {
   font-size: 25rpx;
   font-weight: 600;
   color: #f9a825;
+  background: #FFF6E8;
 }
 .modalDlg-buycount .prd-info .info .price-now {
   display: flex;
@@ -262,6 +279,7 @@ page {
   margin-top: 18rpx;
 }
 .modalDlg-buycount .buycount {
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   font-size: 30rpx;
@@ -290,6 +308,7 @@ page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 180rpx;
 }
 .modalDlg-buycount .buycount .count .input image {
   width: 58rpx;
@@ -322,14 +341,13 @@ page {
 }
 .modalDlg-buycount .buycount .count .input .in {
   float: left;
-  width: 25rpx;
   height: 60rpx;
   line-height: 60rpx;
   border-width: 0 ;
   font-size: 35rpx;
   font-weight: 600;
   color: #333333;
-  margin: 0 20rpx;
+  margin: 0 10rpx;
   text-align: center;
 }
 .modalDlg-buycount .buycount .count .info {
@@ -341,10 +359,12 @@ page {
 .modalDlg-buycount .btn-bottom {
   width: 100%;
   background-color: #008FDB;
-  font-weight: 700;
   border-radius: 0;
   box-sizing: none;
   color: white;
   margin: 0;
-  padding: 15rpx 0;
+  padding: 30rpx 0;
+  text-align: center;
+  font-size: 38rpx;
+  font-weight: 600;
 }

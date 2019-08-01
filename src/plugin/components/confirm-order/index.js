@@ -50,6 +50,7 @@ Component({
 
   ready() {
     this.loadPage()
+    utils.isIphone(this)
   },
 
   methods: {

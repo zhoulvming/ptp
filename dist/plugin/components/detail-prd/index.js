@@ -44,7 +44,7 @@ Component({
 
   attached() {
     console.log('...................attached method...................')
-    utils.isIphoneX(this)
+    utils.isIphone(this)
   },
   ready() {
     console.log('...................ready method...................')
@@ -63,6 +63,8 @@ Component({
    */
   methods: {
 
+
+
     // 发团场合
     gotoNext(e) {
       var that = this
@@ -70,10 +72,13 @@ Component({
 
       // 检查购买数量是否在限定购买数量之内
       var restCount = that.data.prdDetail.restCount - detail.buycount
+      var buyedCount = that.data.prdDetail.limitCount - that.data.prdDetail.restCount
       if (restCount < 1) {
-        wx.showModal({
-          title: '错误',
-          content: '您的购买数量已经超过该商品的最大购买数量'
+        wx.showToast({
+          icon: 'none',
+          duration: 5000,
+          title: '该商品每人限购' + that.data.prdDetail.limitCount + '件，您之前已购买过' + buyedCount + '件~',
+          mask:true
         })
         return
       }
@@ -124,7 +129,7 @@ Component({
             shareModel: {
               title: detail.prdName,
               prdId: detail.prdId,
-              imageUrl: detail.imageSingle
+              imageUrl: detail.imagePoster
             }
           })
 

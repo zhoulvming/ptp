@@ -12,6 +12,10 @@ Component({
     prdImage: {
       type: String,
       value: ''
+    },
+    isIphoneX: {
+      type: Boolean,
+      value: false
     }
   },
   data: {

@@ -23,11 +23,15 @@
     </view>
   </view>
 </view>
-<view class="bottom-info">
+<view class="bottom-info" wx:if="{{!isIphoneX}}">
   <text class="warning">友情提醒</text>
   <text class="info">拼团成功后，商品将放入“我的卡包”中，可随时享用</text>
 </view>
-<view class="footer">
+<view class="bottom-info-ipx" wx:if="{{isIphoneX}}">
+  <text class="warning">友情提醒</text>
+  <text class="info">拼团成功后，商品将放入“我的卡包”中，可随时享用</text>
+</view>
+<view class="footer" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
   <view class="info">
     <view class="price-total">
       <text class="money-flag">￥</text>
@@ -35,14 +39,17 @@
       <text class="now-suff">{{order.price_total_suff}}</text>
     </view>      
   </view>
-  <block>
-    <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
-      <text>选好了</text>
-    </view>
-  </block>
+  <view class="btn" bindtap="gotoNext" data-target="pay" data-price="{{order.price}}">
+    <text>选好了</text>
+  </view>
 </view>
-
-
+<view wx:if="{{isIphoneX}}" class="style-for-ipx">
+  <view class="left">
+  </view>
+  <view class="right">
+    <text>选好了</text>
+  </view>
+</view>
 
 <view class="mask processing" wx:if="{{processing}}">
   <image src="../../images/loading.gif"/>
