@@ -252,6 +252,7 @@ page {
   position: absolute;
   top: 0;
   z-index: 9999;
+  border-radius: 15rpx;
 }
 .saveposte {
   width: 100%;
