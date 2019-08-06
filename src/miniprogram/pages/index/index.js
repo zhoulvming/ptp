@@ -95,6 +95,7 @@ Page({
             var openid = res.data.openid
             console.log('==== 小程序侧获取到的openid：(' + openid + ')')
             if (openid) {
+              // TODO: 测试用
               // userinfo['openid'] = openid
               userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
             } else {

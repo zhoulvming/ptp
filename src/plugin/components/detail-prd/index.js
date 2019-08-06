@@ -45,6 +45,8 @@ Component({
   attached() {
     console.log('...................attached method...................')
     utils.isIphone(this)
+
+    
   },
   ready() {
     console.log('...................ready method...................')

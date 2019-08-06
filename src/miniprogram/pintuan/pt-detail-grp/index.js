@@ -28,7 +28,7 @@ Page({
       that.setData({ userinfo: userinfo })
     }
   },
-  onUnload(po) {
+  onUnload() {
     // wx.reLaunch({url: '../pt-index/index'})
   },
   gotoPageFromPlugin(data) {

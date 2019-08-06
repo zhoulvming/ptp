@@ -32,8 +32,8 @@ page {
     display: flex;
     flex-direction: row;
     padding: 25rpx;
-    box-shadow:0 6rpx 10rpx 6rpx #bbb;
-    -webkit-box-shadow:0px 2px 4px 2px #bbb;
+    box-shadow:0 6rpx 10rpx 6rpx #eee;
+    -webkit-box-shadow:0px 2px 4px 2px #eee;
     margin-top:-120rpx;
     .picture {
       width: 160rpx;
@@ -50,13 +50,12 @@ page {
       margin-left: 25rpx;
       width: 100%;    
       .name {
-        font-size: @fs-3;
-        font-weight: @fw-2;      
+        font-size: 30rpx;
+        font-weight: 500;      
       }
       .desc {
-        color: grey;
+        color: #aaa;
         font-size: @fs-4;
-        font-weight: @fw-2;  
       }
       .buying-info {
         display: flex;
@@ -150,33 +149,32 @@ page {
     }
   
     .timer {
-      font-size: @fs-3;
+      font-size: 25rpx;
       margin-top: 20rpx;
       display:flex;
       flex-direction: row;
       justify-content: center;
       text {
         padding: 10rpx;
-        padding-top:7rpx;
+        padding-top:6rpx;
       }
       .count{
         color: #fff;
         background: #000;
         border-radius: 10rpx;
         padding: 5rpx;
-        font-size: @fs-3;
+        font-size: 25rpx;
         margin: 0 5rpx;
         margin-top: 5rpx;
-        width:45rpx;
-        height:45rpx;
+        width:35rpx;
+        height:35rpx;
       }
     }
     .left-count {
       margin-top: 20rpx;
-      font-size: @fs-3;
+      font-size: 28rpx;
       text {
-        font-size: 40rpx;
-        font-weight: @fw-2;
+        font-size: 36rpx;
         color: @color-primary;
       }
     }
@@ -187,11 +185,11 @@ page {
       padding-left: 33rpx;
       padding-right: 33rpx;
       button {
-        font-size: @fs-2;
+        font-size: 32rpx;
         background-color: @color-primary;
         border-radius: 15rpx;
         color: white;
-        line-height:3;
+        line-height:2.7;
       }
       .invite-btn {
         width: 50%;
@@ -270,71 +268,7 @@ page {
     }
     
   }
-  .buycount {
-    position: relative;
-    padding: 15rpx;
-    display: flex;
-    flex-direction: row;
-    margin-top: 20rpx;
-    font-size: @fs-3;
-    width: 100%;
-    >.info {
-      padding-left:30rpx;
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      text-align: left;
-      .largeText {
-        font-size: @fs-2;
-      }
-      .leftCount {
-        font-size: 30rpx;
-        color: grey;
-        margin-top: 35rpx;
-      }
-    }
-    .count {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      right: 40rpx;
-      .input {
-        display: flex;
-        flex-direction: row;
-        .ic,.ad {
-          float: left;
-          width: 60rpx;
-          height: 60rpx;
-          line-height: 60rpx;
-          border-radius: 60rpx;
-          background: @color-primary;
-          font-size: @fs-0;
-          color: #ffffff;
-          text-align: center;
-        }
-        .ic.off, .ad.off {
-          background: @color-gray;
-        }
-        .in {
-          float: left;
-          width: 90rpx;
-          height: 60rpx;
-          line-height: 60rpx;
-          border-width: 0 ;
-          font-size: @fs-1;
-          color: #333333;
-          margin: 0 20rpx;
-          text-align: center;
-        }
-      }
-      .info {
-        font-size: @fs-3;
-        width:100%;
-        margin-top:25rpx;
-        text-align: center;
-      }
-    } 
-  }
+  
   button {
     position: fixed;
     bottom: 0;

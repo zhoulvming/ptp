@@ -5,20 +5,20 @@
 </view>
 -->
 <view class="wrapper">
-  <view class="panel detail">
+  <view class="panel detail mt-70">
     <view class="picture"><image src="{{order.imageSingle}}" mode="scaleToFill"/></view>
     <view class="info">
-      <text class="name">{{order.prdName}} </text>
+      <text class="name">{{order.shortPrdName}} </text>
       <text class="desc">有效期自购买起 {{order.validDays}} 天内有效</text>
       <view class="buying-info">
         <view class="price-now">
           <text class="money-flag">￥</text>
-          <text class="now-pref">{{order.price_pref}}</text>
-          <text class="now-suff">{{order.price_suff}}</text>
+          <text class="now-pref">99</text>
+          <text class="now-suff">.0</text>
         </view>
-        <view class="buying-count">
+        <text class="buying-count">
           x{{inputData.orderNum}}
-        </view>
+        </text>
       </view>
     </view>
   </view>
@@ -31,7 +31,7 @@
   <text class="warning">友情提醒</text>
   <text class="info">拼团成功后，商品将放入“我的卡包”中，可随时享用</text>
 </view>
-<view class="footer" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
+<view class="footer" style="padding-bottom:{{isIphoneX?'60rpx':'0'}}">
   <view class="info">
     <view class="price-total">
       <text class="money-flag">￥</text>

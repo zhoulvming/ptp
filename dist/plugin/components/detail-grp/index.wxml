@@ -59,7 +59,7 @@
         </view>    
       </view>
       <view class="left-count" wx:if="{{grpDetail.leftNumber > 0 && grpDetail.grpStatus == 2}}">
-        邀请 <text>{{grpDetail.leftNumber}}位</text> 好友助力就拼团成功啦
+        邀请<text>{{grpDetail.leftNumber}}位</text>好友助力就拼团成功啦
       </view>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.inviteBtn?'flex':'none'}}">

@@ -67,6 +67,9 @@ Component({
 
           // 调整swipper高度
           let swipperHeight = prds[0].items.length * singleItemHeight
+          if (that.data.isIphoneX) {
+            swipperHeight = swipperHeight + 60
+          }
           that.setData({ swipperHeight: swipperHeight})
 
           // 调整swipper tab 的居左距离，使其保持居中显示

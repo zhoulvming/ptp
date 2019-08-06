@@ -192,7 +192,6 @@
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          
           .number {
             display: flex;
             flex-direction: row;
@@ -277,6 +276,7 @@
   position: fixed;
   width: 100%;
   bottom: 0;
+  right:0;
   display: flex;
   flex-direction: column;
   color: white;
@@ -312,29 +312,32 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-      font-size: @fs-3;
-      font-weight: @fw-2;
-      padding-top:10rpx;
+      font-size: 25rpx;
+      line-height: 2;
+      // padding-top: 10rpx;
       .price-now {
         display: flex;
         flex-direction: row;
         text-align: center;
         margin: 0 auto;
         .money-flag {
-          font-size: @fs-2;
+          font-size: 28rpx;
           margin-top: 18rpx;
+          font-weight: 0;
         }
         .now-pref {
-          font-size: @fs-large;
+          font-size: 40rpx;
+          font-weight: 500;
         }
         .now-suff {
-          font-size: @fs-2;
+          font-size: 28rpx;
           margin-top: 18rpx;
+          font-weight: 0;
         }
       }
       .btn-pt {
-        margin-top:-10rpx;
-        padding-bottom:5px;
+        margin-top:-20rpx;
+        padding-bottom:12rpx;
       }
       .btn-look {
         padding-top:30rpx;
@@ -342,21 +345,61 @@
       }
     }    
   }
+}
+
+
+.fixedBottomM {
+  position: fixed;
+  width: 80%;
+  bottom: 0;
+  right:0;
+  background-color: @color-primary;
+  .customer {      
+    height: 120rpx;
+    position: relative;
+    .btn-contact {
+      border:none;
+      display: flex;
+      flex-direction: column;
+      .price {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        .text-up {
+          height: 70rpx;
+          margin-top:-5rpx;
+
+          .money-flag {
+            font-size: 28rpx;
+            margin-top: 18rpx;
+            font-weight: 0;
+          }
+          .now-pref {
+            font-size: 40rpx;
+            font-weight: 500;
+          }
+          .now-suff {
+            font-size: 28rpx;
+            margin-top: 18rpx;
+            font-weight: 0;
+          }
+
+
+        }
+        .text-bottom {
+          padding:0;
+          margin: 0 auto;
+          color: white;
+          font-size: 25rpx;
+          margin-top: -10rpx;
+        }
+      }
+     
+    }      
+  }
   .iphoneX {
-    height: 68rpx;
-    width:100%;
-    position: fixed;
-    bottom:0;
-    display: flex;
-    flex-direction: row;
-    .left {
-      width: 30%;
-      background: @color-dark;
-    }
-    .right {
-      width: 70%;
-      background: @color-primary;
-    }
+    height: 60rpx;
+    background:#fff;
   }
 }
 

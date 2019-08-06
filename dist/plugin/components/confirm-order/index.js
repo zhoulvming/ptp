@@ -271,7 +271,8 @@ Component({
         imageSingle: prdData.imageSingle,
         validDays: prdData.validDays,
         price_total_pref: priceObj.pref,
-        price_total_suff: priceObj.suff
+        price_total_suff: priceObj.suff,
+        shortPrdName: prdData.shortPrdName
       }
     }
   }

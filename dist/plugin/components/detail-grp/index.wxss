@@ -16,6 +16,9 @@
 .mt-50 {
   margin-top: 50rpx;
 }
+.mt-70 {
+  margin-top: 70rpx;
+}
 .mt-100 {
   margin-top: 100rpx;
 }
@@ -129,7 +132,7 @@ page {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #555 !important;
+  color: #888 !important;
 }
 .btn.link.underline {
   text-decoration: underline;
@@ -187,20 +190,20 @@ page {
   opacity: 0.7;
 }
 .fix-iphonex-button {
-  bottom: 68rpx!important;
+  bottom: 60rpx!important;
 }
  .fix-iphonex-button::after {
   content: ' ';
   position: fixed;
   bottom: 0!important;
-  height: 68rpx!important;
+  height: 60rpx!important;
   width: 100%;
   background: #fff;
 }
 .iphoneX {
   display: flex;
   flex-direction: row;
-  height: 68rpx;
+  height: 60rpx;
 }
 .iphoneX .left {
   width: 30%;
@@ -240,8 +243,8 @@ page {
   display: flex;
   flex-direction: row;
   padding: 25rpx;
-  box-shadow: 0 6rpx 10rpx 6rpx #bbb;
-  -webkit-box-shadow: 0px 2px 4px 2px #bbb;
+  box-shadow: 0 6rpx 10rpx 6rpx #eee;
+  -webkit-box-shadow: 0px 2px 4px 2px #eee;
   margin-top: -120rpx;
 }
 .card .detail .picture {
@@ -261,12 +264,11 @@ page {
 }
 .card .detail .info .name {
   font-size: 30rpx;
-  font-weight: 600;
+  font-weight: 500;
 }
 .card .detail .info .desc {
-  color: grey;
+  color: #aaa;
   font-size: 25rpx;
-  font-weight: 600;
 }
 .card .detail .info .buying-info {
   display: flex;
@@ -355,7 +357,7 @@ page {
   margin: 0 10rpx;
 }
 .content .detail-user .timer {
-  font-size: 30rpx;
+  font-size: 25rpx;
   margin-top: 20rpx;
   display: flex;
   flex-direction: row;
@@ -363,26 +365,25 @@ page {
 }
 .content .detail-user .timer text {
   padding: 10rpx;
-  padding-top: 7rpx;
+  padding-top: 6rpx;
 }
 .content .detail-user .timer .count {
   color: #fff;
   background: #000;
   border-radius: 10rpx;
   padding: 5rpx;
-  font-size: 30rpx;
+  font-size: 25rpx;
   margin: 0 5rpx;
   margin-top: 5rpx;
-  width: 45rpx;
-  height: 45rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 .content .detail-user .left-count {
   margin-top: 20rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 .content .detail-user .left-count text {
-  font-size: 40rpx;
-  font-weight: 600;
+  font-size: 36rpx;
   color: #008FDB;
 }
 .content .detail-user .action {
@@ -393,11 +394,11 @@ page {
   padding-right: 33rpx;
 }
 .content .detail-user .action button {
-  font-size: 35rpx;
+  font-size: 32rpx;
   background-color: #008FDB;
   border-radius: 15rpx;
   color: white;
-  line-height: 3;
+  line-height: 2.7;
 }
 .content .detail-user .action .invite-btn {
   width: 50%;
@@ -470,73 +471,6 @@ page {
   margin-top: 70rpx;
   font-size: 35rpx;
   font-weight: 700;
-}
-.modalDlg .buycount {
-  position: relative;
-  padding: 15rpx;
-  display: flex;
-  flex-direction: row;
-  margin-top: 20rpx;
-  font-size: 30rpx;
-  width: 100%;
-}
-.modalDlg .buycount > .info {
-  padding-left: 30rpx;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  text-align: left;
-}
-.modalDlg .buycount > .info .largeText {
-  font-size: 35rpx;
-}
-.modalDlg .buycount > .info .leftCount {
-  font-size: 30rpx;
-  color: grey;
-  margin-top: 35rpx;
-}
-.modalDlg .buycount .count {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 40rpx;
-}
-.modalDlg .buycount .count .input {
-  display: flex;
-  flex-direction: row;
-}
-.modalDlg .buycount .count .input .ic,
-.modalDlg .buycount .count .input .ad {
-  float: left;
-  width: 60rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 60rpx;
-  background: #008FDB;
-  font-size: 40rpx;
-  color: #ffffff;
-  text-align: center;
-}
-.modalDlg .buycount .count .input .ic.off,
-.modalDlg .buycount .count .input .ad.off {
-  background: #888;
-}
-.modalDlg .buycount .count .input .in {
-  float: left;
-  width: 90rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-width: 0 ;
-  font-size: 35rpx;
-  color: #333333;
-  margin: 0 20rpx;
-  text-align: center;
-}
-.modalDlg .buycount .count .info {
-  font-size: 30rpx;
-  width: 100%;
-  margin-top: 25rpx;
-  text-align: center;
 }
 .modalDlg button {
   position: fixed;

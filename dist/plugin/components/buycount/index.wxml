@@ -1,4 +1,4 @@
-<view class="modalDlg-buycount" style="padding-bottom:{{isIphoneX?'68rpx':'0'}}">
+<view class="modalDlg-buycount" style="padding-bottom:{{isIphoneX?'60rpx':'0'}}">
   <view class="prd-info">
     <view class="picture"><image src="{{prdImage}}" mode="scaleToFill"/></view>
     <view class="info">

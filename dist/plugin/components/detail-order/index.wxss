@@ -16,6 +16,9 @@
 .mt-50 {
   margin-top: 50rpx;
 }
+.mt-70 {
+  margin-top: 70rpx;
+}
 .mt-100 {
   margin-top: 100rpx;
 }
@@ -129,7 +132,7 @@ page {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #555 !important;
+  color: #888 !important;
 }
 .btn.link.underline {
   text-decoration: underline;
@@ -187,20 +190,20 @@ page {
   opacity: 0.7;
 }
 .fix-iphonex-button {
-  bottom: 68rpx!important;
+  bottom: 60rpx!important;
 }
  .fix-iphonex-button::after {
   content: ' ';
   position: fixed;
   bottom: 0!important;
-  height: 68rpx!important;
+  height: 60rpx!important;
   width: 100%;
   background: #fff;
 }
 .iphoneX {
   display: flex;
   flex-direction: row;
-  height: 68rpx;
+  height: 60rpx;
 }
 .iphoneX .left {
   width: 30%;

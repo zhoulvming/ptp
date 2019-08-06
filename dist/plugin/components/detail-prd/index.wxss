@@ -16,6 +16,9 @@
 .mt-50 {
   margin-top: 50rpx;
 }
+.mt-70 {
+  margin-top: 70rpx;
+}
 .mt-100 {
   margin-top: 100rpx;
 }
@@ -129,7 +132,7 @@ page {
   display: inline;
   font-size: 25rpx;
   background: none !important;
-  color: #555 !important;
+  color: #888 !important;
 }
 .btn.link.underline {
   text-decoration: underline;
@@ -187,20 +190,20 @@ page {
   opacity: 0.7;
 }
 .fix-iphonex-button {
-  bottom: 68rpx!important;
+  bottom: 60rpx!important;
 }
  .fix-iphonex-button::after {
   content: ' ';
   position: fixed;
   bottom: 0!important;
-  height: 68rpx!important;
+  height: 60rpx!important;
   width: 100%;
   background: #fff;
 }
 .iphoneX {
   display: flex;
   flex-direction: row;
-  height: 68rpx;
+  height: 60rpx;
 }
 .iphoneX .left {
   width: 30%;
@@ -475,6 +478,7 @@ page {
   position: fixed;
   width: 100%;
   bottom: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   color: white;
@@ -512,9 +516,8 @@ page {
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-size: 30rpx;
-  font-weight: 600;
-  padding-top: 10rpx;
+  font-size: 25rpx;
+  line-height: 2;
 }
 .fixedBottom .actionBar .groupPurse .price-now {
   display: flex;
@@ -523,39 +526,76 @@ page {
   margin: 0 auto;
 }
 .fixedBottom .actionBar .groupPurse .price-now .money-flag {
-  font-size: 35rpx;
+  font-size: 28rpx;
   margin-top: 18rpx;
+  font-weight: 0;
 }
 .fixedBottom .actionBar .groupPurse .price-now .now-pref {
-  font-size: 50rpx;
+  font-size: 40rpx;
+  font-weight: 500;
 }
 .fixedBottom .actionBar .groupPurse .price-now .now-suff {
-  font-size: 35rpx;
+  font-size: 28rpx;
   margin-top: 18rpx;
+  font-weight: 0;
 }
 .fixedBottom .actionBar .groupPurse .btn-pt {
-  margin-top: -10rpx;
-  padding-bottom: 5px;
+  margin-top: -20rpx;
+  padding-bottom: 12rpx;
 }
 .fixedBottom .actionBar .groupPurse .btn-look {
   padding-top: 30rpx;
   padding-bottom: 20px;
 }
-.fixedBottom .iphoneX {
-  height: 68rpx;
-  width: 100%;
+.fixedBottomM {
   position: fixed;
+  width: 80%;
   bottom: 0;
+  right: 0;
+  background-color: #008FDB;
+}
+.fixedBottomM .customer {
+  height: 120rpx;
+  position: relative;
+}
+.fixedBottomM .customer .btn-contact {
+  border: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
-.fixedBottom .iphoneX .left {
-  width: 30%;
-  background: #555;
+.fixedBottomM .customer .btn-contact .price {
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
-.fixedBottom .iphoneX .right {
-  width: 70%;
-  background: #008FDB;
+.fixedBottomM .customer .btn-contact .price .text-up {
+  height: 70rpx;
+  margin-top: -5rpx;
+}
+.fixedBottomM .customer .btn-contact .price .text-up .money-flag {
+  font-size: 28rpx;
+  margin-top: 18rpx;
+  font-weight: 0;
+}
+.fixedBottomM .customer .btn-contact .price .text-up .now-pref {
+  font-size: 40rpx;
+  font-weight: 500;
+}
+.fixedBottomM .customer .btn-contact .price .text-up .now-suff {
+  font-size: 28rpx;
+  margin-top: 18rpx;
+  font-weight: 0;
+}
+.fixedBottomM .customer .btn-contact .price .text-bottom {
+  padding: 0;
+  margin: 0 auto;
+  color: white;
+  font-size: 25rpx;
+  margin-top: -10rpx;
+}
+.fixedBottomM .iphoneX {
+  height: 60rpx;
+  background: #fff;
 }
 /*modal*/
 .modalDlg {
