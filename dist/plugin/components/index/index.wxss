@@ -227,22 +227,26 @@ page {
 .tab .tab-nav {
   height: 70rpx;
   line-height: 70rpx;
-}
-.tab .tab-nav view {
-  float: left;
-  height: 70rpx;
-  line-height: 70rpx;
   text-align: center;
+  padding-left: 80rpx;
+  padding-right: 80rpx;
+  margin-bottom: 18rpx;
+}
+.tab .tab-nav .tab-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .tab .tab-nav view text {
-  font-size: 35rpx;
-  font-weight: 500;
+  font-size: 38rpx;
 }
 .tab .tab-nav view.on {
   color: #008FDB;
 }
 .tab .tab-nav view.on text {
-  border-bottom: 5rpx solid #008FDB;
+  padding-bottom: 10rpx;
+  border-bottom: 7rpx solid #008FDB;
 }
 .tab .tab-nav view.off {
   color: #888;

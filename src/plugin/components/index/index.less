@@ -18,21 +18,31 @@
   .tab-nav {
     height: 70rpx;
     line-height: 70rpx;
+    text-align:center;
+    padding-left:80rpx;
+    padding-right:80rpx;
+    margin-bottom: 18rpx;
+    .tab-wrapper {
+      width: 100%;
+      display:flex;
+      flex-direction:row; 
+      justify-content:space-between
+    }
   }
   .tab-nav view {
-    float: left;
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
+    // float: left;
+    // height: 70rpx;
+    // line-height: 70rpx;
+    // text-align: center;
     text {
-      font-size: @fs-1;
-      font-weight: 500;
+      font-size: 38rpx;
     }
   }
   .tab-nav view.on {
     color: @color-primary;
     text {
-      border-bottom: 5rpx solid @color-primary;
+      padding-bottom: 10rpx;
+      border-bottom: 7rpx solid @color-primary;
     }    
   }
   .tab-nav view.off {

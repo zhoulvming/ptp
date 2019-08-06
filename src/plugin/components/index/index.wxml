@@ -12,13 +12,19 @@
   </view>
 
   <view class='tab'>
-    <view class='tab-nav' style="margin-left:{{tabnavMarginLeft}}px">
-      <view wx:for="{{prds}}" wx:for-item="item" wx:for-index="index" 
-        class='{{currentTab==index?"on":"off"}}' 
-        data-current="{{index}}" bindtap='tabChange'
-        style="width:100px;">
-        <text>{{item.grpCategoryName}}</text>
+    
+    
+    <view class="tab-nav">
+
+      <view class="tab-wrapper">
+        <view wx:for="{{prds}}" wx:for-item="item" wx:for-index="index" 
+          class='{{currentTab==index?"on":"off"}}' 
+          data-current="{{index}}" bindtap='tabChange'>
+          <text>{{item.grpCategoryName}}</text>
+        </view>
       </view>
+
+
     </view>
     <swiper class='tab-box' current="{{currentTab}}" bindchange="tabSwiper" style="height:{{swipperHeight}}rpx">
       <swiper-item wx:for="{{prds}}" wx:for-item="item" >
