@@ -26,9 +26,17 @@
   <view class="panel" style="position:relative">
     <view class="buying-info">
       <view class="price-now">
-        <text class="money-flag">￥</text>
-        <text class="now-pref">{{prdDetail.price_pref}}</text>
-        <text class="now-suff">{{prdDetail.price_suff}}</text>
+       
+
+        <text class="money-flag" wx:if="{{!isIphoneX}}">￥</text>
+        <text class="money-flag-ipx" wx:if="{{isIphoneX}}">￥</text>
+        <text class="now-pref" wx:if="{{!isIphoneX}}">{{prdDetail.price_pref}}</text>
+        <text class="now-pref-ipx" wx:if="{{isIphoneX}}">{{prdDetail.price_pref}}</text>
+        <text class="now-suff" wx:if="{{!isIphoneX}}">{{prdDetail.price_suff}}</text>
+        <text class="now-suff-ipx" wx:if="{{isIphoneX}}">{{prdDetail.price_suff}}</text>
+
+
+
         <view class="gp-info">{{prdDetail.numbers}}人拼团价</view>
       </view>
       <view class="price-org">
@@ -101,46 +109,24 @@
   </view>
 </view>
 
-<!--
-<view class="fixedBottom" style="padding-bottom:{{isIphoneX?'60rpx':'0'}}">
-  <view class="actionBar">
-    <view class='customer'>
-    </view>
-    <view class='groupPurse' bindtap='showModalDlgBuycount'>
-      <view class="price-now" wx:if="{{canBuy}}">
-        <text class="money-flag">￥</text>
-        <text class="now-pref">{{prdDetail.price_pref}}</text>
-        <text class="now-suff">{{prdDetail.price_suff}}</text>        
-      </view>
-      <text class="btn-pt" wx:if="{{canBuy}}">开团价</text>
-      <text class="btn-look" wx:if="{{!canBuy}}">查看我的团</text>
-    </view>
-  </view>
-  <view class="iphoneX" wx:if="{{isIphoneX}}">
-    <view class="left"></view>
-    <view class="right"></view>
-  </view>
-</view>
--->
-
-
 <view class="fixedBottomM">
   <view class='customer'>
     <button class='btn-contact' plain='true' bindtap='showModalDlgBuycount'>
       <view class="price">
         <view class="text-up">
-          <text class="money-flag">￥</text>
-          <text class="now-pref">{{prdDetail.price_pref}}</text>
-          <text class="now-suff">{{prdDetail.price_suff}}</text>
+          <text class="money-flag" wx:if="{{!isIphoneX}}">￥</text>
+          <text class="money-flag-ipx" wx:if="{{isIphoneX}}">￥</text>
+          <text class="now-pref" wx:if="{{!isIphoneX}}">{{prdDetail.price_pref}}</text>
+          <text class="now-pref-ipx" wx:if="{{isIphoneX}}">{{prdDetail.price_pref}}</text>
+          <text class="now-suff" wx:if="{{!isIphoneX}}">{{prdDetail.price_suff}}</text>
+          <text class="now-suff-ipx" wx:if="{{isIphoneX}}">{{prdDetail.price_suff}}</text>
         </view>
         <text class="text-bottom" wx:if="{{canBuy}}">开团价</text>
         <text class="text-bottom" wx:if="{{!canBuy}}">查看我的团</text>
       </view>
     </button>      
   </view>
-  <view class="iphoneX" wx:if="{{isIphoneX}}">
-    
-  </view>  
+  <view class="iphoneX" wx:if="{{isIphoneX}}"></view>  
 </view>
 
 <view class="mask" wx:if="{{showModalDlgBuycountFlg || showModalDlgPostFlg}}" bindtap="hideModalDlg"></view>

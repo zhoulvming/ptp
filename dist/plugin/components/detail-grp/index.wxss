@@ -201,16 +201,9 @@ page {
   background: #fff;
 }
 .iphoneX {
-  display: flex;
-  flex-direction: row;
   height: 60rpx;
-}
-.iphoneX .left {
-  width: 30%;
-  background: #555;
-}
-.iphoneX .right {
-  background: #008FDB;
+  background: #fff;
+  border: none;
 }
 page {
   background: #fff !important;
@@ -282,14 +275,30 @@ page {
   align-items: flex-end;
 }
 .card .detail .info .buying-info .price-now .money-flag {
-  font-size: 30rpx;
+  font-size: 24rpx;
+  font-weight: 0;
+}
+.card .detail .info .buying-info .price-now .money-flag-ipx {
+  font-size: 24rpx;
+  font-weight: 0;
 }
 .card .detail .info .buying-info .price-now .now-pref {
-  font-size: 40rpx;
-  margin-bottom: -4rpx;
+  font-size: 33rpx;
+  font-weight: 400;
+  margin-bottom: -2rpx;
+}
+.card .detail .info .buying-info .price-now .now-pref-ipx {
+  font-size: 33rpx;
+  font-weight: 400;
+  margin-bottom: -2rpx;
 }
 .card .detail .info .buying-info .price-now .now-suff {
-  font-size: 30rpx;
+  font-size: 24rpx;
+  font-weight: 0;
+}
+.card .detail .info .buying-info .price-now .now-suff-ipx {
+  font-size: 24rpx;
+  font-weight: 0;
 }
 .card .detail .info .buying-info .price-org {
   display: flex;
@@ -300,7 +309,7 @@ page {
 }
 .card .detail .info .buying-info .price-org text {
   color: #888;
-  font-size: 30rpx;
+  font-size: 22rpx;
   text-decoration: line-through;
 }
 .card .detail .info .buying-info .buying-count {

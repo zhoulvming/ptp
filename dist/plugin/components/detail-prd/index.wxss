@@ -201,16 +201,9 @@ page {
   background: #fff;
 }
 .iphoneX {
-  display: flex;
-  flex-direction: row;
   height: 60rpx;
-}
-.iphoneX .left {
-  width: 30%;
-  background: #555;
-}
-.iphoneX .right {
-  background: #008FDB;
+  background: #fff;
+  border: none;
 }
 .detail-prd {
   background-color: white;
@@ -279,12 +272,23 @@ page {
   font-size: 35rpx;
   margin-top: 18rpx;
 }
+.detail-prd .buying-info .price-now .money-flag-ipx {
+  font-size: 35rpx;
+  margin-top: 16rpx;
+}
 .detail-prd .buying-info .price-now .now-pref {
+  font-size: 50rpx;
+}
+.detail-prd .buying-info .price-now .now-pref-ipx {
   font-size: 50rpx;
 }
 .detail-prd .buying-info .price-now .now-suff {
   font-size: 35rpx;
   margin-top: 18rpx;
+}
+.detail-prd .buying-info .price-now .now-suff-ipx {
+  font-size: 35rpx;
+  margin-top: 16rpx;
 }
 .detail-prd .buying-info .price-now .gp-info {
   margin-top: 18rpx;
@@ -577,11 +581,25 @@ page {
   margin-top: 18rpx;
   font-weight: 0;
 }
+.fixedBottomM .customer .btn-contact .price .text-up .money-flag-ipx {
+  font-size: 28rpx;
+  margin-top: 18rpx;
+  font-weight: 0;
+}
 .fixedBottomM .customer .btn-contact .price .text-up .now-pref {
   font-size: 40rpx;
   font-weight: 500;
 }
+.fixedBottomM .customer .btn-contact .price .text-up .now-pref-ipx {
+  font-size: 40rpx;
+  font-weight: 500;
+}
 .fixedBottomM .customer .btn-contact .price .text-up .now-suff {
+  font-size: 28rpx;
+  margin-top: 18rpx;
+  font-weight: 0;
+}
+.fixedBottomM .customer .btn-contact .price .text-up .now-suff-ipx {
   font-size: 28rpx;
   margin-top: 18rpx;
   font-weight: 0;
@@ -596,6 +614,7 @@ page {
 .fixedBottomM .iphoneX {
   height: 60rpx;
   background: #fff;
+  border: none;
 }
 /*modal*/
 .modalDlg {

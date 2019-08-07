@@ -16,13 +16,16 @@
   <view class="panel detail">
     <view class="picture"><image src="{{grpDetail.prdImage}}" mode="scaleToFill"/></view>
     <view class="info">
-      <text class="name">{{grpDetail.prdName}}</text>
-      <text class="desc">有效期自购买后 {{grpDetail.validDays}} 天内有效</text>
+      <text class="name">{{grpDetail.shortPrdName}}</text>
+      <text class="desc">有效期自购买后{{grpDetail.validDays}}天内有效</text>
       <view class="buying-info">
         <view class="price-now">
-          <text class="money-flag">￥</text>
-          <view class="now-pref">{{grpDetail.price_pref}}</view>
-          <view class="now-suff">{{grpDetail.price_suff}}</view>
+          <text class="money-flag" wx:if="{{!isIphoneX}}">￥</text>
+          <text class="money-flag-ipx" wx:if="{{isIphoneX}}">￥</text>
+          <view class="now-pref" wx:if="{{!isIphoneX}}">{{grpDetail.price_pref}}</view>
+          <view class="now-pref-ipx" wx:if="{{isIphoneX}}">{{grpDetail.price_pref}}</view>
+          <view class="now-suff" wx:if="{{!isIphoneX}}">{{grpDetail.price_suff}}</view>
+          <view class="now-suff-ipx" wx:if="{{isIphoneX}}">{{grpDetail.price_suff}}</view>
         </view>
         <view class="price-org">
           <text>￥{{grpDetail.orgPrice}}</text>
@@ -79,6 +82,7 @@
 <!-- 购买数量组件 -->
 <view wx:if="{{showModalDlgBuycountFlg}}">
   <my-buycount
+    isIphoneX="{{isIphoneX}}"
     detail="{{grpDetail}}"
     limitCount="{{grpDetail.limitNum}}"
     prdImage="{{grpDetail.prdImage}}"

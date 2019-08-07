@@ -201,16 +201,9 @@ page {
   background: #fff;
 }
 .iphoneX {
-  display: flex;
-  flex-direction: row;
   height: 60rpx;
-}
-.iphoneX .left {
-  width: 30%;
-  background: #555;
-}
-.iphoneX .right {
-  background: #008FDB;
+  background: #fff;
+  border: none;
 }
 .bottom {
   display: flex;

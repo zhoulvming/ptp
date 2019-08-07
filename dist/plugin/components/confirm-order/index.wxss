@@ -201,16 +201,9 @@ page {
   background: #fff;
 }
 .iphoneX {
-  display: flex;
-  flex-direction: row;
   height: 60rpx;
-}
-.iphoneX .left {
-  width: 30%;
-  background: #555;
-}
-.iphoneX .right {
-  background: #008FDB;
+  background: #fff;
+  border: none;
 }
 .warning-info {
   display: flex;
@@ -273,12 +266,25 @@ page {
   font-weight: 0;
   margin-bottom: 2rpx;
 }
+.detail .info .buying-info .price-now .money-flag-ipx {
+  font-size: 24rpx;
+  font-weight: 0;
+}
 .detail .info .buying-info .price-now .now-pref {
   font-size: 33rpx;
   font-weight: 400;
 }
+.detail .info .buying-info .price-now .now-pref-ipx {
+  font-size: 33rpx;
+  font-weight: 400;
+  margin-bottom: -2rpx;
+}
 .detail .info .buying-info .price-now .now-suff {
-  font-size: 28rpx;
+  font-size: 24rpx;
+  font-weight: 0;
+}
+.detail .info .buying-info .price-now .now-suff-ipx {
+  font-size: 24rpx;
   font-weight: 0;
 }
 .detail .info .buying-info .buying-count {
@@ -358,17 +364,29 @@ page {
   display: flex;
   flex-direction: row;
   padding-left: 30rpx;
+  position: relative;
 }
 .footer .info .price-total .money-flag {
   font-size: 35rpx;
   margin-top: 18rpx;
 }
+.footer .info .price-total .money-flag-ipx {
+  font-size: 35rpx;
+  margin-top: 16rpx;
+}
 .footer .info .price-total .now-pref {
+  font-size: 50rpx;
+}
+.footer .info .price-total .now-pref-ipx {
   font-size: 50rpx;
 }
 .footer .info .price-total .now-suff {
   font-size: 35rpx;
   margin-top: 18rpx;
+}
+.footer .info .price-total .now-suff-ipx {
+  font-size: 35rpx;
+  margin-top: 16rpx;
 }
 .footer .btn {
   color: white;

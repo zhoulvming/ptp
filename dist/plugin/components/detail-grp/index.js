@@ -57,7 +57,11 @@ Component({
   detached() {
     wxTimer.stop()
   },
-
+  attached() {
+    console.log('...................attached method...................')
+    utils.isIphone(this)
+ 
+  },
   ready() {
     var that = this
     setTimeout(function(){

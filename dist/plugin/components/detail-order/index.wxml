@@ -13,9 +13,14 @@
         <text class="desc">{{orderDetail.numbers}}人团，自购买日后 {{orderDetail.validDays}}天内有效</text>
         <view class="buying-info">
           <view class="price-now">
-            <text class="money-flag">￥</text>
-            <view class="now-pref">{{orderDetail.price_pref}}</view>
-            <view class="now-suff">{{orderDetail.price_suff}}</view>
+
+            <text class="money-flag" wx:if="{{!isIphoneX}}">￥</text>
+            <text class="money-flag-ipx" wx:if="{{isIphoneX}}">￥</text>
+            <text class="now-pref" wx:if="{{!isIphoneX}}">{{orderDetail.price_pref}}</text>
+            <text class="now-pref-ipx" wx:if="{{isIphoneX}}">{{orderDetail.price_pref}}</text>
+            <text class="now-suff" wx:if="{{!isIphoneX}}">{{orderDetail.price_suff}}</text>
+            <text class="now-suff-ipx" wx:if="{{isIphoneX}}">{{orderDetail.price_suff}}</text>
+
           </view>
           <view class="buying-count">
             x{{orderDetail.quantity}}

@@ -51,6 +51,8 @@ Component({
   ready() {
     utils.isIphone(this)
     this.loadPage()
+    
+
   },
 
   methods: {
@@ -68,7 +70,7 @@ Component({
           // 调整swipper高度
           let swipperHeight = prds[0].items.length * singleItemHeight
           if (that.data.isIphoneX) {
-            swipperHeight = swipperHeight + 60
+            swipperHeight = swipperHeight + 100
           }
           that.setData({ swipperHeight: swipperHeight})
 

@@ -46,6 +46,7 @@ Component({
     console.log('...................attached method...................')
     utils.isIphone(this)
 
+
     
   },
   ready() {

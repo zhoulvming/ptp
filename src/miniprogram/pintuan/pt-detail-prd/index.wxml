@@ -3,11 +3,9 @@
 <view class="fixedBottom">
     <view class='customer'>
       <button bindtap='onlineService' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>
-          <image src="../../images/kefu.png" />
-          <text>客服</text>
-
+        <image src="../../images/kefu.png" />
+        <text>客服</text>
       </button>      
     </view>
-    <view class="iphoneX" wx:if="{{isIphoneX}}">
-    </view>
+    <view class="iphoneX" wx:if="{{isIphoneX}}"></view>
 </view>

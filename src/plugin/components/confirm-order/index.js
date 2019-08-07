@@ -43,6 +43,11 @@ Component({
   },
 
   attached() {
+    console.log('...................attached method...................')
+    utils.isIphone(this)
+
+  
+  
   },
   detached() {
     wxTimer.stop()
@@ -50,7 +55,6 @@ Component({
 
   ready() {
     this.loadPage()
-    utils.isIphone(this)
   },
 
   methods: {
