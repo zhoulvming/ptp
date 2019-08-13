@@ -222,11 +222,12 @@ page {
   color: #008FDB;
 }
 .order-grp-info {
-  font-size: 25rpx;
+  font-size: 23rpx;
   background: #555;
   color: whitesmoke;
   padding-top: 20rpx;
-  padding-bottom: 20rpx;
+  padding-bottom: 12rpx;
+  padding-top: 12rpx;
   text-align: center;
 }
 .order-status {
@@ -253,6 +254,7 @@ page {
   flex-direction: column;
   margin-left: 25rpx;
   width: 100%;
+  position: relative;
 }
 .detail .info .name {
   font-size: 35rpx;
@@ -265,17 +267,21 @@ page {
 .detail .info .buying-info {
   display: flex;
   flex-direction: row;
-  position: relative;
+  position: absolute;
+  bottom: 0;
   margin-top: 15rpx;
+  justify-content: space-between;
+  width: 100%;
 }
 .detail .info .buying-info .price-now {
   display: flex;
   flex-direction: row;
+  position: relative;
+  align-items: flex-end;
 }
 .detail .info .buying-info .price-now .money-flag {
   font-size: 24rpx;
   font-weight: 0;
-  margin-bottom: 2rpx;
 }
 .detail .info .buying-info .price-now .money-flag-ipx {
   font-size: 24rpx;
@@ -284,6 +290,7 @@ page {
 .detail .info .buying-info .price-now .now-pref {
   font-size: 33rpx;
   font-weight: 400;
+  margin-bottom: -2rpx;
 }
 .detail .info .buying-info .price-now .now-pref-ipx {
   font-size: 33rpx;
@@ -334,6 +341,11 @@ page {
   color: #aaa;
   padding: 20rpx 40rpx 30rpx 40rpx;
 }
+.total .order-btn image {
+  margin-top: 10rpx;
+  height: 25rpx;
+  width: 17rpx;
+}
 .order-back {
   display: flex;
   flex-direction: column;
@@ -350,6 +362,6 @@ page {
   flex-direction: column;
   color: #aaa;
   font-size: 25rpx;
-  padding-left: 20rpx;
+  padding-left: 40rpx;
   padding-right: 20rpx;
 }

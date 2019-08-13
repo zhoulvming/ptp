@@ -22,11 +22,9 @@
     </view>
     <view class='count'>
       <view class="input">
-        <image bindtap='evic' src="../../images/minus.png" wx:if="{{!minflag}}"/>
-        <image bindtap='evic' src="../../images/minus_off.png" wx:if="{{minflag}}"/>
+        <image bindtap="evic" src="{{minflag?'../../images/minus_off.png':'../../images/minus.png'}}"/>
         <view><text class='in'>{{num}}</text></view>
-        <image bindtap='evad' src="../../images/plus.png" wx:if="{{!maxflag}}"/>
-        <image bindtap='evad' src="../../images/plus_off.png" wx:if="{{maxflag}}"/>
+        <image bindtap="evad" src="{{maxflag?'../../images/plus_off.png':'../../images/plus.png'}}"/>
       </view>
       <view class="info">
         <text>每人限购 {{limitCount}} 件</text>

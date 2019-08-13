@@ -105,7 +105,7 @@
     </view>
   </view>
   <view class="item{{prd_other_item3_flag? ' on':' off'}}">
-    <image src="{{prdDetail.question}}" mode="widthFix"/>
+    <image wx:for="{{prdDetail.question}}" src="{{item}}" mode="widthFix"/>
   </view>
 </view>
 
@@ -113,7 +113,7 @@
   <view class='customer'>
     <button class='btn-contact' plain='true' bindtap='showModalDlgBuycount'>
       <view class="price">
-        <view class="text-up">
+        <view class="text-up" wx:if="{{canBuy}}">
           <text class="money-flag" wx:if="{{!isIphoneX}}">￥</text>
           <text class="money-flag-ipx" wx:if="{{isIphoneX}}">￥</text>
           <text class="now-pref" wx:if="{{!isIphoneX}}">{{prdDetail.price_pref}}</text>

@@ -76,7 +76,7 @@ Component({
       // 检查购买数量是否在限定购买数量之内
       var restCount = that.data.prdDetail.restCount - detail.buycount
       var buyedCount = that.data.prdDetail.limitCount - that.data.prdDetail.restCount
-      if (restCount < 1) {
+      if (restCount < 0) {
         wx.showToast({
           icon: 'none',
           duration: 5000,

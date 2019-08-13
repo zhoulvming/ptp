@@ -160,7 +160,7 @@ Component({
 
       var restCount = that.data.grpDetail.restCount  - detail.buycount
       var buyedCount = that.data.grpDetail.limitNum - that.data.grpDetail.restCount
-      if (restCount < 1) {
+      if (restCount < 0) {
         wx.showToast({
           icon: 'none',
           duration: 5000,
@@ -267,7 +267,15 @@ Component({
           status_text = '待成团'
           inviteBtn = true
           makepostBtn = true
-          joinBtn = true
+          if (grpDetail.ordFlg == 1) {
+            // 可以参团下单
+            joinBtn = true
+            orderBtn = false
+          } else {
+            // 不可参团下单
+            joinBtn = false
+            orderBtn = true
+          }
         }
       } else {
         status_flag = true
@@ -282,6 +290,13 @@ Component({
         joinBtn: joinBtn,
         orderBtn: orderBtn
       }})
+
+      if (!inviteBtn && !makepostBtn && !joinBtn) {
+        that.setData({level1_flag: true})
+      } else {
+        that.setData({level1_flag: false})
+      }
+
     },
 
     // 点击查看订单处理事件

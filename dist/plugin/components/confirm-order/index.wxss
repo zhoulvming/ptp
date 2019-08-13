@@ -264,7 +264,6 @@ page {
 .detail .info .buying-info .price-now .money-flag {
   font-size: 24rpx;
   font-weight: 0;
-  margin-bottom: 2rpx;
 }
 .detail .info .buying-info .price-now .money-flag-ipx {
   font-size: 24rpx;
@@ -273,11 +272,12 @@ page {
 .detail .info .buying-info .price-now .now-pref {
   font-size: 33rpx;
   font-weight: 400;
+  margin-bottom: -3rpx;
 }
 .detail .info .buying-info .price-now .now-pref-ipx {
   font-size: 33rpx;
   font-weight: 400;
-  margin-bottom: -2rpx;
+  margin-bottom: -3rpx;
 }
 .detail .info .buying-info .price-now .now-suff {
   font-size: 24rpx;

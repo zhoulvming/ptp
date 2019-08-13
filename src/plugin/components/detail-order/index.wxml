@@ -1,6 +1,6 @@
 <view class="pd-bottom-20 display-col">
   <view class="order-grp-info" wx:if="{{orderDetail.status == 1}}">
-    <text>还需邀请 {{orderDetail.leftNumber}} 位好友参团哦，距离结束 {{wxTimer}}</text>
+    <text>还需邀请{{orderDetail.leftNumber}}位好友参团哦，距离结束{{wxTimer}}</text>
   </view>
   <view class="order-status">
     <text>{{orderDetail.statusText}}</text>
@@ -10,7 +10,7 @@
       <view class="picture"><image src="{{orderDetail.prdImage}}" mode="scaleToFill"/></view>
       <view class="info">
         <text class="name">{{orderDetail.shortPrdName}}</text>
-        <text class="desc">{{orderDetail.numbers}}人团，自购买日后 {{orderDetail.validDays}}天内有效</text>
+        <text class="desc">{{orderDetail.numbers}}人团，自购买日后{{orderDetail.validDays}}天内有效</text>
         <view class="buying-info">
           <view class="price-now">
 
@@ -42,7 +42,7 @@
       </view>
       <view class="order-btn" bindtap="gotoGrpPage" wx:if="{{orderDetail.status!=9}}">
         <text>查看拼团详情</text>
-        <text>></text>
+        <image src="../../images/icons/path.png"/>
       </view>
     </view>
   </view>

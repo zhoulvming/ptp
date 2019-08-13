@@ -180,7 +180,8 @@ const utils = {
       orderNum: data.orderNum,
       restCount: data.restCount,
       shortPrdName: data.shortPrdName,
-      imagePoster: data.imagePoster
+      imagePoster: data.imagePoster,
+      ordFlg: data.ordFlg
     }
   },
 

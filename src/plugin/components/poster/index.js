@@ -95,6 +95,11 @@ Component({
     drawCanvas: function(imagePath, imageHeight, codeImagePath) {
       
       var that = this
+      utils.isIphone(that)
+      var isIphone = that.data.isIphone
+      var isIphoneX = that.data.isIphoneX
+      var isAndroid = that.data.isAndroid
+
       that.setData({
         showpost: true
       })
@@ -118,7 +123,7 @@ Component({
 
         //产品名称
         if (that.data.prdName) {
-          const CONTENT_ROW_LENGTH = 24 // 正文 单行显示字符长度
+          const CONTENT_ROW_LENGTH = 26 // 正文 单行显示字符长度
           let [contentLeng, contentArray, contentRows] = that.textByteLength((that.data.prdName).substr(0, 40), CONTENT_ROW_LENGTH)
           console.log(contentLeng)
           console.log(contentRows)
@@ -151,20 +156,21 @@ Component({
           ctx.fillText('¥', left - 34, imgheght + 80)
 
           ctx.setFontSize(14)
-          ctx.fillText(price.pref, left - 25, imgheght + 80)
+          if (isIphoneX) {
+            ctx.fillText(price.pref, left - 26, imgheght + 80.5)
+          } else {
+            ctx.fillText(price.pref, left - 26, imgheght + 80)
+          }
 
           ctx.setFontSize(10)
           if (price.pref.length > 1) {
             left = left + 7
           }
-          ctx.fillText(price.suff, left - 15, imgheght + 80)
+          ctx.fillText(price.suff, left - 17, imgheght + 80)
 
 
           // 原价
-          utils.isIphone(that)
-          var isIphone = that.data.isIphone
-          var isIphoneX = that.data.isIphoneX
-          var isAndroid = that.data.isAndroid
+          
 
           console.log('isIphone: :' + isIphone)
           console.log('isIphoneX: :' + isIphoneX)
@@ -173,11 +179,19 @@ Component({
 
           ctx.setFontSize(10)
           ctx.setFillStyle('#666')
-          var underline = '------'
+
+          var underline = '———'
+          
           console.log(orgPrice.length)
           if (orgPrice.length > 4) {
             if (!isAndroid) {
-              underline = '------------'
+              if (isIphoneX) {
+
+                underline = '———'
+              } else {
+
+                underline = '—————'
+              }
             }
           }
           ctx.fillText('¥' + orgPrice, left + 7, imgheght + 80)

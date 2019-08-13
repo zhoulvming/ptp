@@ -96,13 +96,13 @@ Page({
             console.log('==== 小程序侧获取到的openid：(' + openid + ')')
             if (openid) {
               // TODO: 测试用
-              // userinfo['openid'] = openid
+              userinfo['openid'] = openid
               //userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
-              userinfo['openid'] = 'oAs4Q5Voa_MTXpMrUxBxdAtNEjUM'
+              //userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
             } else {
               // TODO: 测试用（因为用手机扫码开发工具二维码的测试场合，获取不到openid
               //userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
-              userinfo['openid'] = 'oAs4Q5Voa_MTXpMrUxBxdAtNEjUM'
+              //userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
             }
             gd.userinfo = userinfo
             if (userinfo.mobileNo) {

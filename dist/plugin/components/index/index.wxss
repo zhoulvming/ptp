@@ -215,15 +215,15 @@ page {
   margin-bottom: 40rpx;
 }
 .tab {
-  margin-top: 40rpx;
+  margin-top: 20rpx;
 }
 .tab .tab-nav {
   height: 70rpx;
   line-height: 70rpx;
   text-align: center;
-  padding-left: 80rpx;
-  padding-right: 80rpx;
-  margin-bottom: 18rpx;
+  padding-left: 120rpx;
+  padding-right: 120rpx;
+  margin-bottom: 15rpx;
 }
 .tab .tab-nav .tab-wrapper {
   width: 100%;
@@ -232,7 +232,7 @@ page {
   justify-content: space-between;
 }
 .tab .tab-nav view text {
-  font-size: 38rpx;
+  font-size: 36rpx;
 }
 .tab .tab-nav view.on {
   color: #008FDB;
@@ -245,7 +245,7 @@ page {
   color: #888;
 }
 .tab .tab-box {
-  padding: 20rpx 15rpx;
+  padding: 20rpx 0;
 }
 .card-item {
   overflow: hidden;
@@ -254,8 +254,8 @@ page {
   box-shadow: 0 6rpx 10rpx 6rpx #ededed;
   -webkit-box-shadow: 0px 2px 4px 2px #ededed;
   position: relative;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin-left: 35rpx;
+  margin-right: 35rpx;
 }
 .card-item image {
   width: 100%;
