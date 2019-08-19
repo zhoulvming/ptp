@@ -4,27 +4,42 @@ Page({
   data: {},
   onLoad(po) {
     var that = this
+    var userinfo = app.globalData.userinfo
+    var options = null
+
     if(po.scene) {
       // 通过分享进来的场合
       console.log(po.scene)
       var scene = decodeURIComponent(po.scene)
       that.setData({options: {prdId: scene.prdId}})
+      options = {prdId: scene.prdId}
     } else if (po.prdId) {
       // 通过分享好友进来的场合
       that.setData({options: {prdId: po.prdId}})
+      options = {prdId: po.prdId}
     } else {
-      var options = wx.getStorageSync('DATA_FROM_PLUGIN')
+      options = wx.getStorageSync('DATA_FROM_PLUGIN')
       that.setData({options: options})
     }
 
-    var userinfo = app.globalData.userinfo
     if (!userinfo.openid) {
       ptCommon.getOpenid(function(){
         userinfo = app.globalData.userinfo
         that.setData({ userinfo: userinfo })
+
+        var params = {
+          options: options,
+          userinfo: userinfo
+        }
+        that.setData({ params: params })        
       })
     } else {
       that.setData({ userinfo: userinfo })
+      var params = {
+        options: options,
+        userinfo: userinfo
+      }
+      that.setData({ params: params })      
     }
 
     // 设配匹配
@@ -36,6 +51,7 @@ Page({
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data)
   },
+
   onShareAppMessage(res) {
     var that = this
 

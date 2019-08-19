@@ -5,34 +5,62 @@ var wxTimer = null
 
 Component({
   properties: {
-    userinfo: {
+    // userinfo: {
+    //   type: Object,
+    //   value: {},
+    //   observer: function (newVal) {
+    //     if (newVal) {
+    //       utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
+    //       this.setData({ userinfo: newVal })
+    //     }
+    //   }
+    // },    
+    // options: {
+    //   type: Object,
+    //   value: {},
+    //   observer: function (newVal) {
+    //     if (newVal) {
+    //       utils.log('从小程序页面传递过来的参数(options)', newVal)
+    //       this.setData({inputData: {
+    //         grpEnter: newVal.grpEnter,
+    //         prdId: newVal.prdId,
+    //         orderNum: newVal.orderNum,
+    //         grpId: newVal.grpId,
+    //         price: newVal.price,
+    //         orderNo: newVal.orderNo,
+    //         paySuccessFlag: newVal.paySuccessFlag
+    //       }})
+    //     }
+    //   }
+    // }
+
+    params: {
       type: Object,
       value: {},
       observer: function (newVal) {
         if (newVal) {
-          utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
-          this.setData({ userinfo: newVal })
-        }
-      }
-    },    
-    options: {
-      type: Object,
-      value: {},
-      observer: function (newVal) {
-        if (newVal) {
-          utils.log('从小程序页面传递过来的参数(options)', newVal)
+          utils.log('从小程序页面传递过来的参数(params)', newVal)
+          var options = newVal.options
+          var userinfo = newVal.userinfo
+          this.setData({ userinfo: userinfo })
           this.setData({inputData: {
-            grpEnter: newVal.grpEnter,
-            prdId: newVal.prdId,
-            orderNum: newVal.orderNum,
-            grpId: newVal.grpId,
-            price: newVal.price,
-            orderNo: newVal.orderNo,
-            paySuccessFlag: newVal.paySuccessFlag
+            grpEnter: options.grpEnter,
+            prdId: options.prdId,
+            orderNum: options.orderNum,
+            grpId: options.grpId,
+            price: options.price,
+            orderNo: options.orderNo,
+            paySuccessFlag: options.paySuccessFlag
           }})
+          this.loadPage()
+
         }
       }
     }    
+
+
+    
+
   },
 
   data: {
@@ -63,13 +91,24 @@ Component({
  
   },
   ready() {
-    var that = this
-    setTimeout(function(){
-      that.loadPage()
-    }, 300)  
+    // var that = this
+    // setTimeout(function(){
+    //   that.loadPage()
+    // }, 500)
+
+
+
+
   },
 
+
+  
+
+
+
+
   methods: {
+
 
     takeDetailData() {
       var that = this

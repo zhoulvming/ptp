@@ -3,25 +3,43 @@ var utils = require('../../utils/util.js')
 var timer = require('../../utils/wxTimer.js')
 var wxTimer = null
 
+
+const TDSDK = require('../../lib/tdweapp.js')
+
 Component({
   properties: {
-    userinfo: {
+    // userinfo: {
+    //   type: Object,
+    //   value: {},
+    //   observer: function (newVal) {
+    //     if (newVal) {
+    //       utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
+    //       this.setData({ userinfo: newVal })
+    //     }
+    //   }
+    // },
+    // options: {
+    //   type: Object,
+    //   value: {},
+    //   observer: function (newVal) {
+    //     if (newVal) {
+    //       utils.log('从小程序页面传递过来的参数(options)', newVal)
+    //       this.setData({ prdId: newVal.prdId })
+    //     }
+    //   }
+    // },
+    params: {
       type: Object,
       value: {},
       observer: function (newVal) {
         if (newVal) {
-          utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
-          this.setData({ userinfo: newVal })
-        }
-      }
-    },
-    options: {
-      type: Object,
-      value: {},
-      observer: function (newVal) {
-        if (newVal) {
-          utils.log('从小程序页面传递过来的参数(options)', newVal)
-          this.setData({ prdId: newVal.prdId })
+          utils.log('从小程序页面传递过来的参数(params)', newVal)
+          var options = newVal.options
+          var userinfo = newVal.userinfo
+          this.setData({ userinfo: userinfo })
+          this.setData({ prdId: options.prdId })
+          this.checkExist()
+          this.loadPage()          
         }
       }
     }
@@ -46,16 +64,20 @@ Component({
     console.log('...................attached method...................')
     utils.isIphone(this)
 
-
+    TDSDK.App.onLaunch()
     
   },
   ready() {
-    console.log('...................ready method...................')
-    var that = this
-    setTimeout(function(){
-      that.checkExist()
-      that.loadPage()
-    }, 400)  
+    // console.log('...................ready method...................')
+    // var that = this
+    // setTimeout(function(){
+    //   that.checkExist()
+    //   that.loadPage()
+    // }, 500)  
+
+
+
+
   },
   detached() {
     wxTimer.stop()
@@ -72,6 +94,14 @@ Component({
     gotoNext(e) {
       var that = this
       var detail = e.detail
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinpurchaseinfo_next_click',
+        params: {
+          product: that.data.prdDetail.prdName
+        }
+      })
 
       // 检查购买数量是否在限定购买数量之内
       var restCount = that.data.prdDetail.restCount - detail.buycount
@@ -123,6 +153,10 @@ Component({
           openid: that.data.userinfo.openid
         },
         function(res) {
+
+
+
+
           var resData = res.data
           var detail = resData
           detail = utils.formatProductData(detail)
@@ -135,6 +169,15 @@ Component({
               imageUrl: detail.imagePoster
             }
           })
+
+          // chama
+          TDSDK.Event.event({
+            id: 'mini_c&j_pinproductdetail_load',
+            params: {
+              product: detail.prdName
+            }
+          })
+
 
           // 计数器
           var timeStr = detail.leftTime_h + ':' + detail.leftTime_m + ':' + detail.leftTime_s

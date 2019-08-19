@@ -73,8 +73,8 @@
       <button class="btn order-btn" bindtap='showModal'>我要参团</button>
     </view>
     <view class="action mb-30" style="display:{{btnStatus.orderBtn?'flex':'none'}}">
-      <button class="btn order-btn-ref-failed" wx:if="{{level1_flag}}">查看订单详情</button>
-      <button class="btn order-btn-ref" wx:if="{{!level1_flag}}">查看订单详情</button>
+      <button class="btn order-btn-ref-failed" wx:if="{{level1_flag}}" bindtap="gotoOrder">查看订单详情</button>
+      <button class="btn order-btn-ref" wx:if="{{!level1_flag}}" bindtap="gotoOrder">查看订单详情</button>
     </view>
     <button class="btn link underline" bindtap="gotoHomePage">回首页再看看</button>
   </view>

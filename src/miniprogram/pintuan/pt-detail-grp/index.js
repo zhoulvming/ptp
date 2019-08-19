@@ -4,29 +4,47 @@ Page({
   data: {},
   onLoad(po) {
     var that = this
+    var options = null
+    var userinfo = app.globalData.userinfo
 
     if(po.scene) {
       // 通过分享进来的场合
       console.log(po.scene)
       var scene = decodeURIComponent(po.scene)
       that.setData({options: {grpId: scene.grpId, grpEnter: 8}})
+      options = {grpId: scene.grpId, grpEnter: 8}
     } else if (po.grpId) {
       // 通过分享好友进来的场合
       that.setData({options: {grpId: po.grpId, grpEnter: 8}})
+      options = {grpId: po.grpId, grpEnter: 8}
     } else {
-      var options = wx.getStorageSync('DATA_FROM_PLUGIN')
+      options = wx.getStorageSync('DATA_FROM_PLUGIN')
       that.setData({options: options})
     }
 
-    var userinfo = app.globalData.userinfo
     if (!userinfo.openid) {
       ptCommon.getOpenid(function(){
         userinfo = app.globalData.userinfo
         that.setData({ userinfo: userinfo })
+
+        var params = {
+          options: options,
+          userinfo: userinfo
+        }
+        that.setData({ params: params })
+
       })
     } else {
       that.setData({ userinfo: userinfo })
+
+      var params = {
+        options: options,
+        userinfo: userinfo
+      }
+      that.setData({ params: params })
     }
+
+
   },
   onUnload() {
     // wx.reLaunch({url: '../pt-index/index'})

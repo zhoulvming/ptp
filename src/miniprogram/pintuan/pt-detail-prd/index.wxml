@@ -1,5 +1,9 @@
 
-<pt-detail-prd bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userinfo}}"/>
+<!--<pt-detail-prd bindcallback="gotoPageFromPlugin" options="{{options}}" userinfo="{{userinfo}}"/>-->
+<pt-detail-prd bindcallback="gotoPageFromPlugin" params="{{params}}"/>
+
+
+
 <view class="fixedBottom">
     <view class='customer'>
       <button bindtap='onlineService' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>

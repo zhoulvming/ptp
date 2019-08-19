@@ -97,12 +97,12 @@ Page({
             if (openid) {
               // TODO: 测试用
               userinfo['openid'] = openid
-              //userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
-              //userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
+              // userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
+              // userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
             } else {
               // TODO: 测试用（因为用手机扫码开发工具二维码的测试场合，获取不到openid
               //userinfo['openid'] = 'oxJlc5cR7R-CvS88CRn-WZDKMGSA'
-              //userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
+              // userinfo['openid'] = 'oxJlc5ZP73R7ETa2X1FmfWsHBIrg'
             }
             gd.userinfo = userinfo
             if (userinfo.mobileNo) {

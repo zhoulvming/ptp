@@ -571,6 +571,7 @@ page {
   display: flex;
   flex-direction: column;
   color: white;
+  height: 120rpx;
 }
 .fixedBottomM .customer .btn-contact .price .text-up {
   height: 70rpx;
@@ -610,6 +611,13 @@ page {
   color: white;
   font-size: 25rpx;
   margin-top: -10rpx;
+}
+.fixedBottomM .customer .btn-contact .price .text-bottom-2 {
+  padding: 0;
+  margin: auto;
+  color: white;
+  font-size: 38rpx;
+  font-weight: 600;
 }
 .fixedBottomM .iphoneX {
   height: 60rpx;

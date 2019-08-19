@@ -122,7 +122,7 @@
           <text class="now-suff-ipx" wx:if="{{isIphoneX}}">{{prdDetail.price_suff}}</text>
         </view>
         <text class="text-bottom" wx:if="{{canBuy}}">开团价</text>
-        <text class="text-bottom" wx:if="{{!canBuy}}">查看我的团</text>
+        <text class="text-bottom-2" wx:if="{{!canBuy}}">查看我的团</text>
       </view>
     </button>      
   </view>

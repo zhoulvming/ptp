@@ -112,6 +112,11 @@ Component({
       var currentTab = event.detail.current
       var prds = that.data.prds[currentTab]
       var swipperHeight = prds.items.length * singleItemHeight
+
+      if (that.data.isIphoneX) {
+        swipperHeight = swipperHeight + 100
+      }
+
       that.setData({ swipperHeight: swipperHeight})
       this.setData({ currentTab: event.detail.current })
     },
