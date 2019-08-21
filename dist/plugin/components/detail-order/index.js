@@ -2,6 +2,7 @@ var utils = require('../../utils/util.js')
 var timer = require('../../utils/wxTimer.js')
 var wxTimer = null
 const config = require('../../lib/config.js')
+const TDSDK = require('../../lib/tdweapp.js')
 
 Component({
   properties: {
@@ -27,6 +28,7 @@ Component({
   ready() {
     this.loadPage()
     utils.isIphone(this)
+    TDSDK.App.onLaunch()
   },
   methods: {
     gotoGrpPage() {
@@ -66,6 +68,12 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)
+
+          // chama
+          TDSDK.Event.event({
+            id: 'mini_c&j_pinorderdetail_load'
+          })
+
         }, that
       )
     },

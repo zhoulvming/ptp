@@ -1,6 +1,7 @@
 var utils = require('../../utils/util.js')
 const config = require('../../lib/config.js')
 const singleItemHeight = 450
+const TDSDK = require('../../lib/tdweapp.js')
 
 Component({
   properties: {
@@ -47,6 +48,7 @@ Component({
     // var cardItemImageHeight = (windowWidth - 70) / config.scale_product
     // this.setData({cardItemImageHeight: cardItemImageHeight})
     this.setData({cardItemImageHeight: 260})
+    TDSDK.App.onLaunch()
   },
   ready() {
     utils.isIphone(this)
@@ -59,12 +61,18 @@ Component({
     loadPage() {
       var that = this
 
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinhomepage_load'
+      })
+
       // 拼团产品一览
       utils.requestPost(
         config.restAPI.prds, 
         {offset:0, listsize:10}, 
         function(res) {
           var prds = res.data
+          console.log(prds)
           that.setData({prds: prds})
 
           // 调整swipper高度
@@ -90,6 +98,16 @@ Component({
     gotoCreatePT(event) {
       var that = this
       var prdId = event.currentTarget.dataset.prdid
+      var prdName = event.currentTarget.dataset.prdname
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinhomepage_purchase_click',
+        params: {
+          product: prdName
+        }
+      })
+
       that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: prdId}})
     },
 

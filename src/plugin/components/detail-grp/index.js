@@ -2,38 +2,10 @@ const config = require('../../lib/config.js')
 var utils = require('../../utils/util.js')
 var timer = require('../../utils/wxTimer.js')
 var wxTimer = null
+const TDSDK = require('../../lib/tdweapp.js')
 
 Component({
   properties: {
-    // userinfo: {
-    //   type: Object,
-    //   value: {},
-    //   observer: function (newVal) {
-    //     if (newVal) {
-    //       utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
-    //       this.setData({ userinfo: newVal })
-    //     }
-    //   }
-    // },    
-    // options: {
-    //   type: Object,
-    //   value: {},
-    //   observer: function (newVal) {
-    //     if (newVal) {
-    //       utils.log('从小程序页面传递过来的参数(options)', newVal)
-    //       this.setData({inputData: {
-    //         grpEnter: newVal.grpEnter,
-    //         prdId: newVal.prdId,
-    //         orderNum: newVal.orderNum,
-    //         grpId: newVal.grpId,
-    //         price: newVal.price,
-    //         orderNo: newVal.orderNo,
-    //         paySuccessFlag: newVal.paySuccessFlag
-    //       }})
-    //     }
-    //   }
-    // }
-
     params: {
       type: Object,
       value: {},
@@ -56,18 +28,13 @@ Component({
 
         }
       }
-    }    
-
-
-    
-
+    }
   },
 
   data: {
     status_pt_success: '../../images/icons/success.png',
     status_pt_fail: '../../images/icons/fail.png',
     wxTimerList:[],
-
     min: 1,//最小值 整数类型，null表示不设置
     minflag: true,
     max: 5,//最大值 整数类型，null表示不设置
@@ -75,10 +42,8 @@ Component({
     num: 1,//输入框数量 整数类型
     change: 1,//加减变化量 整数类型
     def_num: 1,//输入框值出现异常默认设置值
-
     maskHidden: false,
     status_text: '',
-
     showModalDlgBuycountFlg: false
   },
 
@@ -88,28 +53,11 @@ Component({
   attached() {
     console.log('...................attached method...................')
     utils.isIphone(this)
- 
+    TDSDK.App.onLaunch()
   },
-  ready() {
-    // var that = this
-    // setTimeout(function(){
-    //   that.loadPage()
-    // }, 500)
-
-
-
-
-  },
-
-
-  
-
-
-
+  ready() {},
 
   methods: {
-
-
     takeDetailData() {
       var that = this
       utils.requestPost(
@@ -145,6 +93,14 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)
+
+          // chama
+          TDSDK.Event.event({
+            id: 'mini_c&j_gpdetail_load',
+            params: {
+              product: detail.prdName
+            }
+          })
         }, that
       )
     },
@@ -153,40 +109,8 @@ Component({
       var that = this
       // 如果是从支付成功的小程序页面跳转到此，则需要调用后台API更新数据
       if (that.data.inputData.paySuccessFlag) {
-        // utils.requestPost(
-        //   config.restAPI.upd_order_status,
-        //   {
-        //     prdId: that.data.inputData.prdId,
-        //     payFlg: 1,
-        //     grpId: that.data.inputData.grpId,
-        //     orderNo: that.data.inputData.orderNo            
-        //   },
-        //   function(res) {
-        //     var resData = res.data
-        //     var statusCode = res.statusCode
-        //     if (statusCode == config.apiStatusCode.sucess) {
-        //       utils.log('更新支付状态成功', resData)
-        //     } else {
-        //       utils.log('更新支付状态失败', res)
-        //       wx.showModal({
-        //         title: '错误',
-        //         content: '他人已凑团成功，您本次拼团失败',
-        //         showCancel: false,
-        //         success: function() {
-        //           // 跳转到商品详情页面
-        //           that.triggerEvent('callback', {target: config.miniPage.detail_prd, options: {prdId: that.data.inputData.prdId}})
-        //         }
-        //       })
-        //       return
-        //     }
-        //     // load grp detail
-        //     that.takeDetailData()
-        //   }, that
-        // )
-        
         // load grp detail
         that.takeDetailData()
-
       } else {
         that.takeDetailData()
       }
@@ -223,6 +147,9 @@ Component({
 
     // 回到拼团首页
     gotoHomePage() {
+      TDSDK.Event.event({
+        id: 'mini_c&j_gpdetail_backtohp_click'
+      })
       this.triggerEvent('callback', {
         target: config.miniPage.index,
         options: {
@@ -240,6 +167,14 @@ Component({
       this.setData({
         buywayPrice: detail.price
       })
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_gpdetail_joingroup_click',
+        params: {
+          product: detail.prdName
+        }
+      })
     },
     hideModalDlgBuycount: function () {
       this.setData({
@@ -248,6 +183,9 @@ Component({
     },
     // 生成海报
     makeSharePoster() {
+      TDSDK.Event.event({
+        id: 'mini_c&j_gpdetail_makepost_click'
+      })
       this.selectComponent('#poster').makeSharePoster()
     },
 
@@ -350,6 +288,13 @@ Component({
           }
         })
       }
+    },
+
+    //chama
+    chama() {
+      TDSDK.Event.event({
+        id: 'mini_c&j_gpdetail_invite_click'
+      })
     }
   }
 })

@@ -3,31 +3,10 @@ var utils = require('../../utils/util.js')
 var timer = require('../../utils/wxTimer.js')
 var wxTimer = null
 
-
 const TDSDK = require('../../lib/tdweapp.js')
 
 Component({
   properties: {
-    // userinfo: {
-    //   type: Object,
-    //   value: {},
-    //   observer: function (newVal) {
-    //     if (newVal) {
-    //       utils.log('从小程序页面传递过来的参数(userinfo)', newVal)
-    //       this.setData({ userinfo: newVal })
-    //     }
-    //   }
-    // },
-    // options: {
-    //   type: Object,
-    //   value: {},
-    //   observer: function (newVal) {
-    //     if (newVal) {
-    //       utils.log('从小程序页面传递过来的参数(options)', newVal)
-    //       this.setData({ prdId: newVal.prdId })
-    //     }
-    //   }
-    // },
     params: {
       type: Object,
       value: {},
@@ -68,16 +47,6 @@ Component({
     
   },
   ready() {
-    // console.log('...................ready method...................')
-    // var that = this
-    // setTimeout(function(){
-    //   that.checkExist()
-    //   that.loadPage()
-    // }, 500)  
-
-
-
-
   },
   detached() {
     wxTimer.stop()
@@ -87,8 +56,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
-
 
     // 发团场合
     gotoNext(e) {
@@ -131,6 +98,15 @@ Component({
     // 凑团场合
     gotoGrpDetail(event) {
       var that = this
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinproductdetail_joingroup_click',
+        params: {
+          product: that.data.prdDetail.prdName
+        }
+      })
+
       that.triggerEvent('callback', {
         target: config.miniPage.detail_grp,
         options: {
@@ -273,6 +249,15 @@ Component({
       var grps_all = that.data.grps_all
       that.setData({grps_top: grps_all})
       that.setData({isShowLookMore: false})
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinproductdetail_moregroup_click',
+        params: {
+          product: that.data.prdDetail.prdName
+        }
+      })      
+
     },
 
     // 弹出/隐藏 购买件数窗口组件
@@ -282,6 +267,13 @@ Component({
         that.setData({
           showModalDlgBuycountFlg: true
         })
+        // chama
+        TDSDK.Event.event({
+          id: 'mini_c&j_pinproductdetail_grouppurchase_click',
+          params: {
+            product: that.data.prdDetail.prdName
+          }
+        })        
       } else {
         // 查看我的团
         that.triggerEvent('callback', {
@@ -304,8 +296,17 @@ Component({
 
     // 弹出/隐藏 海报组件
     showModalDlgPost: function() {
-      this.setData({
+      var that = this
+      that.setData({
         showModalDlgPostFlg: true
+      })
+      
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinproductdetail_share_click',
+        params: {
+          product: that.data.prdDetail.prdName
+        }
       })
     },
 

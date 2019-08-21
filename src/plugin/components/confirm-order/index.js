@@ -2,6 +2,7 @@ const config = require('../../lib/config.js')
 var utils = require('../../utils/util.js')
 var timer = require('../../utils/wxTimer.js')
 var wxTimer = null
+const TDSDK = require('../../lib/tdweapp.js')
 
 Component({
   properties: {
@@ -46,7 +47,7 @@ Component({
     console.log('...................attached method...................')
     utils.isIphone(this)
 
-  
+    TDSDK.App.onLaunch()
   
   },
   detached() {
@@ -69,6 +70,11 @@ Component({
       } else {
         that.setData({processing: true})
       }
+
+      // chama
+      TDSDK.Event.event({
+        id: 'mini_c&j_pinorderconfirm_ok_click'
+      })
       
       if (userinfo && userinfo.userCode) {
         utils.log('微信用户已经登录小程序系统')
@@ -256,6 +262,13 @@ Component({
             beginTime: timeStr
           })
           wxTimer.start(that)  
+
+
+          // chama
+          TDSDK.Event.event({
+            id: 'mini_c&j_pinorderconfirm_load'
+          })
+
         }, that
       )
     },

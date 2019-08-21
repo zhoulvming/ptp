@@ -128,7 +128,6 @@
   </view>
   <view class="iphoneX" wx:if="{{isIphoneX}}"></view>  
 </view>
-
 <view class="mask" wx:if="{{showModalDlgBuycountFlg || showModalDlgPostFlg}}" bindtap="hideModalDlg"></view>
 
 <!-- 海报组件 -->

@@ -43,7 +43,7 @@
               <text class="org">￥{{prd_item.orgPrice}}</text>
             </view>
           </view>
-          <button class="btn mini" bindtap="gotoCreatePT" data-prdid="{{prd_item.prdId}}">去开团</button>
+          <button class="btn mini" bindtap="gotoCreatePT" data-prdid="{{prd_item.prdId}}" data-prdname="{{prd_item.prdName}}">去开团</button>
         </view>
       </swiper-item>
     </swiper>

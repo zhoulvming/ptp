@@ -35,7 +35,4 @@
     下一步
   </view>
   <view class="iphoneX" wx:if="{{isIphoneX}}"></view>
-  <!--
-  <button class="btn-bottom" bindtap="gotoNext">下一步</button>
-  -->
 </view>
