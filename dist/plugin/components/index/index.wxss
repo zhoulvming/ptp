@@ -106,7 +106,7 @@ page {
 }
 /** font-color **/
 .fc-primary {
-  color: #008FDB;
+  color: #D62F35;
 }
 .link-normal {
   color: #888;
@@ -121,7 +121,7 @@ page {
 .btn.mini {
   padding: 0rpx 34rpx;
   text-align: center;
-  background: #008FDB;
+  background: #D62F35;
   color: white;
   font-size: 28rpx;
   font-weight: 500;
@@ -206,12 +206,12 @@ page {
   border: none;
 }
 .card-list > .title {
-  color: #008FDB;
+  color: #D62F35;
   font-size: 35rpx;
   font-weight: 500;
   margin: 0 auto;
   text-align: center;
-  border-bottom: 2px solid #008FDB;
+  border-bottom: 2px solid #D62F35;
   margin-bottom: 40rpx;
 }
 .tab {
@@ -235,11 +235,11 @@ page {
   font-size: 36rpx;
 }
 .tab .tab-nav view.on {
-  color: #008FDB;
+  color: #D62F35;
 }
 .tab .tab-nav view.on text {
   padding-bottom: 10rpx;
-  border-bottom: 7rpx solid #008FDB;
+  border-bottom: 7rpx solid #D62F35;
 }
 .tab .tab-nav view.off {
   color: #888;

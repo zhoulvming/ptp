@@ -77,5 +77,11 @@ Page({
         path: 'pintuan/pt-detail-prd/index?prdId=' + opData.prdId
       }
     }
+  },
+
+  chama() {
+    app.tdsdk.event({
+      id: 'mini_c&j_pinproductdetail_customerservice_click'
+    })
   }
 })

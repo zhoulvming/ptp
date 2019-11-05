@@ -14,6 +14,9 @@ Page({
     if (target == 'pay') {
       this.pay(data)
     } else {
+      console.log(111111)
+      console.log(data)
+      console.log(222222)
       ptCommon.gotoPageFromPlugin(data)
     }
   },

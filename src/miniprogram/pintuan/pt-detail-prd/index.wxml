@@ -6,7 +6,7 @@
 
 <view class="fixedBottom">
     <view class='customer'>
-      <button bindtap='onlineService' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>
+      <button bindtap='chama' class='btn-contact' open-type='contact' plain='true' session-from='coffeemini'>
         <image src="../../images/kefu.png" />
         <text>客服</text>
       </button>      

@@ -60,7 +60,7 @@
   </view>
   <view class="item">
     <image src="../../images/activity-sel.png"/>
-    <text style="color: #008FDB">拼团</text>
+    <text style="color: #D62F35">拼团</text>
   </view>
   <view class="item" bindtap="tabNav" data-target="app-mine">
     <image src="../../images/person.png" data-target="app-mine"/>
@@ -78,7 +78,7 @@
   </view>
   <view class="item">
     <image src="../../images/activity-sel.png"/>
-    <text style="color: #008FDB">拼团</text>
+    <text style="color: #D62F35">拼团</text>
   </view>
   <view class="item" bindtap="tabNav" data-target="app-mine">
     <image src="../../images/person.png" data-target="app-mine"/>
@@ -96,7 +96,7 @@
   </view>
   <view class="item">
     <image src="../../images/activity-sel.png"/>
-    <text style="color: #008FDB">拼团</text>
+    <text style="color: #D62F35">拼团</text>
   </view>
   <view class="item" bindtap="tabNav" data-target="app-mine">
     <image src="../../images/person.png" data-target="app-mine"/>

@@ -106,7 +106,7 @@ page {
 }
 /** font-color **/
 .fc-primary {
-  color: #008FDB;
+  color: #D62F35;
 }
 .link-normal {
   color: #888;
@@ -121,7 +121,7 @@ page {
 .btn.mini {
   padding: 0rpx 34rpx;
   text-align: center;
-  background: #008FDB;
+  background: #D62F35;
   color: white;
   font-size: 28rpx;
   font-weight: 500;

@@ -85,26 +85,26 @@ Component({
             utils.log('下单成功：' + orderResult.orderNo)
 
             // TODO: 测试时暂时关闭绕过支付，后面需要打开wxPay的调用，删除测试代码
-            that.wxPay(orderResult.orderNo, orderResult.grpId)
+            // that.wxPay(orderResult.orderNo, orderResult.grpId)
 
             // TODO: 测试代码，绕过支付      ------ start
-            // var grpEnter = that.data.inputData.grpEnter
-            // if (grpEnter == 1) {
-            //   grpEnter = 2
-            // } else if (grpEnter == 4) {
-            //   grpEnter = 5
-            // }
-            // that.triggerEvent('callback', {
-            //   target: config.miniPage.detail_grp,
-            //   options: {
-            //     grpEnter: grpEnter,
-            //     prdId: that.data.inputData.prdId,
-            //     grpId: orderResult.grpId,
-            //     price: that.data.inputData.price,
-            //     paySuccessFlag: true,
-            //     orderNo: orderResult.orderNo
-            //   }
-            // })
+            var grpEnter = that.data.inputData.grpEnter
+            if (grpEnter == 1) {
+              grpEnter = 2
+            } else if (grpEnter == 4) {
+              grpEnter = 5
+            }
+            that.triggerEvent('callback', {
+              target: config.miniPage.detail_grp,
+              options: {
+                grpEnter: grpEnter,
+                prdId: that.data.inputData.prdId,
+                grpId: orderResult.grpId,
+                price: that.data.inputData.price,
+                paySuccessFlag: true,
+                orderNo: orderResult.orderNo
+              }
+            })
             // TODO: 测试代码，绕过支付      ------ end
              
           } else {
@@ -139,6 +139,19 @@ Component({
         })
       }
     },
+
+    // 下单测试函数
+    crtOrderTest(cb) {
+      var that = this
+      var grpId = that.data.inputData.grpId
+      cb({
+        resultFlag: true,
+        orderNo: null,
+        grpId: grpId,
+        statusCode: 0
+      }) 
+    },
+
 
     // 下单
     crtOrder(cb) {

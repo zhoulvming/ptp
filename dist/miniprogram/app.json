@@ -13,8 +13,8 @@
     "pintuan/pt-error/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#D82C2E",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "微信小程序",
     "navigationStyle": "default",
     "backgroundColor": "#ffffff",

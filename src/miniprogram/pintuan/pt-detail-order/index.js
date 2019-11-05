@@ -1,4 +1,5 @@
-const ptCommon = require('../pt.common.js');
+const ptCommon = require('../pt.common.js')
+const app = getApp()
 Page({
   data: {},
   onLoad() {
@@ -7,5 +8,10 @@ Page({
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data);
+  },
+  chama() {
+    app.tdsdk.event({
+      id: 'mini_c&j_pinorderdetail_csonline_click'
+    })
   }
 });

@@ -29,6 +29,7 @@ const gotoPageFromPlugin = (data) => {
     } else if (url.indexOf('pt-index') >= 0) {
       wx.reLaunch({url: url})
     } else {
+      console.log('use navigate.........')
       wx.navigateTo({url: url})
     }
   } else {

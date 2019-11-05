@@ -106,7 +106,7 @@ page {
 }
 /** font-color **/
 .fc-primary {
-  color: #008FDB;
+  color: #D62F35;
 }
 .link-normal {
   color: #888;
@@ -121,7 +121,7 @@ page {
 .btn.mini {
   padding: 0rpx 34rpx;
   text-align: center;
-  background: #008FDB;
+  background: #D62F35;
   color: white;
   font-size: 28rpx;
   font-weight: 500;
@@ -227,7 +227,7 @@ page {
   margin-right: 20rpx;
 }
 .top-stauts .status text.on {
-  color: #008FDB;
+  color: #D62F35;
 }
 .card {
   background: #fff;
@@ -348,7 +348,7 @@ page {
   position: absolute;
   bottom: 10rpx;
   border-radius: 20rpx;
-  background-color: #008FDB;
+  background-color: #D62F35;
   margin-left: 30rpx;
   color: white;
   font-size: 25rpx;
@@ -393,7 +393,7 @@ page {
 }
 .content .detail-user .left-count text {
   font-size: 36rpx;
-  color: #008FDB;
+  color: #D62F35;
 }
 .content .detail-user .action {
   display: flex;
@@ -404,7 +404,7 @@ page {
 }
 .content .detail-user .action button {
   font-size: 32rpx;
-  background-color: #008FDB;
+  background-color: #D62F35;
   border-radius: 15rpx;
   color: white;
   line-height: 2.7;
@@ -423,13 +423,13 @@ page {
 .content .detail-user .action .order-btn-ref {
   width: 100%;
   background-color: #fff;
-  border: 1rpx solid #008FDB;
-  color: #008FDB;
+  border: 1rpx solid #D62F35;
+  color: #D62F35;
   font-weight: 500;
 }
 .content .detail-user .action .order-btn-ref-failed {
   width: 100%;
-  background-color: #008FDB;
+  background-color: #D62F35;
   color: #fff;
   font-weight: 500;
 }
@@ -492,7 +492,7 @@ page {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #008FDB;
+  background-color: #D62F35;
   font-weight: 700;
   border-radius: 0;
   box-sizing: none;

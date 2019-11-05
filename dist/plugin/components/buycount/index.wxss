@@ -106,7 +106,7 @@ page {
 }
 /** font-color **/
 .fc-primary {
-  color: #008FDB;
+  color: #D62F35;
 }
 .link-normal {
   color: #888;
@@ -121,7 +121,7 @@ page {
 .btn.mini {
   padding: 0rpx 34rpx;
   text-align: center;
-  background: #008FDB;
+  background: #D62F35;
   color: white;
   font-size: 28rpx;
   font-weight: 500;
@@ -210,7 +210,7 @@ page {
   position: fixed;
   bottom: 0;
   z-index: 9999;
-  background-color: #008FDB;
+  background-color: #D62F35;
   border-radius: 0;
   display: flex;
   flex-direction: column;
@@ -245,7 +245,7 @@ page {
 .modalDlg-buycount .prd-info .info .name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #008FDB;
+  color: #D62F35;
 }
 .modalDlg-buycount .prd-info .info .gp-info {
   margin-top: 10rpx;
@@ -330,7 +330,7 @@ page {
   -moz-border-radius: 50%;
   -o-border-radius: 50%;
   -ms-border-radius: 50%;
-  background: #008FDB;
+  background: #D62F35;
   font-size: 50rpx;
   color: #ffffff;
   text-align: center;
@@ -365,7 +365,7 @@ page {
 }
 .modalDlg-buycount .btn-bottom {
   width: 100%;
-  background-color: #008FDB;
+  background-color: #D62F35;
   border-radius: 0;
   box-sizing: none;
   color: white;

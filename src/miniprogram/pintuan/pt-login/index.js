@@ -9,13 +9,15 @@ Page({
     var options = wx.getStorageSync('DATA_FROM_PLUGIN')
     this.setData({options: options})
 
-    if (app.isLogin()) {
-      app.$router.redirectTo("pt_confirm_order");
-    } else {
-      app.$router.redirectTo("login", {
-        target: "pintuan"
-      });
-    }
+    // TODO：发布时候打开
+    // if (app.isLogin()) {
+    //   app.$router.redirectTo("pt_confirm_order");
+    // } else {
+    //   app.$router.redirectTo("login", {
+    //     target: "pintuan"
+    //   });
+    // }
+
   },
   gotoPageFromPlugin(data) {
     ptCommon.gotoPageFromPlugin(data)
